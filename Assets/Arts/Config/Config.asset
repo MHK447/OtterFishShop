@@ -63,6 +63,8 @@ MonoBehaviour:
     color: {r: 1, g: 0, b: 0.8291087, a: 1}
   - key_string: TextColor_Unit_Grade_Legend
     color: {r: 1, g: 0.9964251, b: 0, a: 1}
+  - key_string: howoo
+    color: {r: 1, g: 0.9964251, b: 0, a: 1}
   _eventTextColorDefines: []
   _imageColorDefines:
   - key_string: BgColor_White

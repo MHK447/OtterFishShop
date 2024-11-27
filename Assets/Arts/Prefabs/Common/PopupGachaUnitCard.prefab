@@ -975,6 +975,34 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5597642177463829497, guid: 57404f3347a3c4c8298395ac089b37e3, type: 3}
+      propertyPath: keyColor
+      value: TextColor_Btn_Point
+      objectReference: {fileID: 0}
+    - target: {fileID: 5597642177463829497, guid: 57404f3347a3c4c8298395ac089b37e3, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5597642177463829497, guid: 57404f3347a3c4c8298395ac089b37e3, type: 3}
+      propertyPath: m_EffectColor.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5597642177463829497, guid: 57404f3347a3c4c8298395ac089b37e3, type: 3}
+      propertyPath: m_EffectColor.g
+      value: 0.023529412
+      objectReference: {fileID: 0}
+    - target: {fileID: 5597642177463829497, guid: 57404f3347a3c4c8298395ac089b37e3, type: 3}
+      propertyPath: m_EffectColor.r
+      value: 0.3254902
+      objectReference: {fileID: 0}
+    - target: {fileID: 5597642177463829497, guid: 57404f3347a3c4c8298395ac089b37e3, type: 3}
+      propertyPath: m_EffectDistance.x
+      value: 11.43
+      objectReference: {fileID: 0}
+    - target: {fileID: 6277748107996117689, guid: 57404f3347a3c4c8298395ac089b37e3, type: 3}
+      propertyPath: keyColor
+      value: howoo
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
