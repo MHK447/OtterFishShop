@@ -21,6 +21,10 @@ public class GameRoot : Singleton<GameRoot>
 	public LoadingBasic Loading;
 	[SerializeField]
 	private AdManager AdManager;
+	[SerializeField]
+	private Joystick JoyStick;
+
+	public Joystick GetJoyStick { get { return JoyStick; } }
 
 	public RectTransform GetMainCanvasTR { get { return MainCanvas.transform as RectTransform; } }
 	public UISystem UISystem { get; private set; } = new UISystem();
@@ -31,12 +35,6 @@ public class GameRoot : Singleton<GameRoot>
 	public PlayTimeSystem PlayTimeSystem { get; private set; } = new PlayTimeSystem();
 	public EffectSystem EffectSystem { get; private set; } = new EffectSystem();
 	public TutorialSystem TutorialSystem { get; private set; } = new TutorialSystem();
-	public InGameBattleSystem InGameBattleSystem { get; private set; } = new InGameBattleSystem();
-	public InGameUnitUpgradeSystem UnitUpgradeSystem { get; private set; } = new InGameUnitUpgradeSystem();
-	public UnitSkillSystem UnitSkillSystem { get; private set; } = new UnitSkillSystem();
-	public SkillCardSystem SkillCardSystem { get; private set; } = new SkillCardSystem();
-	public OutGameUnitUpgradeSystem OutGameUnitUpgradeSystem { get; private set; } = new OutGameUnitUpgradeSystem();
-	public SelectGachaWeaponSkillSystem GachaSkillSystem { get; private set; } = new SelectGachaWeaponSkillSystem();
 
 
 	public AdManager GetAdManager { get { return AdManager; } }
@@ -116,7 +114,6 @@ public class GameRoot : Singleton<GameRoot>
 
 		UserData.Update();
 		PlayTimeSystem.Update();
-		GachaSkillSystem.Update();
 
 		if (deltaTime >= 1f) // one seconds updates;
 		{
@@ -125,13 +122,6 @@ public class GameRoot : Singleton<GameRoot>
 
 
 			InterTime += 1;
-
-			if(InterTime >= GameRoot.instance.InGameBattleSystem.inter_ad_time)
-            {
-				InterTime = 0;
-
-				GameRoot.instance.AdManager.ShowInterstitialAd();
-            }
 
 		}
 		deltaTime += Time.deltaTime;
@@ -234,15 +224,16 @@ public class GameRoot : Singleton<GameRoot>
 		yield return new WaitUntil(() => loadcount == 1);
 		UserData.Load();
 		InGameSystem.ChangeMode(CurInGameType);
-		InGameBattleSystem.Create();
-		UnitUpgradeSystem.Create();
-		GachaSkillSystem.Create();
 
 		LoadComplete = true;
 
 		InitSystem();
 
-		GameRoot.instance.WaitTimeAndCallback(0.5f, () => { BgmOn(); });
+
+		GameRoot.instance.WaitTimeAndCallback(0.5f, () => {
+			JoyStick.Init();
+			BgmOn();
+		});
 	}
 
 	public void BgmOn()
@@ -287,41 +278,15 @@ public class GameRoot : Singleton<GameRoot>
 
 	void InitSystem()
 	{
-		//&& GameRoot.Instance.UserData.CurMode.StageData.StorageData.Count < 1
-		//startGame
-		//var count = GameRoot.instance.UserData.GetRecordCount(Config.RecordCountKeys.Init);
 		if (GameRoot.Instance.UserData.CurMode.StageData.StageIdx == 1)
 		{
-			//if (UserData.UUID == 0)
-			//	UserData.SetUUID(TpUtility.GetUUID());
-
-			//GameRoot.instance.UserData.AddRecordCount(Config.RecordCountKeys.Init, 1);
-			//InGameSystem.NextGameStage(true);
-
-
-
-
 			SetNativeLanguage();
-
-			//PluginSystem.InitMax(() =>
-			//{
-			//	PluginSystem.AnalyticsProp.AllEvent(IngameEventType.None, "install");
-			//});
-
-			//GameRoot.instance.UserData.CurMode.StageData.SetStageIdx(1);
-
 		}
 		else
 		{
 
-			//PluginSystem.InitMax();
-
-			//Config.Instance.UpdateFallbackOrder(UserData.Language);
 		}
 
-		//ProjectUtility.Init();
-		InGameBattleSystem.Create();
-		UnitUpgradeSystem.Create();
 	}
 
 	private void SetNativeLanguage()

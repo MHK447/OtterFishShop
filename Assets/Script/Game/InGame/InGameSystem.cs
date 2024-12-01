@@ -106,23 +106,6 @@ public class InGameSystem
     }
 
 
-    public void DrawCardCheck()
-    {
-        GameRoot.Instance.InGameSystem.DeadCount.Value += 1;
-
-        var stageidx = GameRoot.Instance.UserData.CurMode.StageData.StageIdx;
-
-        var td = Tables.Instance.GetTable<StageCardDrawInfo>().GetData(stageidx);
-
-        if (td != null)
-        {
-            var finddata = td.unitdead_count.Find(x => x == GameRoot.Instance.InGameSystem.DeadCount.Value);
-
-            if (finddata > 0)
-            {
-                GameRoot.Instance.UISystem.OpenUI<PopupSelectGacha>(popup => popup.Init());
-            }
-        }
-    }
+    
 
 }

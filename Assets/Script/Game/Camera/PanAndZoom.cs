@@ -56,6 +56,8 @@ public class PanAndZoom : MonoBehaviour {
     public float focusMoveDuration = 2f;
     public float zoomOutSizeDefault = 20f;
 
+    [SerializeField] float smoothSpeed = 4f;
+
     bool follow = false;
     Transform followTrans;
     bool focusing = false;    
@@ -90,7 +92,7 @@ public class PanAndZoom : MonoBehaviour {
     private Vector3 camVelocity = Vector3.zero;
     private Vector3 posLastFrame = Vector3.zero;
     private bool multiTouch = false;
-
+    Player _player;
     void Start() {
         var aspectRatio = Mathf.Max(Screen.width, Screen.height) / Mathf.Min(Screen.width, Screen.height);
         var isTablet = (BanpoFri.Utility.DeviceDiagonalSizeInInches() > 6.5f && aspectRatio < 2f);
@@ -107,46 +109,43 @@ public class PanAndZoom : MonoBehaviour {
         }
 
         canUseMouse = Application.platform != RuntimePlatform.Android && Application.platform != RuntimePlatform.IPhonePlayer && Input.mousePresent;
+
+        _player = GameRoot.Instance.InGameSystem.GetInGame<InGameTycoon>().GetPlayer;
         //cam.orthographicSize = Mathf.Min(cam.orthographicSize, ((boundMaxY - boundMinY) / 2) - 0.001f);
         //zoomOutSize = cam.orthographicSize = Mathf.Min(cam.orthographicSize, (Screen.height * (boundMaxX - boundMinX) / (2 * Screen.width)) - 0.001f);
     }
 
-    void LateUpdate() {
-        CameraInBounds();
+    void LateUpdate()
+    {
+        // SmoothDamp를 활용하여 카메라 이동 부드럽게 처리
+        Vector3 targetPosition = _player.transform.position + new Vector3(0f, 0f, -10f);
+        Vector3 smoothedPosition = Vector3.Lerp(cam.transform.position, targetPosition, smoothSpeed * Time.deltaTime);
+        cam.transform.position = smoothedPosition;
+
+        // 카메라 속도 계산
         camVelocity = (cam.transform.position - posLastFrame) / Time.deltaTime;
         posLastFrame = cam.transform.position;
     }
 
-	private void Update()
-	{
-        if (useMouse && canUseMouse)
-        {
-            UpdateWithMouse();
-        }
-        else
-        {
-            UpdateWithTouch();
-        }
+    void Update()
+    {
 
-        if (cameraScrollVelocity.sqrMagnitude > float.Epsilon)
-        {
-            float timeSinceDragStop = Time.realtimeSinceStartup - timeRealDragStop;
-            float dampFactor = Mathf.Clamp01(timeSinceDragStop * 2f);
-            float camScrollVel = cameraScrollVelocity.magnitude;
-            float camScrollVelRelative = camScrollVel / 60;
-            Vector3 camVelDamp = dampFactor * cameraScrollVelocity.normalized * 300f * Time.deltaTime;
-            camVelDamp *= EvaluateAutoScrollDampCurve(Mathf.Clamp01(1.0f - camScrollVelRelative));
-            if (camVelDamp.sqrMagnitude >= cameraScrollVelocity.sqrMagnitude)
-            {
-                cameraScrollVelocity = Vector3.zero;
-            }
-            else
-            {
-                cameraScrollVelocity -= camVelDamp;
-            }
-        }
-        else
-            moving = false;
+            // camera clamp
+            // float x = Mathf.Clamp(followingTransform.position.x, cameraMinX, cameraMaxX);
+            // float y = Mathf.Clamp(followingTransform.position.y, cameraMinY, cameraMaxY);
+            // transform.position = new Vector3(x, y, _originZ);
+
+            // transform.position = new Vector3(followingTransform.position.x, followingTransform.position.y, _originZ);
+            // Debug.Log("$ " + ReverseCalculatePosition(transform.position));
+
+            // if (IsInsideArea(transform.position))
+            // {
+            //     //transform.position = new Vector3(followingTransform.position.x, followingTransform.position.y, _originZ);
+            // }
+            // else
+            // {
+            //}
+        
     }
 
     private float EvaluateAutoScrollDampCurve(float t)
@@ -253,87 +252,87 @@ public class PanAndZoom : MonoBehaviour {
         //}
     }
 
-    void UpdateWithTouch() {
-        int touchCount = Input.touches.Length;
+  //  void UpdateWithTouch() {
+  //      int touchCount = Input.touches.Length;
 
-		if(touchCount > 1)
-		{
-			for (var i = 0; i < touchCount; ++i)
-			{
-				Touch touch = Input.touches[i];
+		//if(touchCount > 1)
+		//{
+		//	for (var i = 0; i < touchCount; ++i)
+		//	{
+		//		Touch touch = Input.touches[i];
 
-				if (touch.phase == TouchPhase.Ended)
-				{
-					if (!IsPointerOverUIObject(touch.position))
-					{
-						IsClickInGameObject(touch.position);
-					}
-				}
-			}
-            multiTouch = true;
-		}
-        else if (touchCount == 1)
-        {
-			Touch touch = Input.touches[0];
+		//		if (touch.phase == TouchPhase.Ended)
+		//		{
+		//			if (!IsPointerOverUIObject(touch.position))
+		//			{
+		//				IsClickInGameObject(touch.position);
+		//			}
+		//		}
+		//	}
+  //          multiTouch = true;
+		//}
+  //      else if (touchCount == 1)
+  //      {
+		//	Touch touch = Input.touches[0];
 
-			switch (touch.phase)
-			{
-				case TouchPhase.Began:
-					{
-						if (ignoreUI || (!focusing && !IsPointerOverUIObject(touch.position)))
-						{
-							touch0StartPosition = touch.position;
-							touch0StartTime = Time.time;
-							touch0LastPosition = touch0StartPosition;
-							moving = false;
-							isTouching = true;
+		//	switch (touch.phase)
+		//	{
+		//		case TouchPhase.Began:
+		//			{
+		//				if (ignoreUI || (!focusing && !IsPointerOverUIObject(touch.position)))
+		//				{
+		//					touch0StartPosition = touch.position;
+		//					touch0StartTime = Time.time;
+		//					touch0LastPosition = touch0StartPosition;
+		//					moving = false;
+		//					isTouching = true;
 
-							//if (onStartTouch != null) onStartTouch(touch0StartPosition);
-						}
+		//					//if (onStartTouch != null) onStartTouch(touch0StartPosition);
+		//				}
 
-						break;
-					}
-				case TouchPhase.Moved:
-					{
-						touch0LastPosition = touch.position;
+		//				break;
+		//			}
+		//		case TouchPhase.Moved:
+		//			{
+		//				touch0LastPosition = touch.position;
 
-						if (touch.deltaPosition != Vector2.zero && isTouching)
-						{
-							OnSwipe(touch.deltaPosition);
-						}
-						break;
-					}
-				case TouchPhase.Ended:
-					{
-                        if(multiTouch)
-                        {
-                            if (!IsPointerOverUIObject(touch.position))
-                            {
-                                IsClickInGameObject(touch.position);
-                            }
-                        }
-                        else
-						if (Time.time - touch0StartTime <= maxDurationForTap
-							&& Vector2.Distance(touch.position, touch0StartPosition) <= maxDistanceForTap
-							&& isTouching)
-						{
-							OnClick(touch.position);
-						}
+		//				if (touch.deltaPosition != Vector2.zero && isTouching)
+		//				{
+		//					OnSwipe(touch.deltaPosition);
+		//				}
+		//				break;
+		//			}
+		//		case TouchPhase.Ended:
+		//			{
+  //                      if(multiTouch)
+  //                      {
+  //                          if (!IsPointerOverUIObject(touch.position))
+  //                          {
+  //                              IsClickInGameObject(touch.position);
+  //                          }
+  //                      }
+  //                      else
+		//				if (Time.time - touch0StartTime <= maxDurationForTap
+		//					&& Vector2.Distance(touch.position, touch0StartPosition) <= maxDistanceForTap
+		//					&& isTouching)
+		//				{
+		//					OnClick(touch.position);
+		//				}
 
-						if (onEndTouch != null) onEndTouch(touch.position);
-						isTouching = false;
-						cameraControlEnabled = true;
-                        multiTouch = false;
+		//				if (onEndTouch != null) onEndTouch(touch.position);
+		//				isTouching = false;
+		//				cameraControlEnabled = true;
+  //                      multiTouch = false;
 
-						CheckMoveTarget(touch.position, true);
-						break;
-					}
-				case TouchPhase.Stationary:
-				case TouchPhase.Canceled:
-					break;
-			}            
-		}
-    }
+		//				CheckMoveTarget(touch.position, true);
+		//				break;
+		//			}
+		//		case TouchPhase.Stationary:
+		//		case TouchPhase.Canceled:
+		//			break;
+		//	}            
+		//}
+  //  }
 
     void OnClick(Vector2 position) {
         // if (onTap != null && (ignoreUI || (!focusing && !IsPointerOverUIObject() && !IsClickInGameObject() ))) {
@@ -489,132 +488,132 @@ public class PanAndZoom : MonoBehaviour {
     }
 
     void CameraInBounds() {
-        if(follow)
-        {
-            //cam.orthographicSize = Mathf.Lerp(focusOriginCameraSize, focusSize, Easing.Quartic.Out(focusDeltaTime / focusMoveDuration));
-            cam.transform.position = new Vector3(cam.transform.position.x, followTrans.position.y, cam.transform.position.z);
-            //if(focusDeltaTime < focusMoveDuration)
-            //    focusDeltaTime += Time.deltaTime;
-            //else
-            //    cam.orthographicSize = focusSize;
-            return;
-        }
+        //if(follow)
+        //{
+        //    //cam.orthographicSize = Mathf.Lerp(focusOriginCameraSize, focusSize, Easing.Quartic.Out(focusDeltaTime / focusMoveDuration));
+        //    cam.transform.position = new Vector3(cam.transform.position.x, followTrans.position.y, cam.transform.position.z);
+        //    //if(focusDeltaTime < focusMoveDuration)
+        //    //    focusDeltaTime += Time.deltaTime;
+        //    //else
+        //    //    cam.orthographicSize = focusSize;
+        //    return;
+        //}
 
-        if(focusing)
-        {
-            if(focusDeltaTime >= focusMoveDuration)
-            {
-                focusing = false;
-                TpLog.Log("focusing false");
-                cam.orthographicSize = focusSize;
-                if(OnFoucusEnd != null)
-                {
-                    OnFoucusEnd.Invoke();
-                    OnFoucusEnd = null;                    
-                }
-                return;
-            }
-            moving = false;
-            var result = Vector3.Lerp(focusOriginPos, focusTargetPos, Easing.Quartic.Out(focusDeltaTime / focusMoveDuration));
-            //cam.transform.position = new Vector3( result.x, result.y, cam.transform.position.z);
-            //cam.orthographicSize = Mathf.Lerp(focusOriginCameraSize, focusSize, Easing.Quartic.Out(focusDeltaTime / focusMoveDuration));
-            focusDeltaTime += Time.deltaTime;
-        }
-        else
-        if(moving) 
-        {
-            Vector2 autoScrollVector = -cameraScrollVelocity * Time.deltaTime;
-            //cam.transform.position = new Vector3(cam.transform.position.x + autoScrollVector.x,
-            //    cam.transform.position.y + autoScrollVector.y,
-            //    cam.transform.position.z);
+   //     if(focusing)
+   //     {
+   //         if(focusDeltaTime >= focusMoveDuration)
+   //         {
+   //             focusing = false;
+   //             TpLog.Log("focusing false");
+   //             cam.orthographicSize = focusSize;
+   //             if(OnFoucusEnd != null)
+   //             {
+   //                 OnFoucusEnd.Invoke();
+   //                 OnFoucusEnd = null;                    
+   //             }
+   //             return;
+   //         }
+   //         moving = false;
+   //         var result = Vector3.Lerp(focusOriginPos, focusTargetPos, Easing.Quartic.Out(focusDeltaTime / focusMoveDuration));
+   //         //cam.transform.position = new Vector3( result.x, result.y, cam.transform.position.z);
+   //         //cam.orthographicSize = Mathf.Lerp(focusOriginCameraSize, focusSize, Easing.Quartic.Out(focusDeltaTime / focusMoveDuration));
+   //         focusDeltaTime += Time.deltaTime;
+   //     }
+   //     else
+   //     if(moving) 
+   //     {
+   //         Vector2 autoScrollVector = -cameraScrollVelocity * Time.deltaTime;
+   //         //cam.transform.position = new Vector3(cam.transform.position.x + autoScrollVector.x,
+   //         //    cam.transform.position.y + autoScrollVector.y,
+   //         //    cam.transform.position.z);
                 
-            if (onSwipe != null) {
-                onSwipe(autoScrollVector);
-            }
-        }
+   //         if (onSwipe != null) {
+   //             onSwipe(autoScrollVector);
+   //         }
+   //     }
 
-        if(controlCamera && useBounds && cam != null && cam.orthographic) {
-            //cam.orthographicSize = Mathf.Min(cam.orthographicSize, ((boundMaxY - boundMinY) / 2) - 0.001f);
-            //cam.orthographicSize = Mathf.Min(cam.orthographicSize, (Screen.height * (boundMaxX - boundMinX) / (2 * Screen.width)) - 0.001f);
+   //     if(controlCamera && useBounds && cam != null && cam.orthographic) {
+   //         //cam.orthographicSize = Mathf.Min(cam.orthographicSize, ((boundMaxY - boundMinY) / 2) - 0.001f);
+   //         //cam.orthographicSize = Mathf.Min(cam.orthographicSize, (Screen.height * (boundMaxX - boundMinX) / (2 * Screen.width)) - 0.001f);
 
-            Vector2 margin = cam.ScreenToWorldPoint((Vector2.up * Screen.height / 2) + (Vector2.right * Screen.width / 2)) - cam.ScreenToWorldPoint(Vector2.zero);
+   //         //Vector2 margin = cam.ScreenToWorldPoint((Vector2.up * Screen.height / 2) + (Vector2.right * Screen.width / 2)) - cam.ScreenToWorldPoint(Vector2.zero);
 
-            float marginX = margin.x;
-            float marginY = margin.y;
+   //         //float marginX = margin.x;
+   //         //float marginY = margin.y;
 
-            float camMaxX = boundMaxX - marginX;
-            float camMaxY = boundMaxY - marginY;
-            float camMinX = boundMinX + marginX;
-            float camMinY = boundMinY + marginY;
+   //         //float camMaxX = boundMaxX - marginX;
+   //         //float camMaxY = boundMaxY - marginY;
+   //         //float camMinX = boundMinX + marginX;
+   //         //float camMinY = boundMinY + marginY;
 
-            bool over = false;
-   //         Vector3 target = cam.transform.position;
-   //         if (!isTouching)
-			//{                
-   //             if (cam.transform.position.x < camMinX)
-   //             {
-   //                 over = true;
-   //                 target.x = camMinX;
-   //             }
-   //             else if (cam.transform.position.x > camMaxX)
-   //             {
-   //                 over = true;
-   //                 target.x = camMaxX;
-   //             }
-   //             if (cam.transform.position.y < camMinY)
-   //             {
-   //                 over = true;
-   //                 target.y = camMinY;
-   //             }
-   //             else if (cam.transform.position.y > camMaxY)
-   //             {
-   //                 over = true;
-   //                 target.y = camMaxY;
-   //             }
-                if (over)
-                {
-                    //cam.transform.position = new Vector3(target.x , 7.8f , -10);//Vector3.Lerp(cam.transform.position, target,  Time.deltaTime * 5f);
-                    //cam.transform.position = new Vector3(result.x, result.y, cam.transform.position.z);
+   //         //bool over = false;
+   ////         Vector3 target = cam.transform.position;
+   ////         if (!isTouching)
+			////{                
+   ////             if (cam.transform.position.x < camMinX)
+   ////             {
+   ////                 over = true;
+   ////                 target.x = camMinX;
+   ////             }
+   ////             else if (cam.transform.position.x > camMaxX)
+   ////             {
+   ////                 over = true;
+   ////                 target.x = camMaxX;
+   ////             }
+   ////             if (cam.transform.position.y < camMinY)
+   ////             {
+   ////                 over = true;
+   ////                 target.y = camMinY;
+   ////             }
+   ////             else if (cam.transform.position.y > camMaxY)
+   ////             {
+   ////                 over = true;
+   ////                 target.y = camMaxY;
+   ////             }
+   //             //if (over)
+   //             //{
+   //             //    //cam.transform.position = new Vector3(target.x , 7.8f , -10);//Vector3.Lerp(cam.transform.position, target,  Time.deltaTime * 5f);
+   //             //    //cam.transform.position = new Vector3(result.x, result.y, cam.transform.position.z);
 
-                    //FocusPosition(target, cam.orthographicSize);
-                }
-            }
-            else
-			{
-                //camMaxX *= 1.4f;
-                //camMaxY *= 1.4f;
-                //camMinX *= 1.4f;
-                //camMinY *= 1.4f;
+   //             //    //FocusPosition(target, cam.orthographicSize);
+   //             //}
+   //         }
+   //         else
+			//{
+   //             //camMaxX *= 1.4f;
+   //             //camMaxY *= 1.4f;
+   //             //camMinX *= 1.4f;
+   //             //camMinY *= 1.4f;
 
-                //if (cam.transform.position.x < camMinX)
-                //{
-                //    over = true;
-                //    target.x = camMinX;
-                //}
-                //else if (cam.transform.position.x > camMaxX)
-                //{
-                //    over = true;
-                //    target.x = camMaxX;
-                //}
-                //if (cam.transform.position.y < camMinY)
-                //{
-                //    over = true;
-                //    target.y = camMinY;
-                //}
-                //else if (cam.transform.position.y > camMaxY)
-                //{
-                //    over = true;
-                //    target.y = camMaxY;
-                //}
+   //             //if (cam.transform.position.x < camMinX)
+   //             //{
+   //             //    over = true;
+   //             //    target.x = camMinX;
+   //             //}
+   //             //else if (cam.transform.position.x > camMaxX)
+   //             //{
+   //             //    over = true;
+   //             //    target.x = camMaxX;
+   //             //}
+   //             //if (cam.transform.position.y < camMinY)
+   //             //{
+   //             //    over = true;
+   //             //    target.y = camMinY;
+   //             //}
+   //             //else if (cam.transform.position.y > camMaxY)
+   //             //{
+   //             //    over = true;
+   //             //    target.y = camMaxY;
+   //             //}
 
-                //if (over)
-                //{
-                //    //cam.transform.position = new Vector3(target.x, 7.8f, -10);
-                //}
-            }
+   //             //if (over)
+   //             //{
+   //             //    //cam.transform.position = new Vector3(target.x, 7.8f, -10);
+   //             //}
+   //         }
 
-            //float camX = Mathf.Clamp(cam.transform.position.x, camMinX, camMaxX);
-            //float camY = Mathf.Clamp(cam.transform.position.y, camMinY, camMaxY);
+   //         //float camX = Mathf.Clamp(cam.transform.position.x, camMinX, camMaxX);
+   //         //float camY = Mathf.Clamp(cam.transform.position.y, camMinY, camMaxY);
            
         }
     }

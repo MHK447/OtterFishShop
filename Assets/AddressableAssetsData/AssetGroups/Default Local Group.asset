@@ -67,11 +67,6 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: d8773e36971d8454d9366e723101f9f4
-    m_Address: Enemy_101
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 04b12f8662a7a4cc5a13ea0f4419783d
     m_Address: Unit001
     m_ReadOnly: 0
@@ -397,7 +392,7 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: cea350cf6dfd04335add1be0c8f543ef
+  - m_GUID: 91a9dad9914c1be4c9e03225b777b189
     m_Address: InGame1_1
     m_ReadOnly: 0
     m_SerializedLabels: []

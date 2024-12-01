@@ -5,17 +5,23 @@ using UnityEngine.AddressableAssets;
 using BanpoFri;
 using UniRx;
 using System.Linq;
+using UnityEngine.AI;
+using NavMeshPlus.Components;
 
 public class InGameTycoon : InGameMode
 {
-  
-    //private ObjectPool<Dust> dustPool = new ObjectPool<Dust>();
-    //private List<BubbleReward> activeBubbles = new List<BubbleReward>();
-    //private List<Dust> activeDusts = new List<Dust>();
+
+    [SerializeField]
+    private Player Player;
+
+    public Player GetPlayer { get { return Player; } }
 
 
     [HideInInspector]
     public InGameStage curInGameStage;
+
+    [SerializeField]
+    private NavMeshSurface NavMeshSurFace;
 
 
     public IReactiveProperty<int> FarsightedTimeProperty = new ReactiveProperty<int>(0);
@@ -29,9 +35,6 @@ public class InGameTycoon : InGameMode
     {
         base.Load();
 
-
-
-
         Addressables.InstantiateAsync("InGame1_1").Completed += (handle) =>
         {
             curInGameStage = handle.Result.GetComponent<InGameStage>();
@@ -39,6 +42,8 @@ public class InGameTycoon : InGameMode
             {
                 curInGameStage.Init();
             }
+
+            StartCoroutine(UpdateNavMeshProcess());
         };
 
         //CalculateGameSpeed();
@@ -54,9 +59,6 @@ public class InGameTycoon : InGameMode
     protected override void LoadUI()
     {
         base.LoadUI();
-
-        GameRoot.Instance.UISystem.OpenUI<HUDTotal>();
-        GameRoot.Instance.UISystem.OpenUI<PageLobbyBattle>(popup => popup.Init());
         GameRoot.Instance.InGameSystem.InitPopups();
     }
 
@@ -66,4 +68,14 @@ public class InGameTycoon : InGameMode
         base.UnLoad();
     }
 
+
+    private IEnumerator UpdateNavMeshProcess()
+    {
+        AsyncOperation asyncOp = NavMeshSurFace.UpdateNavMesh(NavMeshSurFace.navMeshData);
+        yield return new WaitUntil(() => asyncOp.isDone);
+
+        //navUpdateCallBack?.Invoke();
+        //_updateNavMeshProcess = null;
+        yield break;
+    }
 }
