@@ -1,4 +1,4 @@
-해달.png
+Otter.png
 size:512,512
 filter:Linear,Linear
 pma:true

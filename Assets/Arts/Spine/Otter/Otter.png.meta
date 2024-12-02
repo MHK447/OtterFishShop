@@ -1,82 +1,82 @@
 fileFormatVersion: 2
-guid: eab0ee428873ad74c9ce8de99db7e06a
+guid: d2aa23aa8c4c75e4fa170dc077787fe0
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 6736795366358496881
-    second: "\uD574\uB2EC_0"
+      213: -1729106956429219913
+    second: Otter_0
   - first:
-      213: -5942969419445726137
-    second: "\uD574\uB2EC_1"
+      213: 2418973842497945037
+    second: Otter_1
   - first:
-      213: 7540607002497525543
-    second: "\uD574\uB2EC_2"
+      213: -8772776845486072068
+    second: Otter_2
   - first:
-      213: 3404346988024350960
-    second: "\uD574\uB2EC_3"
+      213: -4676508189357718171
+    second: Otter_3
   - first:
-      213: -626123937268703104
-    second: "\uD574\uB2EC_4"
+      213: -7669249903271063909
+    second: Otter_4
   - first:
-      213: 5959145078120378395
-    second: "\uD574\uB2EC_5"
+      213: 5153307418950234729
+    second: Otter_5
   - first:
-      213: -3948298267118544520
-    second: "\uD574\uB2EC_6"
+      213: 6345305587797374477
+    second: Otter_6
   - first:
-      213: -8707167041923240678
-    second: "\uD574\uB2EC_7"
+      213: 7440200421259519513
+    second: Otter_7
   - first:
-      213: -8448781018791288467
-    second: "\uD574\uB2EC_8"
+      213: 4067123723906947180
+    second: Otter_8
   - first:
-      213: -9017489047713444705
-    second: "\uD574\uB2EC_9"
+      213: -3079425939559867538
+    second: Otter_9
   - first:
-      213: 7884810925523986863
-    second: "\uD574\uB2EC_10"
+      213: -1064129560560969509
+    second: Otter_10
   - first:
-      213: -2276658165001589217
-    second: "\uD574\uB2EC_11"
+      213: -1224952544901516795
+    second: Otter_11
   - first:
-      213: -8127003943095461739
-    second: "\uD574\uB2EC_12"
+      213: -9120226091304538662
+    second: Otter_12
   - first:
-      213: 8298590961092660608
-    second: "\uD574\uB2EC_13"
+      213: 1272689212664867321
+    second: Otter_13
   - first:
-      213: 4797665276310605289
-    second: "\uD574\uB2EC_14"
+      213: -3562599405274908327
+    second: Otter_14
   - first:
-      213: 9001412344407440399
-    second: "\uD574\uB2EC_15"
+      213: 720948777751432741
+    second: Otter_15
   - first:
-      213: -8936667319755272915
-    second: "\uD574\uB2EC_16"
+      213: -5343446799655708569
+    second: Otter_16
   - first:
-      213: 5843465716941166736
-    second: "\uD574\uB2EC_17"
+      213: 2952671050958013933
+    second: Otter_17
   - first:
-      213: 7595886924326919843
-    second: "\uD574\uB2EC_18"
+      213: -325846053708932802
+    second: Otter_18
   - first:
-      213: 1519819100768887152
-    second: "\uD574\uB2EC_19"
+      213: 8522470800493869497
+    second: Otter_19
   - first:
-      213: 3654878215040126428
-    second: "\uD574\uB2EC_20"
+      213: -2868914522093542599
+    second: Otter_20
   - first:
-      213: -2754846172427907571
-    second: "\uD574\uB2EC_21"
+      213: -830125792927367071
+    second: Otter_21
   - first:
-      213: -7571451098575454904
-    second: "\uD574\uB2EC_22"
+      213: 5757712987261496065
+    second: Otter_22
   - first:
-      213: 5147535599464557202
-    second: "\uD574\uB2EC_23"
+      213: -5821407542177953690
+    second: Otter_23
   - first:
-      213: 5202812942063597205
-    second: "\uD574\uB2EC_24"
+      213: -2570701196466884894
+    second: Otter_24
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -198,7 +198,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: "\uD574\uB2EC_0"
+      name: Otter_0
       rect:
         serializedVersion: 2
         x: 18
@@ -212,14 +212,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 176bb4051b7ed7d50800000000000000
-      internalID: 6736795366358496881
+      spriteID: 7b72163626af008e0800000000000000
+      internalID: -1729106956429219913
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\uD574\uB2EC_1"
+      name: Otter_1
       rect:
         serializedVersion: 2
         x: 43
@@ -233,14 +233,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 7449deadcc4568da0800000000000000
-      internalID: -5942969419445726137
+      spriteID: dcd3d0bb4ebe19120800000000000000
+      internalID: 2418973842497945037
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\uD574\uB2EC_2"
+      name: Otter_2
       rect:
         serializedVersion: 2
         x: 107
@@ -254,14 +254,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 72720beed1e95a860800000000000000
-      internalID: 7540607002497525543
+      spriteID: cfed70f60f5d04680800000000000000
+      internalID: -8772776845486072068
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\uD574\uB2EC_3"
+      name: Otter_3
       rect:
         serializedVersion: 2
         x: 2
@@ -275,14 +275,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 0f8cc517c8bae3f20800000000000000
-      internalID: 3404346988024350960
+      spriteID: 565c0283494b91fb0800000000000000
+      internalID: -4676508189357718171
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\uD574\uB2EC_4"
+      name: Otter_4
       rect:
         serializedVersion: 2
         x: 16
@@ -296,14 +296,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 080eabda89f8f47f0800000000000000
-      internalID: -626123937268703104
+      spriteID: b9e44dda8d9519590800000000000000
+      internalID: -7669249903271063909
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\uD574\uB2EC_5"
+      name: Otter_5
       rect:
         serializedVersion: 2
         x: 123
@@ -317,14 +317,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: b10f16a20e223b250800000000000000
-      internalID: 5959145078120378395
+      spriteID: 962f9ec4bc9348740800000000000000
+      internalID: 5153307418950234729
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\uD574\uB2EC_6"
+      name: Otter_6
       rect:
         serializedVersion: 2
         x: 138
@@ -338,14 +338,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 879db1125a3d439c0800000000000000
-      internalID: -3948298267118544520
+      spriteID: d06b6ff20dd0f0850800000000000000
+      internalID: 6345305587797374477
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\uD574\uB2EC_7"
+      name: Otter_7
       rect:
         serializedVersion: 2
         x: 2
@@ -359,14 +359,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: a1d2d2a35bde92780800000000000000
-      internalID: -8707167041923240678
+      spriteID: 916a2eefcd6e04760800000000000000
+      internalID: 7440200421259519513
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\uD574\uB2EC_8"
+      name: Otter_8
       rect:
         serializedVersion: 2
         x: 170
@@ -380,14 +380,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: d61e1ed4d66efba80800000000000000
-      internalID: -8448781018791288467
+      spriteID: c6899057a73517830800000000000000
+      internalID: 4067123723906947180
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\uD574\uB2EC_9"
+      name: Otter_9
       rect:
         serializedVersion: 2
         x: 170
@@ -401,14 +401,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: f9c8011ec717bd280800000000000000
-      internalID: -9017489047713444705
+      spriteID: e6b19686c6ea345d0800000000000000
+      internalID: -3079425939559867538
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\uD574\uB2EC_10"
+      name: Otter_10
       rect:
         serializedVersion: 2
         x: 170
@@ -422,14 +422,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: fa9e9f0e2c97c6d60800000000000000
-      internalID: 7884810925523986863
+      spriteID: bd855cb7dc37b31f0800000000000000
+      internalID: -1064129560560969509
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\uD574\uB2EC_11"
+      name: Otter_11
       rect:
         serializedVersion: 2
         x: 170
@@ -443,14 +443,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: f1e6610167fa760e0800000000000000
-      internalID: -2276658165001589217
+      spriteID: 5023f668628100fe0800000000000000
+      internalID: -1224952544901516795
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\uD574\uB2EC_12"
+      name: Otter_12
       rect:
         serializedVersion: 2
         x: 176
@@ -464,14 +464,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 5989893f8f4173f80800000000000000
-      internalID: -8127003943095461739
+      spriteID: add2b84e0b27e6180800000000000000
+      internalID: -9120226091304538662
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\uD574\uB2EC_13"
+      name: Otter_13
       rect:
         serializedVersion: 2
         x: 176
@@ -485,14 +485,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 08d0234e2848a2370800000000000000
-      internalID: 8298590961092660608
+      spriteID: 9f96c5e881089a110800000000000000
+      internalID: 1272689212664867321
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\uD574\uB2EC_14"
+      name: Otter_14
       rect:
         serializedVersion: 2
         x: 2
@@ -506,14 +506,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 9ed48b1562bb49240800000000000000
-      internalID: 4797665276310605289
+      spriteID: 959329367ba1f8ec0800000000000000
+      internalID: -3562599405274908327
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\uD574\uB2EC_15"
+      name: Otter_15
       rect:
         serializedVersion: 2
         x: 247
@@ -527,14 +527,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: f0cb831f5d07bec70800000000000000
-      internalID: 9001412344407440399
+      spriteID: 52e4027f713510a00800000000000000
+      internalID: 720948777751432741
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\uD574\uB2EC_16"
+      name: Otter_16
       rect:
         serializedVersion: 2
         x: 294
@@ -548,14 +548,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: d2d0522db649af380800000000000000
-      internalID: -8936667319755272915
+      spriteID: 768d25e427348d5b0800000000000000
+      internalID: -5343446799655708569
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\uD574\uB2EC_17"
+      name: Otter_17
       rect:
         serializedVersion: 2
         x: 249
@@ -569,14 +569,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 098937b0c19281150800000000000000
-      internalID: 5843465716941166736
+      spriteID: de58eea4daef9f820800000000000000
+      internalID: 2952671050958013933
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\uD574\uB2EC_18"
+      name: Otter_18
       rect:
         serializedVersion: 2
         x: 273
@@ -590,14 +590,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 3ae5a86b9e20a6960800000000000000
-      internalID: 7595886924326919843
+      spriteID: e3957359dbc5a7bf0800000000000000
+      internalID: -325846053708932802
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\uD574\uB2EC_19"
+      name: Otter_19
       rect:
         serializedVersion: 2
         x: 336
@@ -611,14 +611,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 071ee287b6b771510800000000000000
-      internalID: 1519819100768887152
+      spriteID: 9b973100a06e54670800000000000000
+      internalID: 8522470800493869497
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\uD574\uB2EC_20"
+      name: Otter_20
       rect:
         serializedVersion: 2
         x: 366
@@ -632,14 +632,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: cddc7c84f5cb8b230800000000000000
-      internalID: 3654878215040126428
+      spriteID: 933a7ab31719f28d0800000000000000
+      internalID: -2868914522093542599
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\uD574\uB2EC_21"
+      name: Otter_21
       rect:
         serializedVersion: 2
         x: 409
@@ -653,14 +653,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: d0e07918002d4c9d0800000000000000
-      internalID: -2754846172427907571
+      spriteID: 160cca15dfcca74f0800000000000000
+      internalID: -830125792927367071
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\uD574\uB2EC_22"
+      name: Otter_22
       rect:
         serializedVersion: 2
         x: 247
@@ -674,14 +674,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 84d3b23575dcce690800000000000000
-      internalID: -7571451098575454904
+      spriteID: 10bef5cc47187ef40800000000000000
+      internalID: 5757712987261496065
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\uD574\uB2EC_23"
+      name: Otter_23
       rect:
         serializedVersion: 2
         x: 451
@@ -695,14 +695,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 29a23cada58bf6740800000000000000
-      internalID: 5147535599464557202
+      spriteID: 66804bbfea4363fa0800000000000000
+      internalID: -5821407542177953690
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\uD574\uB2EC_24"
+      name: Otter_24
       rect:
         serializedVersion: 2
         x: 451
@@ -716,8 +716,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 596718c1eca143840800000000000000
-      internalID: 5202812942063597205
+      spriteID: 2ee6be8c1e8035cd0800000000000000
+      internalID: -2570701196466884894
       vertices: []
       indices: 
       edges: []
@@ -733,31 +733,31 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      "\uD574\uB2EC_0": 6736795366358496881
-      "\uD574\uB2EC_1": -5942969419445726137
-      "\uD574\uB2EC_10": 7884810925523986863
-      "\uD574\uB2EC_11": -2276658165001589217
-      "\uD574\uB2EC_12": -8127003943095461739
-      "\uD574\uB2EC_13": 8298590961092660608
-      "\uD574\uB2EC_14": 4797665276310605289
-      "\uD574\uB2EC_15": 9001412344407440399
-      "\uD574\uB2EC_16": -8936667319755272915
-      "\uD574\uB2EC_17": 5843465716941166736
-      "\uD574\uB2EC_18": 7595886924326919843
-      "\uD574\uB2EC_19": 1519819100768887152
-      "\uD574\uB2EC_2": 7540607002497525543
-      "\uD574\uB2EC_20": 3654878215040126428
-      "\uD574\uB2EC_21": -2754846172427907571
-      "\uD574\uB2EC_22": -7571451098575454904
-      "\uD574\uB2EC_23": 5147535599464557202
-      "\uD574\uB2EC_24": 5202812942063597205
-      "\uD574\uB2EC_3": 3404346988024350960
-      "\uD574\uB2EC_4": -626123937268703104
-      "\uD574\uB2EC_5": 5959145078120378395
-      "\uD574\uB2EC_6": -3948298267118544520
-      "\uD574\uB2EC_7": -8707167041923240678
-      "\uD574\uB2EC_8": -8448781018791288467
-      "\uD574\uB2EC_9": -9017489047713444705
+      Otter_0: -1729106956429219913
+      Otter_1: 2418973842497945037
+      Otter_10: -1064129560560969509
+      Otter_11: -1224952544901516795
+      Otter_12: -9120226091304538662
+      Otter_13: 1272689212664867321
+      Otter_14: -3562599405274908327
+      Otter_15: 720948777751432741
+      Otter_16: -5343446799655708569
+      Otter_17: 2952671050958013933
+      Otter_18: -325846053708932802
+      Otter_19: 8522470800493869497
+      Otter_2: -8772776845486072068
+      Otter_20: -2868914522093542599
+      Otter_21: -830125792927367071
+      Otter_22: 5757712987261496065
+      Otter_23: -5821407542177953690
+      Otter_24: -2570701196466884894
+      Otter_3: -4676508189357718171
+      Otter_4: -7669249903271063909
+      Otter_5: 5153307418950234729
+      Otter_6: 6345305587797374477
+      Otter_7: 7440200421259519513
+      Otter_8: 4067123723906947180
+      Otter_9: -3079425939559867538
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

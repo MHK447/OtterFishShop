@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a6b194f808b1af6499c93410e504af42, type: 3}
-  m_Name: "\uD574\uB2EC_Atlas"
+  m_Name: Otter_Atlas
   m_EditorClassIdentifier: 
   textureLoadingMode: 0
   onDemandTextureLoader: {fileID: 0}
-  atlasFile: {fileID: 4900000, guid: 33ec3780e0a6a0d49b954d4fa831829c, type: 3}
+  atlasFile: {fileID: 4900000, guid: 1372b1b16ab808a4493a471011847345, type: 3}
   materials:
-  - {fileID: 2100000, guid: bf43007ea63ff8344a7b2733cb0a6c1b, type: 2}
+  - {fileID: 2100000, guid: 76a3a050e050e564b9d36709b2d91eef, type: 2}
