@@ -23,8 +23,6 @@ public class Chaser : MonoBehaviour
 
     private InGameStage Stage;
 
-    private Vector3 SetWayPoint;
-
     float _agentDrift = 0.0001f;
 
     private string CurAnimName;
@@ -39,9 +37,13 @@ public class Chaser : MonoBehaviour
 
     private int UnitIdx = 0;
 
+    private Transform EndTrTest;
+
     public virtual void Init(int idx , Transform starttr)
     {
         UnitIdx = idx;
+
+        EndTrTest = starttr;
 
         var td = Tables.Instance.GetTable<ConsumerInfo>().GetData(idx);
 
@@ -86,7 +88,7 @@ public class Chaser : MonoBehaviour
     void SetWayPoints()
     {
         
-        Vector2 targetPosition = SetWayPoint;
+        Vector2 targetPosition = EndTrTest.transform.position;
         _wayPoints.Clear();
 
         NavMeshPath navMeshPath = new NavMeshPath();
