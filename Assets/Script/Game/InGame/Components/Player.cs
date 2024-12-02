@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Spine.Unity;
+using NavMeshPlus;
+using UnityEngine.AI;
 
 public class Player : MonoBehaviour
 {
@@ -22,6 +24,11 @@ public class Player : MonoBehaviour
 
     public string CurAnimName = "Idle";       
     public bool loop = true;
+
+    //private void Awake()
+    //{
+    //    Agent.updateRotation = false;
+    //}
 
 
     public void MoveVector(UnityEngine.Vector3 moveVector)

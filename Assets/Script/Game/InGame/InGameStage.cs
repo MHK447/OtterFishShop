@@ -9,29 +9,51 @@ using BanpoFri;
 
 public class InGameStage : MonoBehaviour
 {
-    [SerializeField]
-    private InGameBattle Battle;
-
     public bool IsLoadComplete { get; private set; }
 
-    public InGameBattle GetBattle { get { return Battle; } }
-
     private CompositeDisposable disposable = new CompositeDisposable();
+
+
+    [SerializeField]
+    private Transform StartWayPointTr;
+
+    [SerializeField]
+    private Transform EndTrTest;
+
+    public Transform GetStartWayPoint { get { return StartWayPointTr; } }
 
     public void Init()
     {
         IsLoadComplete = false;
         disposable.Clear();
-        Battle.Init();
+
+
+        //test
+        var td = Tables.Instance.GetTable<ConsumerInfo>().GetData(1);
+
+        if (td != null)
+        {
+            Addressables.InstantiateAsync(td.prefab).Completed += (handle) =>
+            {
+
+                var getobj = handle.Result.GetComponent<Consumer>();
+
+                if(getobj != null)
+                {
+                    ProjectUtility.SetActiveCheck(handle.Result.gameObject, true);
+
+                    getobj.transform.position = StartWayPointTr.position;
+
+
+                    getobj.Init(1, EndTrTest);
+                }
+
+            };
+        }
+
     }
 
             
-    public void StartBattle(int stageidx)
-    {
-       
-    }
-
-
     public void ReturnMainScreen()
     {
         GameRoot.Instance.UserData.CurMode.StageData.SelectSkill = 0;

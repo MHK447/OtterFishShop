@@ -181,6 +181,11 @@ public class Joystick : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, I
     {
         ProjectUtility.SetActiveCheck(_joystickBack.gameObject, false);
 
+        if(_player != null)
+        {
+            _player.PlayAnimation("idle", true);
+        }
+
         if (_isTouch && !_isDrag)
         {
             _inputHandler.OnTouch(Input.mousePosition);

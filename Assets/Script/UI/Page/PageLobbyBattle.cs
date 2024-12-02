@@ -28,7 +28,6 @@ public class PageLobbyBattle : UIBase
     public void OnClickStart()
     {
         StartBtn.interactable = false;
-        GameRoot.Instance.InGameSystem.GetInGame<InGameTycoon>().curInGameStage.StartBattle(1);
         GameRoot.Instance.InGameSystem.DeadCount.Value = 0;
         GameRoot.Instance.InGameSystem.LevelProperty.Value = 0;
 
