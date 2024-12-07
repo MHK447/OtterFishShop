@@ -60,6 +60,7 @@ public class InGameTycoon : InGameMode
     {
         base.LoadUI();
         GameRoot.Instance.InGameSystem.InitPopups();
+        GameRoot.Instance.UISystem.OpenUI<HUDTotal>();
     }
 
 

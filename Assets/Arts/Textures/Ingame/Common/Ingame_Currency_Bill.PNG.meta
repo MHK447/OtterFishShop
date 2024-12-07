@@ -156,7 +156,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Ingame_Currency_Bill_0: 8830058679232261701
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

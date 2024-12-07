@@ -156,7 +156,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Ingame_Prop_TrashCan_0: 3346733081465403171
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

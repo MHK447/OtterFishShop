@@ -156,7 +156,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Ingame_Bg_Dock_Deco_001_0: 5762758315070269070
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

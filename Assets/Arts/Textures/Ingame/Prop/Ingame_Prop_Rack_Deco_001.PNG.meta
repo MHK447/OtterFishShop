@@ -156,7 +156,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Ingame_Prop_Rack_Deco_001_0: -4367993916993136263
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

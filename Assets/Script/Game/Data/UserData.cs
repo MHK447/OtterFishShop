@@ -115,62 +115,7 @@ public partial class UserDataSystem
 		var builder = new FlatBufferBuilder(1);
 		int dataIdx = 0;
 		var money = builder.CreateString(mainData.Money.Value.ToString());
-		var energymoney = builder.CreateString(mainData.EnergyMoney.Value.ToString());
-
-		//unitcardata
-
-		Offset<BanpoFri.Data.UnitCardData>[] unitcarddatas = null;
-		if (mainData.UnitCardDatas.Count > 0)
-		{
-			unitcarddatas = new Offset<BanpoFri.Data.UnitCardData>[mainData.UnitCardDatas.Count];
-			dataIdx = 0;
-			foreach (var unitcarddata in mainData.UnitCardDatas)
-			{
-				unitcarddatas[dataIdx++] = BanpoFri.Data.UnitCardData.CreateUnitCardData(builder, unitcarddata.UnitIdx,unitcarddata.Level, unitcarddata.CardCount);
-			}
-		}
-		VectorOffset unitvec = default(VectorOffset);
-		if (unitcarddatas != null)
-			unitvec = BanpoFri.Data.UserData.CreateUnitcarddatasVector(builder, unitcarddatas);
-
-
-		//skillcarddata
-
-		Offset<BanpoFri.Data.SkillCardData>[] skillcarddatas = null;
-		if (mainData.SkillCardDatas.Count > 0)
-		{
-			skillcarddatas = new Offset<BanpoFri.Data.SkillCardData>[mainData.SkillCardDatas.Count];
-			dataIdx = 0;
-			foreach (var skillcard in mainData.SkillCardDatas)
-			{
-				skillcarddatas[dataIdx++] = BanpoFri.Data.SkillCardData.CreateSkillCardData(builder, skillcard.SkillIdx, skillcard.Level);
-			}
-		}
-		VectorOffset skillcarddatasvec = default(VectorOffset);
-		if (skillcarddatas != null)
-			skillcarddatasvec = BanpoFri.Data.UserData.CreateSkillcarddatasVector(builder, skillcarddatas);
-
-
-		//outgameunitupgradedatas
-
-		Offset<BanpoFri.Data.OutGameUnitUpgradeData>[] OutGameUnitUpgradeDatas = null;
-		VectorOffset outgameunitupgradevec = default(VectorOffset);
-		if (mainData.OutGameUnitUpgradeDatas.Count > 0)
-        {
-			OutGameUnitUpgradeDatas = new Offset<BanpoFri.Data.OutGameUnitUpgradeData>[mainData.OutGameUnitUpgradeDatas.Count];
-			dataIdx = 0;
-			foreach(var outgameupgrade in mainData.OutGameUnitUpgradeDatas)
-            {
-				OutGameUnitUpgradeDatas[dataIdx++] = BanpoFri.Data.OutGameUnitUpgradeData.CreateOutGameUnitUpgradeData(builder, outgameupgrade.UnitIdx, outgameupgrade.UnitLevel, outgameupgrade.UnitCount);
-            }
-
-
-			if(OutGameUnitUpgradeDatas != null)
-            {
-				outgameunitupgradevec = BanpoFri.Data.UserData.CreateOutgameunitupgradedatasVector(builder, OutGameUnitUpgradeDatas);
-            }
-        }
-
+	
 		//insert start
 		BanpoFri.Data.UserData.StartUserData(builder);
 
@@ -178,12 +123,6 @@ public partial class UserDataSystem
 		BanpoFri.Data.UserData.AddMoney(builder, money);
 		BanpoFri.Data.UserData.AddCurplaydatetime(builder, mainData.CurPlayDateTime.Ticks);
 		BanpoFri.Data.UserData.AddCash(builder, Cash.Value);
-		BanpoFri.Data.UserData.AddEnergymoney(builder, energymoney);
-		BanpoFri.Data.UserData.AddGachacoin(builder, mainData.GachaCoin.Value);
-		BanpoFri.Data.UserData.AddUnitcarddatas(builder, unitvec);
-		BanpoFri.Data.UserData.AddSkillcarddatas(builder, skillcarddatasvec);
-		BanpoFri.Data.UserData.AddOutgameunitupgradedatas(builder, outgameunitupgradevec);
-		BanpoFri.Data.UserData.AddHighwaveidx(builder, mainData.StageData.StageHighWave);
 
 
 		//end 

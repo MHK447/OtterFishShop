@@ -156,7 +156,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Ingame_Prop_Counter_Deco_002_0: 5374797463031266036
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -156,7 +156,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Ingame_Bg_Clam_005_0: -3252057499477773414
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

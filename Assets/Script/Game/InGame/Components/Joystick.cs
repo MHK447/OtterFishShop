@@ -53,6 +53,8 @@ public class Joystick : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, I
     {
         _player = GameRoot.Instance.InGameSystem.GetInGame<InGameTycoon>().GetPlayer;
         Camera.main.orthographicSize = _defaultCamera;
+
+        ProjectUtility.SetActiveCheck(this.gameObject, true);
     }
 
     public void ActiveJoystice(bool active)

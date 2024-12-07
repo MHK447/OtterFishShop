@@ -63,7 +63,7 @@ MonoBehaviour:
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 8004488da7e234e35a8251a48d26a4de
-    m_Address: Effect/IconText
+    m_Address: Effect/TextEffectMoney
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -164,11 +164,6 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 216ebab34f6574194a769a847c7efb47
     m_Address: Unit017
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: f3f39e6e2604e49fbb3b6cbe875887dc
-    m_Address: UI/Popup/PopupGachaUnitCard
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -392,7 +387,7 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 91a9dad9914c1be4c9e03225b777b189
+  - m_GUID: a164c0ef2d297364a99f3409430813b7
     m_Address: InGame1_1
     m_ReadOnly: 0
     m_SerializedLabels: []

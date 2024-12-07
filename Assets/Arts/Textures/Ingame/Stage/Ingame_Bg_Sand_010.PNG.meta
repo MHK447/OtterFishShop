@@ -204,7 +204,10 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Ingame_Bg_Sand_010_0: 3551111743690442095
+      Ingame_Bg_Sand_010_1: 1713545606520850262
+      Ingame_Bg_Sand_010_2: -3627897472669571383
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

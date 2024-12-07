@@ -43,43 +43,6 @@ public partial class UserDataSystem
         mainData.Money.Value = BigInteger.Parse(flatBufferUserData.Money);
         mainData.LastLoginTime = new System.DateTime(flatBufferUserData.Lastlogintime);
         mainData.CurPlayDateTime = new System.DateTime(flatBufferUserData.Curplaydatetime);
-        mainData.EnergyMoney.Value = BigInteger.Parse(flatBufferUserData.Energymoney);
-        //mainData.GachaCoin.Value = flatBufferUserData.Gachacoin;
-        mainData.StageData.StageHighWave = flatBufferUserData.Highwaveidx;
-
-        mainData.UnitCardDatas.Clear();
-
-        for(int i = 0; i < flatBufferUserData.UnitcarddatasLength; ++i)
-        {
-            var data = flatBufferUserData.Unitcarddatas(i);
-
-            var newdata = new UnitCardData(data.Value.Unitidx, data.Value.Level, data.Value.Cardcount);
-
-            mainData.UnitCardDatas.Add(newdata);
-        }
-
-
-        mainData.SkillCardDatas.Clear();
-        for (int i = 0; i < flatBufferUserData.SkillcarddatasLength; ++i)
-        {
-            var data = flatBufferUserData.Skillcarddatas(i);
-
-            var newdata = new SkillCardData(data.Value.Skillidx, data.Value.Level);
-
-            mainData.SkillCardDatas.Add(newdata);
-        }
-
-
-        mainData.OutGameUnitUpgradeDatas.Clear();
-
-        for(int i = 0; i  < flatBufferUserData.OutgameunitupgradedatasLength; ++i)
-        {
-            var data = flatBufferUserData.Outgameunitupgradedatas(i);
-
-            var newdata = new OutGameUnitUpgradeData(data.Value.Unitidx, data.Value.Unitlevel, data.Value.Cardcount);
-
-            mainData.OutGameUnitUpgradeDatas.Add(newdata);
-        }
 
     }
 

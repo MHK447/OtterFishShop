@@ -9,60 +9,11 @@ using UniRx;
 public class HudCurrencyTop : MonoBehaviour
 {
     [SerializeField]
-    private bool IsBuffValueCheck;
-
-    [SerializeField]
-    private Text MineralText;
-
-    [SerializeField]
-    private Text BattleBoneText;
-
-    [SerializeField]
-    private Text BattleGasText;
-
-    [SerializeField]
     private Text CashText;
 
     [SerializeField]
-    private Text PiggyCashText;
+    private Text MoneyText;
 
-    [SerializeField]
-    private Text CandyText;
-
-    [SerializeField]
-    private Transform CandyIconTr;
-
-    public Transform GetCandyIconTr { get { return CandyIconTr; } }
-
-    [SerializeField]
-    private Transform CashIconTr;
-
-    public Transform GetCashIconTr { get { return CashIconTr; } }
-
-    [SerializeField]
-    private Transform MoneyIconTr;
-
-    public Transform GetMoneyIconTr { get { return MoneyIconTr; } }
-
-
-
-
-    [SerializeField]
-    private Transform MineralIconTr;
-
-    public Transform GetMineralIconTr { get { return MineralIconTr; } }
-
-    [SerializeField]
-    private GameObject MineralRoot;
-
-    [SerializeField]
-    private GameObject CandyRoot;
-
-    [SerializeField]
-    private Text MoneyBuffText;
-
-    [SerializeField]
-    private Text MaterialBuffText;
 
     private void Awake()
     {
@@ -83,22 +34,16 @@ public class HudCurrencyTop : MonoBehaviour
         }
 
 
-        if (MineralText != null)
+        if (MoneyText != null)
         {
-            MineralText.text = ProjectUtility.CalculateMoneyToString(GameRoot.Instance.UserData.CurMode.Money.Value);
+            MoneyText.text = ProjectUtility.CalculateMoneyToString(GameRoot.Instance.UserData.CurMode.Money.Value);
 
             GameRoot.Instance.UserData.HUDMoney.Subscribe(x =>
             {
-                MineralText.text = ProjectUtility.CalculateMoneyToString(GameRoot.Instance.UserData.CurMode.Money.Value);
+                MoneyText.text = ProjectUtility.CalculateMoneyToString(GameRoot.Instance.UserData.CurMode.Money.Value);
             }).AddTo(this);
         }
 
-    }
-
-    
-
-    private void OnEnable()
-    {
     }
 
 

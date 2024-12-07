@@ -156,7 +156,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Ingame_Cook_Pan_001_0: 6329828183692383127
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
