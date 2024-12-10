@@ -5,14 +5,25 @@ using BanpoFri;
 
 public class BucketComponent : MonoBehaviour
 {
+    [SerializeField]
+    private Transform StartFishTr;
+
     private bool IsOnEnter = false;
 
     public float CurMoneyTime = 0f;
 
-    public float TestTime = 1f;
+    public float TestTime = 2f;
 
+    private OtterBase Target;
 
-    private Transform Target;
+    private InGameStage InGameStage;
+
+    public void Init()
+    {
+        InGameStage = GameRoot.Instance.InGameSystem.GetInGame<InGameTycoon>().curInGameStage;
+
+    }
+
 
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -22,7 +33,11 @@ public class BucketComponent : MonoBehaviour
             CurMoneyTime = 0f;
             IsOnEnter = true;
 
-            Target = other.transform;
+            var getvalue = other.GetComponent<OtterBase>();
+
+
+            if(getvalue != null)
+            Target = getvalue;
         }
     }
 
@@ -32,6 +47,11 @@ public class BucketComponent : MonoBehaviour
     {
         if (collision.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
+            if(Target != null)
+            {
+                Target.CoolTimeActive(0f);
+            }
+
             Target = null;
             IsOnEnter = false;
         }
@@ -46,20 +66,38 @@ public class BucketComponent : MonoBehaviour
         {
             CurMoneyTime += Time.deltaTime;
 
-            if(CurMoneyTime >= TestTime)
+
+            var cooltimevalue = (float)CurMoneyTime / (float)TestTime;
+
+            Target.CoolTimeActive(cooltimevalue);
+
+            if (CurMoneyTime >= TestTime)
             {
                 CurMoneyTime = 0f;
-                GameRoot.Instance.UserData.SetReward((int)Config.RewardType.Currency, (int)Config.CurrencyID.Money, 10);
 
 
-                GameRoot.Instance.EffectSystem.MultiPlay<TextEffectMoney>(new Vector3(Target.transform.position.x , Target.transform.position.y + 1f , 1f), effect =>
-                {
-                    effect.transform.SetParent(GameRoot.Instance.UISystem.WorldCanvas.transform);
-                    ProjectUtility.SetActiveCheck(effect.gameObject, true);
-                    effect.SetAutoRemove(true, 2f);
-                    effect.SetText(10);
-                });
+                InGameStage.CreateFish(StartFishTr, 1 , FishComponent.State.Bucket, StartFishAction);
+                
+
+
+                //GameRoot.Instance.UserData.SetReward((int)Config.RewardType.Currency, (int)Config.CurrencyID.Money, 10);
+
+
+                //GameRoot.Instance.EffectSystem.MultiPlay<TextEffectMoney>(new Vector3(Target.transform.position.x , Target.transform.position.y + 1f , 1f), effect =>
+                //{
+                //    effect.transform.SetParent(GameRoot.Instance.UISystem.WorldCanvas.transform);
+                //    ProjectUtility.SetActiveCheck(effect.gameObject, true);
+                //    effect.SetAutoRemove(true, 2f);
+                //    effect.SetText(10);
+                //});
             }
         }
+    }
+
+
+
+    public void StartFishAction(FishComponent fish)
+    {
+        fish.FishInBucketAction(this.transform);
     }
 }

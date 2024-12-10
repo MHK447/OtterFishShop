@@ -92,7 +92,7 @@ public class PanAndZoom : MonoBehaviour {
     private Vector3 camVelocity = Vector3.zero;
     private Vector3 posLastFrame = Vector3.zero;
     private bool multiTouch = false;
-    Player _player;
+    OtterBase _player;
     void Start() {
         var aspectRatio = Mathf.Max(Screen.width, Screen.height) / Mathf.Min(Screen.width, Screen.height);
         var isTablet = (BanpoFri.Utility.DeviceDiagonalSizeInInches() > 6.5f && aspectRatio < 2f);

@@ -13,6 +13,8 @@ public class InGameStage : MonoBehaviour
 
     private CompositeDisposable disposable = new CompositeDisposable();
 
+    [SerializeField]
+    private List<Transform> WaitLineListTr = new List<Transform>();
 
     [SerializeField]
     private Transform StartWayPointTr;
@@ -20,13 +22,23 @@ public class InGameStage : MonoBehaviour
     [SerializeField]
     private Transform EndTrTest;
 
+    [SerializeField]
+    private AssetReference FishRef;
+
+    [SerializeField]
+    private List<BucketComponent> BucketList = new List<BucketComponent>();
+
     public Transform GetStartWayPoint { get { return StartWayPointTr; } }
+
+    private ObjectPool<FishComponent> FishPool = new ObjectPool<FishComponent>();
+
+    private List<FishComponent> activeObjs = new List<FishComponent>();
 
     public void Init()
     {
         IsLoadComplete = false;
         disposable.Clear();
-
+        FishPool.Init(FishRef, this.transform ,30);
 
         //test
         var td = Tables.Instance.GetTable<ConsumerInfo>().GetData(1);
@@ -51,6 +63,11 @@ public class InGameStage : MonoBehaviour
             };
         }
 
+
+        foreach(var bucket in BucketList)
+        {
+            bucket.Init();
+        }
     }
 
             
@@ -65,5 +82,34 @@ public class InGameStage : MonoBehaviour
     private void OnDestroy()
     {
         disposable.Clear();
+    }
+
+
+    public void CreateFish(Transform starttr , int fishidx , FishComponent.State state , System.Action<FishComponent> fishcallback = null)
+    {
+        FishPool.Get((obj) => {
+            obj.transform.position = starttr.position;
+            activeObjs.Add(obj);
+            obj.OnEnd += (complete) => {
+
+                FishPool.Return(obj);
+                activeObjs.Remove(obj);
+            };
+
+            obj.Set(fishidx , state);
+
+            fishcallback?.Invoke(obj);
+        });
+    }
+
+
+    public Transform GetWaitLine(int order)
+    {
+        if(WaitLineListTr.Count > order)
+        {
+            return WaitLineListTr[order];
+        }
+
+        return WaitLineListTr.First();
     }
 }

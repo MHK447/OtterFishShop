@@ -156,7 +156,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Ingame_Bucket_000_0: -3236669731725173677
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

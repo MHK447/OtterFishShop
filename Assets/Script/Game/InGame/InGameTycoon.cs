@@ -12,9 +12,9 @@ public class InGameTycoon : InGameMode
 {
 
     [SerializeField]
-    private Player Player;
+    private OtterBase Player;
 
-    public Player GetPlayer { get { return Player; } }
+    public OtterBase GetPlayer { get { return Player; } }
 
 
     [HideInInspector]
@@ -42,6 +42,8 @@ public class InGameTycoon : InGameMode
             {
                 curInGameStage.Init();
             }
+
+            Player.Init();
 
             StartCoroutine(UpdateNavMeshProcess());
         };

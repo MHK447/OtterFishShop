@@ -32,7 +32,7 @@ public class Joystick : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, I
     bool _isDrag;
     Vector3 _vectorMove;
 
-    Player _player;
+    OtterBase _player;
 
     float targetZoom;
     float zoomVelocity;
