@@ -37,7 +37,7 @@ public class FishComponent : MonoBehaviour
     public void FishInBucketAction(Transform buckettr)
     {
         // 물고기를 통으로 이동시키는 애니메이션
-        this.transform.DOMove(buckettr.position, 1f).SetEase(Ease.InOutQuad)
+        this.transform.DOJump(buckettr.position, 3f ,  1  , 1.5f).SetEase(Ease.InOutQuad)
             .OnComplete(() =>
             {
                 // 애니메이션 완료 후 추가 작업
