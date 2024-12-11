@@ -14,7 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _textColorDefines: []
   _eventTextColorDefines: []
-  _imageColorDefines: []
+  _imageColorDefines:
+  - key_string: Line_BasicBrowm
+    color: {r: 0.43529412, g: 0.30980393, b: 0.21960784, a: 0}
   _eventImgaeColorDefines: []
   SkeletonGraphicMat: {fileID: 0}
   DisableSpriteMat: {fileID: 0}
