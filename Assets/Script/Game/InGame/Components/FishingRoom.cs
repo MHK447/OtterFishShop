@@ -1,14 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using BanpoFri;
+using BanpoFri; 
 
-public class BucketComponent : MonoBehaviour
+public class FishingRoom : MonoBehaviour
 {
     [SerializeField]
     private Transform StartFishTr;
-
-    private Queue<FishComponent> FishQueueComponent = new Queue<FishComponent>();
 
     private bool IsOnEnter = false;
 
@@ -50,14 +48,14 @@ public class BucketComponent : MonoBehaviour
         }
     }
 
-    
+
 
 
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
-            if(Target != null)
+            if (Target != null)
             {
                 Target.CoolTimeActive(0f);
             }
@@ -72,15 +70,13 @@ public class BucketComponent : MonoBehaviour
     {
         if (Target == null) return;
 
-        if (FishQueueComponent.Count <= 0) return;
 
-
-        if(Target.IsIdle && !Target.IsFishing)
+        if (Target.IsIdle && !Target.IsFishing)
         {
-            Target.PlayAnimation(OtterBase.OtterState.Carry, "carryidle", true);
+            Target.PlayAnimation(OtterBase.OtterState.Fishing, "fishingidle", true);
         }
 
-        if(IsOnEnter && Target.IsFishing)
+        if (IsOnEnter && Target.IsFishing)
         {
             CurMoneyTime += Time.deltaTime;
 
@@ -93,12 +89,7 @@ public class BucketComponent : MonoBehaviour
             {
                 CurMoneyTime = 0f;
 
-                var fishcomponent = FishQueueComponent.Dequeue();
-
-                fishcomponent.FishInBucketAction(Target.transform.position, (fish) => {
-                    fish.transform.SetParent(Target.transform);
-                });
-
+                InGameStage.CreateFish(Target.GetFishTr, 1, FishComponent.State.Bucket, StartFishAction);
             }
         }
     }

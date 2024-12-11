@@ -156,7 +156,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      UI_Joystick_Stick_0: -7701984867976313967
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

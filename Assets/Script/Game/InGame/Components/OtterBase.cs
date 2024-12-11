@@ -11,6 +11,7 @@ public class OtterBase : MonoBehaviour
         Idle,
         Move,
         Fishing,
+        Carry,
     }
 
     private OtterState CurState = OtterState.Idle;
@@ -34,6 +35,8 @@ public class OtterBase : MonoBehaviour
 
     [SerializeField]
     private SkeletonAnimation skeletonAnimation;
+
+    public bool IsCarry = false;
 
     private CooltimeProgress Progress;
 
@@ -114,17 +117,51 @@ public class OtterBase : MonoBehaviour
 
     public void ChangeState(OtterState state)
     {
+        if(state == OtterState.Move && CurState == OtterState.Fishing)
+        {
+            if(Progress != null && Progress.gameObject.activeSelf)
+            {
+                ProjectUtility.SetActiveCheck(Progress.gameObject, false);
+            }
+        }
+
         if (state == CurState) return;
         
         CurState = state;
+
     }
 
+
+    public void CarryStart(bool iscarry)
+    {
+        IsCarry = iscarry;
+
+    }
 
 
     public void PlayAnimation(OtterState state, string newAnimationName, bool isLooping)
     {
         if (CurState == state) return;
 
+        var animationname = newAnimationName;
+
+        if(IsCarry)
+        {
+            switch(animationname)
+            {
+                case "idle":
+                    {
+                        animationname = "carryidle";
+                    }
+                    break;
+                case "move":
+                    {
+                        animationname = "carry";
+                    }
+                    break;
+                
+            }
+        }
 
         ChangeState(state);
 
@@ -133,7 +170,7 @@ public class OtterBase : MonoBehaviour
 
         if (skeletonAnimation != null)
         {
-            skeletonAnimation.state.SetAnimation(0, newAnimationName, isLooping);
+            skeletonAnimation.state.SetAnimation(0, animationname, isLooping);
         }
     }
 }

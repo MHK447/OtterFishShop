@@ -162,7 +162,7 @@ MonoBehaviour:
   physicsMovementRelativeTo: {fileID: 0}
   updateTiming: 1
   unscaledTime: 0
-  _animationName: fishingstart
+  _animationName: idle
   loop: 1
   timeScale: 1
 --- !u!50 &7189475501010032306

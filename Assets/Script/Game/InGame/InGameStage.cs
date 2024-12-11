@@ -26,6 +26,9 @@ public class InGameStage : MonoBehaviour
     private AssetReference FishRef;
 
     [SerializeField]
+    private List<FishingRoom> FishingRoomList = new List<FishingRoom>();
+
+    [SerializeField]
     private List<BucketComponent> BucketList = new List<BucketComponent>();
 
     public Transform GetStartWayPoint { get { return StartWayPointTr; } }
@@ -63,6 +66,11 @@ public class InGameStage : MonoBehaviour
             };
         }
 
+
+        foreach(var fishingroom in FishingRoomList)
+        {
+            fishingroom.Init();
+        }
 
         foreach(var bucket in BucketList)
         {
