@@ -24,6 +24,8 @@ public class BucketComponent : MonoBehaviour
 
     private float FishCarryTime = 0.2f;
 
+    private float FishPos_Y = 0.15f;
+
     public void Init()
     {
         FishCount = 0;
@@ -74,10 +76,10 @@ public class BucketComponent : MonoBehaviour
 
         if(Target.IsIdle && !Target.IsFishing)
         {
-            Target.PlayAnimation(OtterBase.OtterState.Carry, "carryidle", true);
+            Target.PlayAnimation(OtterBase.OtterState.Carry, "carryIdle", true);
         }
 
-        if(IsOnEnter && Target.IsFishing)
+        if(IsOnEnter && !Target.IsFishing)
         {
             FishCarrydeltime += Time.deltaTime;
 
@@ -92,8 +94,16 @@ public class BucketComponent : MonoBehaviour
 
                 var fishcomponent = FishQueueComponent.Dequeue();
 
-                fishcomponent.FishInBucketAction(Target.transform.position, (fish) => {
-                    fish.transform.SetParent(Target.transform);
+                Target.AddFish(fishcomponent);
+
+                var fishcount = Target.GetFishComponentList.Count;
+
+                var posy = Target.GetFishCarryRoot.position.y + (FishPos_Y * (fishcount - 1));
+
+                var fishpos = new Vector3(Target.GetFishCarryRoot.position.x, posy, Target.GetFishCarryRoot.position.z);
+
+                fishcomponent.FishInBucketAction(fishpos, (fish) => {
+                    fish.transform.SetParent(Target.GetFishCarryRoot);
                 }, 0.25f);
 
             }

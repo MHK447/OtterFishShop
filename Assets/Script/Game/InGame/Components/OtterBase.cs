@@ -39,7 +39,11 @@ public class OtterBase : MonoBehaviour
     [SerializeField]
     private Transform FishCarryRoot;
 
+    public Transform GetFishCarryRoot { get { return FishCarryRoot; } }
+
     private List<FishComponent> FishComponentList = new List<FishComponent>();
+
+    public List<FishComponent> GetFishComponentList { get { return FishComponentList; } }
 
     public bool IsCarry = false;
 
@@ -143,6 +147,12 @@ public class OtterBase : MonoBehaviour
 
     }
 
+    public void AddFish(FishComponent fish)
+    {
+        FishComponentList.Add(fish);
+        CarryStart(FishComponentList.Count > 0);
+    }
+
 
     public void PlayAnimation(OtterState state, string newAnimationName, bool isLooping)
     {
@@ -156,7 +166,7 @@ public class OtterBase : MonoBehaviour
             {
                 case "idle":
                     {
-                        animationname = "carryidle";
+                        animationname = "carryIdle";
                     }
                     break;
                 case "move":

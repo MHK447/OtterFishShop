@@ -100,9 +100,9 @@ public class FishingRoom : MonoBehaviour
     {
         FishCount += 1;
 
-        var posy = this.transform.position.y + (FishPos_Y * (FishCount - 1));
+        var posy = BucketComponent.transform.position.y + (FishPos_Y * (FishCount - 1));
 
-        var fishvec = new Vector3(this.transform.position.x, posy, this.transform.position.z);
+        var fishvec = new Vector3(BucketComponent.transform.position.x, posy, BucketComponent.transform.position.z);
 
         fish.FishInBucketAction(fishvec);
 
