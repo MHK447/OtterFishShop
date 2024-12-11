@@ -6,7 +6,7 @@ using BanpoFri;
 public class FishingRoom : MonoBehaviour
 {
     [SerializeField]
-    private Transform StartFishTr;
+    private BucketComponent BucketComponent;
 
     private bool IsOnEnter = false;
 
@@ -105,5 +105,7 @@ public class FishingRoom : MonoBehaviour
         var fishvec = new Vector3(this.transform.position.x, posy, this.transform.position.z);
 
         fish.FishInBucketAction(fishvec);
+
+        BucketComponent.AddFishQueue(fish);
     }
 }

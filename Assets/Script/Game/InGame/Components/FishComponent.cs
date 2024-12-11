@@ -34,10 +34,10 @@ public class FishComponent : MonoBehaviour
 
 
 
-    public void FishInBucketAction(Vector3 pos , System.Action<FishComponent> fishaction = null)
+    public void FishInBucketAction(Vector3 pos , System.Action<FishComponent> fishaction = null , float time = 1f)
     {
         // 물고기를 통으로 이동시키는 애니메이션
-        this.transform.DOJump(pos, 3f ,  1  , 1.5f).SetEase(Ease.InOutQuad)
+        this.transform.DOJump(pos, 3f ,  1  , time).SetEase(Ease.InOutQuad)
             .OnComplete(() =>
             {
                 fishaction?.Invoke(this);

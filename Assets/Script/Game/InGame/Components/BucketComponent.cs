@@ -12,12 +12,6 @@ public class BucketComponent : MonoBehaviour
 
     private bool IsOnEnter = false;
 
-    public float CurMoneyTime = 0f;
-
-    public float TestTime = 2f;
-
-    private float FishPos_Y = 0.15f;
-
     private OtterBase Target;
 
     private InGameStage InGameStage;
@@ -25,6 +19,10 @@ public class BucketComponent : MonoBehaviour
     private int FishCount = 0;
 
     private int FishMaxCount = 0;
+
+    private float FishCarrydeltime = 0f;
+
+    private float FishCarryTime = 0.2f;
 
     public void Init()
     {
@@ -39,9 +37,8 @@ public class BucketComponent : MonoBehaviour
         // 충돌한 오브젝트의 레이어를 확인합니다.
         if (other.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
-            CurMoneyTime = 0f;
             IsOnEnter = true;
-
+            FishCarrydeltime = 0f;
             var getvalue = other.GetComponent<OtterBase>();
 
             if (getvalue != null)
@@ -82,37 +79,31 @@ public class BucketComponent : MonoBehaviour
 
         if(IsOnEnter && Target.IsFishing)
         {
-            CurMoneyTime += Time.deltaTime;
+            FishCarrydeltime += Time.deltaTime;
 
 
-            var cooltimevalue = (float)CurMoneyTime / (float)TestTime;
+            var cooltimevalue = (float)FishCarrydeltime / (float)FishCarryTime;
 
             Target.CoolTimeActive(cooltimevalue);
 
-            if (CurMoneyTime >= TestTime)
+            if (FishCarrydeltime >= FishCarryTime)
             {
-                CurMoneyTime = 0f;
+                FishCarrydeltime = 0f;
 
                 var fishcomponent = FishQueueComponent.Dequeue();
 
                 fishcomponent.FishInBucketAction(Target.transform.position, (fish) => {
                     fish.transform.SetParent(Target.transform);
-                });
+                }, 0.25f);
 
             }
         }
     }
 
 
-
-    public void StartFishAction(FishComponent fish)
+    public void AddFishQueue(FishComponent fish)
     {
-        FishCount += 1;
-
-        var posy = this.transform.position.y + (FishPos_Y * (FishCount - 1));
-
-        var fishvec = new Vector3(this.transform.position.x, posy, this.transform.position.z);
-
-        fish.FishInBucketAction(fishvec);
+        FishQueueComponent.Enqueue(fish);
     }
+
 }

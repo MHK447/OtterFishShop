@@ -96,7 +96,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6565501957850087380}
   - component: {fileID: 148687131216777485}
-  - component: {fileID: 5616176859748483224}
+  - component: {fileID: 7130715170137705696}
   m_Layer: 0
   m_Name: Cushion
   m_TagString: Untagged
@@ -166,7 +166,7 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 3.48, y: 2.2}
   m_EdgeRadius: 0
---- !u!114 &5616176859748483224
+--- !u!114 &7130715170137705696
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -175,9 +175,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 7766291862062938160}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9a43c1fc71f0e4b96828d3634992a557, type: 3}
+  m_Script: {fileID: 11500000, guid: 5f58e4062eeec41b2bfa97ad0044c26f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   StartFishTr: {fileID: 0}
   CurMoneyTime: 0
-  TestTime: 1
+  TestTime: 2

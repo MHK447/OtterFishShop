@@ -36,6 +36,11 @@ public class OtterBase : MonoBehaviour
     [SerializeField]
     private SkeletonAnimation skeletonAnimation;
 
+    [SerializeField]
+    private Transform FishCarryRoot;
+
+    private List<FishComponent> FishComponentList = new List<FishComponent>();
+
     public bool IsCarry = false;
 
     private CooltimeProgress Progress;
