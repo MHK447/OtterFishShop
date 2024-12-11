@@ -67,6 +67,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3162679206169593148}
+  - {fileID: 1425688529233526537}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &2164712110283285068
@@ -161,7 +162,7 @@ MonoBehaviour:
   physicsMovementRelativeTo: {fileID: 0}
   updateTiming: 1
   unscaledTime: 0
-  _animationName: idle
+  _animationName: fishingstart
   loop: 1
   timeScale: 1
 --- !u!50 &7189475501010032306
@@ -241,6 +242,38 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PlayerSpeed: 5
   ProgressTr: {fileID: 3162679206169593148}
+  FishTr: {fileID: 1425688529233526537}
   skeletonAnimation: {fileID: 6902744124365164405}
   CurAnimName: Idle
   loop: 1
+--- !u!1 &3872106448499632410
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1425688529233526537}
+  m_Layer: 3
+  m_Name: FishTr
+  m_TagString: Untagged
+  m_Icon: {fileID: -5442936267250999957, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1425688529233526537
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3872106448499632410}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.85, y: -3.48, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2632944431668787682}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

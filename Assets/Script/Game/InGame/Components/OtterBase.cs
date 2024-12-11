@@ -10,16 +10,27 @@ public class OtterBase : MonoBehaviour
     {
         Idle,
         Move,
-        Use,
+        Fishing,
     }
 
     private OtterState CurState = OtterState.Idle;
+
+    public bool IsIdle { get { return CurState == OtterState.Idle; } }
+
+
+    public bool IsFishing { get { return CurState == OtterState.Fishing; } }
 
     [SerializeField]
     private float PlayerSpeed = 1f;
 
     [SerializeField]
     private Transform ProgressTr;
+
+    [SerializeField]
+    private Transform FishTr;
+
+    [SerializeField]
+    public Transform GetFishTr { get { return FishTr; } }
 
     [SerializeField]
     private SkeletonAnimation skeletonAnimation;
@@ -39,6 +50,10 @@ public class OtterBase : MonoBehaviour
             Progress.Init(ProgressTr);
             Progress.SetValue(0);
         });
+
+
+        // Event 콜백 등록
+        skeletonAnimation.AnimationState.Complete += HandleEvent;
     }
 
 
@@ -60,13 +75,36 @@ public class OtterBase : MonoBehaviour
     }
 
 
+    private void OnDestroy()
+    {
+        // 콜백 해제
+        if (skeletonAnimation != null)
+        {
+            skeletonAnimation.AnimationState.End -= HandleEvent;
+        }
+    }
 
+
+    private void HandleEvent(Spine.TrackEntry trackEntry)
+    {
+        Debug.Log($"Animation Complete: {trackEntry.Animation.Name}");
+
+
+        switch (trackEntry.Animation.Name)
+        {
+            case "fishingstart":
+                {
+                    PlayAnimation(OtterState.Fishing,"fishingidle" , true);
+                }
+                break;
+        }
+    }
 
     public void MoveVector(UnityEngine.Vector3 moveVector)
     {
         transform.position += (moveVector * PlayerSpeed);
 
-        PlayAnimation("move", true);
+        PlayAnimation(OtterState.Move,"move", true);
 
         if (moveVector.x != 0)
         {
@@ -74,11 +112,22 @@ public class OtterBase : MonoBehaviour
         }
     }
 
-
-
-    public void PlayAnimation(string newAnimationName, bool isLooping)
+    public void ChangeState(OtterState state)
     {
-        if (CurAnimName == newAnimationName) return;
+        if (state == CurState) return;
+        
+        CurState = state;
+    }
+
+
+
+    public void PlayAnimation(OtterState state, string newAnimationName, bool isLooping)
+    {
+        if (CurState == state) return;
+
+
+        ChangeState(state);
+
 
         CurAnimName = newAnimationName;
 

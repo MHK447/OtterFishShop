@@ -185,7 +185,7 @@ public class Joystick : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, I
 
         if(_player != null)
         {
-            _player.PlayAnimation("idle", true);
+            _player.PlayAnimation(OtterBase.OtterState.Idle ,"idle", true);
         }
 
         if (_isTouch && !_isDrag)

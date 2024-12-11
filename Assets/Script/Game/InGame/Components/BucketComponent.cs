@@ -14,12 +14,19 @@ public class BucketComponent : MonoBehaviour
 
     public float TestTime = 2f;
 
+    private float FishPos_Y = 0.15f;
+
     private OtterBase Target;
 
     private InGameStage InGameStage;
 
+    private int FishCount = 0;
+
+    private int FishMaxCount = 0;
+
     public void Init()
     {
+        FishCount = 0;
         InGameStage = GameRoot.Instance.InGameSystem.GetInGame<InGameTycoon>().curInGameStage;
 
     }
@@ -35,12 +42,13 @@ public class BucketComponent : MonoBehaviour
 
             var getvalue = other.GetComponent<OtterBase>();
 
+            if (getvalue != null)
+                Target = getvalue;
 
-            if(getvalue != null)
-            Target = getvalue;
         }
     }
 
+    
 
 
     private void OnTriggerExit2D(Collider2D collision)
@@ -62,7 +70,13 @@ public class BucketComponent : MonoBehaviour
     {
         if (Target == null) return;
 
-        if(IsOnEnter)
+
+        if(Target.IsIdle && !Target.IsFishing)
+        {
+            Target.PlayAnimation(OtterBase.OtterState.Fishing, "fishingidle", true);
+        }
+
+        if(IsOnEnter && Target.IsFishing)
         {
             CurMoneyTime += Time.deltaTime;
 
@@ -76,7 +90,7 @@ public class BucketComponent : MonoBehaviour
                 CurMoneyTime = 0f;
 
 
-                InGameStage.CreateFish(StartFishTr, 1 , FishComponent.State.Bucket, StartFishAction);
+                InGameStage.CreateFish(Target.GetFishTr, 1 , FishComponent.State.Bucket, StartFishAction);
                 
 
 
@@ -98,6 +112,12 @@ public class BucketComponent : MonoBehaviour
 
     public void StartFishAction(FishComponent fish)
     {
-        fish.FishInBucketAction(this.transform);
+        FishCount += 1;
+
+        var posy = this.transform.position.y + (FishPos_Y * (FishCount - 1));
+
+        var fishvec = new Vector3(this.transform.position.x, posy, this.transform.position.z);
+
+        fish.FishInBucketAction(fishvec);
     }
 }

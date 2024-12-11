@@ -34,14 +34,12 @@ public class FishComponent : MonoBehaviour
 
 
 
-    public void FishInBucketAction(Transform buckettr)
+    public void FishInBucketAction(Vector3 pos)
     {
         // 물고기를 통으로 이동시키는 애니메이션
-        this.transform.DOJump(buckettr.position, 3f ,  1  , 1.5f).SetEase(Ease.InOutQuad)
+        this.transform.DOJump(pos, 3f ,  1  , 1.5f).SetEase(Ease.InOutQuad)
             .OnComplete(() =>
             {
-                // 애니메이션 완료 후 추가 작업
-                Debug.Log("물고기가 통 안에 들어갔습니다!");
             });
     }
 

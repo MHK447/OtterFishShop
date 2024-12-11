@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5143532086973086803}
   - component: {fileID: 3766471950918913976}
   - component: {fileID: 1898924502264789814}
+  - component: {fileID: 6081193916627658757}
   m_Layer: 0
   m_Name: Fish
   m_TagString: Untagged
@@ -100,3 +101,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   FishIcon: {fileID: 3766471950918913976}
+--- !u!95 &6081193916627658757
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4145588153542426747}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 1d71c7dbb08124b6e81d989f72762577, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

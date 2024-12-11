@@ -70,93 +70,14 @@ SpriteAtlas:
       enableAlphaDilation: 0
     secondaryTextureSettings: {}
     variantMultiplier: 0.5
-    packables:
-    - {fileID: 102900000, guid: 53e59389d26714b65bd75bb00ec7a17b, type: 3}
+    packables: []
     bindAsDefault: 1
     isAtlasV2: 0
     cachedData: {fileID: 0}
-    packedSpriteRenderDataKeys:
-    - 835db161583154f139bcd4ef6360bc24: 21300000
-    - 04f565614714e4b8196841f4feebddf6: 21300000
-    - cfea95717ddcd4d0982cf8352648db21: 21300000
-    - cc0a697118a724772a24787121aa9690: 21300000
-    - f863bf8138a83489c8359d0a08bf78a9: 21300000
-    - 8376c0d11ad954e64975b7ace8761135: 21300000
-    - c6b4c233eed6d40c4b7793515a823ea2: 21300000
-    - ce2a5a359961442c8a358b9323320114: 21300000
-    - 542f3a9580dc043ef85e6ebfc72b9cc0: 21300000
-    - b83f76e5f3be24dd1bf207d57d603e2a: 21300000
-    - 35bd1d166689e4d72bca48e848823d9d: 21300000
-    - 9e9b0e26b10d2407885fefd2ecadfd18: 21300000
-    - 2f1c0627f8c47497db88fbfea635096f: 21300000
-    - db3135c74b1dd4d21a9de40e60af19e7: 21300000
-    - 095db3e7615d147128a766c75f43aeb5: 21300000
-    - 927e354ab04c34ee7a8866c5577d0481: 21300000
-    - c29fddbb03bf643f8b120565324e3f9a: 21300000
-    - 309f6e7c78bb9402aa5df1603c9be321: 21300000
-    - 2ba94b8c51eba4b0693ca81e7b06c916: 21300000
-    - a5b2fd0d33c23411f839cceaf00b826b: 21300000
-    - d2337c6dc12c14a3693baeb600a5c048: 21300000
-    - bf7f6d6da5076420892e8bd21e8115b5: 21300000
-    - 9eee689da30ac4995b93730d66087cbe: 21300000
-    - 205e16bd0bb1c46ab8bda194bc519988: 21300000
-    - 73b2859e396db4783888a3231738f2a2: 21300000
-    - 5c40d31feebde46f9bb7e92a09e65bc8: 21300000
+    packedSpriteRenderDataKeys: []
   m_MasterAtlas: {fileID: 0}
-  m_PackedSprites:
-  - {fileID: 21300000, guid: 835db161583154f139bcd4ef6360bc24, type: 3}
-  - {fileID: 21300000, guid: 04f565614714e4b8196841f4feebddf6, type: 3}
-  - {fileID: 21300000, guid: cfea95717ddcd4d0982cf8352648db21, type: 3}
-  - {fileID: 21300000, guid: cc0a697118a724772a24787121aa9690, type: 3}
-  - {fileID: 21300000, guid: f863bf8138a83489c8359d0a08bf78a9, type: 3}
-  - {fileID: 21300000, guid: 8376c0d11ad954e64975b7ace8761135, type: 3}
-  - {fileID: 21300000, guid: c6b4c233eed6d40c4b7793515a823ea2, type: 3}
-  - {fileID: 21300000, guid: ce2a5a359961442c8a358b9323320114, type: 3}
-  - {fileID: 21300000, guid: 542f3a9580dc043ef85e6ebfc72b9cc0, type: 3}
-  - {fileID: 21300000, guid: b83f76e5f3be24dd1bf207d57d603e2a, type: 3}
-  - {fileID: 21300000, guid: 35bd1d166689e4d72bca48e848823d9d, type: 3}
-  - {fileID: 21300000, guid: 9e9b0e26b10d2407885fefd2ecadfd18, type: 3}
-  - {fileID: 21300000, guid: 2f1c0627f8c47497db88fbfea635096f, type: 3}
-  - {fileID: 21300000, guid: db3135c74b1dd4d21a9de40e60af19e7, type: 3}
-  - {fileID: 21300000, guid: 095db3e7615d147128a766c75f43aeb5, type: 3}
-  - {fileID: 21300000, guid: 927e354ab04c34ee7a8866c5577d0481, type: 3}
-  - {fileID: 21300000, guid: c29fddbb03bf643f8b120565324e3f9a, type: 3}
-  - {fileID: 21300000, guid: 309f6e7c78bb9402aa5df1603c9be321, type: 3}
-  - {fileID: 21300000, guid: 2ba94b8c51eba4b0693ca81e7b06c916, type: 3}
-  - {fileID: 21300000, guid: a5b2fd0d33c23411f839cceaf00b826b, type: 3}
-  - {fileID: 21300000, guid: d2337c6dc12c14a3693baeb600a5c048, type: 3}
-  - {fileID: 21300000, guid: bf7f6d6da5076420892e8bd21e8115b5, type: 3}
-  - {fileID: 21300000, guid: 9eee689da30ac4995b93730d66087cbe, type: 3}
-  - {fileID: 21300000, guid: 205e16bd0bb1c46ab8bda194bc519988, type: 3}
-  - {fileID: 21300000, guid: 73b2859e396db4783888a3231738f2a2, type: 3}
-  - {fileID: 21300000, guid: 5c40d31feebde46f9bb7e92a09e65bc8, type: 3}
-  m_PackedSpriteNamesToIndex:
-  - Unit015_Img
-  - Unit014_Img
-  - Unit009_Img
-  - Unit002_Img
-  - Unit1002_1_0_idle_0
-  - Unit016_Img
-  - Unit005_Img
-  - Boss_1002
-  - Unit010_Img
-  - Unit003_Img
-  - Boss_1001
-  - Unit017_Img
-  - Unit001_Img
-  - Unit008_Img
-  - Unit011_Img
-  - Boss_1004
-  - Unit013_Img
-  - Boss_001
-  - Unit1001
-  - Unit006_Img
-  - Boss_1003
-  - Unit007_Img
-  - Unit018_Img
-  - Unit1003_1_0_idle_0
-  - Unit012_Img
-  - Unit004_Img
+  m_PackedSprites: []
+  m_PackedSpriteNamesToIndex: []
   m_RenderDataMap: {}
   m_Tag: Atlas_InGameUnit
   m_IsVariant: 0
