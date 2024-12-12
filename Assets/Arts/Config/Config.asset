@@ -26,16 +26,4 @@ MonoBehaviour:
   DisableSpriteMat: {fileID: 0}
   EnableSpriteMat: {fileID: 0}
   ImgAddtiveMat: {fileID: 0}
-  DynamicAtlas: {fileID: 0}
-  DynamicShopAtlas: {fileID: 0}
-  ItemCardAtlas: {fileID: 0}
-  CommonAtlas: {fileID: 4343727234628468602, guid: 3b4b5bce2a9298e4abf4cc657ab8d55a, type: 2}
-  facilityAtlas: {fileID: 0}
-  UiIconAtlas: {fileID: 0}
-  UiBgAtlas: {fileID: 0}
-  InGameAtlas: {fileID: 0}
-  PlanetAtlas: {fileID: 0}
-  IconImgAtlas: {fileID: 4343727234628468602, guid: 6d74120d3026444549baed1a9b93726e, type: 2}
-  UnitImgAtlas: {fileID: 4343727234628468602, guid: e4eeb7b3b02ad46fea1bb8d4d1181edf, type: 2}
-  SkillAtlas: {fileID: 4343727234628468602, guid: 1c93609e065d34362968220ce99920c7, type: 2}
-  InGameSkillAtlas: {fileID: 4343727234628468602, guid: f1c6e32ace6b24de0a7a840e65e42524, type: 2}
+  InGameAtlas: {fileID: 4343727234628468602, guid: 3884f0eb0f94946d2a6597b6b3b5050f, type: 2}

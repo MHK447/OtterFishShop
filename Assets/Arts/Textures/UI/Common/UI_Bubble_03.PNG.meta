@@ -156,7 +156,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      UI_Bubble_03_0: 5246731940320730489
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -42,7 +42,7 @@ public class FishingRoom : MonoBehaviour
 
             var getvalue = other.GetComponent<OtterBase>();
 
-            if (getvalue != null)
+            if (getvalue != null && !getvalue.IsCarry)
                 Target = getvalue;
 
         }
@@ -71,9 +71,14 @@ public class FishingRoom : MonoBehaviour
         if (Target == null) return;
 
 
-        if (Target.IsIdle && !Target.IsFishing)
+        if (Target.IsIdle && !Target.IsFishing && !Target.IsCarry)
         {
             Target.PlayAnimation(OtterBase.OtterState.Fishing, "fishingidle", true);
+        }
+
+        if(Target.IsMove)
+        {
+            CurMoneyTime = 0f;
         }
 
         if (IsOnEnter && Target.IsFishing)
@@ -104,8 +109,8 @@ public class FishingRoom : MonoBehaviour
 
         var fishvec = new Vector3(BucketComponent.transform.position.x, posy, BucketComponent.transform.position.z);
 
-        fish.FishInBucketAction(fishvec);
-
-        BucketComponent.AddFishQueue(fish);
+        fish.FishInBucketAction(fishvec, (fish)=> {
+            BucketComponent.AddFishQueue(fish);
+        } );
     }
 }

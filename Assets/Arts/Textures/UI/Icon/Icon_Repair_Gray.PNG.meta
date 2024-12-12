@@ -156,7 +156,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Icon_Repair_Gray_0: -8126345285753593691
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

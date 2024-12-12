@@ -138,32 +138,9 @@ public class Config : BanpoFri.SingletonScriptableObject<Config>, BanpoFri.ILoad
     public Material DisableSpriteMat;
     public Material EnableSpriteMat;
     public Material ImgAddtiveMat;
-    [SerializeField]
-    private SpriteAtlas DynamicAtlas;
-    [SerializeField]
-    private SpriteAtlas DynamicShopAtlas;
-    [SerializeField]
-    private SpriteAtlas ItemCardAtlas;
-    [SerializeField]
-    private SpriteAtlas CommonAtlas;
-    [SerializeField]
-    private SpriteAtlas facilityAtlas;
-    [SerializeField]
-    private SpriteAtlas UiIconAtlas;
-    [SerializeField]
-    private SpriteAtlas UiBgAtlas;
+
     [SerializeField]
     private SpriteAtlas InGameAtlas;
-    [SerializeField]
-    private SpriteAtlas PlanetAtlas;
-    [SerializeField]
-    private SpriteAtlas IconImgAtlas;
-    [SerializeField]
-    private SpriteAtlas UnitImgAtlas;
-    [SerializeField]
-    private SpriteAtlas SkillAtlas;
-    [SerializeField]
-    private SpriteAtlas InGameSkillAtlas;
 
 
 
@@ -214,20 +191,10 @@ public class Config : BanpoFri.SingletonScriptableObject<Config>, BanpoFri.ILoad
 
         return Color.white;
     }
-    public Sprite GetItemcardImg(string key)
+    public Sprite GetIngameImg(string key)
     {
-        return ItemCardAtlas.GetSprite(key);
+        return InGameAtlas.GetSprite(key);
     }
-    public Sprite GetUnitImg(string key)
-    {
-        return UnitImgAtlas.GetSprite(key);
-    }
-
-    public Sprite GetPlanetImg(string key)
-    {
-        return PlanetAtlas.GetSprite(key);
-    }
-
 
     public Color GetUnitGradeColor(int grade)
     {
@@ -243,85 +210,6 @@ public class Config : BanpoFri.SingletonScriptableObject<Config>, BanpoFri.ILoad
 
         return Color.white;
     }
-
-    public Sprite GetCurrencyImg(int currenyidx)
-    {
-        switch(currenyidx)
-        {
-            case (int)Config.CurrencyID.Cash:
-                return GetCommonImg("Icon_Gem03_Diamond_Purple");
-            case (int)Config.CurrencyID.GachaCoin:
-                return GetCommonImg("Icon_Cards");
-            case (int)Config.CurrencyID.EnergyMoney:
-                return GetCommonImg("Icon_Energy_Green");
-            case (int)Config.CurrencyID.Money:
-                return GetCommonImg("Icon_Gem01_Blue");
-        }
-
-        return null;
-    }
-
-
-    public Sprite GetInGameAtlas(string key)
-    {
-        return InGameAtlas.GetSprite(key);
-    }
-
-
-    public Sprite GetSkillAtlas(string key)
-    {
-        return SkillAtlas.GetSprite(key);
-    }
-
-    public Sprite GetInGameSkillAtlas(string key)
-    {
-        return InGameSkillAtlas.GetSprite(key);
-    }
-
-    public Sprite GetIconImg(string key)
-    {
-        return IconImgAtlas.GetSprite(key);
-    }
-
-
-    public Sprite GetIUiIconImg(string key)
-    {
-        return UiIconAtlas.GetSprite(key);
-    }
-
-    public Sprite GetUIBgImg(string key)
-    {
-        return UiBgAtlas.GetSprite(key);
-    }
-
-
-    public Sprite GetCommonImg(string key)
-    {
-        return CommonAtlas.GetSprite(key);
-    }
-
-    public Sprite GetDynamicImg(string key)
-    {
-        return DynamicAtlas.GetSprite(key);
-    }
-
-    public Sprite GetDynamicShop(string key)
-    {
-        return DynamicShopAtlas.GetSprite(key);
-    }
-
-
-    //public Sprite GetProductImg(string key)
-    //{
-    //    return productAtlas.GetSprite(key);
-    //}
-
-    
-    public Sprite GetFacilityImg(string key)
-    {
-        return facilityAtlas.GetSprite(key);
-    }
-
 
 
     public void Load()
@@ -344,35 +232,5 @@ public class Config : BanpoFri.SingletonScriptableObject<Config>, BanpoFri.ILoad
         {
             _imageColorDefinesDic.Add(cd.key_string, cd.color);
         }
-    }
-
-    public Sprite GetManagerBottomImg(ManagerGrade grade)
-    {
-        switch(grade)
-        {
-            case ManagerGrade.Noraml:
-                return GetDynamicImg("Dynamic_Bg_ManagerPlace_Normal");
-            case ManagerGrade.Rare:
-                return GetDynamicImg("Dynamic_Bg_ManagerPlace_Rare");
-            case ManagerGrade.Unique:
-                return GetDynamicImg("Dynamic_Bg_ManagerPlace_Unique");
-        }
-
-        return null;
-    }
-
-    public Sprite GetManagerFrameImg(ManagerGrade grade)
-    {
-        switch(grade)
-        {
-            case ManagerGrade.Noraml:
-                return GetItemcardImg("ItemCard_Frame_Card_Normal_Back");
-            case ManagerGrade.Rare:
-                return GetItemcardImg("ItemCard_Frame_Card_Rare_Back");
-            case ManagerGrade.Unique:
-                return GetItemcardImg("ItemCard_Frame_Card_Unique_Back");
-        }
-
-        return null;
     }
 }

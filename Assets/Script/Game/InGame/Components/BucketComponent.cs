@@ -44,8 +44,15 @@ public class BucketComponent : MonoBehaviour
             var getvalue = other.GetComponent<OtterBase>();
 
             if (getvalue != null)
+            {
                 Target = getvalue;
 
+                if(FishQueueComponent.Count > 0)
+                {
+                    Target.IsMoveActive = false;
+                }
+
+            }
         }
     }
 
@@ -73,20 +80,14 @@ public class BucketComponent : MonoBehaviour
 
         if (FishQueueComponent.Count <= 0) return;
 
-
-        if(Target.IsIdle && !Target.IsFishing)
+        if (Target.IsIdle && !Target.IsFishing)
         {
             Target.PlayAnimation(OtterBase.OtterState.Carry, "carryIdle", true);
         }
 
-        if(IsOnEnter && !Target.IsFishing)
+        if (IsOnEnter && !Target.IsFishing)
         {
             FishCarrydeltime += Time.deltaTime;
-
-
-            var cooltimevalue = (float)FishCarrydeltime / (float)FishCarryTime;
-
-            Target.CoolTimeActive(cooltimevalue);
 
             if (FishCarrydeltime >= FishCarryTime)
             {
@@ -102,14 +103,31 @@ public class BucketComponent : MonoBehaviour
 
                 var fishpos = new Vector3(Target.GetFishCarryRoot.position.x, posy, Target.GetFishCarryRoot.position.z);
 
-                fishcomponent.FishInBucketAction(fishpos, (fish) => {
-                    fish.transform.SetParent(Target.GetFishCarryRoot);
-                }, 0.25f);
+                int remainingFish = FishQueueComponent.Count;
 
+                fishcomponent.FishInBucketAction(fishpos, (fish) =>
+                {
+                    fish.transform.SetParent(Target.GetFishCarryRoot);
+
+                    // 마지막 물고기 작업 완료 시 실행
+                    if (remainingFish == 0)
+                    {
+                        OnAllFishMoved();
+                    }
+                }, 0.25f);
             }
         }
     }
 
+    // 모든 물고기 이동 후 실행되는 함수
+    private void OnAllFishMoved()
+    {
+        if (Target != null && !Target.IsMoveActive)
+        {
+            Target.IsMoveActive = true;
+            // 추가 작업을 여기서 처리
+        }
+    }
 
     public void AddFishQueue(FishComponent fish)
     {

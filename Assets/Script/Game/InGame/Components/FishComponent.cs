@@ -22,6 +22,8 @@ public class FishComponent : MonoBehaviour
 
     private int FishIdx = 0;
 
+    public int GetFishIdx { get { return FishIdx; } }
+
     private State CurState;
 
     public void Set(int fishidx , State startstate)

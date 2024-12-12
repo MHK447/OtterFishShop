@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 6e52d23cec6adf94b946ec7cf846bbdf
+guid: e66092306b41f02499d2db5c2be2d6eb
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -7940991040157990878
-    second: Ingame_Fish_001_0
+      213: 2161993215208633130
+    second: Ingame_Fish_000_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -126,13 +126,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Ingame_Fish_001_0
+      name: Ingame_Fish_000_0
       rect:
         serializedVersion: 2
-        x: 45
-        y: 93
-        width: 1806
-        height: 1038
+        x: 35
+        y: 112
+        width: 1798
+        height: 976
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -140,8 +140,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 220c2ded8beebc190800000000000000
-      internalID: -7940991040157990878
+      spriteID: a23b05fdf51f00e10800000000000000
+      internalID: 2161993215208633130
       vertices: []
       indices: 
       edges: []
@@ -157,7 +157,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Ingame_Fish_001_0: -7940991040157990878
+      Ingame_Fish_000_0: 2161993215208633130
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
