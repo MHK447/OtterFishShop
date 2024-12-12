@@ -12,11 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b6470b1acb3b482c830d432f3c9fc74, type: 3}
   m_Name: Config
   m_EditorClassIdentifier: 
-  _textColorDefines: []
+  _textColorDefines:
+  - key_string: BasicBrown
+    color: {r: 0.28235295, g: 0.19607843, b: 0.13333334, a: 1}
   _eventTextColorDefines: []
   _imageColorDefines:
   - key_string: Line_BasicBrowm
-    color: {r: 0.43529412, g: 0.30980393, b: 0.21960784, a: 0}
+    color: {r: 0.43529412, g: 0.30980393, b: 0.21960784, a: 1}
+  - key_string: Bg_BubbleGauge
+    color: {r: 1, g: 0.84705883, b: 0.39215687, a: 1}
   _eventImgaeColorDefines: []
   SkeletonGraphicMat: {fileID: 0}
   DisableSpriteMat: {fileID: 0}
