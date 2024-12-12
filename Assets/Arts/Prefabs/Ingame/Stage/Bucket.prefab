@@ -106,7 +106,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 50
+  m_SortingOrder: 101
   m_Sprite: {fileID: 21300000, guid: dcf89be22d017494981cccc0472e49b7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -162,7 +162,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1.5, y: 1.71}
+  m_Size: {x: 1.84, y: 2.03}
   m_EdgeRadius: 0
 --- !u!1 &7766291862062938160
 GameObject:
@@ -258,5 +258,3 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   StartFishTr: {fileID: 6445464331653576896}
-  CurMoneyTime: 0
-  TestTime: 1
