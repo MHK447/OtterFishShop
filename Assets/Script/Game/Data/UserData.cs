@@ -119,6 +119,7 @@ public partial class UserDataSystem
 		//insert start
 		BanpoFri.Data.UserData.StartUserData(builder);
 
+		BanpoFri.Data.UserData.AddStageidx(builder, mainData.StageData.StageIdx);
 		BanpoFri.Data.UserData.AddLastlogintime(builder, mainData.LastLoginTime.Ticks);
 		BanpoFri.Data.UserData.AddMoney(builder, money);
 		BanpoFri.Data.UserData.AddCurplaydatetime(builder, mainData.CurPlayDateTime.Ticks);

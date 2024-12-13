@@ -37,13 +37,11 @@ public class Chaser : MonoBehaviour
 
     private int UnitIdx = 0;
 
-    private Transform EndTrTest;
+    public Transform TargetTr;
 
-    public virtual void Init(int idx , Transform starttr)
+    public virtual void Init(int idx)
     {
         UnitIdx = idx;
-
-        EndTrTest = starttr;
 
         var td = Tables.Instance.GetTable<ConsumerInfo>().GetData(idx);
 
@@ -88,7 +86,7 @@ public class Chaser : MonoBehaviour
     void SetWayPoints()
     {
         
-        Vector2 targetPosition = EndTrTest.transform.position;
+        Vector2 targetPosition = TargetTr.transform.position;
         _wayPoints.Clear();
 
         NavMeshPath navMeshPath = new NavMeshPath();
@@ -139,13 +137,16 @@ public class Chaser : MonoBehaviour
     }
 
 
-    public void SetDestination(Transform destination)
+    public void SetDestination(Transform destination , System.Action arrivedaction)
     {
+        TargetTr = destination;
+
         _isMoving = true;
 
         if (((Vector2)transform.position - (Vector2)destination.position).magnitude < 0.1f)
         {
             ReachProcess();
+            arrivedaction?.Invoke();
         }
         else
         {

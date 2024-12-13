@@ -38,7 +38,7 @@ public partial class UserDataSystem
     {
         ChangeDataMode(DataState.Main);
 
-
+        mainData.StageData.StageIdx = flatBufferUserData.Stageidx;
         Cash.Value = flatBufferUserData.Cash;
         mainData.Money.Value = BigInteger.Parse(flatBufferUserData.Money);
         mainData.LastLoginTime = new System.DateTime(flatBufferUserData.Lastlogintime);

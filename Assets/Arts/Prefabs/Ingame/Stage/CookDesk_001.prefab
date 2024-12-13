@@ -442,7 +442,7 @@ GameObject:
   - component: {fileID: 6366518691780570380}
   - component: {fileID: 5224090373715935766}
   m_Layer: 0
-  m_Name: Rack_005
+  m_Name: CookDesk_001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

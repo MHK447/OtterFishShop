@@ -31,6 +31,9 @@ public class InGameStage : MonoBehaviour
     [SerializeField]
     private List<BucketComponent> BucketList = new List<BucketComponent>();
 
+    [SerializeField]
+    private List<FacilityComponent> FacilityList = new List<FacilityComponent>();
+
     public Transform GetStartWayPoint { get { return StartWayPointTr; } }
 
     private ObjectPool<FishComponent> FishPool = new ObjectPool<FishComponent>();
@@ -60,7 +63,7 @@ public class InGameStage : MonoBehaviour
                     getobj.transform.position = StartWayPointTr.position;
 
 
-                    getobj.Init(1, EndTrTest);
+                    getobj.Init(1);
                 }
 
             };
@@ -119,5 +122,18 @@ public class InGameStage : MonoBehaviour
         }
 
         return WaitLineListTr.First();
+    }
+
+
+    public Transform GetFacilityTr(int facilityidx)
+    {
+        var finddata = FacilityList.Find(x => x.FacilityIdx == facilityidx);
+
+        if(finddata != null)
+        {
+            return finddata.GetConsumerTr();
+        }
+
+        return null;
     }
 }

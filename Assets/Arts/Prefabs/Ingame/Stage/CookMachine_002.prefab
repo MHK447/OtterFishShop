@@ -98,7 +98,7 @@ GameObject:
   - component: {fileID: 6185184706649931769}
   - component: {fileID: 5386471260179186738}
   m_Layer: 0
-  m_Name: Rack_004
+  m_Name: CookMachine_002
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

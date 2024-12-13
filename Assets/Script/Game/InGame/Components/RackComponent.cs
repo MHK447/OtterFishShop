@@ -4,7 +4,7 @@ using UnityEngine;
 using BanpoFri;
 using System.Linq;
 
-public class RackComponent : MonoBehaviour
+public class RackComponent : FacilityComponent
 {
     [SerializeField]
     private int FishIdx = 0;
@@ -25,8 +25,10 @@ public class RackComponent : MonoBehaviour
 
     private float FishCarryTime = 0.2f;
 
-    public void Init()
+    public override void Init(int facilityidx)
     {
+        base.Init(facilityidx);
+
         var td = Tables.Instance.GetTable<FishInfo>().GetData(FishIdx);
 
         if(td != null)

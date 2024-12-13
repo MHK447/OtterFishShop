@@ -35,6 +35,7 @@ public class GameRoot : Singleton<GameRoot>
 	public PlayTimeSystem PlayTimeSystem { get; private set; } = new PlayTimeSystem();
 	public EffectSystem EffectSystem { get; private set; } = new EffectSystem();
 	public TutorialSystem TutorialSystem { get; private set; } = new TutorialSystem();
+	public FacilitySystem FacilitySystem { get; private set; } = new FacilitySystem();
 
 
 	public AdManager GetAdManager { get { return AdManager; } }
