@@ -20,13 +20,10 @@ public class FishingRoom : MonoBehaviour
 
     private InGameStage InGameStage;
 
-    private int FishCount = 0;
-
     private int FishMaxCount = 0;
 
     public void Init()
     {
-        FishCount = 0;
         InGameStage = GameRoot.Instance.InGameSystem.GetInGame<InGameTycoon>().curInGameStage;
 
     }
@@ -103,14 +100,11 @@ public class FishingRoom : MonoBehaviour
 
     public void StartFishAction(FishComponent fish)
     {
-        FishCount += 1;
+        var fishcount = BucketComponent.GetFishCount;
+        var posy = FishPos_Y * fishcount;
 
-        var posy = BucketComponent.transform.position.y + (FishPos_Y * (FishCount - 1));
-
-        var fishvec = new Vector3(BucketComponent.transform.position.x, posy, BucketComponent.transform.position.z);
-
-        fish.FishInBucketAction(fishvec, (fish)=> {
+        fish.FishInBucketAction(BucketComponent.transform, (fish)=> {
             BucketComponent.AddFishQueue(fish);
-        } );
+        },1f , posy);
     }
 }

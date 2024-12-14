@@ -54,10 +54,6 @@ public class OtterBase : MonoBehaviour
 
     public bool loop = true;
 
-    public bool IsMoveActive = true;
-
-
-
     public void Init()
     {
         GameRoot.Instance.UISystem.LoadFloatingUI<CooltimeProgress>((_progress) => {
@@ -70,11 +66,6 @@ public class OtterBase : MonoBehaviour
 
         // Event 콜백 등록
         skeletonAnimation.AnimationState.Complete += HandleEvent;
-    }
-
-    public void SetMoveActive(bool ismove)
-    {
-        IsMoveActive = ismove;
     }
 
 
@@ -123,8 +114,6 @@ public class OtterBase : MonoBehaviour
 
     public void MoveVector(UnityEngine.Vector3 moveVector)
     {
-        if (!IsMoveActive) return;
-
         transform.position += (moveVector * PlayerSpeed);
 
         PlayAnimation(OtterState.Move,"move", true);

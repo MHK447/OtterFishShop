@@ -14,6 +14,8 @@ public class RackComponent : FacilityComponent
 
     private List<FishComponent> FishComponentList = new List<FishComponent>();
 
+    public List<FishComponent> GetFishComponentList { get { return FishComponentList; } }
+
     [SerializeField]
     private SpriteRenderer FishIcon;
 
@@ -92,9 +94,11 @@ public class RackComponent : FacilityComponent
                     {
                         Target.GetFishComponentList.Remove(findfish);
 
-                        FishComponentList.Add(findfish);
 
-                        findfish.FishInBucketAction(FishTrList[FishComponentList.Count - 1].position, (fish)=> { fish.transform.SetParent(this.transform); }, 0.2f);
+                        findfish.FishInBucketAction(FishTrList[FishComponentList.Count], (fish)=> {
+                            fish.transform.SetParent(this.transform);
+                            FishComponentList.Add(findfish);
+                        }, 0.2f);
 
 
                         if(Target.GetFishComponentList.Count == 0)

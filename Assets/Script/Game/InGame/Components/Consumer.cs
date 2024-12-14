@@ -4,9 +4,20 @@ using UnityEngine;
 using UnityEngine.UI;
 using BanpoFri;
 using UniRx;
+using System.Linq;
+using Spine.Unity;
 
 public class Consumer : Chaser
 {
+    public enum CurState
+    {
+        Idle,
+        Move,
+        WaitProduct,
+        Wait,
+    }
+
+
     public class PatternOrderData
     {
         public int FacilityIdx = 0;
@@ -25,6 +36,10 @@ public class Consumer : Chaser
 
     public ConsumerMoveInfoData CurMoveInfoData;
 
+
+    [SerializeField]
+    private Transform ProductRoot;
+
     private ConsumerOrderUI ConsumerOrderUI;
 
     private int CurMissionCount = 0;
@@ -37,8 +52,34 @@ public class Consumer : Chaser
 
     private CompositeDisposable disposables = new CompositeDisposable();
 
+    private CurState State = CurState.Idle;
+
+    private RackComponent TargetRack;
+
+    private Transform FacilityTarget;
+
+    private int CurGoalValue = 0;
+
+    private List<FishComponent> CurFishComponentList = new List<FishComponent>();
+
+    public string CurAnimName = "Idle";
+
+    private CounterComponent CounterComponent;
+
+    private InGameStage Stage;
+
+    public System.Action<bool> OnEnd = null;
+
+    public bool IsArrivedCounter = false;
+
     public override void Init(int idx)
     {
+        IsArrivedCounter = false;
+
+        CarryStart(false);
+        Stage = GameRoot.Instance.InGameSystem.GetInGame<InGameTycoon>().curInGameStage;
+        CounterComponent = Stage.FindFacilityTr(GameRoot.Instance.InGameSystem.CounterIdx).GetComponent<CounterComponent>();
+
         base.Init(idx);
 
         CurMissionCount = 0;
@@ -56,6 +97,9 @@ public class Consumer : Chaser
             PatternOrderQueue.Enqueue(newpatterndata);
         }
 
+
+        CurGoalValue = CurMoveInfoData.count[CurMissionCount];
+
         GameRoot.Instance.UISystem.LoadFloatingUI<ConsumerOrderUI>((orderui) => {
             ConsumerOrderUI = orderui;
             ProjectUtility.SetActiveCheck(ConsumerOrderUI.gameObject, true);
@@ -72,7 +116,6 @@ public class Consumer : Chaser
             }
         }).AddTo(disposables);
 
-
         MoveFacility();
     }
 
@@ -85,15 +128,36 @@ public class Consumer : Chaser
             var newdata = PatternOrderQueue.Dequeue();
 
             CurFacilityIdxProperty.Value = newdata.FacilityIdx;
-            CurCountProperty.Value = newdata.Count;
+            CurGoalValue = newdata.Count;
+            CurCountProperty.Value = 0;
+            
 
-            GoToFacility(newdata.FacilityIdx);
+            GoToFacility(newdata.FacilityIdx, ()=> {
+                NextMoveAction(CurFacilityIdxProperty.Value);
+            });
         }
         else
         {
 
             //lastmove
 
+        }
+    }
+
+
+    public void NextMoveAction(int facilityidx)
+    {
+        if(facilityidx > 0 && facilityidx < 100) //기본 물품대 
+        {
+            ChangeState(CurState.WaitProduct, facilityidx);
+        }
+        else if(facilityidx > 99 && facilityidx < 1000) // 조리대 
+        {
+
+        }
+        else if(facilityidx == 1000) //계산대
+        {
+            IsArrivedCounter = true;
         }
     }
 
@@ -108,18 +172,129 @@ public class Consumer : Chaser
         disposables.Clear();
     }
 
-
-    private void GoToFacility(int facilityidx)
+    public void ChangeState(CurState state , int facilityidx = -1)
     {
-        var facilitytr = GameRoot.Instance.InGameSystem.GetInGame<InGameTycoon>().curInGameStage.GetFacilityTr(facilityidx);
+        State = state;
+
+        switch(State)
+        {
+            case CurState.Idle:
+                break;
+            case CurState.Move:
+                break;
+            case CurState.WaitProduct:
+                {
+                    var getfacility = Stage.FindFacilityTr(facilityidx);
+
+                    if(getfacility != null)
+                    {
+                        TargetRack = getfacility.GetComponent<RackComponent>();
+                    }
+
+                }
+                break;
+        }
+    }
 
 
-        if (facilitytr != null)
-            SetDestination(facilitytr , null);
+    private void GoToFacility(int facilityidx , System.Action nextaction)
+    {
+
+        if(GameRoot.Instance.InGameSystem.CounterIdx == facilityidx)
+        {
+            FacilityTarget = CounterComponent.GetEmptyConsumerTr();
+
+            CounterComponent.AddConsumer(this);
+        }
+        else
+            FacilityTarget = Stage.GetFacilityConsumeTr(facilityidx);
+
+
+        if (FacilityTarget != null)
+        {
+            PlayAnimation("move", true);
+            SetDestination(FacilityTarget, nextaction);
+        }
         else
         {
             //wait
         }
     }
 
+
+    private void Update()
+    {
+        if(TargetRack != null && State == CurState.WaitProduct )
+        {
+
+            if(CurCountProperty.Value >= CurGoalValue)
+            {
+                MoveFacility();
+            }
+            else
+            {
+                if(TargetRack.GetFishComponentList.Count > 0)
+                {
+                    var target = TargetRack.GetFishComponentList.First();
+
+                    TargetRack.GetFishComponentList.Remove(target);
+
+                    AddFish(target);
+
+                }
+            }
+        }
+    }
+
+
+
+    public void CarryStart(bool iscarry)
+    {
+        IsCarry = iscarry;
+
+    }
+
+    private float FishPos_Y = 0.15f;
+
+    public void AddFish(FishComponent fish)
+    {
+        CurCountProperty.Value += 1;
+        CurFishComponentList.Add(fish);
+        CarryStart(CurFishComponentList.Count > 0);
+
+        PlayAnimation("carryidle", true);
+
+
+        var floory = (FishPos_Y * (CurFishComponentList.Count - 1));
+
+        fish.FishInBucketAction(ProductRoot, (fish) =>
+        {
+            fish.transform.SetParent(ProductRoot);
+        }, 0.25f , floory);
+    }
+
+
+
+    public void OutCounterConsumer()
+    {
+        ProjectUtility.SetActiveCheck(ConsumerOrderUI.gameObject, false);
+        SetDestination(Stage.GetMiddleEndTr , ()=> {
+            SetDestination(Stage.GetEndTr , () => {
+                ProjectUtility.SetActiveCheck(this.gameObject, false);
+                OnEnd?.Invoke(true);
+            });
+        });
+
+    }
+
+
+    public void MovementCounterConsumer(int order , System.Action moveendaction)
+    {
+        if(CounterComponent != null)
+        {
+            var consumertr = CounterComponent.GetConsumerTr(order);
+
+            SetDestination(consumertr, moveendaction);
+        }
+    }
 }

@@ -17,13 +17,23 @@ public class InGameStage : MonoBehaviour
     private List<Transform> WaitLineListTr = new List<Transform>();
 
     [SerializeField]
-    private Transform StartWayPointTr;
+    private List<Transform> StartWayPointTrList = new List<Transform>();
 
     [SerializeField]
-    private Transform EndTrTest;
+    private Transform EndTr;
+
+    public Transform GetEndTr { get { return EndTr; } }
+
+    [SerializeField]
+    private Transform MiddleEndTr;
+
+    public Transform GetMiddleEndTr { get { return MiddleEndTr; } }
 
     [SerializeField]
     private AssetReference FishRef;
+
+    [SerializeField]
+    private AssetReference ConsumerRef;
 
     [SerializeField]
     private List<FishingRoom> FishingRoomList = new List<FishingRoom>();
@@ -34,43 +44,37 @@ public class InGameStage : MonoBehaviour
     [SerializeField]
     private List<FacilityComponent> FacilityList = new List<FacilityComponent>();
 
-    public Transform GetStartWayPoint { get { return StartWayPointTr; } }
+    [SerializeField]
+    private CounterComponent CounterComponent;
+
+    public CounterComponent GetCounterComponent { get { return CounterComponent; } }
+
+    public Transform GetStartWayPoint { get { return StartWayPointTrList[0]; } }
 
     private ObjectPool<FishComponent> FishPool = new ObjectPool<FishComponent>();
 
-    private List<FishComponent> activeObjs = new List<FishComponent>();
+    private ObjectPool<Consumer> ConsumerPool = new ObjectPool<Consumer>();
+
+    private List<FishComponent> activeFishObjs = new List<FishComponent>();
+
+    private List<Consumer> activeConsumerObjs = new List<Consumer>();
 
     public void Init()
     {
         IsLoadComplete = false;
         disposable.Clear();
         FishPool.Init(FishRef, this.transform ,30);
+        ConsumerPool.Init(ConsumerRef, this.transform, 10);
 
-        //test
-        var td = Tables.Instance.GetTable<ConsumerInfo>().GetData(1);
 
-        if (td != null)
-        {
-            Addressables.InstantiateAsync(td.prefab).Completed += (handle) =>
+        GameRoot.Instance.WaitTimeAndCallback(1f, () => {
+            for (int i = 0; i < 3; ++i)
             {
+                CreateConsumer(1, StartWayPointTrList[i]);
+            }
+        });
 
-                var getobj = handle.Result.GetComponent<Consumer>();
-
-                if(getobj != null)
-                {
-                    ProjectUtility.SetActiveCheck(handle.Result.gameObject, true);
-
-                    getobj.transform.position = StartWayPointTr.position;
-
-
-                    getobj.Init(1);
-                }
-
-            };
-        }
-
-
-        foreach(var fishingroom in FishingRoomList)
+        foreach (var fishingroom in FishingRoomList)
         {
             fishingroom.Init();
         }
@@ -100,16 +104,35 @@ public class InGameStage : MonoBehaviour
     {
         FishPool.Get((obj) => {
             obj.transform.position = starttr.position;
-            activeObjs.Add(obj);
+            activeFishObjs.Add(obj);
             obj.OnEnd += (complete) => {
 
                 FishPool.Return(obj);
-                activeObjs.Remove(obj);
+                activeFishObjs.Remove(obj);
             };
 
             obj.Set(fishidx , state);
 
             fishcallback?.Invoke(obj);
+        });
+    }
+
+
+    public void CreateConsumer(int consumeridx , Transform starttr,  System.Action<Consumer> consumercallback = null)
+    {
+        ConsumerPool.Get((obj) => {
+            obj.transform.position = starttr.position;
+            activeConsumerObjs.Add(obj);
+            obj.OnEnd += (complete) => {
+
+                ConsumerPool.Return(obj);
+                activeConsumerObjs.Remove(obj);
+                CreateConsumer(1, starttr);
+            };
+
+            obj.Init(consumeridx);
+
+            consumercallback?.Invoke(obj);
         });
     }
 
@@ -125,13 +148,27 @@ public class InGameStage : MonoBehaviour
     }
 
 
-    public Transform GetFacilityTr(int facilityidx)
+    public Transform GetFacilityConsumeTr(int facilityidx)
     {
         var finddata = FacilityList.Find(x => x.FacilityIdx == facilityidx);
 
         if(finddata != null)
         {
             return finddata.GetConsumerTr();
+        }
+
+        return null;
+    }
+
+
+
+    public Transform FindFacilityTr(int facilityidx)
+    {
+        var finddata = FacilityList.Find(x => x.FacilityIdx == facilityidx);
+
+        if (finddata != null)
+        {
+            return finddata.transform;
         }
 
         return null;

@@ -23,5 +23,10 @@ public class FacilityComponent : MonoBehaviour
         return ConsumerWaitTr[ConsumerOrder - 1];
 
     }
+
+    public Transform GetConsumerTr(int order)
+    {
+        return ConsumerWaitTr[order];
+    }
      
 }

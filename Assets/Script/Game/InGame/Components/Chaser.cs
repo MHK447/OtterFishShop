@@ -39,6 +39,9 @@ public class Chaser : MonoBehaviour
 
     public Transform TargetTr;
 
+    [HideInInspector]
+    public bool IsCarry = false;
+
     public virtual void Init(int idx)
     {
         UnitIdx = idx;
@@ -146,7 +149,6 @@ public class Chaser : MonoBehaviour
         if (((Vector2)transform.position - (Vector2)destination.position).magnitude < 0.1f)
         {
             ReachProcess();
-            arrivedaction?.Invoke();
         }
         else
         {
@@ -161,7 +163,7 @@ public class Chaser : MonoBehaviour
 
             if (_currentMoveProcess == null)
             {
-                _currentMoveProcess = StartCoroutine(MoveProcess());
+                _currentMoveProcess = StartCoroutine(MoveProcess(arrivedaction));
             }
         }
     }
@@ -190,15 +192,36 @@ public class Chaser : MonoBehaviour
     {
         if (CurAnimName == newAnimationName) return;
 
-        CurAnimName = newAnimationName;
+        var animationname = newAnimationName;
+
+        if (IsCarry)
+        {
+            switch (animationname)
+            {
+                case "idle":
+                    {
+                        animationname = "carryidle";
+                    }
+                    break;
+                case "move":
+                    {
+                        animationname = "carry";
+                    }
+                    break;
+
+            }
+        }
+
+
+        CurAnimName = animationname;
 
         if (skeletonAnimation != null)
         {
-            skeletonAnimation.state.SetAnimation(0, newAnimationName, isLooping);
+            skeletonAnimation.state.SetAnimation(0, animationname, isLooping);
         }
     }
 
-    IEnumerator MoveProcess()
+    IEnumerator MoveProcess(System.Action arrivedaction = null)
     {
         while (_wayPoints.Count > 0)
         {
@@ -210,7 +233,10 @@ public class Chaser : MonoBehaviour
             else
             {
                 _isMoving = true;
-                PlayAnimation("move",true);
+
+                var animname = IsCarry ? "carry" : "move";
+
+                PlayAnimation(animname, true);
 
                 transform.localScale = new Vector3(transform.position.x - currentWayPoint.x > 0 ? 1f : -1f, 1f, 1f);
                 transform.position = Vector2.MoveTowards(transform.position, currentWayPoint, Time.deltaTime * CurrentMoveSpeed);
@@ -220,6 +246,7 @@ public class Chaser : MonoBehaviour
         }
 
         _currentMoveProcess = null;
+        arrivedaction?.Invoke();
         ReachProcess();
 
         yield break;

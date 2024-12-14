@@ -26,6 +26,12 @@ public class FishComponent : MonoBehaviour
 
     private State CurState;
 
+    private Transform Target;
+
+    private bool IsTracking = false;
+
+    private float TargetYPos = 0f;
+
     public void Set(int fishidx , State startstate)
     {
         FishIdx = fishidx;
@@ -36,14 +42,28 @@ public class FishComponent : MonoBehaviour
 
 
 
-    public void FishInBucketAction(Vector3 pos , System.Action<FishComponent> fishaction = null , float time = 1f)
+    public void FishInBucketAction(Transform tr , System.Action<FishComponent> fishaction = null , float time = 1f , float ypos = 0f)
     {
+        TargetYPos = ypos;
+        IsTracking = false;
+        Target = tr;
         // 물고기를 통으로 이동시키는 애니메이션
-        this.transform.DOJump(pos, 3f ,  1  , time).SetEase(Ease.InOutQuad)
+        this.transform.DOJump(new Vector3(tr.position.x , tr.position.y + ypos , tr.position.z), 3f ,  1  , time).SetEase(Ease.InOutQuad)
             .OnComplete(() =>
             {
+                IsTracking = true;
                 fishaction?.Invoke(this);
             });
     }
 
+
+    private void Update()
+    {
+        if(Target != null && IsTracking)
+        {
+            var targety = Target.position.y + TargetYPos;
+
+            this.transform.position = new Vector3(Target.position.x, targety, Target.position.z);
+        }
+    }
 }

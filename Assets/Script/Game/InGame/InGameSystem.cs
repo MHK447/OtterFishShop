@@ -31,6 +31,8 @@ public class InGameSystem
 
     public int TicketEnemyIdx = 10001;
 
+    public int CounterIdx = 1000;
+
     CompositeDisposable disposables = new CompositeDisposable();
 
     public T GetInGame<T>() where T : InGameMode

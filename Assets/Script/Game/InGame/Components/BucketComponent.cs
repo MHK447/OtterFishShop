@@ -8,7 +8,9 @@ public class BucketComponent : MonoBehaviour
     [SerializeField]
     private Transform StartFishTr;
 
-    private Queue<FishComponent> FishQueueComponent = new Queue<FishComponent>();
+    private Stack<FishComponent> FishStackComponent = new Stack<FishComponent>();
+
+    public int GetFishCount { get { return FishStackComponent.Count; } }
 
     private bool IsOnEnter = false;
 
@@ -46,12 +48,6 @@ public class BucketComponent : MonoBehaviour
             if (getvalue != null)
             {
                 Target = getvalue;
-
-                if(FishQueueComponent.Count > 0)
-                {
-                    Target.IsMoveActive = false;
-                }
-
             }
         }
     }
@@ -78,7 +74,7 @@ public class BucketComponent : MonoBehaviour
     {
         if (Target == null) return;
 
-        if (FishQueueComponent.Count <= 0) return;
+        if (FishStackComponent.Count <= 0) return;
 
         if (Target.IsIdle && !Target.IsFishing)
         {
@@ -93,45 +89,27 @@ public class BucketComponent : MonoBehaviour
             {
                 FishCarrydeltime = 0f;
 
-                var fishcomponent = FishQueueComponent.Dequeue();
+                var fishcomponent = FishStackComponent.Pop();
 
                 Target.AddFish(fishcomponent);
 
                 var fishcount = Target.GetFishComponentList.Count;
 
-                var posy = Target.GetFishCarryRoot.position.y + (FishPos_Y * (fishcount - 1));
+                var floory = (FishPos_Y * (fishcount - 1));
 
-                var fishpos = new Vector3(Target.GetFishCarryRoot.position.x, posy, Target.GetFishCarryRoot.position.z);
+                int remainingFish = FishStackComponent.Count;
 
-                int remainingFish = FishQueueComponent.Count;
-
-                fishcomponent.FishInBucketAction(fishpos, (fish) =>
+                fishcomponent.FishInBucketAction(Target.GetFishCarryRoot.transform, (fish) =>
                 {
                     fish.transform.SetParent(Target.GetFishCarryRoot);
-
-                    // 마지막 물고기 작업 완료 시 실행
-                    if (remainingFish == 0)
-                    {
-                        OnAllFishMoved();
-                    }
-                }, 0.25f);
+                }, 0.25f, floory);
             }
-        }
-    }
-
-    // 모든 물고기 이동 후 실행되는 함수
-    private void OnAllFishMoved()
-    {
-        if (Target != null && !Target.IsMoveActive)
-        {
-            Target.IsMoveActive = true;
-            // 추가 작업을 여기서 처리
         }
     }
 
     public void AddFishQueue(FishComponent fish)
     {
-        FishQueueComponent.Enqueue(fish);
+        FishStackComponent.Push(fish);
     }
 
 }
