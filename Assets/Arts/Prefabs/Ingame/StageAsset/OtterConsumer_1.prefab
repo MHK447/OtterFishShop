@@ -208,7 +208,8 @@ MonoBehaviour:
     _facilityidx: 
     _count: 
   ProductRoot: {fileID: 1667258497595048112}
-  CurAnimName: Idle
+  IsArrivedCounter: 0
+  CurCounterOrder: 0
 --- !u!61 &8665406343919843035
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -280,7 +281,7 @@ Transform:
   m_GameObject: {fileID: 4854619043264745601}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.5, y: 0.5, z: 0}
+  m_LocalPosition: {x: -0.692, y: 0.893, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
