@@ -99,9 +99,6 @@ public class OtterBase : MonoBehaviour
 
     private void HandleEvent(Spine.TrackEntry trackEntry)
     {
-        Debug.Log($"Animation Complete: {trackEntry.Animation.Name}");
-
-
         switch (trackEntry.Animation.Name)
         {
             case "fishingstart":

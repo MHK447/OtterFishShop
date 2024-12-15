@@ -62,8 +62,6 @@ public class Consumer : Chaser
 
     private List<FishComponent> CurFishComponentList = new List<FishComponent>();
 
-    public string CurAnimName = "Idle";
-
     private CounterComponent CounterComponent;
 
     private InGameStage Stage;
@@ -72,8 +70,17 @@ public class Consumer : Chaser
 
     public bool IsArrivedCounter = false;
 
+    public int CurCounterOrder = 0;
+
+    private bool IsCounter = false;
+
+
+
     public override void Init(int idx)
     {
+        FacilityTarget = null;
+        TargetRack = null;
+        IsCounter = false;
         IsArrivedCounter = false;
 
         CarryStart(false);
@@ -199,10 +206,16 @@ public class Consumer : Chaser
 
     private void GoToFacility(int facilityidx , System.Action nextaction)
     {
+        if(FacilityTarget != null)
+        {
+            Stage.FindFacilityTr(facilityidx).ConsumerOrder -= 1;
+        }
 
         if(GameRoot.Instance.InGameSystem.CounterIdx == facilityidx)
         {
             FacilityTarget = CounterComponent.GetEmptyConsumerTr();
+
+            IsCounter = true;
 
             CounterComponent.AddConsumer(this);
         }
@@ -244,6 +257,17 @@ public class Consumer : Chaser
                 }
             }
         }
+
+        if(IsCounter && CurCounterOrder > 0)
+        {
+            var finddata = CounterComponent.FindOrderConsumer(CurCounterOrder - 1);
+
+            if(finddata == null)
+            {
+                CurCounterOrder -= 1;
+                MovementCounterConsumer(CurCounterOrder , null);
+            }
+        }
     }
 
 
@@ -280,6 +304,7 @@ public class Consumer : Chaser
         ProjectUtility.SetActiveCheck(ConsumerOrderUI.gameObject, false);
         SetDestination(Stage.GetMiddleEndTr , ()=> {
             SetDestination(Stage.GetEndTr , () => {
+                DataClear();
                 ProjectUtility.SetActiveCheck(this.gameObject, false);
                 OnEnd?.Invoke(true);
             });
@@ -287,6 +312,20 @@ public class Consumer : Chaser
 
     }
 
+    public void DataClear()
+    {
+        CurFacilityIdxProperty.Value = 0;
+        CurCountProperty.Value = 0;
+        PatternOrderQueue.Clear();
+        CurFishComponentList.Clear();
+        IsCarry = false;
+        CurCounterOrder = 0;
+        FacilityTarget = null;
+        TargetRack = null;
+        IsCounter = false;
+        IsArrivedCounter = false;
+
+    }
 
     public void MovementCounterConsumer(int order , System.Action moveendaction)
     {

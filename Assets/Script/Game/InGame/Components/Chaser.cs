@@ -25,7 +25,7 @@ public class Chaser : MonoBehaviour
 
     float _agentDrift = 0.0001f;
 
-    private string CurAnimName;
+    protected string CurAnimName;
 
     Vector3 _destinationPosition;
     protected Action _destinationReachedEvent;

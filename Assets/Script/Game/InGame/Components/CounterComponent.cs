@@ -6,20 +6,8 @@ using System.Linq;
 public class CounterComponent : FacilityComponent
 {
 
-    public class CounterConsumer
-    {
-        public int Order = 0;
 
-        public Consumer Consumer;
-
-        public CounterConsumer(int order, Consumer consumer)
-        {
-            Order = order;
-            Consumer = consumer;
-        }
-    }
-
-    private List<CounterConsumer> CounterConsumerList = new List<CounterConsumer>();
+    private List<Consumer> CounterConsumerList = new List<Consumer>();
 
     private float CheckOutConsumerTime = 2f;
 
@@ -66,7 +54,7 @@ public class CounterComponent : FacilityComponent
     {
         if(Player != null && CounterConsumerList.Count > 0)
         {
-            var findconsumer = CounterConsumerList.Find(x => x.Order == 0 && x.Consumer.IsArrivedCounter);
+            var findconsumer = CounterConsumerList.Find(x => x.CurCounterOrder == 0 && x.IsArrivedCounter);
 
             if (findconsumer != null)
             {
@@ -80,44 +68,37 @@ public class CounterComponent : FacilityComponent
                 {
                     checkoutdeltime = 0f;
 
-                    GameRoot.Instance.EffectSystem.MultiPlay<TextEffectMoney>(findconsumer.Consumer.transform.position, (effect) =>
+                    GameRoot.Instance.EffectSystem.MultiPlay<TextEffectMoney>(findconsumer.transform.position, (effect) =>
                     {
                         effect.SetAutoRemove(true, 1.5f);
                         effect.SetText(100);
                         GameRoot.Instance.UserData.SetReward((int)Config.RewardType.Currency, (int)Config.CurrencyID.Money, 100);
 
 
-                        SortConsumer();
+                        var findconsumer = CounterConsumerList.Find(x => x.CurCounterOrder == 0);
 
+                        if (findconsumer != null)
+                        {
+                            findconsumer.OutCounterConsumer();
+                            CounterConsumerList.Remove(findconsumer);
+                        }
                     });
-
                 }
             }
         }
     }
 
-    public void SortConsumer()
+    public Consumer FindOrderConsumer(int order)
     {
-        var findconsumer = CounterConsumerList.Find(x => x.Order == 0);
+        var finddata = CounterConsumerList.Find(x => x.CurCounterOrder == order);
 
-        if (findconsumer != null)
+        if(finddata != null)
         {
-            findconsumer.Consumer.OutCounterConsumer();
-            CounterConsumerList.Remove(findconsumer);
+            return finddata;
         }
 
-        foreach(var consumer in CounterConsumerList)
-        {
-            if(consumer.Order > 0)
-            {
-                consumer.Consumer.MovementCounterConsumer(consumer.Order - 1 , () => {
-                    consumer.Order -= 1;
-                });
-            }
-        }
-
+        return null;
     }
-
 
     public Transform GetEmptyConsumerTr()
     {
@@ -126,7 +107,7 @@ public class CounterComponent : FacilityComponent
     
     public void AddConsumer(Consumer consumer)
     {
-        var counterconsumer = new CounterConsumer(CounterConsumerList.Count, consumer);
-        CounterConsumerList.Add(counterconsumer);
+        consumer.CurCounterOrder = CounterConsumerList.Count;
+        CounterConsumerList.Add(consumer);
     }
 }

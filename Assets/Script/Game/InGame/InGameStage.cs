@@ -162,13 +162,13 @@ public class InGameStage : MonoBehaviour
 
 
 
-    public Transform FindFacilityTr(int facilityidx)
+    public FacilityComponent FindFacilityTr(int facilityidx)
     {
         var finddata = FacilityList.Find(x => x.FacilityIdx == facilityidx);
 
         if (finddata != null)
         {
-            return finddata.transform;
+            return finddata;
         }
 
         return null;

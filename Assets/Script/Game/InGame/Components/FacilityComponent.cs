@@ -7,7 +7,7 @@ public class FacilityComponent : MonoBehaviour
     [SerializeField]
     protected List<Transform> ConsumerWaitTr = new List<Transform>();
 
-    protected int ConsumerOrder = 0;
+    public int ConsumerOrder = 0;
 
     public int FacilityIdx = 0;
 
@@ -23,6 +23,8 @@ public class FacilityComponent : MonoBehaviour
         return ConsumerWaitTr[ConsumerOrder - 1];
 
     }
+
+    
 
     public Transform GetConsumerTr(int order)
     {
