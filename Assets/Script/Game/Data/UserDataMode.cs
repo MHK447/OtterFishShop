@@ -6,7 +6,6 @@ using UniRx;
 
 public interface IUserDataMode
 {
-	// Config.Language Language {get; set;}= Config.Language.en;
 	IReactiveProperty<BigInteger> Money { get; set; }
 	DateTime LastLoginTime { get; set; }
 	DateTime CurPlayDateTime { get; set; }
@@ -23,7 +22,6 @@ public class UserDataMain : IUserDataMode
 	public StageData StageData { get; set; } = new StageData();
 	public IReactiveProperty<BigInteger> EnergyMoney { get; set; } = new ReactiveProperty<BigInteger>(0);
 	public IReactiveProperty<int> GachaCoin { get; set; } = new ReactiveProperty<int>(0);
-
 }
 
 public class UserDataEvent : UserDataMain

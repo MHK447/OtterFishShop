@@ -6,7 +6,29 @@ using System.Linq;
 
 public class FacilitySystem 
 {
-    private int[] OpenFacilityDatas = { 1, 1000 };
+    public void Create()
+    {
+        
+
+
+    }
+
+    public void CreateStageFacility(int stageidx)
+    {
+        var stageinfotd = Tables.Instance.GetTable<StageInfo>().DataList.ToList().FindAll(x => x.stageidx == stageidx).ToList();
+
+        GameRoot.Instance.UserData.CurMode.StageData.StageFacilityDataList.Clear();
+
+        foreach (var stageinfo in stageinfotd)
+        {
+            var newfacility = new FacilityData(stageinfo.facilityidx, 0, false);
+
+            GameRoot.Instance.UserData.CurMode.StageData.StageFacilityDataList.Add(newfacility);
+        }
+
+        GameRoot.Instance.UserData.Save();
+    }
+
 
     public ConsumerMoveInfoData CreatePattern(int stageidx)
     {
@@ -34,7 +56,8 @@ public class FacilitySystem
 
         foreach(var facilityidx in facilityidxlist)
         {
-            if(OpenFacilityDatas.Contains(facilityidx) == false)
+            var facilitydata = GameRoot.Instance.UserData.CurMode.StageData.StageFacilityDataList.Find(x => x.FacilityIdx == facilityidx);
+            if (facilitydata != null && facilitydata.IsOpen == false)
             {
                 isopen = false;
 

@@ -279,8 +279,14 @@ public class GameRoot : Singleton<GameRoot>
 
 	void InitSystem()
 	{
+		var count = GameRoot.instance.UserData.GetRecordCount(Config.RecordCountKeys.Init);
+
 		if (GameRoot.Instance.UserData.CurMode.StageData.StageIdx == 1)
 		{
+			GameRoot.instance.UserData.AddRecordCount(Config.RecordCountKeys.Init, 1);
+
+			GameRoot.instance.FacilitySystem.CreateStageFacility(GameRoot.Instance.UserData.CurMode.StageData.StageIdx);
+
 			SetNativeLanguage();
 		}
 		else

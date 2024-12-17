@@ -156,7 +156,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Ingame_Bg_Fence_000_0: 1384560011671814828
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -156,7 +156,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Ingame_Bg_Crab_002_0: 4831277479738790697
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

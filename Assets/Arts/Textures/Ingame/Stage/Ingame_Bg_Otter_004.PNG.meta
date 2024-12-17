@@ -156,7 +156,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Ingame_Bg_Otter_004_0: 6256521162282367674
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

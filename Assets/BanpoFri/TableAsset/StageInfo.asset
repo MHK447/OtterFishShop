@@ -14,34 +14,40 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mFirstKey:
   - 1
+  - 1
+  - 1
+  - 1
+  - 2
+  - 2
+  - 2
+  - 2
+  - 2
+  mSecondKey:
+  - 1
+  - 2
+  - 3
+  - 1000
+  - 1
   - 2
   - 3
   - 4
-  - 5
-  - 6
-  mSecondKey: []
+  - 1000
   mDataList:
-  - _stage_idx: 1
-    _stage_prefab: Stage_01
-    _start_hp: 10
-    _planet_img: Stage_01
-  - _stage_idx: 2
-    _stage_prefab: Stage_02
-    _start_hp: 3
-    _planet_img: Stage_02
-  - _stage_idx: 3
-    _stage_prefab: Stage_03
-    _start_hp: 10
-    _planet_img: Stage_03
-  - _stage_idx: 4
-    _stage_prefab: Stage_04
-    _start_hp: 3
-    _planet_img: Stage_04
-  - _stage_idx: 5
-    _stage_prefab: Stage_05
-    _start_hp: 10
-    _planet_img: Stage_05
-  - _stage_idx: 6
-    _stage_prefab: Stage_06
-    _start_hp: 3
-    _planet_img: Stage_06
+  - _stageidx: 1
+    _facilityidx: 1
+  - _stageidx: 1
+    _facilityidx: 2
+  - _stageidx: 1
+    _facilityidx: 3
+  - _stageidx: 1
+    _facilityidx: 1000
+  - _stageidx: 2
+    _facilityidx: 1
+  - _stageidx: 2
+    _facilityidx: 2
+  - _stageidx: 2
+    _facilityidx: 3
+  - _stageidx: 2
+    _facilityidx: 4
+  - _stageidx: 2
+    _facilityidx: 1000

@@ -12,8 +12,27 @@ public interface IReadOnlyData : ICloneable {
 public interface IClientData { }
 
 
+public class FacilityData
+{
+	public bool IsOpen = false;
+
+	public int FacilityIdx = 0;
+
+	public int MoneyCount = 0;
+
+	public FacilityData(int facilityidx , int moneycount , bool isopen)
+    {
+		IsOpen = isopen;
+		FacilityIdx = facilityidx;
+		MoneyCount = moneycount;
+    }
+
+}
+
 public class StageData
 {
+	public List<FacilityData> StageFacilityDataList = new List<FacilityData>();
+
 	public int StageIdx { get; set; } = 1;
 	public IReactiveProperty<int> WaveIdxProperty = new ReactiveProperty<int>();
 	public IReactiveProperty<int> UnitCountPropety = new ReactiveProperty<int>();
@@ -31,6 +50,12 @@ public class StageData
 
 	public IReactiveProperty<bool> IsBossProperty = new ReactiveProperty<bool>(false);
 
+
+	public FacilityData FindFacilityData(int facilityidx)
+    {
+		return StageFacilityDataList.Find(x => x.FacilityIdx == facilityidx);
+    }
+
 	public void StageEndClear()
     {
 		WaveIdxProperty.Value = 1;
@@ -42,7 +67,8 @@ public class StageData
 
 
 	public void SetStage(int stageidx)
-    {
+	{
+		GameRoot.Instance.FacilitySystem.CreateStageFacility(GameRoot.Instance.UserData.CurMode.StageData.StageIdx);
 		StageIdx = stageidx;
     }
 

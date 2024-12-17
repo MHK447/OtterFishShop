@@ -154,6 +154,17 @@ public class ProjectUtility
 
         return 1;
     }
+
+
+    public static string GetRecordCountText(Config.RecordCountKeys key, params object[] objs)
+    {
+        if (key == Config.RecordCountKeys.StartStage)
+            return $"{key.ToString()}_{objs[0]}";
+        else
+            return key.ToString();
+    }
+
+
     public static int GetRandGachaCard(int level)
     {
 

@@ -7,7 +7,29 @@ table UserData {
   cash:int = 0;
   lastlogintime:long = 0;
   curplaydatetime:long = 0;
+  stagedata: StageData;
+  recordcount:[RecordCount];
+}
+
+
+table StageData
+{
   stageidx:int = 1;
+  facilitydatas:[facilityidata];
+}	
+
+
+table facilityidata
+{
+  facilityidx:int = 0;
+  moneycount:int = 0;  
+  isopen:bool = false; 
+}
+
+
+table RecordCount {
+  idx:string;
+  count:int = 0;
 }
 
 root_type UserData;

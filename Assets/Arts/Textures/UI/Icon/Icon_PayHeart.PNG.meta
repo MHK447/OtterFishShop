@@ -156,7 +156,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Icon_PayHeart_0: -3457682477945905235
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

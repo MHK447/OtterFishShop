@@ -200,6 +200,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3941399759251157069}
   - component: {fileID: 8387790450281534182}
+  - component: {fileID: 4337502875343794223}
   m_Layer: 5
   m_Name: UI_NewBubble
   m_TagString: Untagged
@@ -244,6 +245,23 @@ Animation:
   m_AnimatePhysics: 0
   m_UpdateMode: 0
   m_CullingType: 0
+--- !u!114 &4337502875343794223
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5504755668215588530}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c3206da4923946a49bfc74f646b6a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TrackingScale: 0
+  TrackingPos: 1
+  MoneyText: {fileID: 4722537627310186234}
+  RewardImg: {fileID: 4631818883129830515}
+  SliderImg: {fileID: 664115272259611971}
 --- !u!1 &6559197073014588496
 GameObject:
   m_ObjectHideFlags: 0
@@ -314,7 +332,7 @@ MonoBehaviour:
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 1
-  m_FillAmount: 0.7
+  m_FillAmount: 0.435
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
@@ -598,3 +616,14 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 8460738628235301190, guid: b1711b8521cb3114388a31b7cda003df, type: 3}
   m_PrefabInstance: {fileID: 8576369950428084060}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &4722537627310186234 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3930712239398775206, guid: b1711b8521cb3114388a31b7cda003df, type: 3}
+  m_PrefabInstance: {fileID: 8576369950428084060}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

@@ -36,14 +36,38 @@ public partial class UserDataSystem
 
     void ConnectReadOnlyDatas()
     {
+
+        RecordCount.Clear();
         ChangeDataMode(DataState.Main);
 
-        mainData.StageData.StageIdx = flatBufferUserData.Stageidx;
+        mainData.StageData.StageIdx = flatBufferUserData.Stagedata.Value.Stageidx;
         Cash.Value = flatBufferUserData.Cash;
         mainData.Money.Value = BigInteger.Parse(flatBufferUserData.Money);
         mainData.LastLoginTime = new System.DateTime(flatBufferUserData.Lastlogintime);
         mainData.CurPlayDateTime = new System.DateTime(flatBufferUserData.Curplaydatetime);
 
+
+
+        for (int i = 0; i < flatBufferUserData.RecordcountLength; ++i)
+        {
+            var data = flatBufferUserData.Recordcount(i);
+            RecordCount.Add(data.Value.Idx, data.Value.Count);
+        }
+
+
+        if (flatBufferUserData.Stagedata != null)
+        {
+            mainData.StageData.StageFacilityDataList.Clear();
+
+            for (int i = 0; i <  flatBufferUserData.Stagedata.Value.FacilitydatasLength; ++i)
+            {
+                var data = flatBufferUserData.Stagedata.Value.Facilitydatas(i);
+
+                var newdata = new FacilityData(data.Value.Facilityidx, data.Value.Moneycount , data.Value.Isopen);
+
+                mainData.StageData.StageFacilityDataList.Add(newdata);
+            }
+        }
     }
 
 
@@ -117,6 +141,46 @@ public partial class UserDataSystem
         }
     }
 
+    public void ResetRecordCount(Config.RecordCountKeys idx, params object[] objs)
+    {
+        var strKey = ProjectUtility.GetRecordCountText(idx, objs);
+        if (RecordCount.ContainsKey(strKey))
+            RecordCount[strKey] = 0;
+    }
+
+
+    public void ResetRecordCount(Config.RecordCountKeys idx, int resetvalue = 0, params object[] objs)
+    {
+        var strKey = ProjectUtility.GetRecordCountText(idx, objs);
+        if (RecordCount.ContainsKey(strKey))
+            RecordCount[strKey] = resetvalue;
+    }
+
+
+
+    public void AddRecordCount(Config.RecordCountKeys idx, int count, params object[] objs)
+    {
+        var strKey = ProjectUtility.GetRecordCountText(idx, objs);
+        if (RecordCount.ContainsKey(strKey))
+            RecordCount[strKey] += count;
+        else
+            RecordCount.Add(strKey, count);
+    }
+
+    public int GetRecordCount(Config.RecordCountKeys idx, params object[] objs)
+    {
+        var strKey = ProjectUtility.GetRecordCountText(idx, objs);
+
+        if (RecordCount.ContainsKey(strKey))
+        {
+            return RecordCount[strKey];
+        }
+        else
+        {
+            return 0;
+        }
+    }
+
     public void SetReward(int rewardType, int rewardIdx, BigInteger rewardCnt, bool hudRefresh = true)
     {
         switch (rewardType)
@@ -154,12 +218,7 @@ public partial class UserDataSystem
                     }
                 }
                 break;
-           
         }
-
-
-
-
     }
 
     public void RefreshUICurrency()

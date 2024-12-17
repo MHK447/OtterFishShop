@@ -115,15 +115,48 @@ public partial class UserDataSystem
 		var builder = new FlatBufferBuilder(1);
 		int dataIdx = 0;
 		var money = builder.CreateString(mainData.Money.Value.ToString());
-	
+
+
+		Offset<BanpoFri.Data.RecordCount>[] recordCount = null;
+		if (RecordCount.Count > 0)
+		{
+			recordCount = new Offset<BanpoFri.Data.RecordCount>[RecordCount.Count];
+			dataIdx = 0;
+			foreach (var rc in RecordCount)
+			{
+				recordCount[dataIdx++] = BanpoFri.Data.RecordCount.CreateRecordCount(builder, builder.CreateString(rc.Key), rc.Value);
+			}
+		}
+		VectorOffset recordCountVec = default(VectorOffset);
+		if (recordCount != null)
+			recordCountVec = BanpoFri.Data.UserData.CreateRecordcountVector(builder, recordCount);
+
+
+		//facilitydata
+		VectorOffset facilityvec = default(VectorOffset);
+		Offset<BanpoFri.Data.facilityidata>[] facilitydatas = null;
+
+		dataIdx = 0;
+
+		foreach (var facility in mainData.StageData.StageFacilityDataList)
+		{
+			facilitydatas[dataIdx++] = BanpoFri.Data.facilityidata.Createfacilityidata(builder, facility.FacilityIdx, facility.MoneyCount, facility.IsOpen);
+		}
+
+		var facilitydatavec = BanpoFri.Data.StageData.CreateFacilitydatasVector(builder, facilitydatas);
+
+		var stagedata = BanpoFri.Data.StageData.CreateStageData(builder, mainData.StageData.StageIdx ,facilitydatavec);
+
+
+
 		//insert start
 		BanpoFri.Data.UserData.StartUserData(builder);
-
-		BanpoFri.Data.UserData.AddStageidx(builder, mainData.StageData.StageIdx);
+		BanpoFri.Data.UserData.AddStagedata(builder, stagedata);
 		BanpoFri.Data.UserData.AddLastlogintime(builder, mainData.LastLoginTime.Ticks);
 		BanpoFri.Data.UserData.AddMoney(builder, money);
 		BanpoFri.Data.UserData.AddCurplaydatetime(builder, mainData.CurPlayDateTime.Ticks);
 		BanpoFri.Data.UserData.AddCash(builder, Cash.Value);
+		BanpoFri.Data.UserData.AddRecordcount(builder, recordCountVec);
 
 
 		//end 

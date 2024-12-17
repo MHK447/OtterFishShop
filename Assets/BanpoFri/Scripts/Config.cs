@@ -89,6 +89,12 @@ public class Config : BanpoFri.SingletonScriptableObject<Config>, BanpoFri.ILoad
         UnCommon = 0,
     }
 
+    public enum RecordCountKeys
+    {
+        Init,
+        StartStage,
+    }
+
 
 
     [System.Serializable]

@@ -180,7 +180,9 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Ingame_Bg_FishingBoard_003_0: 3712774911362215731
+      Ingame_Bg_FishingBoard_003_1: -8840286089956781074
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

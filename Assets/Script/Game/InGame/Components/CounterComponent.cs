@@ -6,7 +6,6 @@ using System.Linq;
 public class CounterComponent : FacilityComponent
 {
 
-
     private List<Consumer> CounterConsumerList = new List<Consumer>();
 
     private float CheckOutConsumerTime = 2f;
@@ -15,10 +14,18 @@ public class CounterComponent : FacilityComponent
 
     private OtterBase Player;
 
+    private bool IsFacilityOpen = false;
+
     public override void Init(int facilityidx)
     {
         base.Init(facilityidx);
         CounterConsumerList.Clear();
+
+
+
+
+
+
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
