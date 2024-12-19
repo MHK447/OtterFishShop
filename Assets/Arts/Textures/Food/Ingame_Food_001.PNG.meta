@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 4fe0ba132073ec84f8398053471f9d81
+guid: e66092306b41f02499d2db5c2be2d6eb
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 2701527195371117218
-    second: Ingame_Food_001_0
+      213: 2161993215208633130
+    second: Ingame_Fish_000_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -126,13 +126,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Ingame_Food_001_0
+      name: Ingame_Fish_000_0
       rect:
         serializedVersion: 2
-        x: 45
-        y: 41
-        width: 1453
-        height: 1259
+        x: 35
+        y: 112
+        width: 1798
+        height: 976
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -140,8 +140,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 2aa172fbba0cd7520800000000000000
-      internalID: 2701527195371117218
+      spriteID: a23b05fdf51f00e10800000000000000
+      internalID: 2161993215208633130
       vertices: []
       indices: 
       edges: []
@@ -157,7 +157,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Ingame_Food_001_0: 2701527195371117218
+      Ingame_Fish_000_0: 2161993215208633130
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

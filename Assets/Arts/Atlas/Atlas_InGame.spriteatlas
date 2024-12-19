@@ -77,17 +77,23 @@ SpriteAtlas:
     cachedData: {fileID: 0}
     packedSpriteRenderDataKeys:
     - e66092306b41f02499d2db5c2be2d6eb: 21300000
+    - 4fe0ba132073ec84f8398053471f9d81: 21300000
+    - bdf0da751646e3144bba7e69b0cdcb1c: 21300000
     - d3488fbbf55520b48afc9c2f01d55af3: 21300000
     - 6e52d23cec6adf94b946ec7cf846bbdf: 21300000
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
   - {fileID: 21300000, guid: e66092306b41f02499d2db5c2be2d6eb, type: 3}
+  - {fileID: 21300000, guid: 4fe0ba132073ec84f8398053471f9d81, type: 3}
+  - {fileID: 21300000, guid: bdf0da751646e3144bba7e69b0cdcb1c, type: 3}
   - {fileID: 21300000, guid: d3488fbbf55520b48afc9c2f01d55af3, type: 3}
   - {fileID: 21300000, guid: 6e52d23cec6adf94b946ec7cf846bbdf, type: 3}
   m_PackedSpriteNamesToIndex:
-  - Ingame_Fish_001
-  - Ingame_Fish_003
-  - Ingame_Fish_002
+  - Ingame_Food_001
+  - Ingame_Food_004
+  - Ingame_Food_003
+  - Ingame_Food_005
+  - Ingame_Food_002
   m_RenderDataMap: {}
   m_Tag: Atlas_InGame
   m_IsVariant: 0

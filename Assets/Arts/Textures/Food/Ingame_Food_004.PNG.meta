@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 5ee133485a909ab45aeeedc423553cec
+guid: 4fe0ba132073ec84f8398053471f9d81
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 2737434827661140926
-    second: Ingame_Cook_Pot_001_0
+      213: 2701527195371117218
+    second: Ingame_Food_001_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -126,13 +126,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Ingame_Cook_Pot_001_0
+      name: Ingame_Food_001_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 150
-        height: 148
+        x: 45
+        y: 41
+        width: 1453
+        height: 1259
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -140,8 +140,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: eb36682e8725df520800000000000000
-      internalID: 2737434827661140926
+      spriteID: 2aa172fbba0cd7520800000000000000
+      internalID: 2701527195371117218
       vertices: []
       indices: 
       edges: []
@@ -157,7 +157,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Ingame_Cook_Pot_001_0: 2737434827661140926
+      Ingame_Food_001_0: 2701527195371117218
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
