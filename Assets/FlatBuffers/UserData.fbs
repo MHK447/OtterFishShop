@@ -14,6 +14,8 @@ table UserData {
 
 table StageData
 {
+
+  facilityopenorder:int = 0;
   stageidx:int = 1;
   facilitydatas:[facilityidata];
 }	

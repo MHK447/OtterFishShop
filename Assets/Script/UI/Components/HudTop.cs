@@ -49,25 +49,5 @@ public class HudTop : MonoBehaviour
             }).AddTo(this);
         }
 
-        if(StageRewardText != null)
-        {
-            StageRewardText.text = Utility.CalculateMoneyToString(GameRoot.Instance.UserData.CurMode.StageData.WaveRewardProperty.Value);
-
-            GameRoot.Instance.UserData.CurMode.StageData.WaveRewardProperty.Subscribe(x =>
-            {
-                StageRewardText.text = Utility.CalculateMoneyToString(GameRoot.Instance.UserData.CurMode.StageData.WaveRewardProperty.Value);
-            }).AddTo(this);
-        }
-
-        if(EnergyMoneyText != null)
-        {
-            EnergyMoneyText.text = Utility.CalculateMoneyToString(GameRoot.Instance.UserData.CurMode.EnergyMoney.Value);
-
-            GameRoot.Instance.UserData.CurMode.EnergyMoney.Subscribe(x =>
-            {
-                EnergyMoneyText.text = x.ToString();
-            }).AddTo(this);
-        }
-
-    }
+    }       
 }

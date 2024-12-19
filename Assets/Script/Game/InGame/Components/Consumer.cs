@@ -64,8 +64,6 @@ public class Consumer : Chaser
 
     private CounterComponent CounterComponent;
 
-    private InGameStage Stage;
-
     public System.Action<bool> OnEnd = null;
 
     public bool IsArrivedCounter = false;

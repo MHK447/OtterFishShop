@@ -19,23 +19,28 @@ public struct StageData : IFlatbufferObject
   public void __init(int _i, ByteBuffer _bb) { __p = new Table(_i, _bb); }
   public StageData __assign(int _i, ByteBuffer _bb) { __init(_i, _bb); return this; }
 
-  public int Stageidx { get { int o = __p.__offset(4); return o != 0 ? __p.bb.GetInt(o + __p.bb_pos) : (int)1; } }
-  public bool MutateStageidx(int stageidx) { int o = __p.__offset(4); if (o != 0) { __p.bb.PutInt(o + __p.bb_pos, stageidx); return true; } else { return false; } }
-  public BanpoFri.Data.facilityidata? Facilitydatas(int j) { int o = __p.__offset(6); return o != 0 ? (BanpoFri.Data.facilityidata?)(new BanpoFri.Data.facilityidata()).__assign(__p.__indirect(__p.__vector(o) + j * 4), __p.bb) : null; }
-  public int FacilitydatasLength { get { int o = __p.__offset(6); return o != 0 ? __p.__vector_len(o) : 0; } }
+  public int Facilityopenorder { get { int o = __p.__offset(4); return o != 0 ? __p.bb.GetInt(o + __p.bb_pos) : (int)0; } }
+  public bool MutateFacilityopenorder(int facilityopenorder) { int o = __p.__offset(4); if (o != 0) { __p.bb.PutInt(o + __p.bb_pos, facilityopenorder); return true; } else { return false; } }
+  public int Stageidx { get { int o = __p.__offset(6); return o != 0 ? __p.bb.GetInt(o + __p.bb_pos) : (int)1; } }
+  public bool MutateStageidx(int stageidx) { int o = __p.__offset(6); if (o != 0) { __p.bb.PutInt(o + __p.bb_pos, stageidx); return true; } else { return false; } }
+  public BanpoFri.Data.facilityidata? Facilitydatas(int j) { int o = __p.__offset(8); return o != 0 ? (BanpoFri.Data.facilityidata?)(new BanpoFri.Data.facilityidata()).__assign(__p.__indirect(__p.__vector(o) + j * 4), __p.bb) : null; }
+  public int FacilitydatasLength { get { int o = __p.__offset(8); return o != 0 ? __p.__vector_len(o) : 0; } }
 
   public static Offset<BanpoFri.Data.StageData> CreateStageData(FlatBufferBuilder builder,
+      int facilityopenorder = 0,
       int stageidx = 1,
       VectorOffset facilitydatasOffset = default(VectorOffset)) {
-    builder.StartTable(2);
+    builder.StartTable(3);
     StageData.AddFacilitydatas(builder, facilitydatasOffset);
     StageData.AddStageidx(builder, stageidx);
+    StageData.AddFacilityopenorder(builder, facilityopenorder);
     return StageData.EndStageData(builder);
   }
 
-  public static void StartStageData(FlatBufferBuilder builder) { builder.StartTable(2); }
-  public static void AddStageidx(FlatBufferBuilder builder, int stageidx) { builder.AddInt(0, stageidx, 1); }
-  public static void AddFacilitydatas(FlatBufferBuilder builder, VectorOffset facilitydatasOffset) { builder.AddOffset(1, facilitydatasOffset.Value, 0); }
+  public static void StartStageData(FlatBufferBuilder builder) { builder.StartTable(3); }
+  public static void AddFacilityopenorder(FlatBufferBuilder builder, int facilityopenorder) { builder.AddInt(0, facilityopenorder, 0); }
+  public static void AddStageidx(FlatBufferBuilder builder, int stageidx) { builder.AddInt(1, stageidx, 1); }
+  public static void AddFacilitydatas(FlatBufferBuilder builder, VectorOffset facilitydatasOffset) { builder.AddOffset(2, facilitydatasOffset.Value, 0); }
   public static VectorOffset CreateFacilitydatasVector(FlatBufferBuilder builder, Offset<BanpoFri.Data.facilityidata>[] data) { builder.StartVector(4, data.Length, 4); for (int i = data.Length - 1; i >= 0; i--) builder.AddOffset(data[i].Value); return builder.EndVector(); }
   public static VectorOffset CreateFacilitydatasVectorBlock(FlatBufferBuilder builder, Offset<BanpoFri.Data.facilityidata>[] data) { builder.StartVector(4, data.Length, 4); builder.Add(data); return builder.EndVector(); }
   public static void StartFacilitydatasVector(FlatBufferBuilder builder, int numElems) { builder.StartVector(4, numElems, 4); }

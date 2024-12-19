@@ -59,6 +59,10 @@ public partial class UserDataSystem
         {
             mainData.StageData.StageFacilityDataList.Clear();
 
+            mainData.StageData.StageIdx = flatBufferUserData.Stagedata.Value.Stageidx;
+
+            mainData.StageData.NextFacilityOpenOrderProperty.Value = flatBufferUserData.Stagedata.Value.Facilityopenorder;
+
             for (int i = 0; i <  flatBufferUserData.Stagedata.Value.FacilitydatasLength; ++i)
             {
                 var data = flatBufferUserData.Stagedata.Value.Facilitydatas(i);

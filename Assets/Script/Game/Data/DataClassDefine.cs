@@ -34,21 +34,8 @@ public class StageData
 	public List<FacilityData> StageFacilityDataList = new List<FacilityData>();
 
 	public int StageIdx { get; set; } = 1;
-	public IReactiveProperty<int> WaveIdxProperty = new ReactiveProperty<int>();
-	public IReactiveProperty<int> UnitCountPropety = new ReactiveProperty<int>();
-	public IReactiveProperty<int> WaveRewardProperty = new ReactiveProperty<int>();
-
-	public IReactiveProperty<int> WaveTimeProperty = new ReactiveProperty<int>();
-
-	public int UnitAddCount = 0;
-
-	public int StageHighWave = 1;
-
-	public int SelectSkill = 0;
-
+	public IReactiveProperty<int> NextFacilityOpenOrderProperty = new ReactiveProperty<int>();
 	public bool IsStartBattle = false;
-
-	public IReactiveProperty<bool> IsBossProperty = new ReactiveProperty<bool>(false);
 
 
 	public FacilityData FindFacilityData(int facilityidx)
@@ -58,10 +45,6 @@ public class StageData
 
 	public void StageEndClear()
     {
-		WaveIdxProperty.Value = 1;
-		UnitAddCount = 0;
-		UnitCountPropety.Value = 0;
-		WaveTimeProperty.Value = 0;
 
 	}
 
@@ -74,7 +57,6 @@ public class StageData
 
 	public void SetWave(int waveidx)
     {
-		WaveIdxProperty.Value = waveidx;	
     }
 }
 

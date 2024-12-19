@@ -281,9 +281,11 @@ public class GameRoot : Singleton<GameRoot>
 	{
 		var count = GameRoot.instance.UserData.GetRecordCount(Config.RecordCountKeys.Init);
 
-		if (GameRoot.Instance.UserData.CurMode.StageData.StageIdx == 1)
+		if (GameRoot.Instance.UserData.CurMode.StageData.StageIdx == 1 && count == 0)
 		{
 			GameRoot.instance.UserData.AddRecordCount(Config.RecordCountKeys.Init, 1);
+
+			GameRoot.instance.UserData.SetReward((int)Config.RewardType.Currency, (int)Config.CurrencyID.Money, 100);
 
 			GameRoot.instance.FacilitySystem.CreateStageFacility(GameRoot.Instance.UserData.CurMode.StageData.StageIdx);
 

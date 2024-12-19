@@ -8,9 +8,6 @@ public class FacilitySystem
 {
     public void Create()
     {
-        
-
-
     }
 
     public void CreateStageFacility(int stageidx)
@@ -32,8 +29,7 @@ public class FacilitySystem
 
     public ConsumerMoveInfoData CreatePattern(int stageidx)
     {
-        var tdstagelist = Tables.Instance.GetTable<ConsumerMoveInfo>().DataList.ToList().FindAll(x=> x.stageidx == stageidx && IsOpenPattern(x.facilityidx)); // facility 안열린것도 포함시키기 
-
+        var tdstagelist = Tables.Instance.GetTable<ConsumerMoveInfo>().DataList.ToList().FindAll(x=> x.stageidx == stageidx ); // facility 안열린것도 포함시키기 
 
         List<int> patternlist = new List<int>();
 

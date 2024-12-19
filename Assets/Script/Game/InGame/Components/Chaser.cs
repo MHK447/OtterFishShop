@@ -21,7 +21,7 @@ public class Chaser : MonoBehaviour
 
     protected bool _isMoving = false;
 
-    private InGameStage Stage;
+    protected InGameStage Stage;
 
     float _agentDrift = 0.0001f;
 

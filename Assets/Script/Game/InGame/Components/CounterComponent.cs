@@ -12,20 +12,10 @@ public class CounterComponent : FacilityComponent
 
     private float checkoutdeltime = 0f;
 
-    private OtterBase Player;
-
-    private bool IsFacilityOpen = false;
-
-    public override void Init(int facilityidx)
+    public override void Init()
     {
-        base.Init(facilityidx);
+        base.Init();
         CounterConsumerList.Clear();
-
-
-
-
-
-
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -34,8 +24,6 @@ public class CounterComponent : FacilityComponent
         // 충돌한 오브젝트의 레이어를 확인합니다.
         if (collision.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
-            Player = collision.gameObject.GetComponent<OtterBase>();
-
             checkoutdeltime = 0f;
         }
     }
@@ -57,8 +45,10 @@ public class CounterComponent : FacilityComponent
     }
 
 
-    private void Update()
+    public override void Update()
     {
+        base.Update();
+
         if(Player != null && CounterConsumerList.Count > 0)
         {
             var findconsumer = CounterConsumerList.Find(x => x.CurCounterOrder == 0 && x.IsArrivedCounter);

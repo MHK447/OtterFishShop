@@ -67,12 +67,17 @@ public class InGameStage : MonoBehaviour
         ConsumerPool.Init(ConsumerRef, this.transform, 10);
 
 
-        GameRoot.Instance.WaitTimeAndCallback(1f, () => {
-            for (int i = 0; i < 3; ++i)
-            {
-                CreateConsumer(1, StartWayPointTrList[i]);
-            }
-        });
+        foreach(var facility in FacilityList)
+        {
+            facility.Init();
+        }
+
+        //GameRoot.Instance.WaitTimeAndCallback(1f, () => {
+        //    for (int i = 0; i < 3; ++i)
+        //    {
+        //        CreateConsumer(1, StartWayPointTrList[i]);
+        //    }
+        //});
 
         foreach (var fishingroom in FishingRoomList)
         {
@@ -88,9 +93,7 @@ public class InGameStage : MonoBehaviour
             
     public void ReturnMainScreen()
     {
-        GameRoot.Instance.UserData.CurMode.StageData.SelectSkill = 0;
         GameRoot.Instance.UserData.CurMode.GachaCoin.Value = 0;
-        GameRoot.Instance.UserData.CurMode.StageData.WaveRewardProperty.Value = 0;
         GameRoot.Instance.UserData.CurMode.StageData.IsStartBattle = false;
     }
 

@@ -16,7 +16,7 @@ MonoBehaviour:
   - 1
   - 2
   - 3
-  - 4
+  - 1000
   mSecondKey: []
   mDataList:
   - _facilityidx: 1
@@ -28,6 +28,6 @@ MonoBehaviour:
   - _facilityidx: 3
     _image: Ingame_Fish_003
     _initial_count: 5
-  - _facilityidx: 4
-    _image: 
-    _initial_count: 0
+  - _facilityidx: 1000
+    _image: Icon_Counter
+    _initial_count: 5

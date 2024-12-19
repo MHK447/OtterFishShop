@@ -27,9 +27,9 @@ public class RackComponent : FacilityComponent
 
     private float FishCarryTime = 0.2f;
 
-    public override void Init(int facilityidx)
+    public override void Init()
     {
-        base.Init(facilityidx);
+        base.Init();
 
         var td = Tables.Instance.GetTable<FishInfo>().GetData(FishIdx);
 
@@ -41,6 +41,7 @@ public class RackComponent : FacilityComponent
         
 
     }
+
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -73,8 +74,10 @@ public class RackComponent : FacilityComponent
     }
 
 
-    private void Update()
+    public override void Update()
     {
+        base.Update();
+
         if (Target == null) return;
 
         if (Target.IsIdle && Target.GetFishComponentList.Count > 0)

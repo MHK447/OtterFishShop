@@ -133,8 +133,9 @@ public partial class UserDataSystem
 
 
 		//facilitydata
-		VectorOffset facilityvec = default(VectorOffset);
 		Offset<BanpoFri.Data.facilityidata>[] facilitydatas = null;
+
+		facilitydatas = new Offset<BanpoFri.Data.facilityidata>[mainData.StageData.StageFacilityDataList.Count];
 
 		dataIdx = 0;
 
@@ -145,7 +146,9 @@ public partial class UserDataSystem
 
 		var facilitydatavec = BanpoFri.Data.StageData.CreateFacilitydatasVector(builder, facilitydatas);
 
-		var stagedata = BanpoFri.Data.StageData.CreateStageData(builder, mainData.StageData.StageIdx ,facilitydatavec);
+		var stagedata = BanpoFri.Data.StageData.CreateStageData(builder,
+			mainData.StageData.NextFacilityOpenOrderProperty.Value ,mainData.StageData.StageIdx
+			,facilitydatavec);
 
 
 

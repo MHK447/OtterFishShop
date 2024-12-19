@@ -258,7 +258,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TrackingScale: 0
-  TrackingPos: 1
+  TrackingPos: 0
   MoneyText: {fileID: 4722537627310186234}
   RewardImg: {fileID: 4631818883129830515}
   SliderImg: {fileID: 664115272259611971}
@@ -513,6 +513,10 @@ PrefabInstance:
     - target: {fileID: 679250042144916024, guid: b1711b8521cb3114388a31b7cda003df, type: 3}
       propertyPath: m_Name
       value: Text
+      objectReference: {fileID: 0}
+    - target: {fileID: 2219549252669814871, guid: b1711b8521cb3114388a31b7cda003df, type: 3}
+      propertyPath: keyColor
+      value: BasicBrown
       objectReference: {fileID: 0}
     - target: {fileID: 3930712239398775206, guid: b1711b8521cb3114388a31b7cda003df, type: 3}
       propertyPath: m_Text

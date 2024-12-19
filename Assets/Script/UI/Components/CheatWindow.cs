@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-using BanpoFri;
+using BanpoFri;     
 using System;
 
 public class CheatWindow : MonoBehaviour

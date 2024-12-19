@@ -19,8 +19,8 @@ MonoBehaviour:
   mSecondKey: []
   mDataList:
   - _idx: 1
-    _icon: Ingame_Fish_001
+    _icon: Ingame_Food_001
   - _idx: 2
-    _icon: Ingame_Fish_002
+    _icon: Ingame_Food_002
   - _idx: 3
-    _icon: Ingame_Fish_003
+    _icon: Ingame_Food_005
