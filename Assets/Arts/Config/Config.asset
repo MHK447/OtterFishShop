@@ -30,7 +30,7 @@ MonoBehaviour:
   - key_string: Bg_BtnDisable
     color: {r: 0.78039217, g: 0.73333335, b: 0.7058824, a: 1}
   - key_string: Line_BtnEnable
-    color: {r: 0.28627452, g: 0.4745098, b: 0.68235296, a: 1}
+    color: {r: 0.21693665, g: 0.40526336, b: 0.6132076, a: 1}
   - key_string: Line_BtnDisable
     color: {r: 0.67058825, g: 0.6313726, b: 0.60784316, a: 1}
   _eventImgaeColorDefines: []
