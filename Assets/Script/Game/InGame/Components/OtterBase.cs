@@ -54,6 +54,8 @@ public class OtterBase : MonoBehaviour
 
     public bool loop = true;
 
+    private TextEffectMax TextEffectMax;
+
     public void Init()
     {
         GameRoot.Instance.UISystem.LoadFloatingUI<CooltimeProgress>((_progress) => {
@@ -61,6 +63,15 @@ public class OtterBase : MonoBehaviour
             ProjectUtility.SetActiveCheck(Progress.gameObject, false);
             Progress.Init(ProgressTr);
             Progress.SetValue(0);
+        });
+
+
+        GameRoot.Instance.EffectSystem.MultiPlay<TextEffectMax>(ProgressTr.transform.position, (effect) =>
+        {
+            effect.Init(ProgressTr);
+            TextEffectMax = effect;
+
+            ProjectUtility.SetActiveCheck(TextEffectMax.gameObject, false);
         });
 
 
@@ -83,9 +94,26 @@ public class OtterBase : MonoBehaviour
             ProjectUtility.SetActiveCheck(Progress.gameObject, false);
         }
 
+        if(Progress.gameObject.activeSelf)
         Progress.SetValue(cooltimevalue);
     }
 
+
+    public void CoolTimeActive(bool isactive)
+    {
+        if (Progress == null) return;
+
+        if (!Progress.gameObject.activeSelf)
+        {
+            ProjectUtility.SetActiveCheck(Progress.gameObject, isactive);
+        }
+
+        if (Progress.gameObject.activeSelf)
+        {
+            ProjectUtility.SetActiveCheck(Progress.gameObject, isactive);
+        }
+
+    }
 
     private void OnDestroy()
     {
@@ -148,6 +176,21 @@ public class OtterBase : MonoBehaviour
     {
         FishComponentList.Add(fish);
         CarryStart(FishComponentList.Count > 0);
+
+
+        if (FishComponentList.Count >= 5)
+        {
+            ChangeState(OtterState.Idle);
+        }
+
+        ProjectUtility.SetActiveCheck(TextEffectMax.gameObject, FishComponentList.Count >= 5);
+
+    }
+
+
+    public bool IsMaxFishCheck()
+    {
+        return FishComponentList.Count >= 5;
     }
 
 

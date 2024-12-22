@@ -10,7 +10,7 @@ public class FishComponent : MonoBehaviour
     {
         None,
         Bucket,
-        
+        Rack,
 
     }
 

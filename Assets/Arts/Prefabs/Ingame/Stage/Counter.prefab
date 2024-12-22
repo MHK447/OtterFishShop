@@ -112,9 +112,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Col: {fileID: 4640690894606757022}
-  FacilityObj: {fileID: 4066459041201795867}
+  FacilityOpenList:
+  - {fileID: 4066459041201795867}
   FacilityContentsObj: {fileID: 5505239910029559678}
   FacilitySprite: {fileID: 2033720771130745225}
+  MoneyRootTr: {fileID: 1007453332542749544}
   ConsumerWaitTr:
   - {fileID: 8628271514039927740}
   - {fileID: 1412548298069423581}
@@ -303,7 +305,7 @@ Transform:
   m_GameObject: {fileID: 4809809072223196041}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.36, z: 0}
+  m_LocalPosition: {x: 0, y: 1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

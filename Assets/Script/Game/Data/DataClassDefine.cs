@@ -20,12 +20,16 @@ public class FacilityData
 
 	public int MoneyCount = 0;
 
-	public FacilityData(int facilityidx , int moneycount , bool isopen)
+	public IReactiveProperty<int> CapacityCountProperty = new ReactiveProperty<int>(0);
+
+	public FacilityData(int facilityidx , int moneycount , bool isopen , int capacitycount)
     {
 		IsOpen = isopen;
 		FacilityIdx = facilityidx;
 		MoneyCount = moneycount;
-    }
+		CapacityCountProperty.Value = capacitycount;
+
+	}
 
 }
 
@@ -40,7 +44,20 @@ public class StageData
 
 	public FacilityData FindFacilityData(int facilityidx)
     {
-		return StageFacilityDataList.Find(x => x.FacilityIdx == facilityidx);
+		var finddata = StageFacilityDataList.Find(x => x.FacilityIdx == facilityidx);
+
+		if(finddata != null)
+        {
+			return finddata;
+        }
+		else
+        {
+			var newfacilitydata = new FacilityData(facilityidx, 0, false, 0);
+
+			StageFacilityDataList.Add(newfacilitydata);
+
+			return newfacilitydata;
+		}
     }
 
 	public void StageEndClear()

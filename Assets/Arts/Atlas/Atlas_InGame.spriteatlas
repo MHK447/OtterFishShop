@@ -86,6 +86,7 @@ SpriteAtlas:
     - e15447e3ba35a53499eeb464dfc11b6d: 21300000
     - bdf0da751646e3144bba7e69b0cdcb1c: 21300000
     - 5dd990360fc9b2540906ea03809337bc: 21300000
+    - 5d80f46831457eb45a5878ac5161a0f6: 21300000
     - d3488fbbf55520b48afc9c2f01d55af3: 21300000
     - 6e52d23cec6adf94b946ec7cf846bbdf: 21300000
     - 93df819cbbaf5ed41adf97c40b3315c9: 21300000
@@ -100,6 +101,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: e15447e3ba35a53499eeb464dfc11b6d, type: 3}
   - {fileID: 21300000, guid: bdf0da751646e3144bba7e69b0cdcb1c, type: 3}
   - {fileID: 21300000, guid: 5dd990360fc9b2540906ea03809337bc, type: 3}
+  - {fileID: 21300000, guid: 5d80f46831457eb45a5878ac5161a0f6, type: 3}
   - {fileID: 21300000, guid: d3488fbbf55520b48afc9c2f01d55af3, type: 3}
   - {fileID: 21300000, guid: 6e52d23cec6adf94b946ec7cf846bbdf, type: 3}
   - {fileID: 21300000, guid: 93df819cbbaf5ed41adf97c40b3315c9, type: 3}
@@ -113,6 +115,7 @@ SpriteAtlas:
   - Gem
   - Ingame_Food_003
   - Icon_Trouble
+  - Icon_Upgrade_ConsumerAdd
   - Ingame_Food_005
   - Ingame_Food_002
   - Icon_Repair_Gray

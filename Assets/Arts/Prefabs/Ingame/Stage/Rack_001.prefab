@@ -881,13 +881,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Col: {fileID: 6366518691780570380}
-  FacilityObj: {fileID: 3274016105963839557}
+  FacilityOpenList:
+  - {fileID: 3274016105963839557}
   FacilityContentsObj: {fileID: 6374116184859796725}
   FacilitySprite: {fileID: 588520357244928514}
-  ConsumerWaitTr: []
+  MoneyRootTr: {fileID: 3717011814719939877}
+  ConsumerWaitTr:
+  - {fileID: 5684569114210864030}
+  - {fileID: 7196352973140762104}
+  - {fileID: 7490672103898020300}
+  - {fileID: 2282453134357329832}
+  - {fileID: 2407722244876710930}
+  - {fileID: 8683692568681810244}
+  - {fileID: 1146174610635624364}
+  - {fileID: 3234070391657544893}
+  - {fileID: 2562900684850540163}
+  - {fileID: 6240720394154293572}
   NewRoot: {fileID: 3529841580492888097}
   ConsumerOrder: 0
-  FacilityIdx: 0
+  FacilityIdx: 1
   FishIdx: 1
   FishTrList:
   - {fileID: 3207621461951223516}
@@ -905,6 +917,7 @@ MonoBehaviour:
   - {fileID: 4550447922952186364}
   - {fileID: 8547094281585492624}
   - {fileID: 2836176773698166854}
+  AmountUITr: {fileID: 3529841580492888097}
   FishIcon: {fileID: 8188296379815073382}
 --- !u!1 &5587197672291902615
 GameObject:

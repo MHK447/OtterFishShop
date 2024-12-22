@@ -25,22 +25,27 @@ public struct facilityidata : IFlatbufferObject
   public bool MutateMoneycount(int moneycount) { int o = __p.__offset(6); if (o != 0) { __p.bb.PutInt(o + __p.bb_pos, moneycount); return true; } else { return false; } }
   public bool Isopen { get { int o = __p.__offset(8); return o != 0 ? 0!=__p.bb.Get(o + __p.bb_pos) : (bool)false; } }
   public bool MutateIsopen(bool isopen) { int o = __p.__offset(8); if (o != 0) { __p.bb.Put(o + __p.bb_pos, (byte)(isopen ? 1 : 0)); return true; } else { return false; } }
+  public int Capacitycount { get { int o = __p.__offset(10); return o != 0 ? __p.bb.GetInt(o + __p.bb_pos) : (int)0; } }
+  public bool MutateCapacitycount(int capacitycount) { int o = __p.__offset(10); if (o != 0) { __p.bb.PutInt(o + __p.bb_pos, capacitycount); return true; } else { return false; } }
 
   public static Offset<BanpoFri.Data.facilityidata> Createfacilityidata(FlatBufferBuilder builder,
       int facilityidx = 0,
       int moneycount = 0,
-      bool isopen = false) {
-    builder.StartTable(3);
+      bool isopen = false,
+      int capacitycount = 0) {
+    builder.StartTable(4);
+    facilityidata.AddCapacitycount(builder, capacitycount);
     facilityidata.AddMoneycount(builder, moneycount);
     facilityidata.AddFacilityidx(builder, facilityidx);
     facilityidata.AddIsopen(builder, isopen);
     return facilityidata.Endfacilityidata(builder);
   }
 
-  public static void Startfacilityidata(FlatBufferBuilder builder) { builder.StartTable(3); }
+  public static void Startfacilityidata(FlatBufferBuilder builder) { builder.StartTable(4); }
   public static void AddFacilityidx(FlatBufferBuilder builder, int facilityidx) { builder.AddInt(0, facilityidx, 0); }
   public static void AddMoneycount(FlatBufferBuilder builder, int moneycount) { builder.AddInt(1, moneycount, 0); }
   public static void AddIsopen(FlatBufferBuilder builder, bool isopen) { builder.AddBool(2, isopen, false); }
+  public static void AddCapacitycount(FlatBufferBuilder builder, int capacitycount) { builder.AddInt(3, capacitycount, 0); }
   public static Offset<BanpoFri.Data.facilityidata> Endfacilityidata(FlatBufferBuilder builder) {
     int o = builder.EndTable();
     return new Offset<BanpoFri.Data.facilityidata>(o);

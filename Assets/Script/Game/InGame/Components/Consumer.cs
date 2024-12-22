@@ -248,7 +248,7 @@ public class Consumer : Chaser
                 {
                     var target = TargetRack.GetFishComponentList.First();
 
-                    TargetRack.GetFishComponentList.Remove(target);
+                    TargetRack.RemoveFish();
 
                     AddFish(target);
 

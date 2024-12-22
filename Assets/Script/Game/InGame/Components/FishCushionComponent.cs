@@ -1,9 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using BanpoFri; 
+using BanpoFri;
+using UniRx;
 
-public class FishingRoom : MonoBehaviour
+public class FishCushionComponent : MonoBehaviour
 {
     [SerializeField]
     private BucketComponent BucketComponent;
@@ -20,19 +21,33 @@ public class FishingRoom : MonoBehaviour
 
     private InGameStage InGameStage;
 
-    private int FishMaxCount = 0;
+    private FacilityData FacilityData = null;
 
-    public void Init()
+    private int CapacityMaxCount = 0;
+
+    public void Init(FacilityData facility)
     {
+        FacilityData = facility;
+
         InGameStage = GameRoot.Instance.InGameSystem.GetInGame<InGameTycoon>().curInGameStage;
 
+        var td = Tables.Instance.GetTable<FacilityInfo>().GetData(FacilityData.FacilityIdx);
+
+        if(td != null)
+        {
+            CapacityMaxCount = td.initial_count;
+        }
+
+        ProjectUtility.SetActiveCheck(this.gameObject, FacilityData.IsOpen);
     }
 
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+        if (FacilityData.CapacityCountProperty.Value >= CapacityMaxCount) return;
+
         // 충돌한 오브젝트의 레이어를 확인합니다.
-        if (other.gameObject.layer == LayerMask.NameToLayer("Player"))
+        if (other.gameObject.layer == LayerMask.NameToLayer("Player") )
         {
             CurMoneyTime = 0f;
             IsOnEnter = true;
@@ -67,6 +82,11 @@ public class FishingRoom : MonoBehaviour
     {
         if (Target == null) return;
 
+        if (FacilityData == null) return;
+
+        if (FacilityData.IsOpen == false) return;
+
+        if (FacilityData.CapacityCountProperty.Value >= CapacityMaxCount) return;
 
         if (Target.IsIdle && !Target.IsFishing && !Target.IsCarry)
         {
@@ -78,7 +98,7 @@ public class FishingRoom : MonoBehaviour
             CurMoneyTime = 0f;
         }
 
-        if (IsOnEnter && Target.IsFishing)
+        if (IsOnEnter && Target.IsFishing && FacilityData.CapacityCountProperty.Value < CapacityMaxCount)
         {
             CurMoneyTime += Time.deltaTime;
 
@@ -92,6 +112,7 @@ public class FishingRoom : MonoBehaviour
                 CurMoneyTime = 0f;
 
                 InGameStage.CreateFish(Target.GetFishTr, 1, FishComponent.State.Bucket, StartFishAction);
+
             }
         }
     }
@@ -105,6 +126,8 @@ public class FishingRoom : MonoBehaviour
 
         fish.FishInBucketAction(BucketComponent.transform, (fish)=> {
             BucketComponent.AddFishQueue(fish);
+
+            Target.CoolTimeActive(FacilityData.CapacityCountProperty.Value < CapacityMaxCount);
         },1f , posy);
     }
 }

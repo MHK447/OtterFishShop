@@ -26,6 +26,7 @@ table facilityidata
   facilityidx:int = 0;
   moneycount:int = 0;  
   isopen:bool = false; 
+  capacitycount:int = 0;  
 }
 
 

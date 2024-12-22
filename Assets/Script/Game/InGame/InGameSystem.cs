@@ -90,9 +90,11 @@ public class InGameSystem
 
         if (!firstInit)
         {
-            GameRoot.Instance.Loading.Hide(true, () =>
-            {
-                NextAction();
+            GameRoot.Instance.WaitTimeAndCallback(2f, () => {
+                GameRoot.Instance.Loading.Hide(true, () =>
+                {
+                    NextAction();
+                });
             });
         }
 

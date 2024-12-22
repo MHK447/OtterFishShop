@@ -67,7 +67,7 @@ public partial class UserDataSystem
             {
                 var data = flatBufferUserData.Stagedata.Value.Facilitydatas(i);
 
-                var newdata = new FacilityData(data.Value.Facilityidx, data.Value.Moneycount , data.Value.Isopen);
+                var newdata = new FacilityData(data.Value.Facilityidx, data.Value.Moneycount , data.Value.Isopen , data.Value.Capacitycount);
 
                 mainData.StageData.StageFacilityDataList.Add(newdata);
             }

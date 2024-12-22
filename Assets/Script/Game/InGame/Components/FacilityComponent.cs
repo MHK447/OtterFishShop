@@ -9,16 +9,19 @@ using System.Linq;
 public class FacilityComponent : MonoBehaviour
 {
     [SerializeField]
-    private BoxCollider2D Col;
+    protected BoxCollider2D Col;
 
     [SerializeField]
-    private GameObject FacilityObj;
+    private List<GameObject> FacilityOpenList = new List<GameObject>();
 
     [SerializeField]
     private GameObject FacilityContentsObj;
 
     [SerializeField]
     private SpriteRenderer FacilitySprite;
+
+    [SerializeField]
+    private Transform MoneyRootTr;
 
     [SerializeField]
     protected List<Transform> ConsumerWaitTr = new List<Transform>();
@@ -32,9 +35,11 @@ public class FacilityComponent : MonoBehaviour
 
     public int FacilityIdx = 0;
 
+    protected int CapacityMaxCount = 0;
+
     private NewFacilityUI NewFacilityUI;
 
-    private FacilityData FacilityData;
+    protected FacilityData FacilityData;
 
     private bool OnEnter = false;
 
@@ -46,6 +51,8 @@ public class FacilityComponent : MonoBehaviour
 
     private CompositeDisposable disposables = new CompositeDisposable();
 
+    protected InGameStage InGameStage;
+
     public virtual void Init()
     {
         moneydeltime = 0.1f;
@@ -54,13 +61,22 @@ public class FacilityComponent : MonoBehaviour
 
         FacilityData = GameRoot.Instance.UserData.CurMode.StageData.FindFacilityData(FacilityIdx);
 
-        Player = GameRoot.Instance.InGameSystem.GetInGame<InGameTycoon>().GetPlayer;
+        var ingametycoon = GameRoot.Instance.InGameSystem.GetInGame<InGameTycoon>();
+
+        InGameStage = ingametycoon.curInGameStage;
+
+        Player = ingametycoon.GetPlayer;
+
+        ProjectUtility.SetActiveCheck(FacilityContentsObj, false);
+
+        var facilitytd = Tables.Instance.GetTable<FacilityInfo>().GetData(FacilityIdx);
+
+        CapacityMaxCount = facilitytd.initial_count;
 
         if (!FacilityData.IsOpen)
         {
             var curstageidx = GameRoot.Instance.UserData.CurMode.StageData.StageIdx;
 
-            var facilitytd = Tables.Instance.GetTable<FacilityInfo>().GetData(FacilityIdx);
 
             FacilityOpenOrder = Tables.Instance.GetTable<FacilityOpenOrder>().DataList.ToList().Find(x => x.stageidx == curstageidx
             && FacilityIdx == x.facilityidx).openorder;
@@ -72,7 +88,10 @@ public class FacilityComponent : MonoBehaviour
             openorder.Subscribe(x => {
                 if(NewFacilityUI != null)
                 {
-                    ProjectUtility.SetActiveCheck(FacilityContentsObj, x == FacilityOpenOrder);
+
+                    ProjectUtility.SetActiveCheck(FacilityContentsObj, !FacilityData.IsOpen
+                                    && FacilityOpenOrder == openorder.Value);
+
                     ProjectUtility.SetActiveCheck(NewFacilityUI.gameObject, x == FacilityOpenOrder &&
                         !FacilityData.IsOpen);
                 }
@@ -80,7 +99,7 @@ public class FacilityComponent : MonoBehaviour
 
 
             ProjectUtility.SetActiveCheck(FacilityContentsObj, !FacilityData.IsOpen
-                            && FacilityOpenOrder == openorder.Value);   
+                            && FacilityOpenOrder == openorder.Value);
 
             if (facilitytd != null)
             {
@@ -107,7 +126,11 @@ public class FacilityComponent : MonoBehaviour
 
         Col.isTrigger = !FacilityData.IsOpen;
 
-        ProjectUtility.SetActiveCheck(FacilityObj, FacilityData.IsOpen);
+
+        foreach (var facility in FacilityOpenList)
+        {
+            ProjectUtility.SetActiveCheck(facility, FacilityData.IsOpen);
+        }
 
     }
 
@@ -118,6 +141,14 @@ public class FacilityComponent : MonoBehaviour
 
     }
 
+
+    public bool IsMaxCountCheck()
+    {
+        if (FacilityData == null) return false;
+
+
+        return FacilityData.CapacityCountProperty.Value >= CapacityMaxCount;
+    }
     
 
     public Transform GetConsumerTr(int order)
@@ -180,7 +211,7 @@ public class FacilityComponent : MonoBehaviour
                     GameRoot.Instance.EffectSystem.MultiPlay<MoneyEffect>(Player.transform.position, effect =>
                     {
                         effect.SetAutoRemove(true, 1f);
-                        effect.Init(this.transform, ()=> {
+                        effect.Init(MoneyRootTr, ()=> {
                             ProjectUtility.SetActiveCheck(effect.gameObject, false);
 
                         });

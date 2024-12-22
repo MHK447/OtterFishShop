@@ -17,17 +17,31 @@ MonoBehaviour:
   - 2
   - 3
   - 1000
+  - 101
+  - 102
   mSecondKey: []
   mDataList:
   - _facilityidx: 1
-    _image: Ingame_Fish_001
+    _image: Ingame_Food_001
     _initial_count: 5
+    _start_capacity: 5
   - _facilityidx: 2
-    _image: Ingame_Fish_002
+    _image: Ingame_Food_002
     _initial_count: 5
+    _start_capacity: 5
   - _facilityidx: 3
-    _image: Ingame_Fish_003
+    _image: Ingame_Food_003
     _initial_count: 5
+    _start_capacity: 5
   - _facilityidx: 1000
     _image: Icon_Counter
-    _initial_count: 5
+    _initial_count: 50
+    _start_capacity: -1
+  - _facilityidx: 101
+    _image: Ingame_Food_001
+    _initial_count: 10
+    _start_capacity: 10
+  - _facilityidx: 102
+    _image: Ingame_Food_002
+    _initial_count: 10
+    _start_capacity: 10

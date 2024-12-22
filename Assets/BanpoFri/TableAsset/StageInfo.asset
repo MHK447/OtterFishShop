@@ -17,6 +17,8 @@ MonoBehaviour:
   - 1
   - 1
   - 1
+  - 1
+  - 1
   - 2
   - 2
   - 2
@@ -27,6 +29,8 @@ MonoBehaviour:
   - 2
   - 3
   - 1000
+  - 101
+  - 102
   - 1
   - 2
   - 3
@@ -41,6 +45,10 @@ MonoBehaviour:
     _facilityidx: 3
   - _stageidx: 1
     _facilityidx: 1000
+  - _stageidx: 1
+    _facilityidx: 101
+  - _stageidx: 1
+    _facilityidx: 102
   - _stageidx: 2
     _facilityidx: 1
   - _stageidx: 2

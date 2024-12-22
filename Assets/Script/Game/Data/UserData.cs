@@ -141,7 +141,7 @@ public partial class UserDataSystem
 
 		foreach (var facility in mainData.StageData.StageFacilityDataList)
 		{
-			facilitydatas[dataIdx++] = BanpoFri.Data.facilityidata.Createfacilityidata(builder, facility.FacilityIdx, facility.MoneyCount, facility.IsOpen);
+			facilitydatas[dataIdx++] = BanpoFri.Data.facilityidata.Createfacilityidata(builder, facility.FacilityIdx, facility.MoneyCount, facility.IsOpen , facility.CapacityCountProperty.Value);
 		}
 
 		var facilitydatavec = BanpoFri.Data.StageData.CreateFacilitydatasVector(builder, facilitydatas);

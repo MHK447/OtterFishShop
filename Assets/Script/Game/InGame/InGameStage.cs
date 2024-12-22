@@ -36,10 +36,7 @@ public class InGameStage : MonoBehaviour
     private AssetReference ConsumerRef;
 
     [SerializeField]
-    private List<FishingRoom> FishingRoomList = new List<FishingRoom>();
-
-    [SerializeField]
-    private List<BucketComponent> BucketList = new List<BucketComponent>();
+    private List<FishRoomComponent> FishRoomList = new List<FishRoomComponent>();
 
     [SerializeField]
     private List<FacilityComponent> FacilityList = new List<FacilityComponent>();
@@ -77,16 +74,10 @@ public class InGameStage : MonoBehaviour
         //    {
         //        CreateConsumer(1, StartWayPointTrList[i]);
         //    }
-        //});
 
-        foreach (var fishingroom in FishingRoomList)
+        foreach(var fishroom in FishRoomList)
         {
-            fishingroom.Init();
-        }
-
-        foreach(var bucket in BucketList)
-        {
-            bucket.Init();
+            fishroom.Init();
         }
     }
 

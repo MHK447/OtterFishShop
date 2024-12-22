@@ -2,11 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using BanpoFri;
+using UniRx;
 
 public class BucketComponent : MonoBehaviour
 {
     [SerializeField]
     private Transform StartFishTr;
+
+    [SerializeField]
+    private Transform AmountUITr;
 
     private Stack<FishComponent> FishStackComponent = new Stack<FishComponent>();
 
@@ -20,18 +24,65 @@ public class BucketComponent : MonoBehaviour
 
     private int FishCount = 0;
 
-    private int FishMaxCount = 0;
-
     private float FishCarrydeltime = 0f;
 
     private float FishCarryTime = 0.2f;
 
     private float FishPos_Y = 0.15f;
 
-    public void Init()
+    private FacilityData FacilityData = null;
+
+    private UI_AmountBubble AmountUI = null;
+
+    private CompositeDisposable disposables = new CompositeDisposable();
+
+    public void Init(FacilityData facility)
     {
         FishCount = 0;
         InGameStage = GameRoot.Instance.InGameSystem.GetInGame<InGameTycoon>().curInGameStage;
+
+        FacilityData = facility;
+
+        ProjectUtility.SetActiveCheck(this.gameObject, FacilityData.IsOpen);
+
+        GameRoot.Instance.UISystem.LoadFloatingUI<UI_AmountBubble>((_progress) => {
+            AmountUI = _progress;
+            ProjectUtility.SetActiveCheck(AmountUI.gameObject, FacilityData.CapacityCountProperty.Value > 0);
+            AmountUI.Init(AmountUITr);
+            AmountUI.Set(FacilityData.FacilityIdx);
+            AmountUI.SetValue(FacilityData.CapacityCountProperty.Value);
+        });
+
+        disposables.Clear();
+
+
+        FacilityData.CapacityCountProperty.Subscribe(x => {
+            if (AmountUI != null)
+            {
+                AmountUI.SetValue(x);
+            }
+        }).AddTo(disposables);
+
+        GameRoot.Instance.StartCoroutine(WaitOneFrame());
+
+    }
+
+
+    public IEnumerator WaitOneFrame()
+    {
+        yield return new WaitForSeconds(1f);
+
+
+        for (int i = 0; i < FacilityData.CapacityCountProperty.Value; ++i)
+        {
+            var posy = FishPos_Y * (i + 1);
+
+            InGameStage.CreateFish(this.transform, 1, FishComponent.State.Bucket, (fish) => {
+                fish.FishInBucketAction(this.transform, (fish) => {
+                    FishStackComponent.Push(fish);
+                }, 0f, posy);
+            });
+        }
 
     }
 
@@ -45,7 +96,7 @@ public class BucketComponent : MonoBehaviour
             FishCarrydeltime = 0f;
             var getvalue = other.GetComponent<OtterBase>();
 
-            if (getvalue != null)
+            if (getvalue != null && getvalue.IsMaxFishCheck() == false)
             {
                 Target = getvalue;
             }
@@ -85,7 +136,7 @@ public class BucketComponent : MonoBehaviour
         {
             FishCarrydeltime += Time.deltaTime;
 
-            if (FishCarrydeltime >= FishCarryTime)
+            if (FishCarrydeltime >= FishCarryTime && !Target.IsMaxFishCheck())
             {
                 FishCarrydeltime = 0f;
 
@@ -99,6 +150,8 @@ public class BucketComponent : MonoBehaviour
 
                 int remainingFish = FishStackComponent.Count;
 
+                FacilityData.CapacityCountProperty.Value -= 1;
+
                 fishcomponent.FishInBucketAction(Target.GetFishCarryRoot.transform, (fish) =>
                 {
                     fish.transform.SetParent(Target.GetFishCarryRoot);
@@ -110,6 +163,7 @@ public class BucketComponent : MonoBehaviour
     public void AddFishQueue(FishComponent fish)
     {
         FishStackComponent.Push(fish);
+        FacilityData.CapacityCountProperty.Value += 1;
     }
 
 }

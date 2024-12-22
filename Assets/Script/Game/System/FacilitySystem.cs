@@ -18,7 +18,7 @@ public class FacilitySystem
 
         foreach (var stageinfo in stageinfotd)
         {
-            var newfacility = new FacilityData(stageinfo.facilityidx, 0, false);
+            var newfacility = new FacilityData(stageinfo.facilityidx, 0, false , 0);
 
             GameRoot.Instance.UserData.CurMode.StageData.StageFacilityDataList.Add(newfacility);
         }
