@@ -20,9 +20,6 @@ public class RackComponent : FacilityComponent
 
     public List<FishComponent> GetFishComponentList { get { return FishComponentList; } }
 
-    [SerializeField]
-    private SpriteRenderer FishIcon;
-
     private OtterBase Target;
 
     private bool IsOnEnter = false;
@@ -38,13 +35,6 @@ public class RackComponent : FacilityComponent
     public override void Init()
     {
         base.Init();
-
-        var td = Tables.Instance.GetTable<FishInfo>().GetData(FishIdx);
-
-        if(td != null)
-        {
-            FishIcon.sprite = Config.Instance.GetIngameImg(td.icon);
-        }
 
         FacilityData = GameRoot.Instance.UserData.CurMode.StageData.FindFacilityData(FacilityIdx);
 
