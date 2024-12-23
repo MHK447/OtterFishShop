@@ -32,9 +32,11 @@ public class BucketComponent : MonoBehaviour
 
     private FacilityData FacilityData = null;
 
-    private UI_AmountBubble AmountUI = null;
+    private TextCount_UI CountUI = null;
 
     private CompositeDisposable disposables = new CompositeDisposable();
+
+    private int CapacityMaxCount = 0; 
 
     public void Init(FacilityData facility)
     {
@@ -43,23 +45,29 @@ public class BucketComponent : MonoBehaviour
 
         FacilityData = facility;
 
+        var td = Tables.Instance.GetTable<FacilityInfo>().GetData(FacilityData.FacilityIdx);
+
+        if(td != null)
+        {
+            CapacityMaxCount = td.start_capacity;
+        }
+
         ProjectUtility.SetActiveCheck(this.gameObject, FacilityData.IsOpen);
 
-        GameRoot.Instance.UISystem.LoadFloatingUI<UI_AmountBubble>((_progress) => {
-            AmountUI = _progress;
-            ProjectUtility.SetActiveCheck(AmountUI.gameObject, FacilityData.CapacityCountProperty.Value > 0);
-            AmountUI.Init(AmountUITr);
-            AmountUI.Set(FacilityData.FacilityIdx);
-            AmountUI.SetValue(FacilityData.CapacityCountProperty.Value);
+        GameRoot.Instance.UISystem.LoadFloatingUI<TextCount_UI>((_progress) => {
+            CountUI = _progress;
+            ProjectUtility.SetActiveCheck(CountUI.gameObject, FacilityData.CapacityCountProperty.Value > 0);
+            CountUI.Init(AmountUITr);
+            CountUI.SetText(FacilityData.CapacityCountProperty.Value , CapacityMaxCount);
         });
 
         disposables.Clear();
 
 
         FacilityData.CapacityCountProperty.Subscribe(x => {
-            if (AmountUI != null)
+            if (CountUI != null)
             {
-                AmountUI.SetValue(x);
+                CountUI.SetText(x, CapacityMaxCount);
             }
         }).AddTo(disposables);
 

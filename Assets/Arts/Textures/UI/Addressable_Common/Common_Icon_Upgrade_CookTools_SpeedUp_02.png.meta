@@ -156,7 +156,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Common_Icon_Upgrade_CookTools_SpeedUp_02_0: 8897557838477748614
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

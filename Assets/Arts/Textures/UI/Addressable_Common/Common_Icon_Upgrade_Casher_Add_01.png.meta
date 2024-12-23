@@ -156,7 +156,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Common_Icon_Upgrade_Casher_Add_01_0: 844602390514684675
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
