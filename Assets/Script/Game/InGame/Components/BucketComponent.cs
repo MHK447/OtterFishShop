@@ -69,6 +69,7 @@ public class BucketComponent : MonoBehaviour
         FacilityData.CapacityCountProperty.Subscribe(x => {
             if (CountUI != null)
             {
+                ProjectUtility.SetActiveCheck(CountUI.gameObject, x > 0);
                 CountUI.SetText(x, CapacityMaxCount);
             }
         }).AddTo(disposables);
@@ -153,7 +154,7 @@ public class BucketComponent : MonoBehaviour
                 var fishcomponent = FishStackComponent.Pop();
 
                 if (FishStackComponent.Count > 0)
-                    CountUI.Init(FishStackComponent.Last().transform);
+                    CountUI.Init(FishStackComponent.First().transform);
                 else
                     CountUI.Init(AmountUITr);
 
@@ -182,7 +183,7 @@ public class BucketComponent : MonoBehaviour
 
 
         if(FishStackComponent.Count > 0)
-        CountUI.Init(FishStackComponent.Last().transform);
+        CountUI.Init(FishStackComponent.First().transform);
     }
 
 }

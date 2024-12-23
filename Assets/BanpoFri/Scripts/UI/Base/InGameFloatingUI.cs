@@ -11,11 +11,13 @@ public class InGameFloatingUI : MonoBehaviour, IFloatingUI
     [SerializeField]
     private bool TrackingPos = false;
     private Transform FollowTrans = null;
+    [SerializeField]
+    private Vector3 OffsetVec;
 
     public virtual void Init(Transform parent)
     {
         FollowTrans = parent;   
-        this.transform.position = FollowTrans.position;
+        this.transform.position = FollowTrans.position + OffsetVec;
     }
 
     public void UpdatePos()
@@ -29,7 +31,7 @@ public class InGameFloatingUI : MonoBehaviour, IFloatingUI
         if (TrackingPos)
         {
             if (FollowTrans != null)
-                this.transform.position = FollowTrans.position;
+                this.transform.position = FollowTrans.position + OffsetVec;
         }
 
         if (TrackingScale)

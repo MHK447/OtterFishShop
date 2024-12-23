@@ -183,10 +183,21 @@ public class OtterBase : MonoBehaviour
             ChangeState(OtterState.Idle);
         }
 
-        ProjectUtility.SetActiveCheck(TextEffectMax.gameObject, FishComponentList.Count >= 5);
+        TextEffectMaxCheck();
 
     }
 
+
+    public void RemoveFish(FishComponent fish)
+    {
+        FishComponentList.Remove(fish);
+        TextEffectMaxCheck();
+    }
+
+    public void TextEffectMaxCheck()
+    {
+        ProjectUtility.SetActiveCheck(TextEffectMax.gameObject, FishComponentList.Count >= 5);
+    }
 
     public bool IsMaxFishCheck()
     {
