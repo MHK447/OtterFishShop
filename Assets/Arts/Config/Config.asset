@@ -19,6 +19,8 @@ MonoBehaviour:
     color: {r: 1, g: 0.9882353, b: 0.9607843, a: 1}
   - key_string: DarkBlue
     color: {r: 0.105882354, g: 0.34901962, b: 0.5568628, a: 1}
+  - key_string: Red
+    color: {r: 0.6509804, g: 0.15294118, b: 0.11764706, a: 1}
   _eventTextColorDefines: []
   _imageColorDefines:
   - key_string: Line_BasicBrowm

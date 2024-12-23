@@ -193,11 +193,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 323334529791738135, guid: b1711b8521cb3114388a31b7cda003df, type: 3}
       propertyPath: m_EffectDistance.x
-      value: 3
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 323334529791738135, guid: b1711b8521cb3114388a31b7cda003df, type: 3}
       propertyPath: m_EffectDistance.y
-      value: 3
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 679250042144916024, guid: b1711b8521cb3114388a31b7cda003df, type: 3}
       propertyPath: m_Name
@@ -229,7 +229,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3930712239398775206, guid: b1711b8521cb3114388a31b7cda003df, type: 3}
       propertyPath: m_Text
-      value: 51
+      value: MAX
       objectReference: {fileID: 0}
     - target: {fileID: 3930712239398775206, guid: b1711b8521cb3114388a31b7cda003df, type: 3}
       propertyPath: m_Color.b
