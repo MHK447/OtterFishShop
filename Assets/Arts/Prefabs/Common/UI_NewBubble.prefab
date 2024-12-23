@@ -258,7 +258,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TrackingScale: 0
-  TrackingPos: 0
+  TrackingPos: 1
   MoneyText: {fileID: 4722537627310186234}
   RewardImg: {fileID: 4631818883129830515}
   SliderImg: {fileID: 664115272259611971}

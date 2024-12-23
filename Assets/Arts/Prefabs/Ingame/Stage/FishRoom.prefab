@@ -34,6 +34,7 @@ Transform:
   - {fileID: 6497740360316816151}
   - {fileID: 260488270633701721}
   - {fileID: 4057114267642731693}
+  - {fileID: 9125262459828048657}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &8470211673211466888
@@ -56,7 +57,7 @@ MonoBehaviour:
   FacilitySprite: {fileID: 5808183529847543187}
   MoneyRootTr: {fileID: 4057114267642731693}
   ConsumerWaitTr: []
-  NewRoot: {fileID: 4057114267642731693}
+  NewRoot: {fileID: 9125262459828048657}
   ConsumerOrder: 0
   FacilityIdx: 101
   CushionComponent: {fileID: 4212354560792076909}
@@ -107,6 +108,37 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1.8346181, y: 1.7511559}
   m_EdgeRadius: 0
+--- !u!1 &6681763740138930366
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 9125262459828048657}
+  m_Layer: 0
+  m_Name: Transform
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &9125262459828048657
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6681763740138930366}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 3.52, y: -2.99, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6908048993481582653}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &86066818014131395
 PrefabInstance:
   m_ObjectHideFlags: 0
