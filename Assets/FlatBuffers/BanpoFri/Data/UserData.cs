@@ -35,6 +35,8 @@ public struct UserData : IFlatbufferObject
   public BanpoFri.Data.StageData? Stagedata { get { int o = __p.__offset(12); return o != 0 ? (BanpoFri.Data.StageData?)(new BanpoFri.Data.StageData()).__assign(__p.__indirect(o + __p.bb_pos), __p.bb) : null; } }
   public BanpoFri.Data.RecordCount? Recordcount(int j) { int o = __p.__offset(14); return o != 0 ? (BanpoFri.Data.RecordCount?)(new BanpoFri.Data.RecordCount()).__assign(__p.__indirect(__p.__vector(o) + j * 4), __p.bb) : null; }
   public int RecordcountLength { get { int o = __p.__offset(14); return o != 0 ? __p.__vector_len(o) : 0; } }
+  public BanpoFri.Data.UpgradeData? Upgradedatas(int j) { int o = __p.__offset(16); return o != 0 ? (BanpoFri.Data.UpgradeData?)(new BanpoFri.Data.UpgradeData()).__assign(__p.__indirect(__p.__vector(o) + j * 4), __p.bb) : null; }
+  public int UpgradedatasLength { get { int o = __p.__offset(16); return o != 0 ? __p.__vector_len(o) : 0; } }
 
   public static Offset<BanpoFri.Data.UserData> CreateUserData(FlatBufferBuilder builder,
       StringOffset moneyOffset = default(StringOffset),
@@ -42,10 +44,12 @@ public struct UserData : IFlatbufferObject
       long lastlogintime = 0,
       long curplaydatetime = 0,
       Offset<BanpoFri.Data.StageData> stagedataOffset = default(Offset<BanpoFri.Data.StageData>),
-      VectorOffset recordcountOffset = default(VectorOffset)) {
-    builder.StartTable(6);
+      VectorOffset recordcountOffset = default(VectorOffset),
+      VectorOffset upgradedatasOffset = default(VectorOffset)) {
+    builder.StartTable(7);
     UserData.AddCurplaydatetime(builder, curplaydatetime);
     UserData.AddLastlogintime(builder, lastlogintime);
+    UserData.AddUpgradedatas(builder, upgradedatasOffset);
     UserData.AddRecordcount(builder, recordcountOffset);
     UserData.AddStagedata(builder, stagedataOffset);
     UserData.AddCash(builder, cash);
@@ -53,7 +57,7 @@ public struct UserData : IFlatbufferObject
     return UserData.EndUserData(builder);
   }
 
-  public static void StartUserData(FlatBufferBuilder builder) { builder.StartTable(6); }
+  public static void StartUserData(FlatBufferBuilder builder) { builder.StartTable(7); }
   public static void AddMoney(FlatBufferBuilder builder, StringOffset moneyOffset) { builder.AddOffset(0, moneyOffset.Value, 0); }
   public static void AddCash(FlatBufferBuilder builder, int cash) { builder.AddInt(1, cash, 0); }
   public static void AddLastlogintime(FlatBufferBuilder builder, long lastlogintime) { builder.AddLong(2, lastlogintime, 0); }
@@ -63,6 +67,10 @@ public struct UserData : IFlatbufferObject
   public static VectorOffset CreateRecordcountVector(FlatBufferBuilder builder, Offset<BanpoFri.Data.RecordCount>[] data) { builder.StartVector(4, data.Length, 4); for (int i = data.Length - 1; i >= 0; i--) builder.AddOffset(data[i].Value); return builder.EndVector(); }
   public static VectorOffset CreateRecordcountVectorBlock(FlatBufferBuilder builder, Offset<BanpoFri.Data.RecordCount>[] data) { builder.StartVector(4, data.Length, 4); builder.Add(data); return builder.EndVector(); }
   public static void StartRecordcountVector(FlatBufferBuilder builder, int numElems) { builder.StartVector(4, numElems, 4); }
+  public static void AddUpgradedatas(FlatBufferBuilder builder, VectorOffset upgradedatasOffset) { builder.AddOffset(6, upgradedatasOffset.Value, 0); }
+  public static VectorOffset CreateUpgradedatasVector(FlatBufferBuilder builder, Offset<BanpoFri.Data.UpgradeData>[] data) { builder.StartVector(4, data.Length, 4); for (int i = data.Length - 1; i >= 0; i--) builder.AddOffset(data[i].Value); return builder.EndVector(); }
+  public static VectorOffset CreateUpgradedatasVectorBlock(FlatBufferBuilder builder, Offset<BanpoFri.Data.UpgradeData>[] data) { builder.StartVector(4, data.Length, 4); builder.Add(data); return builder.EndVector(); }
+  public static void StartUpgradedatasVector(FlatBufferBuilder builder, int numElems) { builder.StartVector(4, numElems, 4); }
   public static Offset<BanpoFri.Data.UserData> EndUserData(FlatBufferBuilder builder) {
     int o = builder.EndTable();
     return new Offset<BanpoFri.Data.UserData>(o);

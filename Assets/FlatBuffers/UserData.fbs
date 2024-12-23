@@ -9,6 +9,7 @@ table UserData {
   curplaydatetime:long = 0;
   stagedata: StageData;
   recordcount:[RecordCount];
+  upgradedatas:[UpgradeData];
 }
 
 
@@ -28,6 +29,12 @@ table facilityidata
   isopen:bool = false; 
   capacitycount:int = 0;  
 }
+
+table UpgradeData
+{
+  upgradeidx:int = 0;  
+  isbuy:bool = false;  
+} 
 
 
 table RecordCount {

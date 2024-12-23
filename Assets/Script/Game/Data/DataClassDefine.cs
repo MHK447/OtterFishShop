@@ -33,6 +33,19 @@ public class FacilityData
 
 }
 
+
+public class UpgradeData
+{
+	public int UpgradeIdx = 0;
+	public bool IsOpen = false;
+
+	public UpgradeData(int upgradeidx , bool isopen)
+    {
+		UpgradeIdx = upgradeidx;
+		IsOpen = isopen;
+    }
+}
+
 public class StageData
 {
 	public List<FacilityData> StageFacilityDataList = new List<FacilityData>();

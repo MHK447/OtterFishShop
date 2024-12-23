@@ -148,6 +148,9 @@ public class Config : BanpoFri.SingletonScriptableObject<Config>, BanpoFri.ILoad
     [SerializeField]
     private SpriteAtlas InGameAtlas;
 
+    [SerializeField]
+    private SpriteAtlas CommonAtlas;
+
 
 
 
@@ -200,6 +203,12 @@ public class Config : BanpoFri.SingletonScriptableObject<Config>, BanpoFri.ILoad
     public Sprite GetIngameImg(string key)
     {
         return InGameAtlas.GetSprite(key);
+    }
+
+
+    public Sprite GetCommonImg(string key)
+    {
+        return CommonAtlas.GetSprite(key);
     }
 
     public Color GetUnitGradeColor(int grade)
