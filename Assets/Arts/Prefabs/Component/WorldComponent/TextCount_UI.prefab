@@ -140,6 +140,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TrackingScale: 0
   TrackingPos: 1
+  OffsetVec: {x: 0, y: 0.5, z: 0}
   TextCount: {fileID: 7620739166053309766}
 --- !u!1001 &6867703634166510816
 PrefabInstance:

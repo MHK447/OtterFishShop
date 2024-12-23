@@ -153,7 +153,8 @@ public class RackComponent : FacilityComponent
 
                     if(findfish != null && findfish.GetFishIdx == FishIdx)
                     {
-                        Target.GetFishComponentList.Remove(findfish);
+                        Target.RemoveFish(findfish);
+                        
 
                         FacilityData.CapacityCountProperty.Value += 1;
 
