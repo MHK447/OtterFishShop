@@ -200,6 +200,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Text_One 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2219549252669814871, guid: 0171569247817f742b8b8cd019e8a2f3, type: 3}
+      propertyPath: keyColor
+      value: BasicBrown
+      objectReference: {fileID: 0}
     - target: {fileID: 3387900259431675675, guid: 0171569247817f742b8b8cd019e8a2f3, type: 3}
       propertyPath: m_fontSize
       value: 32

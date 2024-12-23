@@ -93,7 +93,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9e630212b3b6457e96e0196a5aebd8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  keyColor: TextColor_White
+  keyColor: BasicBrown
 --- !u!114 &323334529791738135
 MonoBehaviour:
   m_ObjectHideFlags: 0

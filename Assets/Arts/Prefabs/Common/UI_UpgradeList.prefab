@@ -368,19 +368,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6276685086379728565, guid: 076892807ad332e42aea46776fec5061, type: 3}
       propertyPath: m_fontColor.b
-      value: 0.13333334
+      value: 0.9607843
       objectReference: {fileID: 0}
     - target: {fileID: 6276685086379728565, guid: 076892807ad332e42aea46776fec5061, type: 3}
       propertyPath: m_fontColor.g
-      value: 0.19607843
+      value: 0.9882353
       objectReference: {fileID: 0}
     - target: {fileID: 6276685086379728565, guid: 076892807ad332e42aea46776fec5061, type: 3}
       propertyPath: m_fontColor.r
-      value: 0.28235295
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6276685086379728565, guid: 076892807ad332e42aea46776fec5061, type: 3}
       propertyPath: m_fontColor32.rgba
-      value: 4280431176
+      value: 4294311167
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -404,6 +404,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Text_Nanum 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1795728515019089596, guid: 0e1633fb6f5f2a848acd0f5c01b11211, type: 3}
+      propertyPath: keyColor
+      value: LightBrown
+      objectReference: {fileID: 0}
     - target: {fileID: 4129177318370190808, guid: 0e1633fb6f5f2a848acd0f5c01b11211, type: 3}
       propertyPath: m_text
       value: "\uC190\uB2D8 \uBC29\uBB38\uB7C9"
@@ -424,6 +428,10 @@ PrefabInstance:
       propertyPath: m_sharedMaterial
       value: 
       objectReference: {fileID: 1618883037669227093, guid: 4aeb2741880a88f47830945fa6e826ee, type: 2}
+    - target: {fileID: 4129177318370190808, guid: 0e1633fb6f5f2a848acd0f5c01b11211, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4280166310
+      objectReference: {fileID: 0}
     - target: {fileID: 4129177318370190808, guid: 0e1633fb6f5f2a848acd0f5c01b11211, type: 3}
       propertyPath: m_HorizontalAlignment
       value: 1
@@ -533,6 +541,10 @@ PrefabInstance:
     - target: {fileID: 679250042144916024, guid: 0171569247817f742b8b8cd019e8a2f3, type: 3}
       propertyPath: m_Name
       value: Text_One 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2219549252669814871, guid: 0171569247817f742b8b8cd019e8a2f3, type: 3}
+      propertyPath: keyColor
+      value: LightBrown
       objectReference: {fileID: 0}
     - target: {fileID: 3387900259431675675, guid: 0171569247817f742b8b8cd019e8a2f3, type: 3}
       propertyPath: m_text

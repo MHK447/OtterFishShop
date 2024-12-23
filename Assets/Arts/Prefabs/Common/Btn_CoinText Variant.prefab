@@ -463,6 +463,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: TMP_One
       objectReference: {fileID: 0}
+    - target: {fileID: 2219549252669814871, guid: 0171569247817f742b8b8cd019e8a2f3, type: 3}
+      propertyPath: keyColor
+      value: BasicWhite
+      objectReference: {fileID: 0}
     - target: {fileID: 3387900259431675675, guid: 0171569247817f742b8b8cd019e8a2f3, type: 3}
       propertyPath: m_text
       value: 99.999a
