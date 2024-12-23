@@ -44,6 +44,12 @@ public class UpgradeData
 		UpgradeIdx = upgradeidx;
 		IsOpen = isopen;
     }
+
+	public void UpgradeGet()
+    {
+		IsOpen = true;
+
+    }
 }
 
 public class StageData

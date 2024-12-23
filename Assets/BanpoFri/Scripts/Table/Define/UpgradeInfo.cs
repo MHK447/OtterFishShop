@@ -48,6 +48,20 @@ namespace BanpoFri
 			get { return _icon;}
 			set { _icon = value;}
 		}
+		[SerializeField]
+		private string _desc;
+		public string desc
+		{
+			get { return _desc;}
+			set { _desc = value;}
+		}
+		[SerializeField]
+		private string _name;
+		public string name
+		{
+			get { return _name;}
+			set { _name = value;}
+		}
 
     }
 

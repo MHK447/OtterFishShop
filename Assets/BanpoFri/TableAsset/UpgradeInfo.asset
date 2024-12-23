@@ -37,45 +37,61 @@ MonoBehaviour:
     _cost: 50
     _value: 1
     _icon: Common_Icon_Upgrade_Casher_Add_02
+    _desc: casher_add_02_desc
+    _name: casher_add_02_name
   - _stageidx: 1
     _upgrade_idx: 2
     _upgrade_type: 2
     _cost: 100
     _value: 10
     _icon: Common_Icon_Upgrade_Casher_SpeedUp_01
+    _desc: casher_speedup_01_desc
+    _name: casher_speedup_01_name
   - _stageidx: 1
     _upgrade_idx: 3
     _upgrade_type: 3
     _cost: 100
     _value: 1
     _icon: Common_Icon_Upgrade_Consumer_Add_01
+    _desc: consumer_add_01_desc
+    _name: consumer_add_01_name
   - _stageidx: 1
     _upgrade_idx: 4
     _upgrade_type: 4
     _cost: 100
     _value: 10
     _icon: Common_Icon_Upgrade_Player_SpeedUp_01
+    _desc: player_speedup_01_desc
+    _name: player_speedup_01_name
   - _stageidx: 1
     _upgrade_idx: 5
     _upgrade_type: 5
     _cost: 100
     _value: 1
     _icon: Common_Icon_Upgrade_Player_Stack_01
+    _desc: player_stack_01_desc
+    _name: player_stack_01_name
   - _stageidx: 1
     _upgrade_idx: 6
     _upgrade_type: 6
     _cost: 100
     _value: 1
     _icon: Common_Icon_Upgrade_Food_Load_01
+    _desc: food_load_01_desc
+    _name: food_load_01_name
   - _stageidx: 1
     _upgrade_idx: 7
     _upgrade_type: 7
     _cost: 100
     _value: 10
     _icon: Common_Icon_Upgrade_CookTools_SpeedUp_01
+    _desc: cooktool_speedup_01_desc
+    _name: cooktool_speedup_01_name
   - _stageidx: 1
     _upgrade_idx: 8
     _upgrade_type: 8
     _cost: 100
     _value: 1
     _icon: Common_Icon_Upgrade_Casher_Stack_01
+    _desc: casher_stack_01_desc
+    _name: casher_stack_01_name
