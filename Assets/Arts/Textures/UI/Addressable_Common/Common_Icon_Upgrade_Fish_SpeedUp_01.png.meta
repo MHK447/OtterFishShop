@@ -156,7 +156,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Common_Icon_Upgrade_Fish_SpeedUp_01_0: 9132211238575891512
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

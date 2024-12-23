@@ -14,7 +14,7 @@ public class InGameFloatingUI : MonoBehaviour, IFloatingUI
 
     public virtual void Init(Transform parent)
     {
-        FollowTrans = parent;
+        FollowTrans = parent;   
         this.transform.position = FollowTrans.position;
     }
 

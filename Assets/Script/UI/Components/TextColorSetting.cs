@@ -2,12 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class TextColorSetting : MonoBehaviour
 {
     [HideInInspector]
     [SerializeField]
     private string keyColor = string.Empty;
+
     private void Start() 
     {
         if(string.IsNullOrEmpty(keyColor)) {
@@ -24,14 +26,14 @@ public class TextColorSetting : MonoBehaviour
         }
         else
         {
-            var textMesh = GetComponent<Text>();
+            var textMesh = GetComponent<TextMeshProUGUI>();
             if(textMesh)
             {
                 textMesh.color = Config.Instance.GetTextColor(keyColor);
             }
             else
             {
-                var label = GetComponent<Text>();
+                var label = GetComponent<TextMeshProUGUI>();
                 if(label)
                     label.color = Config.Instance.GetTextColor(keyColor);
             }
