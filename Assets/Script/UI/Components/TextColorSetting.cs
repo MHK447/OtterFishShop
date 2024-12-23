@@ -50,14 +50,14 @@ public class TextColorSetting : MonoBehaviour
         }
         else
         {
-            var textMesh = GetComponent<Text>();
+            var textMesh = GetComponent<TextMeshProUGUI>();
             if(textMesh)
             {
                 textMesh.color = color;
             }
             else
             {
-                var label = GetComponent<Text>();
+                var label = GetComponent<TextMeshProUGUI>();
                 if(label)
                     label.color = color;
             }

@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using BanpoFri;
 using UniRx;
+using System.Linq;
+
 
 public class BucketComponent : MonoBehaviour
 {
@@ -150,6 +152,11 @@ public class BucketComponent : MonoBehaviour
 
                 var fishcomponent = FishStackComponent.Pop();
 
+                if (FishStackComponent.Count > 0)
+                    CountUI.Init(FishStackComponent.Last().transform);
+                else
+                    CountUI.Init(AmountUITr);
+
                 Target.AddFish(fishcomponent);
 
                 var fishcount = Target.GetFishComponentList.Count;
@@ -172,6 +179,10 @@ public class BucketComponent : MonoBehaviour
     {
         FishStackComponent.Push(fish);
         FacilityData.CapacityCountProperty.Value += 1;
+
+
+        if(FishStackComponent.Count > 0)
+        CountUI.Init(FishStackComponent.Last().transform);
     }
 
 }
