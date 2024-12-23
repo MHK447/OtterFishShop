@@ -111,7 +111,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 11.5}
-  m_SizeDelta: {x: 108, y: 94}
+  m_SizeDelta: {x: 102.5134, y: 89.225}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5664111772787399805
 CanvasRenderer:
@@ -219,6 +219,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TrackingScale: 0
   TrackingPos: 1
+  OffsetVec: {x: 0, y: 0, z: 0}
   FacilityIconImg: {fileID: 8171436615972548112}
   AmountCountText: {fileID: 5223985370438462727}
   SliderValue: {fileID: 5245250889960175837}
