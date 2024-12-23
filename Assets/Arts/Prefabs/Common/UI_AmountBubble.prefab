@@ -218,7 +218,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TrackingScale: 0
-  TrackingPos: 0
+  TrackingPos: 1
   FacilityIconImg: {fileID: 8171436615972548112}
   AmountCountText: {fileID: 5223985370438462727}
   SliderValue: {fileID: 5245250889960175837}
