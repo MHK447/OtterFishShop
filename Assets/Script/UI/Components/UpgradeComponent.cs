@@ -22,6 +22,14 @@ public class UpgradeComponent : MonoBehaviour
 
     public void Set(int upgradeidx)
     {
+        var stageidx = GameRoot.Instance.UserData.CurMode.StageData.StageIdx;
+
+        var upgradetd = Tables.Instance.GetTable<UpgradeInfo>().GetData(new KeyValuePair<int, int>(stageidx, upgradeidx));
+
+        if(upgradetd != null)
+        {
+
+        }
 
     }
 

@@ -21,7 +21,15 @@ MonoBehaviour:
   - 1
   - 1
   - 1
-  mSecondKey: []
+  mSecondKey:
+  - 1
+  - 2
+  - 3
+  - 4
+  - 5
+  - 6
+  - 7
+  - 8
   mDataList:
   - _stageidx: 1
     _upgrade_idx: 1

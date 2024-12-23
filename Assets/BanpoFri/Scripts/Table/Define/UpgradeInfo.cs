@@ -52,7 +52,7 @@ namespace BanpoFri
     }
 
     [System.Serializable]
-    public class UpgradeInfo : Table<UpgradeInfoData, int>
+    public class UpgradeInfo : Table<UpgradeInfoData, KeyValuePair<int,int>>
     {
     }
 }
