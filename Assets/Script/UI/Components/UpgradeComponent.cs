@@ -20,6 +20,9 @@ public class UpgradeComponent : MonoBehaviour
     [SerializeField]
     private Button UpgradeBtn;
 
+    [SerializeField]
+    private Image UpgradeIcon;
+
     private int UpgradeIdx = 0;
 
     private System.Numerics.BigInteger UpgradeCost;
@@ -43,16 +46,17 @@ public class UpgradeComponent : MonoBehaviour
 
         if(upgradetd != null)
         {
-            UpgradeData = GameRoot.Instance.UserData.CurMode.UpgradeList.Find(x => x.UpgradeIdx == upgradeidx);
+            UpgradeData = GameRoot.Instance.UserData.CurMode.UpgradeGroupData.FindUpgradeData(UpgradeIdx);
 
             UpgradeCost = upgradetd.cost;
 
-            DescText.text = Tables.Instance.GetTable<Localize>().GetString(upgradetd.desc);
+            DescText.text = Tables.Instance.GetTable<Localize>().GetFormat(upgradetd.desc, upgradetd.value);
 
             UpgradeNameText.text = Tables.Instance.GetTable<Localize>().GetString(upgradetd.name);
 
             CostText.text = Utility.CalculateMoneyToString(UpgradeCost);
 
+            UpgradeIcon.sprite = Config.Instance.GetCommonImg(upgradetd.icon);
 
             GameRoot.Instance.UserData.CurMode.Money.Subscribe(x => {
                 UpgradeBtn.interactable = x >= UpgradeCost;

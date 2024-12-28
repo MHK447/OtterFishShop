@@ -33,7 +33,9 @@ table facilityidata
 table UpgradeData
 {
   upgradeidx:int = 0;  
-  isbuy:bool = false;  
+  upgradetype:int = 0;  
+  stageidx:int = 0;  
+  isbuycheck:bool = false;  
 } 
 
 

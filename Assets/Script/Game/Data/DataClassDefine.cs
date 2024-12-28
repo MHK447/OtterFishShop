@@ -33,21 +33,61 @@ public class FacilityData
 
 }
 
+public class UpgradeGroupData
+{
+	public IReactiveCollection<UpgradeData> StageUpgradeCollectionList = new ReactiveCollection<UpgradeData>();
+
+
+	public UpgradeData FindUpgradeData(int upgradeidx)
+    {
+		var curstageidx = GameRoot.Instance.UserData.CurMode.StageData.StageIdx;
+
+		var finddata = StageUpgradeCollectionList.ToList().Find(x => x.UpgradeIdx == upgradeidx);
+
+		if(finddata != null)
+        {
+			return finddata;
+        }
+		else
+        {
+			var td = Tables.Instance.GetTable<UpgradeInfo>().GetData(new KeyValuePair<int, int>(curstageidx , upgradeidx));
+
+			if (td != null)
+			{
+				var newupgradedata = new UpgradeData(upgradeidx, td.upgrade_type  ,  td.stageidx, false);
+
+				StageUpgradeCollectionList.Add(newupgradedata);
+
+				return newupgradedata;
+			}
+        }
+
+		return null;
+    }
+}
+
 
 public class UpgradeData
 {
 	public int UpgradeIdx = 0;
-	public bool IsOpen = false;
 
-	public UpgradeData(int upgradeidx , bool isopen)
+	public int UpgradeType = 0;
+
+	public int StageIdx = 0; 
+
+	public bool IsBuyCheck = false;
+
+	public UpgradeData(int upgradeidx , int upgradetype  , int stageidx  , bool isbuy)
     {
 		UpgradeIdx = upgradeidx;
-		IsOpen = isopen;
+		UpgradeType = upgradetype;
+		StageIdx = stageidx;
+		IsBuyCheck = isbuy;
     }
 
 	public void UpgradeGet()
     {
-		IsOpen = true;
+		IsBuyCheck = true;
 
     }
 }

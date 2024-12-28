@@ -290,6 +290,8 @@ public class GameRoot : Singleton<GameRoot>
 
 			GameRoot.instance.FacilitySystem.CreateStageFacility(GameRoot.Instance.UserData.CurMode.StageData.StageIdx);
 
+			GameRoot.instance.UpgradeSystem.StageSetUpgradeData(1);
+
 			SetNativeLanguage();
 		}
 		else

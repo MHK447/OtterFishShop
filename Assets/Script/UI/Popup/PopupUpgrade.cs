@@ -21,16 +21,24 @@ public class PopupUpgrade : UIBase
 
     public void Init()
     {
-        var tdlist = Tables.Instance.GetTable<UpgradeInfo>().DataList.ToList();
 
-        foreach(var td in tdlist)
+        foreach(var cachedobj in CachedComponents)
         {
+            ProjectUtility.SetActiveCheck(cachedobj, false);
+        }
+
+         
+
+        foreach(var upgradedata in GameRoot.Instance.UserData.CurMode.UpgradeGroupData.StageUpgradeCollectionList)
+        {
+            if (upgradedata.IsBuyCheck) continue;
+
             var getobj = GetCachedObject().GetComponent<UpgradeComponent>();
 
             if(getobj != null)
             {
                 ProjectUtility.SetActiveCheck(getobj.gameObject, true);
-                getobj.Set(td.upgrade_idx);
+                getobj.Set(upgradedata.UpgradeIdx);
             }
         }
     }
