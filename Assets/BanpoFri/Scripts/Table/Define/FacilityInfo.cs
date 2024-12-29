@@ -21,6 +21,13 @@ namespace BanpoFri
 			set { _image = value;}
 		}
 		[SerializeField]
+		private int _facility_type;
+		public int facility_type
+		{
+			get { return _facility_type;}
+			set { _facility_type = value;}
+		}
+		[SerializeField]
 		private int _initial_count;
 		public int initial_count
 		{

@@ -54,6 +54,8 @@ public class InGameStage : MonoBehaviour
 
     private List<FishComponent> activeFishObjs = new List<FishComponent>();
 
+    private List<CarryChaser> activeCarryCashers = new List<CarryChaser>();
+
     private List<Consumer> activeConsumerObjs = new List<Consumer>();
 
     public void Init()
@@ -62,9 +64,10 @@ public class InGameStage : MonoBehaviour
         disposable.Clear();
         FishPool.Init(FishRef, this.transform ,30);
         ConsumerPool.Init(ConsumerRef, this.transform, 10);
+        CreatePoolCasher(10);
 
 
-        foreach(var facility in FacilityList)
+        foreach (var facility in FacilityList)
         {
             facility.Init();
         }
@@ -131,6 +134,39 @@ public class InGameStage : MonoBehaviour
     }
 
 
+    public void CreatePoolCasher(int count)
+    {
+        for(int i = 0; i < count; ++i)
+        {
+            Addressables.InstantiateAsync("CarryCasher").Completed += (handle) => {
+                var casher = handle.Result.GetComponent<CarryChaser>();
+
+                if (casher != null)
+                {
+                    activeCarryCashers.Add(casher);
+                    ProjectUtility.SetActiveCheck(casher.gameObject, false);
+                }
+
+            };
+        }
+    }
+
+    public CarryChaser GetCarryCasher()
+    {
+        var finddata = activeCarryCashers.Find(x => x.gameObject.activeSelf == false);
+
+        if(finddata != null)
+        {
+            return finddata;
+        }
+
+
+        return null;
+    }
+
+
+
+
     public Transform GetWaitLine(int order)
     {
         if(WaitLineListTr.Count > order)
@@ -156,7 +192,7 @@ public class InGameStage : MonoBehaviour
 
 
 
-    public FacilityComponent FindFacilityTr(int facilityidx)
+    public FacilityComponent FindFacility(int facilityidx)
     {
         var finddata = FacilityList.Find(x => x.FacilityIdx == facilityidx);
 

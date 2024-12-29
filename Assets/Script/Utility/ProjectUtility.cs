@@ -165,6 +165,16 @@ public class ProjectUtility
     }
 
 
+    public static Vector3 GetRandomPositionAroundTarget(Vector3 center, float radius)
+    {
+        // 원형 범위 내에서 랜덤 방향 벡터 계산
+        Vector2 randomDirection = UnityEngine.Random.insideUnitCircle * radius;
+
+        // 랜덤 방향 벡터를 기준 위치에 추가 (y는 동일한 높이로 유지)
+        return new Vector3(center.x + randomDirection.x, center.y, 1f);
+    }
+
+
     public static int GetRandGachaCard(int level)
     {
 

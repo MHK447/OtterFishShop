@@ -23,25 +23,25 @@ MonoBehaviour:
   mDataList:
   - _facilityidx: 1
     _image: Ingame_Food_001
-    _initial_count: 5
+    _initial_count: 1
     _start_capacity: 5
   - _facilityidx: 2
     _image: Ingame_Food_002
-    _initial_count: 5
+    _initial_count: 1
     _start_capacity: 5
   - _facilityidx: 3
     _image: Ingame_Food_003
-    _initial_count: 5
+    _initial_count: 1
     _start_capacity: 5
   - _facilityidx: 1000
     _image: Icon_Counter
-    _initial_count: 50
-    _start_capacity: -1
+    _initial_count: 2
+    _start_capacity: 50
   - _facilityidx: 101
     _image: Ingame_Food_001
-    _initial_count: 10
+    _initial_count: 3
     _start_capacity: 10
   - _facilityidx: 102
     _image: Ingame_Food_002
-    _initial_count: 10
+    _initial_count: 3
     _start_capacity: 10

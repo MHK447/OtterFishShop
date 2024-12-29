@@ -61,7 +61,18 @@ public class UpgradeComponent : MonoBehaviour
             GameRoot.Instance.UserData.CurMode.Money.Subscribe(x => {
                 UpgradeBtn.interactable = x >= UpgradeCost;
             }).AddTo(disposables);
+
+
+            GameRoot.Instance.StartCoroutine(WaitOneFrame());
         }
+    }
+
+    public IEnumerator WaitOneFrame()
+    {
+        yield return new WaitForEndOfFrame();
+
+
+        UpgradeBtn.interactable = GameRoot.Instance.UserData.CurMode.Money.Value >= UpgradeCost;
     }
 
     public void OnClickBtn()
@@ -73,6 +84,8 @@ public class UpgradeComponent : MonoBehaviour
             UpgradeData.UpgradeGet();
 
             ProjectUtility.SetActiveCheck(this.gameObject, false);
+
+            GameRoot.Instance.UpgradeSystem.AddUpgradeData(UpgradeData.UpgradeType);
         }
 
     }

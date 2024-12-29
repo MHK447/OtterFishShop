@@ -187,18 +187,8 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: e1b3f6b856c614466a0c1bbe6b1f6105
-    m_Address: Enemy_10001
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: a47d7f214ac1740c8a23d6d1c511846a
     m_Address: UI/InGame/InGameTimeUI
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 16dcc31f72a1d4ec1a1516a1ff835cc3
-    m_Address: Enemy_1001
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -294,36 +284,6 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 7563697d7242fb54f838969faa2610d3
     m_Address: Effect/BombEffect
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 79c7fde2c42554f4397283e98346abd9
-    m_Address: Enemy_102
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: abbf0d4a442734710b62f746e16d3612
-    m_Address: Enemy_1002
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 3e39814eae8f14988b5fb1b8fb2eb000
-    m_Address: Enemy_1003
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: b20ff5826130d4e9eaab0868cc974c76
-    m_Address: Enemy_1004
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 903110c885768473da20b28d508d6afe
-    m_Address: Enemy_103
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: bebdbbcab268c40f7b11d9e5ba90aef2
-    m_Address: Enemy_104
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -439,6 +399,11 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 9db1301b7813d5448ad335a051f71d28
     m_Address: UI/Popup/PopupUpgrade
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 913d90455f0f346fabbcae0ec0de2911
+    m_Address: CarryCasher
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0

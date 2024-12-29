@@ -151,6 +151,20 @@ public partial class UserDataSystem
 			,facilitydatavec);
 
 
+		//upgradedata
+		Offset<BanpoFri.Data.UpgradeData>[] upgradedatas = null;
+
+		upgradedatas = new Offset<BanpoFri.Data.UpgradeData>[mainData.UpgradeGroupData.StageUpgradeCollectionList.Count];
+
+		dataIdx = 0;
+
+		foreach(var upgrade in mainData.UpgradeGroupData.StageUpgradeCollectionList)
+        {
+			upgradedatas[dataIdx++] = BanpoFri.Data.UpgradeData.CreateUpgradeData(builder, upgrade.UpgradeIdx, upgrade.UpgradeType, upgrade.StageIdx, upgrade.IsBuyCheck);
+        }
+
+		var upgradedata = BanpoFri.Data.UserData.CreateUpgradedatasVector(builder, upgradedatas);
+
 
 		//insert start
 		BanpoFri.Data.UserData.StartUserData(builder);
@@ -159,6 +173,7 @@ public partial class UserDataSystem
 		BanpoFri.Data.UserData.AddMoney(builder, money);
 		BanpoFri.Data.UserData.AddCurplaydatetime(builder, mainData.CurPlayDateTime.Ticks);
 		BanpoFri.Data.UserData.AddCash(builder, Cash.Value);
+		BanpoFri.Data.UserData.AddUpgradedatas(builder, upgradedata);
 		BanpoFri.Data.UserData.AddRecordcount(builder, recordCountVec);
 
 

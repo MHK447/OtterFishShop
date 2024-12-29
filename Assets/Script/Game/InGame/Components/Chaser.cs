@@ -88,6 +88,7 @@ public class Chaser : MonoBehaviour
 
     void SetWayPoints()
     {
+        if (TargetTr == null) return;
         
         Vector2 targetPosition = TargetTr.transform.position;
         _wayPoints.Clear();
@@ -220,6 +221,9 @@ public class Chaser : MonoBehaviour
             skeletonAnimation.state.SetAnimation(0, animationname, isLooping);
         }
     }
+
+
+
 
     IEnumerator MoveProcess(System.Action arrivedaction = null)
     {

@@ -20,6 +20,41 @@ public class UpgradeSystem
     }
 
 
+    public void AddUpgradeData(int upgradetype)
+    {
+        switch(upgradetype)
+        {
+            case (int)UpgradeType.AddEmployee:
+                {
+
+                    var ingamestage = GameRoot.Instance.InGameSystem.GetInGame<InGameTycoon>();
+                    var finddata = ingamestage.curInGameStage.GetCarryCasher();
+
+                    if(finddata != null)
+                    {
+                        finddata.transform.position = ProjectUtility.GetRandomPositionAroundTarget(ingamestage.GetPlayer.transform.position, 2f);
+                        ProjectUtility.SetActiveCheck(finddata.gameObject, true);
+                        finddata.Init(1);
+                    }
+                }
+                break;
+            case (int)UpgradeType.IncreaseEmployeeSpeed:
+                break;
+            case (int)UpgradeType.AddCustomer:
+                break;
+            case (int)UpgradeType.IncreasePlayerSpeed:
+                break;
+            case (int)UpgradeType.IncreasePlayerCapacity:
+                break;
+            case (int)UpgradeType.IncreaseShelfCapacity:
+                break;
+            case (int)UpgradeType.IncreaseCookingSpeed:
+                break;
+            case (int)UpgradeType.IncreaseEmployeeCapacity:
+                break;
+        }
+    }
+
     public void StageSetUpgradeData(int stageidx)
     {
 

@@ -13,6 +13,12 @@ public class FishRoomComponent : FacilityComponent
     private BucketComponent BucketComponent;
 
 
+    public FishCushionComponent GetCushionComponent { get { return CushionComponent; } }
+
+
+    public BucketComponent GetBucketComponent { get { return BucketComponent; } }
+
+
     public override void Init()
     {
         base.Init();

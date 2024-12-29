@@ -41,6 +41,8 @@ public class FacilityComponent : MonoBehaviour
 
     protected FacilityData FacilityData;
 
+    public FacilityData GetFacilityData { get { return FacilityData; } }
+
     private bool OnEnter = false;
 
     private float moneydeltime =0f;

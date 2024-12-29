@@ -6,6 +6,16 @@ using System.Linq;
 
 public class FacilitySystem 
 {
+    public enum FacilityType
+    {
+        FishDisplay = 1,
+        Counter = 2,
+        Fishing = 3,
+        Cooked = 4,
+      
+    }
+
+
     public void Create()
     {
     }
