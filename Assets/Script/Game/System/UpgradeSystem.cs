@@ -32,7 +32,7 @@ public class UpgradeSystem
 
                     if(finddata != null)
                     {
-                        finddata.transform.position = ProjectUtility.GetRandomPositionAroundTarget(ingamestage.GetPlayer.transform.position, 2f);
+                        finddata.transform.position = ProjectUtility.GetRandomPositionAroundTarget(ingamestage.GetPlayer.transform.position, 10f);
                         ProjectUtility.SetActiveCheck(finddata.gameObject, true);
                         finddata.Init(1);
                     }
