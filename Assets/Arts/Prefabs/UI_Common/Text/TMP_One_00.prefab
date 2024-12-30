@@ -10,10 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 8460738628235301190}
   - component: {fileID: 2627465576002362783}
-  - component: {fileID: 4129177318370190808}
-  - component: {fileID: 1795728515019089596}
+  - component: {fileID: 3387900259431675675}
+  - component: {fileID: 2219549252669814871}
   m_Layer: 0
-  m_Name: TMP_Nanum
+  m_Name: TMP_One_00
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -46,7 +46,7 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 679250042144916024}
   m_CullTransparentMesh: 0
---- !u!114 &4129177318370190808
+--- !u!114 &3387900259431675675
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -68,15 +68,15 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\uBBF8\uBCF4\uC720"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 4aeb2741880a88f47830945fa6e826ee, type: 2}
-  m_sharedMaterial: {fileID: 6631334510253635239, guid: 4aeb2741880a88f47830945fa6e826ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 9712e08fb44aae849aed4658b6bcf881, type: 2}
+  m_sharedMaterial: {fileID: 0}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4281880431
-  m_fontColor: {r: 0.43529412, g: 0.30980393, b: 0.21960784, a: 1}
+    rgba: 4280431176
+  m_fontColor: {r: 0.28235295, g: 0.19607843, b: 0.13333334, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -93,17 +93,17 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 20
+  m_fontSize: 40
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
-  m_fontSizeMin: 16
-  m_fontSizeMax: 20
+  m_fontSizeMin: 18
+  m_fontSizeMax: 40
   m_fontStyle: 0
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
-  m_characterSpacing: -5
+  m_characterSpacing: 0
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
@@ -137,7 +137,7 @@ MonoBehaviour:
   m_hasFontAssetChanged: 1
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!114 &1795728515019089596
+--- !u!114 &2219549252669814871
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

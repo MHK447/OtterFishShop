@@ -179,7 +179,6 @@ GameObject:
   - component: {fileID: 8162851185106916048}
   - component: {fileID: 3828936050655156270}
   - component: {fileID: 2101148490742430732}
-  - component: {fileID: 3344575927293035102}
   m_Layer: 0
   m_Name: Line_Img  (1)
   m_TagString: Untagged
@@ -244,23 +243,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &3344575927293035102
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6575959454720464656}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a697af77c7d8f4330a525984493a8d81, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  currentImageType: 2
-  SetEventMode: 0
-  keyColor: Line_BtnEnable
-  eventKeyColor: []
-  eventCount: 0
 --- !u!1001 &2788135037137162077
 PrefabInstance:
   m_ObjectHideFlags: 0
