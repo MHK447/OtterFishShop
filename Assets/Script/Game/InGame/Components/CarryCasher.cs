@@ -3,46 +3,37 @@ using System.Collections.Generic;
 using UnityEngine;
 using BanpoFri;
 using System.Linq;
+using UnityEngine.AI;
+using Spine.Unity;
 
-public class CarryChaser : Chaser
+
+public class CarryCasher : OtterBase
 {
-
-    public enum State
-    {
-        Idle,
-        Wait,
-        Sleep,
-        Work,
-    }
-
-
-    public State CurState = State.Idle;
-
-    private InGameStage CurStage;
-
-    private Transform TargetComponent;
-
     private float waitdeltime = 0f;
 
     private int MaxProductCount = 5;
 
-    private List<FishComponent> FishComponentList = new List<FishComponent>();
-
     private Queue<System.Action> WorkActionQueue = new Queue<System.Action>();
 
-    public override void Init(int idx)
+    public override void Init()
     {
-        base.Init(idx);
+        base.Init();
 
-        CurState = State.Idle;
+        _navMeshAgent.updateRotation = false;
+        _navMeshAgent.updateUpAxis = false;
 
-        CurStage = GameRoot.Instance.InGameSystem.GetInGame<InGameTycoon>().curInGameStage;
+        _navMeshAgent.enabled = true;
+
+        GameRoot.Instance.StartCoroutine(WaitOneFrame());
+
+        CurState = OtterState.Idle;
 
         FishComponentList.Clear();
 
         WorkActionQueue.Clear();
 
         GameRoot.Instance.WaitTimeAndCallback(1f, () => { StartWork(); });
+
     }
 
 
@@ -52,30 +43,15 @@ public class CarryChaser : Chaser
     {
         if(TargetWorkFacility())
         {
-            ChangeState(State.Work);
+            ChangeState(OtterState.Work);
             NextWorkAction();
         }
         else
         {
             waitdeltime = 0f;
-            ChangeState(State.Wait);
+            ChangeState(OtterState.Wait);
         }
     }
-
-
-
-
-
-    public void ChangeState(State state)
-    {
-        if (CurState == state) return;
-
-
-        CurState = state;
-    }
-
-
-
 
     public bool TargetWorkFacility()
     {
@@ -149,8 +125,8 @@ public class CarryChaser : Chaser
       
         System.Action moveTofishroom = () =>
         {
-            SetDestination(fishRoom.GetCushionComponent.transform, null);
-            GameRoot.Instance.StartCoroutine(CheckWaitProductMax(NextWorkAction));
+            SetDestination(fishRoom.GetCushionComponent.transform, ()=> { ChangeState(OtterState.Idle); });
+            GameRoot.Instance.StartCoroutine(CheckWaitFishingMax(fishRoom, NextWorkAction));
         };
 
         WorkActionQueue.Enqueue(moveTofishroom);
@@ -169,10 +145,9 @@ public class CarryChaser : Chaser
         }
     }
 
-
     private void Update()
     {
-        if(CurState == State.Wait)
+        if(CurState == OtterState.Wait)
         {
             waitdeltime += Time.deltaTime;
 
@@ -207,12 +182,29 @@ public class CarryChaser : Chaser
     }
 
 
+    private IEnumerator CheckWaitFishingMax(FishRoomComponent component , System.Action nextaction)
+    {
+        yield return new WaitUntil(() => component != null && component.IsMaxCountCheck());
+
+        nextaction?.Invoke();
+    }
+
+    void ReachProcess()
+    {
+        _isMoving = false;
+        PlayAnimation(OtterState.Idle , "idle", true);
+    }
+
+
+
     private IEnumerator CheckWaitProductNone(System.Action nextaction)
     {
         yield return new WaitUntil(() => FishComponentList.Count == 0);
 
         nextaction?.Invoke();
     }
+
+
 
 
 }

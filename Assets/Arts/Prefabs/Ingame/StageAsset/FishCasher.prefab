@@ -46,9 +46,9 @@ GameObject:
   - component: {fileID: 7189475501010032306}
   - component: {fileID: 7305236676931360709}
   - component: {fileID: -6886305821548593228}
-  - component: {fileID: 1819074135286739224}
+  - component: {fileID: 5681487665209996728}
   m_Layer: 7
-  m_Name: CarryCasher
+  m_Name: FishCasher
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -254,7 +254,7 @@ CircleCollider2D:
   m_CompositeOrder: 0
   m_Offset: {x: 0.009272337, y: 0.75}
   m_Radius: 0.62227213
---- !u!114 &1819074135286739224
+--- !u!114 &5681487665209996728
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -263,7 +263,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2546276038175962709}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: db9b38453208f49d5a7874ede20e4342, type: 3}
+  m_Script: {fileID: 11500000, guid: feb419cc2ad7d4bba9e16854e879ca12, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   PlayerSpeed: 1
@@ -272,11 +272,12 @@ MonoBehaviour:
   skeletonAnimation: {fileID: 6902744124365164405}
   FishCarryRoot: {fileID: 8956759301778506394}
   IsCarry: 0
-  CurAnimName: 
+  CurAnimName: Idle
   loop: 1
-  _navMeshAgent: {fileID: 7305236676931360709}
   TargetTr: {fileID: 0}
   reachRadius: 0.6
+  _navMeshAgent: {fileID: 7305236676931360709}
+  CasherType: 3
 --- !u!1 &4854619043264745601
 GameObject:
   m_ObjectHideFlags: 0

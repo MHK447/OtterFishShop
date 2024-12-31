@@ -73,7 +73,7 @@ public class FacilityComponent : MonoBehaviour
 
         var facilitytd = Tables.Instance.GetTable<FacilityInfo>().GetData(FacilityIdx);
 
-        CapacityMaxCount = facilitytd.initial_count;
+        CapacityMaxCount = facilitytd.start_capacity;
 
         if (!FacilityData.IsOpen)
         {
@@ -165,7 +165,7 @@ public class FacilityComponent : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         // 충돌한 오브젝트의 레이어를 확인합니다.
-        if (collision.gameObject.layer == LayerMask.NameToLayer("Player") && !FacilityData.IsOpen)
+        if ((collision.gameObject.layer == LayerMask.NameToLayer("Player") || collision.gameObject.layer == LayerMask.NameToLayer("CarryCasher")) && !FacilityData.IsOpen)
         {
             if(NewFacilityUI != null && NewFacilityUI.gameObject.activeSelf)
             OnEnter = true;
@@ -174,7 +174,7 @@ public class FacilityComponent : MonoBehaviour
         
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.gameObject.layer == LayerMask.NameToLayer("Player") && !FacilityData.IsOpen)
+        if ((collision.gameObject.layer == LayerMask.NameToLayer("Player") || collision.gameObject.layer == LayerMask.NameToLayer("CarryCasher")) && !FacilityData.IsOpen)
         {
             OnEnter = false;
         }

@@ -35,7 +35,7 @@ public class FishCushionComponent : MonoBehaviour
 
         if(td != null)
         {
-            CapacityMaxCount = td.initial_count;
+            CapacityMaxCount = td.start_capacity;
         }
 
         ProjectUtility.SetActiveCheck(this.gameObject, FacilityData.IsOpen);
@@ -46,16 +46,22 @@ public class FishCushionComponent : MonoBehaviour
     {
         if (FacilityData.CapacityCountProperty.Value >= CapacityMaxCount) return;
 
-        // 충돌한 오브젝트의 레이어를 확인합니다.
-        if (other.gameObject.layer == LayerMask.NameToLayer("Player") )
+        if (other.gameObject.layer == LayerMask.NameToLayer("Player") && InGameStage.FindCasher(CasherType.FishingCasher, FacilityData.FacilityIdx) != null) return;
+
+
+        if (other.gameObject.layer == LayerMask.NameToLayer("Player") || other.gameObject.layer == LayerMask.NameToLayer("CarryCasher"))
         {
             CurMoneyTime = 0f;
             IsOnEnter = true;
 
             var getvalue = other.GetComponent<OtterBase>();
 
-            if (getvalue != null && !getvalue.IsCarry)
-                Target = getvalue;
+            if (getvalue != null)
+            {
+
+                if (getvalue != null && !getvalue.IsCarry)
+                    Target = getvalue;
+            }
 
         }
     }
@@ -65,7 +71,10 @@ public class FishCushionComponent : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.gameObject.layer == LayerMask.NameToLayer("Player"))
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Player") && InGameStage.FindCasher(CasherType.FishingCasher, FacilityData.FacilityIdx) != null) return;
+
+
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Player") || collision.gameObject.layer == LayerMask.NameToLayer("CarryCasher"))
         {
             if (Target != null)
             {

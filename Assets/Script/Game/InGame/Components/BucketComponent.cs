@@ -101,7 +101,7 @@ public class BucketComponent : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other)
     {
         // 충돌한 오브젝트의 레이어를 확인합니다.
-        if (other.gameObject.layer == LayerMask.NameToLayer("Player"))
+        if (other.gameObject.layer == LayerMask.NameToLayer("Player") || other.gameObject.layer == LayerMask.NameToLayer("CarryCasher"))
         {
             IsOnEnter = true;
             FishCarrydeltime = 0f;
@@ -119,7 +119,7 @@ public class BucketComponent : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.gameObject.layer == LayerMask.NameToLayer("Player"))
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Player") || collision.gameObject.layer == LayerMask.NameToLayer("CarryCasher"))
         {
             if(Target != null)
             {

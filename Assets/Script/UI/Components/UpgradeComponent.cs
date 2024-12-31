@@ -85,7 +85,7 @@ public class UpgradeComponent : MonoBehaviour
 
             ProjectUtility.SetActiveCheck(this.gameObject, false);
 
-            GameRoot.Instance.UpgradeSystem.AddUpgradeData(UpgradeData.UpgradeType);
+            GameRoot.Instance.UpgradeSystem.AddUpgradeData(UpgradeIdx , UpgradeData.UpgradeType);
         }
 
     }

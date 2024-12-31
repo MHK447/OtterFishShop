@@ -42,6 +42,13 @@ namespace BanpoFri
 			set { _value = value;}
 		}
 		[SerializeField]
+		private int _value2;
+		public int value2
+		{
+			get { return _value2;}
+			set { _value2 = value;}
+		}
+		[SerializeField]
 		private string _icon;
 		public string icon
 		{

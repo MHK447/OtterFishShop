@@ -91,7 +91,7 @@ public class RackComponent : FacilityComponent
     {
 
         // 충돌한 오브젝트의 레이어를 확인합니다.
-        if (collision.gameObject.layer == LayerMask.NameToLayer("Player") && !IsMaxCountCheck())
+        if ((collision.gameObject.layer == LayerMask.NameToLayer("Player") || collision.gameObject.layer == LayerMask.NameToLayer("CarryCasher")) && !IsMaxCountCheck())
         {
             IsOnEnter = true;
             FishCarrydeltime = 0f;
@@ -105,7 +105,7 @@ public class RackComponent : FacilityComponent
 
     private void OnCollisionExit2D(Collision2D collision)
     {
-        if (collision.gameObject.layer == LayerMask.NameToLayer("Player"))
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Player") || collision.gameObject.layer == LayerMask.NameToLayer("CarryCasher"))
         {
             if (Target != null)
             {

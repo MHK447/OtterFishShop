@@ -48,7 +48,7 @@ GameObject:
   - component: {fileID: -6886305821548593228}
   - component: {fileID: 1819074135286739224}
   m_Layer: 7
-  m_Name: CarryCasher
+  m_Name: CounterCasher
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
