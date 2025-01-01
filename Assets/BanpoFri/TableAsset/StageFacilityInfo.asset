@@ -1,0 +1,72 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cacfef892848547baadc2672b41d1eb1, type: 3}
+  m_Name: StageFacilityInfo
+  m_EditorClassIdentifier: 
+  mFirstKey:
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 2
+  - 2
+  - 2
+  - 2
+  - 2
+  mSecondKey:
+  - 1
+  - 2
+  - 3
+  - 1000
+  - 101
+  - 102
+  - 1
+  - 2
+  - 3
+  - 4
+  - 1000
+  mDataList:
+  - _stageidx: 1
+    _facilityidx: 1
+    _open_cost: 10
+  - _stageidx: 1
+    _facilityidx: 2
+    _open_cost: 20
+  - _stageidx: 1
+    _facilityidx: 3
+    _open_cost: 10
+  - _stageidx: 1
+    _facilityidx: 1000
+    _open_cost: 10
+  - _stageidx: 1
+    _facilityidx: 101
+    _open_cost: 10
+  - _stageidx: 1
+    _facilityidx: 102
+    _open_cost: 100
+  - _stageidx: 2
+    _facilityidx: 1
+    _open_cost: 10
+  - _stageidx: 2
+    _facilityidx: 2
+    _open_cost: 10
+  - _stageidx: 2
+    _facilityidx: 3
+    _open_cost: 10
+  - _stageidx: 2
+    _facilityidx: 4
+    _open_cost: 10
+  - _stageidx: 2
+    _facilityidx: 1000
+    _open_cost: 10

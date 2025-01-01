@@ -79,6 +79,9 @@ public class FishCasher : OtterBase
         }
 
         GameRoot.Instance.WaitTimeAndCallback(1f, () => { StartWork(); });
+
+        // Event 콜백 등록
+        skeletonAnimation.AnimationState.Complete += HandleEvent;
     }
 
     public void StartWork()
@@ -89,10 +92,45 @@ public class FishCasher : OtterBase
     private void OnDestroy()
     {
         disposables.Clear();
+
+        // 콜백 해제
+        if (skeletonAnimation != null)
+        {
+            skeletonAnimation.AnimationState.End -= HandleEvent;
+        }
     }
 
     private void OnDisable()
     {
         disposables.Clear();
     }
+
+
+    private void HandleEvent(Spine.TrackEntry trackEntry)
+    {
+        switch (trackEntry.Animation.Name)
+        {
+            case "fishingstart":
+                {
+                    PlayAnimation(OtterState.Fishing, "fishingidle", true);
+                }
+                break;
+            case "napstart":
+                {
+                    PlayAnimation(OtterState.Fishing, "napidle", true);
+                }
+                break;
+            case "napend":
+                {
+                    PlayAnimation(OtterState.Fishing, "fishingstart", true);
+                }
+                break;
+        }
+        AnimAction?.Invoke();
+
+        AnimAction = null;
+    }
+
+
+
 }

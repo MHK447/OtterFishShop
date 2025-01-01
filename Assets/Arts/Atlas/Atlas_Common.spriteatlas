@@ -76,8 +76,10 @@ SpriteAtlas:
     isAtlasV2: 0
     cachedData: {fileID: 0}
     packedSpriteRenderDataKeys:
+    - 490f1e50373c04a44878622b0f9d4617: 21300000
     - 90116e91320981349996abe805b89343: 21300000
     - 0eea60e24b88cd04f85203a20181285d: 21300000
+    - 3053e0f2ae3dc514083cf94bca81f7ba: 21300000
     - 03f47313a2aa9b14790a8de972347c64: 21300000
     - 6097de738b2a5784ca792121ca3448d5: 21300000
     - c779cb6420ed13340bcae7accba1ca28: 21300000
@@ -95,8 +97,10 @@ SpriteAtlas:
     - 3f82c07f62a344b448e28eaa1f63c4c3: 21300000
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
+  - {fileID: 21300000, guid: 490f1e50373c04a44878622b0f9d4617, type: 3}
   - {fileID: 21300000, guid: 90116e91320981349996abe805b89343, type: 3}
   - {fileID: 21300000, guid: 0eea60e24b88cd04f85203a20181285d, type: 3}
+  - {fileID: 21300000, guid: 3053e0f2ae3dc514083cf94bca81f7ba, type: 3}
   - {fileID: 21300000, guid: 03f47313a2aa9b14790a8de972347c64, type: 3}
   - {fileID: 21300000, guid: 6097de738b2a5784ca792121ca3448d5, type: 3}
   - {fileID: 21300000, guid: c779cb6420ed13340bcae7accba1ca28, type: 3}
@@ -113,8 +117,10 @@ SpriteAtlas:
   - {fileID: 21300000, guid: fb66b2ae63dbb894f9ca6059106227a1, type: 3}
   - {fileID: 21300000, guid: 3f82c07f62a344b448e28eaa1f63c4c3, type: 3}
   m_PackedSpriteNamesToIndex:
+  - Common_Icon_Upgrade_Casher_Add_03
   - Common_Icon_Upgrade_Casher_Stack_01
   - Common_Icon_Upgrade_Food_Price_02
+  - Common_Icon_Upgrade_Casher_Add_01
   - Common_Icon_Upgrade_Food_Load_02
   - Common_Icon_Upgrade_Consumer_Add_01
   - Common_Icon_Upgrade_Casher_Add_02

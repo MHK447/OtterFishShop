@@ -22,7 +22,58 @@ public class UpgradeSystem
     }
 
 
-    
+    public void StartUpgradeCheck()
+    {
+        foreach(var upgradedata in GameRoot.Instance.UserData.CurMode.UpgradeGroupData.StageUpgradeCollectionList)
+        {
+            if (upgradedata.IsBuyCheck)
+            {
+                AddUpgradeData(upgradedata.UpgradeIdx, upgradedata.UpgradeType);
+            } 
+        }
+    }
+
+
+    public float GetUpgradeValue(UpgradeType type)
+    {
+        float returnvalue = 0f;
+
+
+        if(type == UpgradeType.AddCustomer)
+        {
+            var stageidx = GameRoot.Instance.UserData.CurMode.StageData.StageIdx;
+
+            var td = Tables.Instance.GetTable<StageInfo>().GetData(stageidx);
+
+            if(td != null)
+            {
+                var upgradelist = GameRoot.Instance.UserData.CurMode.UpgradeGroupData.StageUpgradeCollectionList.ToList().FindAll(x => x.UpgradeType == (int)type && x.IsBuyCheck);
+
+
+                foreach(var upgrade in upgradelist)
+                {
+                    var upgradetd = Tables.Instance.GetTable<UpgradeInfo>().GetData(new KeyValuePair<int, int>(stageidx, upgrade.UpgradeIdx));
+
+                    if(upgradetd != null)
+                    {
+                        returnvalue += upgradetd.value;
+                    }
+
+                }
+
+                returnvalue += td.start_consumer_count;
+            }
+            
+        }
+        else
+        {
+
+        }
+
+        return returnvalue;
+
+    }
+
 
     public void AddUpgradeData(int upgradeidx  , int upgradetype)
     {
@@ -36,9 +87,14 @@ public class UpgradeSystem
 
                     if(finddata != null)
                     {
-                        finddata.transform.position = ProjectUtility.GetRandomPositionAroundTarget(ingamestage.GetPlayer.transform.position, 10f);
-                        ProjectUtility.SetActiveCheck(finddata.gameObject, true);
-                        finddata.Init();
+                        var findcarrycasher = finddata.GetComponent<CarryCasher>();
+
+                        if (findcarrycasher != null)
+                        {
+                            findcarrycasher.transform.position = ProjectUtility.GetRandomPositionAroundTarget(ingamestage.GetPlayer.transform.position, 10f);
+                            ProjectUtility.SetActiveCheck(findcarrycasher.gameObject, true);
+                            findcarrycasher.Init();
+                        }
                     }
                 }
                 break;

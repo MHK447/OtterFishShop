@@ -86,9 +86,27 @@ public class RackComponent : FacilityComponent
         FacilityData.CapacityCountProperty.Value -= 1;
     }
 
-
-    private void OnCollisionEnter2D(Collision2D collision)
+    public Transform GetCarryCasherWaitTr(Transform carrycashertr)
     {
+        Transform closestTransform = null;
+        float shortestDistance = float.MaxValue;
+
+        foreach (Transform waitTr in ConsumerWaitTr)
+        {
+            float distance = Vector3.Distance(carrycashertr.position, waitTr.position);
+            if (distance < shortestDistance)
+            {
+                shortestDistance = distance;
+                closestTransform = waitTr;
+            }
+        }
+
+        return closestTransform;
+    }
+
+    public override void OnTriggerEnter2D(Collider2D collision)
+    {
+        base.OnTriggerEnter2D(collision);
 
         // 충돌한 오브젝트의 레이어를 확인합니다.
         if ((collision.gameObject.layer == LayerMask.NameToLayer("Player") || collision.gameObject.layer == LayerMask.NameToLayer("CarryCasher")) && !IsMaxCountCheck())
@@ -100,11 +118,13 @@ public class RackComponent : FacilityComponent
             if (getvalue != null)
                 Target = getvalue;
         }
+
     }
 
-
-    private void OnCollisionExit2D(Collision2D collision)
+    public override void OnTriggerExit2D(Collider2D collision)
     {
+        base.OnTriggerEnter2D(collision);
+
         if (collision.gameObject.layer == LayerMask.NameToLayer("Player") || collision.gameObject.layer == LayerMask.NameToLayer("CarryCasher"))
         {
             if (Target != null)

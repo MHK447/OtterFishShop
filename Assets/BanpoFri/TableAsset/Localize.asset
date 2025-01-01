@@ -32,73 +32,66 @@ MonoBehaviour:
   mSecondKey: []
   mDataList:
   - _idx: casher_add_02_desc
-    _ko: "\uCE90\uC154 +1 \uCD94\uAC00"
+    _ko: "<color=#3a8e62>+1\uBA85</color=#3a8e62> \uCD94\uAC00"
     _en: 
     _ja: 
   - _idx: casher_speedup_01_desc
-    _ko: "\uCE90\uC154 \uC18D\uB3C4\uB97C <color=#3a8e62>+{0}</color=#3a8e62>\uC99D\uAC00
-      \uC2DC\uD0B5\uB2C8\uB2E4."
+    _ko: "<color=#3a8e62>+{0}</color=#3a8e62> \uC99D\uAC00"
     _en: 
     _ja: 
   - _idx: consumer_add_01_desc
-    _ko: "\uC190\uB2D8 <color=#3a8e62>{0}</color=#3a8e62>\uBA85\uC744 \uCD94\uAC00
-      \uD569\uB2C8\uB2E4."
+    _ko: "<color=#3a8e62>+{0}\uBA85</color=#3a8e62> \uCD94\uAC00"
     _en: 
     _ja: 
   - _idx: player_speedup_01_desc
-    _ko: "\uC810\uC7A5\uC758 \uC18D\uB3C4\uB97C <color=#3a8e62>+{0}</color=#3a8e62>\uC99D\uAC00
-      \uC2DC\uD0B5\uB2C8\uB2E4."
+    _ko: "<color=#3a8e62>+{0}</color=#3a8e62> \uC99D\uAC00"
     _en: 
     _ja: 
   - _idx: player_stack_01_desc
-    _ko: "\uD50C\uB808\uC774\uC5B4\uC758 \uC6A9\uB7C9\uC744 <color=#3a8e62>+{0}</color=#3a8e62>
-      \uC99D\uAC00 \uC2DC\uD0B5\uB2C8\uB2E4."
+    _ko: "<color=#3a8e62>+{0}\uAC1C</color=#3a8e62> \uC99D\uAC00"
     _en: 
     _ja: 
   - _idx: food_load_01_desc
-    _ko: "\uC5F4\uAC31\uC774 \uC6A9\uB7C9\uC744 <color=#3a8e62>+{0}</color=#3a8e62>\uC99D\uAC00
-      \uC2DC\uD0B5\uB2C8\uB2E4."
+    _ko: "<color=#3a8e62>+{0}\uAC1C</color=#3a8e62>\uC99D\uAC00"
     _en: 
     _ja: 
   - _idx: cooktool_speedup_01_desc
-    _ko: "\uC5F4\uAC31\uC774 \uC694\uB9AC\uC758 \uC18D\uB3C4\uB97C <color=#3a8e62>+{0}</color=#3a8e62>
-      \uC99D\uAC00 \uC2DC\uD0B5\uB2C8\uB2E4."
+    _ko: "<color=#3a8e62>+{0}</color=#3a8e62> \uC99D\uAC00"
     _en: 
     _ja: 
   - _idx: casher_stack_01_desc
-    _ko: "\uCE90\uC154\uAC00 \uB4E4 \uC218 \uC788\uB294 \uBB34\uAC8C\uB97C <color=#3a8e62>+{0}</color=#3a8e62>
-      \uC99D\uAC00 \uC2DC\uD0B5\uB2C8\uB2E4."
+    _ko: "<color=#3a8e62>+{0}\uAC1C</color=#3a8e62> \uC99D\uAC00"
     _en: 
     _ja: 
   - _idx: casher_add_02_name
-    _ko: "\uCE90\uC154 \uCD94\uAC00!!"
+    _ko: "\uC9C1\uC6D0\uC218"
     _en: 
     _ja: 
   - _idx: casher_speedup_01_name
-    _ko: "\uB354 \uBE60\uB974\uAC8C \uBE60\uB974\uAC8C!"
+    _ko: "\uC9C1\uC6D0 \uC774\uB3D9\uC18D\uB3C4"
     _en: 
     _ja: 
   - _idx: consumer_add_01_name
-    _ko: "\uB3C4\uC640\uC918!"
+    _ko: "\uC190\uB2D8 \uBC29\uBB38\uB7C9"
     _en: 
     _ja: 
   - _idx: player_speedup_01_name
-    _ko: "\uC0AC\uC7A5\uB2D8\uC740 \uB354 \uBE68\uB9AC!"
+    _ko: "\uC0AC\uC7A5 \uC774\uB3D9\uC18D\uB3C4"
     _en: 
     _ja: 
   - _idx: player_stack_01_name
-    _ko: "\uB354 \uB9CE\uC774!"
+    _ko: "\uC0AC\uC7A5 \uBB3C\uAC74 \uC6A9\uB7C9"
     _en: 
     _ja: 
   - _idx: food_load_01_name
-    _ko: "\uD30C\uB2E5\uD30C\uB2E5 \uC5F4\uAC31\uC774"
+    _ko: "\uC5F4\uAC31\uC774 \uC9C4\uC5F4\uC218\uB7C9"
     _en: 
     _ja: 
   - _idx: cooktool_speedup_01_name
-    _ko: "\uB354 \uBE60\uB974\uAC8C \b\uC694\uB9AC!"
+    _ko: "\uD504\uB77C\uC774\uD32C \uC870\uB9AC\uC18D\uB3C4"
     _en: 
     _ja: 
   - _idx: casher_stack_01_name
-    _ko: "\uB354 \uB9CE\uC774 \uC313\uAC8C \uD574\uC918!"
+    _ko: "\uC9C1\uC6D0 \uBB3C\uAC74 \uC6A9\uB7C9"
     _en: 
     _ja: 

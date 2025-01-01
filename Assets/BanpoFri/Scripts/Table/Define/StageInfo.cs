@@ -14,17 +14,31 @@ namespace BanpoFri
 			set { _stageidx = value;}
 		}
 		[SerializeField]
-		private int _facilityidx;
-		public int facilityidx
+		private int _seedmoney_value;
+		public int seedmoney_value
 		{
-			get { return _facilityidx;}
-			set { _facilityidx = value;}
+			get { return _seedmoney_value;}
+			set { _seedmoney_value = value;}
+		}
+		[SerializeField]
+		private string _stage_name;
+		public string stage_name
+		{
+			get { return _stage_name;}
+			set { _stage_name = value;}
+		}
+		[SerializeField]
+		private int _start_consumer_count;
+		public int start_consumer_count
+		{
+			get { return _start_consumer_count;}
+			set { _start_consumer_count = value;}
 		}
 
     }
 
     [System.Serializable]
-    public class StageInfo : Table<StageInfoData, KeyValuePair<int,int>>
+    public class StageInfo : Table<StageInfoData, int>
     {
     }
 }

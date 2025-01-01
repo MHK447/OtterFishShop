@@ -62,10 +62,11 @@ public class OtterBase : MonoBehaviour
 
     protected InGameStage CurStage;
 
+    protected System.Action AnimAction;
 
     public virtual void Init()
     {
-
+        
         CurStage = GameRoot.Instance.InGameSystem.GetInGame<InGameTycoon>().curInGameStage;
 
         GameRoot.Instance.UISystem.LoadFloatingUI<CooltimeProgress>((_progress) => {
@@ -83,10 +84,6 @@ public class OtterBase : MonoBehaviour
 
             ProjectUtility.SetActiveCheck(TextEffectMax.gameObject, false);
         });
-
-
-        // Event 콜백 등록
-        skeletonAnimation.AnimationState.Complete += HandleEvent;
     }
 
 
@@ -125,37 +122,7 @@ public class OtterBase : MonoBehaviour
 
     }
 
-    private void OnDestroy()
-    {
-        // 콜백 해제
-        if (skeletonAnimation != null)
-        {
-            skeletonAnimation.AnimationState.End -= HandleEvent;
-        }
-    }
 
-
-    private void HandleEvent(Spine.TrackEntry trackEntry)
-    {
-        switch (trackEntry.Animation.Name)
-        {
-            case "fishingstart":
-                {
-                    PlayAnimation(OtterState.Fishing,"fishingidle" , true);
-                }
-                break;
-            case "napstart":
-                {
-                    PlayAnimation(OtterState.Fishing, "napidle", true);
-                }
-                break;
-            case "napend":
-                {
-                    PlayAnimation(OtterState.Fishing, "fishingstart", true);
-                }
-                break;
-        }
-    }
 
     public void MoveVector(UnityEngine.Vector3 moveVector)
     {
@@ -216,6 +183,7 @@ public class OtterBase : MonoBehaviour
 
     public void TextEffectMaxCheck()
     {
+        if(TextEffectMax != null)
         ProjectUtility.SetActiveCheck(TextEffectMax.gameObject, FishComponentList.Count >= 5);
     }
 

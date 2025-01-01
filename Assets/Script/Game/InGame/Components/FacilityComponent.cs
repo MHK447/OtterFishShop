@@ -143,6 +143,8 @@ public class FacilityComponent : MonoBehaviour
 
     }
 
+    
+
 
     public bool IsMaxCountCheck()
     {
@@ -162,19 +164,19 @@ public class FacilityComponent : MonoBehaviour
 
 
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    public virtual void OnTriggerEnter2D(Collider2D collision)
     {
         // 충돌한 오브젝트의 레이어를 확인합니다.
-        if ((collision.gameObject.layer == LayerMask.NameToLayer("Player") || collision.gameObject.layer == LayerMask.NameToLayer("CarryCasher")) && !FacilityData.IsOpen)
+        if ((collision.gameObject.layer == LayerMask.NameToLayer("Player")) && !FacilityData.IsOpen)
         {
             if(NewFacilityUI != null && NewFacilityUI.gameObject.activeSelf)
             OnEnter = true;
         }
     }
         
-    private void OnTriggerExit2D(Collider2D collision)
+    public virtual void OnTriggerExit2D(Collider2D collision)
     {
-        if ((collision.gameObject.layer == LayerMask.NameToLayer("Player") || collision.gameObject.layer == LayerMask.NameToLayer("CarryCasher")) && !FacilityData.IsOpen)
+        if ((collision.gameObject.layer == LayerMask.NameToLayer("Player")) && !FacilityData.IsOpen)
         {
             OnEnter = false;
         }

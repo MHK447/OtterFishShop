@@ -74,21 +74,31 @@ public class InGameStage : MonoBehaviour
         CreatePoolCasher(10);
 
 
+
         foreach (var facility in FacilityList)
         {
             facility.Init();
         }
 
-        //GameRoot.Instance.WaitTimeAndCallback(1f, () => {
-        //    for (int i = 0; i < 3; ++i)
-        //    {
-        //        CreateConsumer(1, StartWayPointTrList[i]);
-        //    }
+
+
 
         foreach(var fishroom in FishRoomList)
         {
             fishroom.Init();
         }
+
+
+        GameRoot.Instance.WaitTimeAndCallback(2f, () => {
+            GameRoot.Instance.UpgradeSystem.StartUpgradeCheck();
+
+            var upgradevalue = GameRoot.Instance.UpgradeSystem.GetUpgradeValue(UpgradeSystem.UpgradeType.AddCustomer);
+
+            for (int i = 0; i < upgradevalue; ++i)
+            {
+                CreateConsumer(1, StartWayPointTrList[i]);
+            }
+        });
     }
 
             

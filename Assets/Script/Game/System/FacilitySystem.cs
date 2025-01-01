@@ -22,7 +22,7 @@ public class FacilitySystem
 
     public void CreateStageFacility(int stageidx)
     {
-        var stageinfotd = Tables.Instance.GetTable<StageInfo>().DataList.ToList().FindAll(x => x.stageidx == stageidx).ToList();
+        var stageinfotd = Tables.Instance.GetTable<StageFacilityInfo>().DataList.ToList().FindAll(x => x.stageidx == stageidx).ToList();
 
         GameRoot.Instance.UserData.CurMode.StageData.StageFacilityDataList.Clear();
 

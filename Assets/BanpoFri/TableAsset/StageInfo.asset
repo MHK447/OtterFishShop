@@ -14,48 +14,29 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mFirstKey:
   - 1
-  - 1
-  - 1
-  - 1
-  - 1
-  - 1
-  - 2
-  - 2
-  - 2
-  - 2
-  - 2
-  mSecondKey:
-  - 1
-  - 2
-  - 3
-  - 1000
-  - 101
-  - 102
-  - 1
   - 2
   - 3
   - 4
-  - 1000
+  - 5
+  mSecondKey: []
   mDataList:
   - _stageidx: 1
-    _facilityidx: 1
-  - _stageidx: 1
-    _facilityidx: 2
-  - _stageidx: 1
-    _facilityidx: 3
-  - _stageidx: 1
-    _facilityidx: 1000
-  - _stageidx: 1
-    _facilityidx: 101
-  - _stageidx: 1
-    _facilityidx: 102
+    _seedmoney_value: 100
+    _stage_name: name_test_1
+    _start_consumer_count: 1
   - _stageidx: 2
-    _facilityidx: 1
-  - _stageidx: 2
-    _facilityidx: 2
-  - _stageidx: 2
-    _facilityidx: 3
-  - _stageidx: 2
-    _facilityidx: 4
-  - _stageidx: 2
-    _facilityidx: 1000
+    _seedmoney_value: 100
+    _stage_name: name_test_2
+    _start_consumer_count: 1
+  - _stageidx: 3
+    _seedmoney_value: 100
+    _stage_name: name_test_3
+    _start_consumer_count: 1
+  - _stageidx: 4
+    _seedmoney_value: 100
+    _stage_name: name_test_4
+    _start_consumer_count: 1
+  - _stageidx: 5
+    _seedmoney_value: 100
+    _stage_name: name_test_5
+    _start_consumer_count: 1

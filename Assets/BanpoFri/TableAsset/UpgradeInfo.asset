@@ -21,6 +21,8 @@ MonoBehaviour:
   - 1
   - 1
   - 1
+  - 1
+  - 1
   mSecondKey:
   - 1
   - 2
@@ -30,11 +32,13 @@ MonoBehaviour:
   - 6
   - 7
   - 8
+  - 9
+  - 10
   mDataList:
   - _stageidx: 1
     _upgrade_idx: 1
     _upgrade_type: 9
-    _cost: 50
+    _cost: 5
     _value: 1
     _value2: 101
     _icon: Common_Icon_Upgrade_Casher_Add_02
@@ -42,6 +46,24 @@ MonoBehaviour:
     _name: casher_add_02_name
   - _stageidx: 1
     _upgrade_idx: 2
+    _upgrade_type: 1
+    _cost: 10
+    _value: 10
+    _value2: 0
+    _icon: Common_Icon_Upgrade_Casher_Add_02
+    _desc: casher_add_02_desc
+    _name: casher_add_02_name
+  - _stageidx: 1
+    _upgrade_idx: 3
+    _upgrade_type: 10
+    _cost: 15
+    _value: 10
+    _value2: 0
+    _icon: Common_Icon_Upgrade_Casher_Add_02
+    _desc: casher_add_02_desc
+    _name: casher_add_02_name
+  - _stageidx: 1
+    _upgrade_idx: 4
     _upgrade_type: 2
     _cost: 100
     _value: 10
@@ -50,7 +72,7 @@ MonoBehaviour:
     _desc: casher_speedup_01_desc
     _name: casher_speedup_01_name
   - _stageidx: 1
-    _upgrade_idx: 3
+    _upgrade_idx: 5
     _upgrade_type: 3
     _cost: 100
     _value: 1
@@ -59,7 +81,7 @@ MonoBehaviour:
     _desc: consumer_add_01_desc
     _name: consumer_add_01_name
   - _stageidx: 1
-    _upgrade_idx: 4
+    _upgrade_idx: 6
     _upgrade_type: 4
     _cost: 100
     _value: 10
@@ -68,7 +90,7 @@ MonoBehaviour:
     _desc: player_speedup_01_desc
     _name: player_speedup_01_name
   - _stageidx: 1
-    _upgrade_idx: 5
+    _upgrade_idx: 7
     _upgrade_type: 5
     _cost: 100
     _value: 1
@@ -77,7 +99,7 @@ MonoBehaviour:
     _desc: player_stack_01_desc
     _name: player_stack_01_name
   - _stageidx: 1
-    _upgrade_idx: 6
+    _upgrade_idx: 8
     _upgrade_type: 6
     _cost: 100
     _value: 1
@@ -86,7 +108,7 @@ MonoBehaviour:
     _desc: food_load_01_desc
     _name: food_load_01_name
   - _stageidx: 1
-    _upgrade_idx: 7
+    _upgrade_idx: 9
     _upgrade_type: 7
     _cost: 100
     _value: 10
@@ -95,7 +117,7 @@ MonoBehaviour:
     _desc: cooktool_speedup_01_desc
     _name: cooktool_speedup_01_name
   - _stageidx: 1
-    _upgrade_idx: 8
+    _upgrade_idx: 10
     _upgrade_type: 8
     _cost: 100
     _value: 1

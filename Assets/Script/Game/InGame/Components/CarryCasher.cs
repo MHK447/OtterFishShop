@@ -27,13 +27,15 @@ public class CarryCasher : OtterBase
         GameRoot.Instance.StartCoroutine(WaitOneFrame());
 
         CurState = OtterState.Idle;
-
+        
         FishComponentList.Clear();
 
         WorkActionQueue.Clear();
 
         GameRoot.Instance.WaitTimeAndCallback(1f, () => { StartWork(); });
 
+        // Event 콜백 등록
+        skeletonAnimation.AnimationState.Complete += HandleEvent;
     }
 
 
@@ -50,13 +52,14 @@ public class CarryCasher : OtterBase
         {
             waitdeltime = 0f;
             ChangeState(OtterState.Wait);
+
         }
     }
 
     public bool TargetWorkFacility()
     {
         var facilitydatas = GameRoot.Instance.UserData.CurMode.StageData.StageFacilityDataList
-       .Where(x => x.IsOpen && x.FacilityIdx != 1000);
+       .Where(x => x.IsOpen && (x.FacilityIdx > 100 && x.FacilityIdx < 1000)).ToList();
 
 
         foreach (var facility in facilitydatas)
@@ -64,20 +67,17 @@ public class CarryCasher : OtterBase
             var facilityInfo = Tables.Instance.GetTable<FacilityInfo>().GetData(facility.FacilityIdx);
             if (facilityInfo == null) continue;
 
+            if(CurStage == null)
+            {
+                CurStage = GameRoot.Instance.InGameSystem.GetInGame<InGameTycoon>().curInGameStage;
+            }
+
             var mainFacility = CurStage.FindFacility(facilityInfo.facilityidx);
             if (mainFacility == null) continue;
 
-            switch ((FacilitySystem.FacilityType)facilityInfo.facility_type)
+            if(HandleFishDisplay(facility.FacilityIdx, mainFacility))
             {
-                case FacilitySystem.FacilityType.FishDisplay:
-                    return HandleFishDisplay(facility.FacilityIdx, mainFacility);
-
-                case FacilitySystem.FacilityType.Fishing:
-                    return HandleFishing(mainFacility);
-
-                case FacilitySystem.FacilityType.Counter:
-                case FacilitySystem.FacilityType.Cooked:
-                    break;
+                return true;
             }
         }
 
@@ -87,52 +87,38 @@ public class CarryCasher : OtterBase
 
     private bool HandleFishDisplay(int facilityidx, FacilityComponent mainFacility)
     {
-        var fishFacility = CurStage.FindFacility(facilityidx + 100);
+        var fishFacility = CurStage.FindFacility(facilityidx - 100);
         if (fishFacility == null || mainFacility.IsMaxCountCheck()) return false;
 
-        var fishRoom = fishFacility.GetComponent<FishRoomComponent>();
-        if (fishRoom == null || fishFacility.GetFacilityData.CapacityCountProperty.Value <= 0) return false;
+        var fishRoom = mainFacility.GetComponent<FishRoomComponent>();
+        if (fishRoom == null || mainFacility.GetFacilityData.CapacityCountProperty.Value <= 0) return false;
 
-        EnqueueFishDisplayActions(fishRoom);
+        EnqueueFishDisplayActions(fishRoom , fishFacility);
 
         return true;
     }
 
 
-    private void EnqueueFishDisplayActions(FishRoomComponent fishRoom)
+    private void EnqueueFishDisplayActions(FishRoomComponent fishRoom , FacilityComponent targetdisplay)
     {
         System.Action moveToBucket = () =>
         {
-            SetDestination(fishRoom.GetBucketComponent.transform, null);
-            GameRoot.Instance.StartCoroutine(CheckWaitProductMax(NextWorkAction));
+            SetDestination(fishRoom.GetBucketComponent.transform, ()=> {
+                GameRoot.Instance.StartCoroutine(CheckWaitProductMax(NextWorkAction));
+            });
         };
         WorkActionQueue.Enqueue(moveToBucket);
 
+        var rackcomponent = targetdisplay.GetComponent<RackComponent>();
+
         System.Action moveToDisplay = () =>
         {
-            SetDestination(fishRoom.GetBucketComponent.transform, null);
+            SetDestination(rackcomponent.GetCarryCasherWaitTr(this.transform), () => {
+                PlayAnimation(OtterState.Idle, "idle" , true);
+            });
             GameRoot.Instance.StartCoroutine(CheckWaitProductNone(NextWorkAction));
         };
         WorkActionQueue.Enqueue(moveToDisplay);
-    }
-
-    private bool HandleFishing(FacilityComponent mainFacility)
-    {
-        if (mainFacility.IsMaxCountCheck()) return false;
-
-        var fishRoom = mainFacility.GetComponent<FishRoomComponent>();
-        
-      
-        System.Action moveTofishroom = () =>
-        {
-            SetDestination(fishRoom.GetCushionComponent.transform, ()=> { ChangeState(OtterState.Idle); });
-            GameRoot.Instance.StartCoroutine(CheckWaitFishingMax(fishRoom, NextWorkAction));
-        };
-
-        WorkActionQueue.Enqueue(moveTofishroom);
-
-
-        return true;
     }
 
     public void NextWorkAction()
@@ -160,7 +146,7 @@ public class CarryCasher : OtterBase
         }
     }
 
-    private float CheckDuration = 2f;
+    private float CheckDuration = 5f;
 
     private IEnumerator CheckWaitProductMax(System.Action nextaction)
     {
@@ -181,22 +167,6 @@ public class CarryCasher : OtterBase
         nextaction?.Invoke();
     }
 
-
-    private IEnumerator CheckWaitFishingMax(FishRoomComponent component , System.Action nextaction)
-    {
-        yield return new WaitUntil(() => component != null && component.IsMaxCountCheck());
-
-        nextaction?.Invoke();
-    }
-
-    void ReachProcess()
-    {
-        _isMoving = false;
-        PlayAnimation(OtterState.Idle , "idle", true);
-    }
-
-
-
     private IEnumerator CheckWaitProductNone(System.Action nextaction)
     {
         yield return new WaitUntil(() => FishComponentList.Count == 0);
@@ -206,5 +176,39 @@ public class CarryCasher : OtterBase
 
 
 
+    private void HandleEvent(Spine.TrackEntry trackEntry)
+    {
+        switch (trackEntry.Animation.Name)
+        {
+            case "fishingstart":
+                {
+                    PlayAnimation(OtterState.Fishing, "fishingidle", true);
+                }
+                break;
+            case "napstart":
+                {
+                    PlayAnimation(OtterState.Fishing, "napidle", true);
+                }
+                break;
+            case "napend":
+                {
+                    PlayAnimation(OtterState.Fishing, "fishingstart", true);
+                }
+                break;
+        }
+        AnimAction?.Invoke();
 
+        AnimAction = null;
+    }
+
+
+
+    private void OnDestroy()
+    {
+        // 콜백 해제
+        if (skeletonAnimation != null)
+        {
+            skeletonAnimation.AnimationState.End -= HandleEvent;
+        }
+    }
 }
