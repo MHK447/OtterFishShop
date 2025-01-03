@@ -12,26 +12,42 @@ public class CounterComponent : FacilityComponent
 
     private float checkoutdeltime = 0f;
 
+    private OtterBase CasherCounter;
+
     public override void Init()
     {
         base.Init();
         CounterConsumerList.Clear();
+
+        CasherCounter = InGameStage.FindCasher(CasherType.CounterCasher, FacilityData.FacilityIdx);
     }
+
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        if (InGameStage.FindCasher(CasherType.CounterCasher, FacilityData.FacilityIdx) != null) return;
+
 
         // 충돌한 오브젝트의 레이어를 확인합니다.
-        if (collision.gameObject.layer == LayerMask.NameToLayer("Player"))
+
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Player") || collision.gameObject.layer == LayerMask.NameToLayer("CarryCasher"))
         {
             checkoutdeltime = 0f;
+
+            Player = collision.transform.GetComponent<OtterBase>();
+
+            if (Player != null)
+                Player.CoolTimeActive(0f);
         }
     }
 
 
     private void OnCollisionExit2D(Collision2D collision)
     {
-        if (collision.gameObject.layer == LayerMask.NameToLayer("Player"))
+        if (InGameStage.FindCasher(CasherType.CounterCasher, FacilityData.FacilityIdx) != null) return;
+
+
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Player") || collision.gameObject.layer == LayerMask.NameToLayer("CarryCasher"))
         {
             if (Player != null)
             {
@@ -47,9 +63,15 @@ public class CounterComponent : FacilityComponent
 
     public override void Update()
     {
+        if (InGameStage == null) return;
+
         base.Update();
 
-        if(Player != null && CounterConsumerList.Count > 0)
+        if(CasherCounter == null)
+            CasherCounter = InGameStage.FindCasher(CasherType.CounterCasher, FacilityData.FacilityIdx);
+
+
+        if ((Player != null || CasherCounter != null) && CounterConsumerList.Count > 0)
         {
             var findconsumer = CounterConsumerList.Find(x => x.CurCounterOrder == 0 && x.IsArrivedCounter);
 
@@ -59,11 +81,21 @@ public class CounterComponent : FacilityComponent
 
                 var valuetime = checkoutdeltime / CheckOutConsumerTime;
 
-                Player.CoolTimeActive(valuetime);
+                if (CasherCounter != null)
+                {
+                    CasherCounter.CoolTimeActive(valuetime);
+                }
+                else
+                    Player.CoolTimeActive(valuetime);
 
                 if (checkoutdeltime >= CheckOutConsumerTime)
                 {
                     checkoutdeltime = 0f;
+
+                    if(CasherCounter != null)
+                        CasherCounter.CoolTimeActive(0f);
+                    else
+                        Player.CoolTimeActive(0f);
 
                     GameRoot.Instance.EffectSystem.MultiPlay<TextEffectMoney>(findconsumer.transform.position, (effect) =>
                     {

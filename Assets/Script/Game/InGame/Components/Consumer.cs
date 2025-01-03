@@ -83,7 +83,7 @@ public class Consumer : Chaser
 
         CarryStart(false);
         Stage = GameRoot.Instance.InGameSystem.GetInGame<InGameTycoon>().curInGameStage;
-        CounterComponent = Stage.FindFacility(GameRoot.Instance.InGameSystem.CounterIdx).GetComponent<CounterComponent>();
+        CounterComponent = Stage.GetCounterComponent;
 
         base.Init(idx);
 
@@ -189,7 +189,7 @@ public class Consumer : Chaser
                 break;
             case CurState.WaitProduct:
                 {
-                    var getfacility = Stage.FindFacility(facilityidx);
+                    var getfacility = Stage.GetOpenConsumerFacility();
 
                     if(getfacility != null)
                     {
@@ -205,7 +205,10 @@ public class Consumer : Chaser
     {
         if (FacilityTarget != null)
         {
-            Stage.FindFacility(facilityidx).ConsumerOrder -= 1;
+            var findfacility = FacilityTarget.GetComponent<FacilityComponent>();
+
+            if (findfacility != null)
+                findfacility.ConsumerOrder -= 1;
         }
 
         if (GameRoot.Instance.InGameSystem.CounterIdx == facilityidx)

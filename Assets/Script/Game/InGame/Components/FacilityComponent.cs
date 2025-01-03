@@ -10,7 +10,7 @@ public class FacilityComponent : MonoBehaviour
 {
     [SerializeField]
     protected BoxCollider2D Col;
-
+    
     [SerializeField]
     private List<GameObject> FacilityOpenList = new List<GameObject>();
 
@@ -160,7 +160,13 @@ public class FacilityComponent : MonoBehaviour
         return ConsumerWaitTr[order];
     }
 
+    public bool IsOpenFacility()
+    {
+        if (FacilityData == null) return false;
 
+
+        return FacilityData.IsOpen;
+    }
 
 
 
@@ -188,6 +194,23 @@ public class FacilityComponent : MonoBehaviour
         FacilityData.IsOpen = true;
         GameRoot.Instance.UserData.CurMode.StageData.NextFacilityOpenOrderProperty.Value += 1;
         Init();
+
+        var stageidx = GameRoot.Instance.UserData.CurMode.StageData.StageIdx;
+
+        var stageinfotd = Tables.Instance.GetTable<StageInfo>().GetData(stageidx);
+
+        if(stageinfotd != null)
+        {
+            if (stageinfotd.consumerfirst_idx == FacilityIdx)
+            {
+                var upgradevalue = GameRoot.Instance.UpgradeSystem.GetUpgradeValue(UpgradeSystem.UpgradeType.AddCustomer);
+
+                for (int i = 0; i < upgradevalue; ++i)
+                {
+                    InGameStage.CreateConsumer(1, InGameStage.GetStartWayPoint);
+                }
+            }
+        }
     }
 
     private void OnDestroy()

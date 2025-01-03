@@ -92,7 +92,7 @@ public class OtterBase : MonoBehaviour
         if (Progress == null) return;
 
         if(cooltimevalue > 0f && !Progress.gameObject.activeSelf)
-        {
+        {   
             ProjectUtility.SetActiveCheck(Progress.gameObject, true);
         }
 
@@ -316,7 +316,7 @@ public class OtterBase : MonoBehaviour
     }
 
 
-    void ReachProcess()
+    public void ReachProcess()
     {
         _isMoving = false;
         PlayAnimation(OtterState.Idle, "idle", true);

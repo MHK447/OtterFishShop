@@ -83,17 +83,19 @@ public class CarryCasher : OtterBase
 
         return false;
     }
-
+        
 
     private bool HandleFishDisplay(int facilityidx, FacilityComponent mainFacility)
     {
-        var fishFacility = CurStage.FindFacility(facilityidx - 100);
-        if (fishFacility == null || mainFacility.IsMaxCountCheck()) return false;
+        var rackfacility = CurStage.FindFacility(facilityidx - 100);
+        if (rackfacility == null) return false;
 
+        if (rackfacility.IsMaxCountCheck()) return false;
+        
         var fishRoom = mainFacility.GetComponent<FishRoomComponent>();
         if (fishRoom == null || mainFacility.GetFacilityData.CapacityCountProperty.Value <= 0) return false;
 
-        EnqueueFishDisplayActions(fishRoom , fishFacility);
+        EnqueueFishDisplayActions(fishRoom , rackfacility);
 
         return true;
     }
@@ -119,6 +121,13 @@ public class CarryCasher : OtterBase
             GameRoot.Instance.StartCoroutine(CheckWaitProductNone(NextWorkAction));
         };
         WorkActionQueue.Enqueue(moveToDisplay);
+
+        System.Action WaitToWork = () =>
+        {
+
+            PlayAnimation(OtterState.Wait, "idle", true);
+        };
+        WorkActionQueue.Enqueue(WaitToWork);
     }
 
     public void NextWorkAction()
@@ -169,8 +178,12 @@ public class CarryCasher : OtterBase
 
     private IEnumerator CheckWaitProductNone(System.Action nextaction)
     {
+        if (FishComponentList.Count == 0)
+        {
+            nextaction?.Invoke();
+            yield break;
+        }
         yield return new WaitUntil(() => FishComponentList.Count == 0);
-
         nextaction?.Invoke();
     }
 

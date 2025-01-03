@@ -34,6 +34,13 @@ namespace BanpoFri
 			get { return _start_consumer_count;}
 			set { _start_consumer_count = value;}
 		}
+		[SerializeField]
+		private int _consumerfirst_idx;
+		public int consumerfirst_idx
+		{
+			get { return _consumerfirst_idx;}
+			set { _consumerfirst_idx = value;}
+		}
 
     }
 

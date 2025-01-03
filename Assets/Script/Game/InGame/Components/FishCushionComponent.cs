@@ -46,10 +46,19 @@ public class FishCushionComponent : MonoBehaviour
     {
         if (FacilityData.CapacityCountProperty.Value >= CapacityMaxCount) return;
 
-        if (other.gameObject.layer == LayerMask.NameToLayer("Player") && InGameStage.FindCasher(CasherType.FishingCasher, FacilityData.FacilityIdx) != null) return;
 
+        var fishcasher = InGameStage.FindCasher(CasherType.FishingCasher, FacilityData.FacilityIdx);
+        if (fishcasher != null)
+        {
+            if(other.gameObject == fishcasher.gameObject)
+            {
+                IsOnEnter = true;
+            }
 
-        if (other.gameObject.layer == LayerMask.NameToLayer("Player") || other.gameObject.layer == LayerMask.NameToLayer("CarryCasher"))
+            return;
+        } 
+
+        if (other.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
             CurMoneyTime = 0f;
             IsOnEnter = true;
@@ -71,10 +80,10 @@ public class FishCushionComponent : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.gameObject.layer == LayerMask.NameToLayer("Player") && InGameStage.FindCasher(CasherType.FishingCasher, FacilityData.FacilityIdx) != null) return;
+        if (InGameStage.FindCasher(CasherType.FishingCasher, FacilityData.FacilityIdx) != null) return;
 
 
-        if (collision.gameObject.layer == LayerMask.NameToLayer("Player") || collision.gameObject.layer == LayerMask.NameToLayer("CarryCasher"))
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
             if (Target != null)
             {
@@ -89,7 +98,20 @@ public class FishCushionComponent : MonoBehaviour
 
     private void Update()
     {
-        if (Target == null) return;
+        if (Target == null)
+        {
+            var findcasher = InGameStage.FindCasher(CasherType.FishingCasher, FacilityData.FacilityIdx);
+
+            if(findcasher != null)
+            {
+                IsOnEnter = true;
+                Target = findcasher;
+            }
+            else
+            {
+                return;
+            }
+        }
 
         if (FacilityData == null) return;
 

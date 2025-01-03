@@ -88,7 +88,7 @@ public class FishCasher : OtterBase
     {
         SetDestination(FishRoomComponent.GetCushionComponent.transform, () => { ChangeState(OtterState.Idle); });
     }
-
+        
     private void OnDestroy()
     {
         disposables.Clear();

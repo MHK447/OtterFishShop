@@ -39,15 +39,46 @@ public class FacilitySystem
 
     public ConsumerMoveInfoData CreatePattern(int stageidx)
     {
-        var tdstagelist = Tables.Instance.GetTable<ConsumerMoveInfo>().DataList.ToList().FindAll(x=> x.stageidx == stageidx ); // facility 안열린것도 포함시키기 
+        var tdstagelist = Tables.Instance.GetTable<ConsumerMoveInfo>().DataList.ToList().FindAll(x=> x.stageidx == stageidx); // facility 안열린것도 포함시키기 
 
-        List<int> patternlist = new List<int>();
+        List<ConsumerMoveInfoData> patternlist = new List<ConsumerMoveInfoData>();
 
-        if(tdstagelist.Count > 0)
+        for (int i = 0; i < tdstagelist.Count; i++)
         {
-            var randvalue = Random.Range(0, tdstagelist.Count);
+            // 모든 시설이 조건을 만족하면 true, 하나라도 만족하지 않으면 false
+            bool allFound = true;
 
-            return tdstagelist[randvalue];
+            for (int j = 0; j < tdstagelist[i].facilityidx.Count; j++)
+            {
+                var finddata = GameRoot.Instance.InGameSystem.GetInGame<InGameTycoon>().curInGameStage.FindFacility(tdstagelist[i].facilityidx[j]);
+
+                if(finddata == null)
+                {
+                    allFound = false;
+                    break;
+                }
+
+                if (!finddata.IsOpenFacility())
+                {
+                    allFound = false;
+                    break;
+                }
+            }
+
+            // 모든 facilityidx가 조건을 만족했다면 patternlist에 추가
+            if (allFound)
+            {
+                patternlist.Add(tdstagelist[i]);
+            }
+        }
+
+
+        if(patternlist.Count > 0 )
+        {
+            var randvalue = Random.Range(0, patternlist.Count);
+
+
+            return patternlist[randvalue];
         }
 
         return null;

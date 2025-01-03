@@ -145,12 +145,20 @@ public class UpgradeSystem
                     var ingamestage = GameRoot.Instance.InGameSystem.GetInGame<InGameTycoon>();
                     var finddata = ingamestage.curInGameStage.ActiveCarryCasher(CasherType.CounterCasher);
 
-                    if (finddata != null)
-                    {
-                        finddata.transform.position = ProjectUtility.GetRandomPositionAroundTarget(ingamestage.GetPlayer.transform.position, 10f);
-                        ProjectUtility.SetActiveCheck(finddata.gameObject, true);
+                    var counterdata = finddata.GetComponent<CounterCasher>();
 
-                        finddata.Init();
+                    if (counterdata != null)
+                    {
+                        var stageidx = GameRoot.Instance.UserData.CurMode.StageData.StageIdx;
+
+                        var td = Tables.Instance.GetTable<UpgradeInfo>().GetData(new KeyValuePair<int, int>(stageidx, upgradeidx));
+
+                        if (td != null)
+                        {
+                            finddata.transform.position = ProjectUtility.GetRandomPositionAroundTarget(ingamestage.GetPlayer.transform.position, 10f);
+                            ProjectUtility.SetActiveCheck(finddata.gameObject, true);
+                            counterdata.Init();
+                        }
                     }
                 }
                 break;

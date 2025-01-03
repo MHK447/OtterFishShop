@@ -49,6 +49,11 @@ public class InGameStage : MonoBehaviour
     private List<FacilityComponent> FacilityList = new List<FacilityComponent>();
 
     [SerializeField]
+    private List<TrashCanComponent> TrashCanList = new List<TrashCanComponent>();
+
+    public Transform CounterCasherTr;
+
+    [SerializeField]
     private CounterComponent CounterComponent;
 
     public CounterComponent GetCounterComponent { get { return CounterComponent; } }
@@ -73,6 +78,7 @@ public class InGameStage : MonoBehaviour
         ConsumerPool.Init(ConsumerRef, this.transform, 10);
         CreatePoolCasher(10);
 
+        CounterComponent.Init();
 
 
         foreach (var facility in FacilityList)
@@ -80,25 +86,39 @@ public class InGameStage : MonoBehaviour
             facility.Init();
         }
 
-
-
+        foreach(var can in TrashCanList)
+        {
+            can.Init();
+        }
 
         foreach(var fishroom in FishRoomList)
         {
             fishroom.Init();
         }
 
+        var stageidx = GameRoot.Instance.UserData.CurMode.StageData.StageIdx;
 
-        GameRoot.Instance.WaitTimeAndCallback(2f, () => {
-            GameRoot.Instance.UpgradeSystem.StartUpgradeCheck();
+        var td = Tables.Instance.GetTable<StageInfo>().GetData(stageidx);
 
-            var upgradevalue = GameRoot.Instance.UpgradeSystem.GetUpgradeValue(UpgradeSystem.UpgradeType.AddCustomer);
+        var findfirstcomponent = FindFacility(td.consumerfirst_idx);
 
-            for (int i = 0; i < upgradevalue; ++i)
+
+
+        if (findfirstcomponent != null && findfirstcomponent.IsOpenFacility())
+        {
+            GameRoot.Instance.WaitTimeAndCallback(2f, () =>
             {
-                CreateConsumer(1, StartWayPointTrList[i]);
-            }
-        });
+                GameRoot.Instance.UpgradeSystem.StartUpgradeCheck();
+
+                var upgradevalue = GameRoot.Instance.UpgradeSystem.GetUpgradeValue(UpgradeSystem.UpgradeType.AddCustomer);
+
+                for (int i = 0; i < upgradevalue; ++i)
+                {
+                    CreateConsumer(1, StartWayPointTrList[i]);
+                }
+
+            });
+        }
     }
 
             
@@ -223,6 +243,16 @@ public class InGameStage : MonoBehaviour
                     }
                 }
                 break;
+            case CasherType.CounterCasher:
+                {
+                    var findcashers = activeCashers.Find(x => x.GetCasherIdx == (int)type && x.gameObject.activeSelf);
+
+                    if(findcashers != null)
+                    {
+                        casher = findcashers;
+                    }
+                }
+                break;
         }
 
         return casher;
@@ -241,7 +271,7 @@ public class InGameStage : MonoBehaviour
     }
 
 
-    public Transform GetFacilityConsumeTr(int facilityidx)
+    public Transform    GetFacilityConsumeTr(int facilityidx)
     {
         var finddata = FacilityList.Find(x => x.FacilityIdx == facilityidx);
 
@@ -251,6 +281,17 @@ public class InGameStage : MonoBehaviour
         }
 
         return null;
+    }
+
+    public FacilityComponent GetOpenConsumerFacility()
+    {
+        var finddatalist = FacilityList.FindAll(x => x.FacilityIdx > 0 && x.FacilityIdx < 100 && x.IsOpenFacility());
+
+        if (finddatalist.Count == 0) return null;
+
+        var randvalue = UnityEngine.Random.Range(0, finddatalist.Count);
+
+        return finddatalist[randvalue];
     }
 
 

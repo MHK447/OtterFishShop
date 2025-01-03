@@ -459,6 +459,7 @@ GameObject:
   - component: {fileID: 8780456542754236256}
   - component: {fileID: 7766539468124370395}
   - component: {fileID: 6873826400197395884}
+  - component: {fileID: 4107052194760007270}
   m_Layer: 0
   m_Name: Body
   m_TagString: Untagged
@@ -581,6 +582,22 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 3.04, y: 3.06}
   m_EdgeRadius: 0
+--- !u!114 &4107052194760007270
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4493200577734616128}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9809bf1345abc5648af68b3a82653f08, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_OverrideArea: 1
+  m_Area: 1
+  m_IgnoreFromBuild: 0
+  m_AffectedAgents: ffffffff
 --- !u!1 &4658970945291855305
 GameObject:
   m_ObjectHideFlags: 0
@@ -652,7 +669,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3717011814719939877}
-  - component: {fileID: 5224090373715935766}
   - component: {fileID: 7908702412931155243}
   - component: {fileID: 1432753668199333233}
   - component: {fileID: 5975872181203497205}
@@ -681,22 +697,6 @@ Transform:
   - {fileID: 1661486274419915952}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5224090373715935766
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5050118306871657271}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9809bf1345abc5648af68b3a82653f08, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_OverrideArea: 1
-  m_Area: 1
-  m_IgnoreFromBuild: 0
-  m_AffectedAgents: ffffffff
 --- !u!114 &7908702412931155243
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -709,7 +709,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40cebaaae328c4c76a1c0b5f306fb452, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Col: {fileID: 5975872181203497205}
+  Col: {fileID: 6873826400197395884}
   FacilityOpenList:
   - {fileID: 3274016105963839557}
   FacilityContentsObj: {fileID: 6374116184859796725}

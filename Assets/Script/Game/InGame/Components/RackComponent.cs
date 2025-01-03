@@ -20,12 +20,10 @@ public class RackComponent : FacilityComponent
 
     public List<FishComponent> GetFishComponentList { get { return FishComponentList; } }
 
-    private OtterBase Target;
-
-    private bool IsOnEnter = false;
+    private List<OtterBase> TargetOtterList = new List<OtterBase>();
 
     private float FishCarrydeltime = 0f;
-
+        
     private float FishCarryTime = 0.2f;
 
     private UI_AmountBubble AmountUI = null;
@@ -35,6 +33,8 @@ public class RackComponent : FacilityComponent
     public override void Init()
     {
         base.Init();
+
+        TargetOtterList.Clear();
 
         FacilityData = GameRoot.Instance.UserData.CurMode.StageData.FindFacilityData(FacilityIdx);
 
@@ -109,14 +109,18 @@ public class RackComponent : FacilityComponent
         base.OnTriggerEnter2D(collision);
 
         // 충돌한 오브젝트의 레이어를 확인합니다.
-        if ((collision.gameObject.layer == LayerMask.NameToLayer("Player") || collision.gameObject.layer == LayerMask.NameToLayer("CarryCasher")) && !IsMaxCountCheck())
+        if ((collision.gameObject.layer == LayerMask.NameToLayer("Player") || collision.gameObject.layer == LayerMask.NameToLayer("CarryCasher")))
         {
-            IsOnEnter = true;
             FishCarrydeltime = 0f;
             var getvalue = collision.gameObject.GetComponent<OtterBase>();
 
-            if (getvalue != null)
-                Target = getvalue;
+            if (getvalue != null && getvalue.GetFishComponentList.Count > 0)
+            {
+                if (!TargetOtterList.Contains(getvalue))
+                {
+                    TargetOtterList.Add(getvalue);
+                }
+            }
         }
 
     }
@@ -127,13 +131,15 @@ public class RackComponent : FacilityComponent
 
         if (collision.gameObject.layer == LayerMask.NameToLayer("Player") || collision.gameObject.layer == LayerMask.NameToLayer("CarryCasher"))
         {
-            if (Target != null)
-            {
-                Target.CoolTimeActive(0f);
-            }
+            var getvalue = collision.gameObject.GetComponent<OtterBase>();
 
-            Target = null;
-            IsOnEnter = false;
+            if(getvalue != null)
+            {
+                if(TargetOtterList.Contains(getvalue))
+                {
+                    TargetOtterList.Remove(getvalue);
+                }
+            }
         }
     }
 
@@ -142,46 +148,49 @@ public class RackComponent : FacilityComponent
     {
         base.Update();
 
-        if (Target == null) return;
+        if (TargetOtterList.Count == 0) return;
 
         if (FacilityData == null) return;
 
         if (IsMaxCountCheck()) return;
 
-        if (Target.IsIdle && Target.GetFishComponentList.Count > 0)
+        for (int i = TargetOtterList.Count -1; i >= 0; i--)
         {
-
-            if (IsOnEnter && !Target.IsFishing)
+            if (TargetOtterList[i].IsIdle && TargetOtterList[i].GetFishComponentList.Count > 0)
             {
-                FishCarrydeltime += Time.deltaTime;
-
-                if (FishCarrydeltime >= FishCarryTime)
+                if (!TargetOtterList[i].IsFishing)
                 {
-                    FishCarrydeltime = 0f;
+                    FishCarrydeltime += Time.deltaTime;
 
-                    var findfish = Target.GetFishComponentList.Last();
-
-                    if(findfish != null && findfish.GetFishIdx == FishIdx)
+                    if (FishCarrydeltime >= FishCarryTime)
                     {
-                        Target.RemoveFish(findfish);
-                        
+                        FishCarrydeltime = 0f;
 
-                        FacilityData.CapacityCountProperty.Value += 1;
+                        var findfish = TargetOtterList[i].GetFishComponentList.Last();
 
-                        findfish.FishInBucketAction(FishTrList[FishComponentList.Count], (fish)=> {
-                            fish.transform.SetParent(this.transform);
-                            FishComponentList.Add(findfish);
-                        }, 0.2f);
-
-                        if (Target.GetFishComponentList.Count == 0)
+                        if (findfish != null && findfish.GetFishIdx == FishIdx)
                         {
-                            Target.CarryStart(false);
-                            Target.PlayAnimation(OtterBase.OtterState.Idle, "idle", true);
-                        }
-                    }
+                            TargetOtterList[i].RemoveFish(findfish);
 
+
+                            FacilityData.CapacityCountProperty.Value += 1;
+
+                            findfish.FishInBucketAction(FishTrList[FishComponentList.Count], (fish) => {
+                                fish.transform.SetParent(this.transform);
+                                FishComponentList.Add(findfish);
+                            }, 0.2f);
+
+                            if (TargetOtterList[i].GetFishComponentList.Count == 0)
+                            {
+                                TargetOtterList[i].CarryStart(false);
+                                TargetOtterList[i].PlayAnimation(OtterBase.OtterState.Idle, "idle", true);
+                            }
+                        }
+
+                    }
                 }
             }
         }
+     
     }
 }
