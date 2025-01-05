@@ -26,7 +26,7 @@ public class UpgradeSystem
     {
         foreach(var upgradedata in GameRoot.Instance.UserData.CurMode.UpgradeGroupData.StageUpgradeCollectionList)
         {
-            if (upgradedata.IsBuyCheck)
+            if (upgradedata.IsBuyCheckProperty.Value)
             {
                 AddUpgradeData(upgradedata.UpgradeIdx, upgradedata.UpgradeType);
             } 
@@ -38,16 +38,17 @@ public class UpgradeSystem
     {
         float returnvalue = 0f;
 
+        var stageidx = GameRoot.Instance.UserData.CurMode.StageData.StageIdx;
 
-        if(type == UpgradeType.AddCustomer)
+        var upgradelist = GameRoot.Instance.UserData.CurMode.UpgradeGroupData.StageUpgradeCollectionList.ToList().FindAll(x => x.UpgradeType == (int)type && x.IsBuyCheckProperty.Value);
+
+        if (type == UpgradeType.AddCustomer)
         {
-            var stageidx = GameRoot.Instance.UserData.CurMode.StageData.StageIdx;
 
             var td = Tables.Instance.GetTable<StageInfo>().GetData(stageidx);
 
             if(td != null)
             {
-                var upgradelist = GameRoot.Instance.UserData.CurMode.UpgradeGroupData.StageUpgradeCollectionList.ToList().FindAll(x => x.UpgradeType == (int)type && x.IsBuyCheck);
 
 
                 foreach(var upgrade in upgradelist)
@@ -67,7 +68,15 @@ public class UpgradeSystem
         }
         else
         {
+            foreach (var upgrade in upgradelist)
+            {
+                var upgradetd = Tables.Instance.GetTable<UpgradeInfo>().GetData(new KeyValuePair<int, int>(stageidx, upgrade.UpgradeIdx));
 
+                if (upgradetd != null)
+                {
+                    returnvalue += upgradetd.value;
+                }
+            }
         }
 
         return returnvalue;
@@ -99,6 +108,9 @@ public class UpgradeSystem
                 }
                 break;
             case (int)UpgradeType.TransportStaffSpeedUp:
+                {
+
+                }
                 break;
             case (int)UpgradeType.AddCustomer:
                 break;

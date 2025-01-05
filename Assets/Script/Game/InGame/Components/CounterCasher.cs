@@ -13,7 +13,7 @@ public class CounterCasher : OtterBase
     {
         base.Init();
 
-        CurrentMoveSpeed = 4f;
+        CasherMoveSpeed = 4f;
 
         _navMeshAgent.updateRotation = false;
         _navMeshAgent.updateUpAxis = false;

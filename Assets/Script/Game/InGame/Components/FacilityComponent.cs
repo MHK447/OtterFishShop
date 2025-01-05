@@ -90,7 +90,6 @@ public class FacilityComponent : MonoBehaviour
             openorder.Subscribe(x => {
                 if(NewFacilityUI != null)
                 {
-
                     ProjectUtility.SetActiveCheck(FacilityContentsObj, !FacilityData.IsOpen
                                     && FacilityOpenOrder == openorder.Value);
 
@@ -138,8 +137,8 @@ public class FacilityComponent : MonoBehaviour
 
     public virtual Transform GetConsumerTr()
     {
-        ConsumerOrder += 1;
-        return ConsumerWaitTr[ConsumerOrder - 1];
+        var randvalue = Random.Range(0, ConsumerWaitTr.Count);
+        return ConsumerWaitTr[randvalue];
 
     }
 

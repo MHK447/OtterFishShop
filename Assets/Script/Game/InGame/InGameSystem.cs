@@ -35,6 +35,15 @@ public class InGameSystem
 
     CompositeDisposable disposables = new CompositeDisposable();
 
+
+    public float casher_move_speed = 0f;
+
+
+    public void Create()
+    {
+        casher_move_speed = Tables.Instance.GetTable<Define>().GetData("casher_move_speed").value / 100f;
+    }
+
     public T GetInGame<T>() where T : InGameMode
     {
         return CurInGame as T;

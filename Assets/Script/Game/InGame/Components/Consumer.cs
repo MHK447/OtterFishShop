@@ -76,16 +76,17 @@ public class Consumer : Chaser
 
     public override void Init(int idx)
     {
+        base.Init(idx);
+
         FacilityTarget = null;
         TargetRack = null;
         IsCounter = false;
         IsArrivedCounter = false;
+        CurFishComponentList.Clear();
 
         CarryStart(false);
         Stage = GameRoot.Instance.InGameSystem.GetInGame<InGameTycoon>().curInGameStage;
         CounterComponent = Stage.GetCounterComponent;
-
-        base.Init(idx);
 
         CurMissionCount = 0;
 
@@ -105,12 +106,22 @@ public class Consumer : Chaser
 
         CurGoalValue = CurMoveInfoData.count[CurMissionCount];
 
-        GameRoot.Instance.UISystem.LoadFloatingUI<ConsumerOrderUI>((orderui) => {
-            ConsumerOrderUI = orderui;
+        if (ConsumerOrderUI == null)
+        {
+            GameRoot.Instance.UISystem.LoadFloatingUI<ConsumerOrderUI>((orderui) =>
+            {
+                ConsumerOrderUI = orderui;
+                ProjectUtility.SetActiveCheck(ConsumerOrderUI.gameObject, true);
+                orderui.Init(OrderTr);
+                orderui.Set(this, CurMoveInfoData.facilityidx[CurMissionCount], 0, CurMoveInfoData.count[CurMissionCount]);
+            });
+        }
+        else
+        {
             ProjectUtility.SetActiveCheck(ConsumerOrderUI.gameObject, true);
-            orderui.Init(OrderTr);
-            orderui.Set(this, CurMoveInfoData.facilityidx[CurMissionCount], 0 , CurMoveInfoData.count[CurMissionCount]);
-        });
+            ConsumerOrderUI.SetImage(ConsumerOrderUI.ConsumerState.Food);
+            ConsumerOrderUI.Set(this, CurMoveInfoData.facilityidx[CurMissionCount], 0, CurMoveInfoData.count[CurMissionCount]);
+        }
 
         disposables.Clear();
 
@@ -232,6 +243,9 @@ public class Consumer : Chaser
         {
             //wait
         }
+
+        if(ConsumerOrderUI != null)
+            ConsumerOrderUI.SetFacilityImg(facilityidx);
     }
 
 
@@ -248,7 +262,7 @@ public class Consumer : Chaser
             {
                 if(TargetRack.GetFishComponentList.Count > 0)
                 {
-                    var target = TargetRack.GetFishComponentList.First();
+                    var target = TargetRack.GetFishComponentList.Last();
 
                     TargetRack.RemoveFish();
 
@@ -301,12 +315,19 @@ public class Consumer : Chaser
 
     public void OutCounterConsumer()
     {
+        foreach(var fish in CurFishComponentList)
+        {
+            fish.ClearObj();
+        }
+
+        CurFishComponentList.Clear();
         ProjectUtility.SetActiveCheck(ConsumerOrderUI.gameObject, false);
         SetDestination(Stage.GetMiddleEndTr , ()=> {
             SetDestination(Stage.GetEndTr , () => {
                 DataClear();
                 ProjectUtility.SetActiveCheck(this.gameObject, false);
                 OnEnd?.Invoke(true);
+                OnEnd = null;
             });
         });
 
@@ -334,6 +355,8 @@ public class Consumer : Chaser
             var consumertr = CounterComponent.GetConsumerTr(order);
 
             SetDestination(consumertr, moveendaction);
+
+            ConsumerOrderUI.SetImage(ConsumerOrderUI.ConsumerState.Pay);
         }
     }
 }

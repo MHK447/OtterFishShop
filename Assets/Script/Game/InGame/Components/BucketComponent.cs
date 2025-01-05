@@ -165,7 +165,7 @@ public class BucketComponent : MonoBehaviour
                 var floory = (FishPos_Y * (fishcount - 1));
 
                 int remainingFish = FishStackComponent.Count;
-
+                    
                 FacilityData.CapacityCountProperty.Value -= 1;
 
                 fishcomponent.FishInBucketAction(Target.GetFishCarryRoot.transform, (fish) =>

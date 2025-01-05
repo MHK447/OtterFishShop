@@ -66,7 +66,9 @@ public class OtterBase : MonoBehaviour
 
     public virtual void Init()
     {
-        
+
+        CasherMoveSpeed = GameRoot.Instance.InGameSystem.casher_move_speed;
+
         CurStage = GameRoot.Instance.InGameSystem.GetInGame<InGameTycoon>().curInGameStage;
 
         GameRoot.Instance.UISystem.LoadFloatingUI<CooltimeProgress>((_progress) => {
@@ -159,7 +161,7 @@ public class OtterBase : MonoBehaviour
 
     }
 
-    public void AddFish(FishComponent fish)
+    public virtual void AddFish(FishComponent fish)
     {
         FishComponentList.Add(fish);
         CarryStart(FishComponentList.Count > 0);
@@ -243,7 +245,7 @@ public class OtterBase : MonoBehaviour
 
     [SerializeField] protected NavMeshAgent _navMeshAgent;
 
-    protected float CurrentMoveSpeed = 4f;
+    protected float CasherMoveSpeed = 4f;
 
     WaitForSeconds _waitTick;
 
@@ -341,7 +343,7 @@ public class OtterBase : MonoBehaviour
                 PlayAnimation(OtterState.Move, animname, true);
 
                 transform.localScale = new Vector3(transform.position.x - currentWayPoint.x > 0 ? 1f : -1f, 1f, 1f);
-                transform.position = Vector2.MoveTowards(transform.position, currentWayPoint, Time.deltaTime * CurrentMoveSpeed);
+                transform.position = Vector2.MoveTowards(transform.position, currentWayPoint, Time.deltaTime * CasherMoveSpeed);
             }
 
             yield return _waitTick;

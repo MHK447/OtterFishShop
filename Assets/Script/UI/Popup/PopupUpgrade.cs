@@ -31,7 +31,7 @@ public class PopupUpgrade : UIBase
 
         foreach(var upgradedata in GameRoot.Instance.UserData.CurMode.UpgradeGroupData.StageUpgradeCollectionList)
         {
-            if (upgradedata.IsBuyCheck) continue;
+            if (upgradedata.IsBuyCheckProperty.Value) continue;
 
             var getobj = GetCachedObject().GetComponent<UpgradeComponent>();
 

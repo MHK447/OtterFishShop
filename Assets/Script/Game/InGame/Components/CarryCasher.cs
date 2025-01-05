@@ -5,7 +5,7 @@ using BanpoFri;
 using System.Linq;
 using UnityEngine.AI;
 using Spine.Unity;
-
+using UniRx;
 
 public class CarryCasher : OtterBase
 {
@@ -14,6 +14,8 @@ public class CarryCasher : OtterBase
     private int MaxProductCount = 5;
 
     private Queue<System.Action> WorkActionQueue = new Queue<System.Action>();
+
+    private CompositeDisposable disposables = new CompositeDisposable();
 
     public override void Init()
     {
@@ -36,6 +38,32 @@ public class CarryCasher : OtterBase
 
         // Event 콜백 등록
         skeletonAnimation.AnimationState.Complete += HandleEvent;
+
+        var buffvalue = GameRoot.Instance.UpgradeSystem.GetUpgradeValue(UpgradeSystem.UpgradeType.TransportStaffSpeedUp);
+
+        var getcalcvalue = ProjectUtility.PercentCalc(GameRoot.Instance.InGameSystem.casher_move_speed, buffvalue);
+
+
+        CasherMoveSpeed = GameRoot.Instance.InGameSystem.casher_move_speed + getcalcvalue;
+
+        var donebuylist = GameRoot.Instance.UserData.CurMode.UpgradeGroupData.StageUpgradeCollectionList.ToList().FindAll(x => x.IsBuyCheckProperty.Value == false);
+
+        disposables.Clear();
+
+        foreach (var donebuy in donebuylist)
+        {
+            donebuy.IsBuyCheckProperty.Subscribe(x => {
+                if (donebuy.UpgradeType == (int)UpgradeSystem.UpgradeType.TransportStaffSpeedUp)
+                {
+                    var buffvalue = GameRoot.Instance.UpgradeSystem.GetUpgradeValue(UpgradeSystem.UpgradeType.TransportStaffSpeedUp);
+
+                    var getcalcvalue = ProjectUtility.PercentCalc(GameRoot.Instance.InGameSystem.casher_move_speed, buffvalue);
+
+                    CasherMoveSpeed = GameRoot.Instance.InGameSystem.casher_move_speed + getcalcvalue;
+                }
+
+            }).AddTo(disposables);
+        }
     }
 
 
@@ -118,14 +146,22 @@ public class CarryCasher : OtterBase
             SetDestination(rackcomponent.GetCarryCasherWaitTr(this.transform), () => {
                 PlayAnimation(OtterState.Idle, "idle" , true);
             });
-            GameRoot.Instance.StartCoroutine(CheckWaitProductNone(NextWorkAction));
+            GameRoot.Instance.StartCoroutine(CheckWaitProductNone(NextWorkAction, rackcomponent));
         };
         WorkActionQueue.Enqueue(moveToDisplay);
 
         System.Action WaitToWork = () =>
         {
-
-            PlayAnimation(OtterState.Wait, "idle", true);
+            if(FishComponentList.Count > 0)
+            {
+                GoToTrashCan(() => {
+                    GameRoot.Instance.StartCoroutine(CheckWaitTrashCan(()=> {
+                        PlayAnimation(OtterState.Wait, "idle", true);
+                    }));
+                });
+            }
+            else
+                PlayAnimation(OtterState.Wait, "idle", true);
         };
         WorkActionQueue.Enqueue(WaitToWork);
     }
@@ -142,7 +178,7 @@ public class CarryCasher : OtterBase
 
     private void Update()
     {
-        if(CurState == OtterState.Wait)
+        if(CurState == OtterState.Wait || (CurState == OtterState.Idle && FishComponentList.Count == 0 && WorkActionQueue.Count == 0))
         {
             waitdeltime += Time.deltaTime;
 
@@ -153,6 +189,14 @@ public class CarryCasher : OtterBase
                 StartWork();
             }
         }
+    }
+
+
+    public void GoToTrashCan(System.Action endaction)
+    {
+        SetDestination(CurStage.GetTrashCanComponent.GetConsumerTr, () => {
+            endaction?.Invoke();
+        });
     }
 
     private float CheckDuration = 5f;
@@ -176,7 +220,20 @@ public class CarryCasher : OtterBase
         nextaction?.Invoke();
     }
 
-    private IEnumerator CheckWaitProductNone(System.Action nextaction)
+    private IEnumerator CheckWaitProductNone(System.Action nextaction , RackComponent rackComponent)
+    {
+        if (FishComponentList.Count == 0 || rackComponent.IsMaxCountCheck())
+        {
+            nextaction?.Invoke();
+            yield break;
+        }
+        yield return new WaitUntil(() => FishComponentList.Count == 0 || rackComponent.IsMaxCountCheck());
+        nextaction?.Invoke();
+    }
+
+
+
+    private IEnumerator CheckWaitTrashCan(System.Action nextaction)
     {
         if (FishComponentList.Count == 0)
         {
@@ -218,6 +275,7 @@ public class CarryCasher : OtterBase
 
     private void OnDestroy()
     {
+        disposables.Clear();
         // 콜백 해제
         if (skeletonAnimation != null)
         {

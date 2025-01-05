@@ -75,19 +75,19 @@ public class UpgradeData
 
 	public int StageIdx = 0; 
 
-	public bool IsBuyCheck = false;
+	public IReactiveProperty<bool> IsBuyCheckProperty =  new ReactiveProperty<bool>();
 
 	public UpgradeData(int upgradeidx , int upgradetype  , int stageidx  , bool isbuy)
     {
 		UpgradeIdx = upgradeidx;
 		UpgradeType = upgradetype;
 		StageIdx = stageidx;
-		IsBuyCheck = isbuy;
+		IsBuyCheckProperty.Value = isbuy;
     }
 
 	public void UpgradeGet()
     {
-		IsBuyCheck = true;
+		IsBuyCheckProperty.Value = true;
 
     }
 }

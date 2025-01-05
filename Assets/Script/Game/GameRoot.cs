@@ -39,6 +39,7 @@ public class GameRoot : Singleton<GameRoot>
 	public UpgradeSystem UpgradeSystem { get; private set; } = new UpgradeSystem();
 
 
+
 	public AdManager GetAdManager { get { return AdManager; } }
 
 	public GameObject UILock;
@@ -230,6 +231,8 @@ public class GameRoot : Singleton<GameRoot>
 		LoadComplete = true;
 
 		InitSystem();
+
+		InGameSystem.Create();
 
 
 		GameRoot.instance.WaitTimeAndCallback(0.5f, () => {

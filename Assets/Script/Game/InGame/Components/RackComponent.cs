@@ -16,9 +16,9 @@ public class RackComponent : FacilityComponent
     [SerializeField]
     private Transform AmountUITr;
 
-    private List<FishComponent> FishComponentList = new List<FishComponent>();
+    private IReactiveCollection<FishComponent> FishComponentList = new ReactiveCollection<FishComponent>();
 
-    public List<FishComponent> GetFishComponentList { get { return FishComponentList; } }
+    public List<FishComponent> GetFishComponentList { get { return FishComponentList.ToList(); } }
 
     private List<OtterBase> TargetOtterList = new List<OtterBase>();
 
@@ -47,13 +47,22 @@ public class RackComponent : FacilityComponent
             AmountUI.SetValue(FacilityData.CapacityCountProperty.Value);
         });
 
+        disposables.Clear();
 
-        FacilityData.CapacityCountProperty.Subscribe(x => {
+        FishComponentList.ObserveAdd().Subscribe(x => {
             if (AmountUI != null)
             {   
-                AmountUI.SetValue(x);
+                AmountUI.SetValue(FishComponentList.Count);
             }
         }).AddTo(disposables);
+
+        FishComponentList.ObserveRemove().Subscribe(x => {
+            if (AmountUI != null)
+            {
+                AmountUI.SetValue(FishComponentList.Count);
+            }
+        }).AddTo(disposables);
+
 
 
         GameRoot.Instance.StartCoroutine(WaitOneFrame());
@@ -79,7 +88,7 @@ public class RackComponent : FacilityComponent
 
     public void RemoveFish()
     {
-        var target = FishComponentList.First();
+        var target = FishComponentList.Last();
 
         FishComponentList.Remove(target);
 
@@ -143,6 +152,16 @@ public class RackComponent : FacilityComponent
         }
     }
 
+    private void OnDestroy()
+    {
+        disposables.Clear();
+    }
+
+    private void OnDisable()
+    {
+        disposables.Clear();
+    }
+
 
     public override void Update()
     {
@@ -171,7 +190,6 @@ public class RackComponent : FacilityComponent
                         if (findfish != null && findfish.GetFishIdx == FishIdx)
                         {
                             TargetOtterList[i].RemoveFish(findfish);
-
 
                             FacilityData.CapacityCountProperty.Value += 1;
 

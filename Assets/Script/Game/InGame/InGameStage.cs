@@ -49,12 +49,18 @@ public class InGameStage : MonoBehaviour
     private List<FacilityComponent> FacilityList = new List<FacilityComponent>();
 
     [SerializeField]
-    private List<TrashCanComponent> TrashCanList = new List<TrashCanComponent>();
+    private TrashCanComponent TrashCanComponent;
+
+    public TrashCanComponent GetTrashCanComponent { get { return TrashCanComponent; } }
+
+    [SerializeField]
+    private List<RackComponent> RackComponentList = new List<RackComponent>();
 
     public Transform CounterCasherTr;
 
     [SerializeField]
     private CounterComponent CounterComponent;
+
 
     public CounterComponent GetCounterComponent { get { return CounterComponent; } }
 
@@ -74,26 +80,23 @@ public class InGameStage : MonoBehaviour
     {
         IsLoadComplete = false;
         disposable.Clear();
-        FishPool.Init(FishRef, this.transform ,30);
-        ConsumerPool.Init(ConsumerRef, this.transform, 10);
+        FishPool.Init(FishRef, this.transform ,10);
+        ConsumerPool.Init(ConsumerRef, this.transform, 5);
         CreatePoolCasher(10);
+
 
         CounterComponent.Init();
 
-
-        foreach (var facility in FacilityList)
-        {
-            facility.Init();
-        }
-
-        foreach(var can in TrashCanList)
-        {
-            can.Init();
-        }
+        TrashCanComponent.Init();
 
         foreach(var fishroom in FishRoomList)
         {
             fishroom.Init();
+        }
+
+        foreach(var rackcomponent in RackComponentList)
+        {
+            rackcomponent.Init();
         }
 
         var stageidx = GameRoot.Instance.UserData.CurMode.StageData.StageIdx;
@@ -138,15 +141,17 @@ public class InGameStage : MonoBehaviour
     {
         FishPool.Get((obj) => {
             obj.transform.position = starttr.position;
+            obj.transform.rotation = Quaternion.identity;
+            obj.transform.localScale = Vector3.one;
+
             activeFishObjs.Add(obj);
             obj.OnEnd += (complete) => {
-
+                obj.transform.SetParent(this.transform);
                 FishPool.Return(obj);
                 activeFishObjs.Remove(obj);
             };
 
             obj.Set(fishidx , state);
-
             fishcallback?.Invoke(obj);
         });
     }

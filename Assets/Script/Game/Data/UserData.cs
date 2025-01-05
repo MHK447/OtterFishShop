@@ -160,7 +160,7 @@ public partial class UserDataSystem
 
 		foreach(var upgrade in mainData.UpgradeGroupData.StageUpgradeCollectionList)
         {
-			upgradedatas[dataIdx++] = BanpoFri.Data.UpgradeData.CreateUpgradeData(builder, upgrade.UpgradeIdx, upgrade.UpgradeType, upgrade.StageIdx, upgrade.IsBuyCheck);
+			upgradedatas[dataIdx++] = BanpoFri.Data.UpgradeData.CreateUpgradeData(builder, upgrade.UpgradeIdx, upgrade.UpgradeType, upgrade.StageIdx, upgrade.IsBuyCheckProperty.Value);
         }
 
 		var upgradedata = BanpoFri.Data.UserData.CreateUpgradedatasVector(builder, upgradedatas);

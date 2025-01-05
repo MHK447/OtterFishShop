@@ -124,6 +124,34 @@ public class ProjectUtility
 
     }
 
+
+    public static float PercentCalc(float value, float percent)
+    {
+        float returnvalue = 0f;
+
+        returnvalue = value * percent;
+
+
+        returnvalue = returnvalue / 100;
+
+        return returnvalue;
+    }
+
+
+    public static double PercentCalc(double value, double percent)
+    {
+        double returnvalue = 0f;
+
+        returnvalue = value * percent;
+
+
+        returnvalue = returnvalue / 100;
+
+        return returnvalue;
+    }
+
+
+
     public static int GetOutGameGachaGrade()
     {
         float total = 0;

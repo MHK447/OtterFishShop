@@ -32,8 +32,6 @@ public class FishCasher : OtterBase
     {
         base.Init();
 
-        CurrentMoveSpeed = 4f;
-
 
         _navMeshAgent.updateRotation = false;
         _navMeshAgent.updateUpAxis = false;
@@ -56,6 +54,8 @@ public class FishCasher : OtterBase
     {
         FacilityIdx = facilityidx;
 
+        CurState = OtterState.Sleep;
+
 
         var findfacility = CurStage.FindFacility(facilityidx);
 
@@ -65,14 +65,14 @@ public class FishCasher : OtterBase
 
             disposables.Clear();
 
-            FishRoomComponent.GetFacilityData.CapacityCountProperty.Subscribe(x => {
+            FishRoomComponent.GetFacilityData.CapacityCountProperty.SkipLatestValueOnSubscribe().Subscribe(x => {
                 if(FishRoomComponent.IsMaxCountCheck())
                 {
                     PlayAnimation(OtterState.Sleep, "napstart", false);
                 }
                 else
                 {
-                    skeletonAnimation.state.SetAnimation(0, "fishingidle", true);
+                    PlayAnimation(OtterState.Idle, "fishingidle", false);
                 }
 
             }).AddTo(disposables);
@@ -103,6 +103,10 @@ public class FishCasher : OtterBase
     private void OnDisable()
     {
         disposables.Clear();
+    }
+
+    public override void AddFish(FishComponent fish)
+    {
     }
 
 

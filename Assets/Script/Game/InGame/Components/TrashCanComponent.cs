@@ -17,6 +17,11 @@ public class TrashCanComponent : MonoBehaviour
     [SerializeField]
     private Transform FishTr;
 
+    [SerializeField]
+    private Transform ConsumerTr;
+
+    public Transform GetConsumerTr {  get { return ConsumerTr; } }
+
 
     public void Init()
     {

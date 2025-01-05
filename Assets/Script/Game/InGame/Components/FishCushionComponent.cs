@@ -133,7 +133,6 @@ public class FishCushionComponent : MonoBehaviour
         {
             CurMoneyTime += Time.deltaTime;
 
-
             var cooltimevalue = (float)CurMoneyTime / (float)TestTime;
 
             Target.CoolTimeActive(cooltimevalue);
