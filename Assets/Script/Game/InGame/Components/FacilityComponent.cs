@@ -55,6 +55,8 @@ public class FacilityComponent : MonoBehaviour
 
     protected InGameStage InGameStage;
 
+    protected int BaseCapacity = 0; 
+
     public virtual void Init()
     {
         moneydeltime = 0.1f;
@@ -73,7 +75,13 @@ public class FacilityComponent : MonoBehaviour
 
         var facilitytd = Tables.Instance.GetTable<FacilityInfo>().GetData(FacilityIdx);
 
-        CapacityMaxCount = facilitytd.start_capacity;
+        BaseCapacity = facilitytd.start_capacity;
+
+        var buffvalue = GameRoot.Instance.UpgradeSystem.GetUpgradeValue(UpgradeSystem.UpgradeType.ShelfCapacityUp,FacilityIdx);
+
+        CapacityMaxCount = BaseCapacity + (int)buffvalue;
+
+     
 
         if (!FacilityData.IsOpen)
         {
@@ -85,7 +93,6 @@ public class FacilityComponent : MonoBehaviour
 
             var openorder = GameRoot.Instance.UserData.CurMode.StageData.NextFacilityOpenOrderProperty;
 
-            disposables.Clear();
 
             openorder.Subscribe(x => {
                 if(NewFacilityUI != null)
@@ -97,7 +104,6 @@ public class FacilityComponent : MonoBehaviour
                         !FacilityData.IsOpen);
                 }
             }).AddTo(disposables);
-
 
             ProjectUtility.SetActiveCheck(FacilityContentsObj, !FacilityData.IsOpen
                             && FacilityOpenOrder == openorder.Value);

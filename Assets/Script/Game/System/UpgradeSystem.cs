@@ -34,7 +34,7 @@ public class UpgradeSystem
     }
 
 
-    public float GetUpgradeValue(UpgradeType type)
+    public float GetUpgradeValue(UpgradeType type , int value2 = -1)
     {
         float returnvalue = 0f;
 
@@ -72,7 +72,14 @@ public class UpgradeSystem
             {
                 var upgradetd = Tables.Instance.GetTable<UpgradeInfo>().GetData(new KeyValuePair<int, int>(stageidx, upgrade.UpgradeIdx));
 
-                if (upgradetd != null)
+                if(value2 > 0)
+                {
+                    if (upgradetd != null && value2 == upgradetd.value2)
+                    {
+                        returnvalue += upgradetd.value;
+                    }
+                }
+                else
                 {
                     returnvalue += upgradetd.value;
                 }

@@ -16,8 +16,6 @@ public class UI_AmountBubble : InGameFloatingUI
     [SerializeField]
     private Image SliderValue;
 
-    private int StartCapacity = 0; 
-
     public void Set(int facilityidx)
     {
         var td = Tables.Instance.GetTable<FacilityInfo>().GetData(facilityidx);
@@ -28,19 +26,17 @@ public class UI_AmountBubble : InGameFloatingUI
 
             int capacitycount = facilitydata == null ? 0 : facilitydata.CapacityCountProperty.Value;
 
-            StartCapacity = td.start_capacity;
-
             FacilityIconImg.sprite = Config.Instance.GetIngameImg(td.image);
             AmountCountText.text = $"{capacitycount}/{td.start_capacity}";
         }
     }
 
 
-    public void SetValue(int count)
+    public void SetValue(int count , int curmaxcapacity)
     {
-        AmountCountText.text = $"{count}/{StartCapacity}";
+        AmountCountText.text = $"{count}/{curmaxcapacity}";
         ProjectUtility.SetActiveCheck(this.gameObject, count > 0);
-        SliderValue.fillAmount = (float)count / (float)StartCapacity;
+        SliderValue.fillAmount = (float)count / (float)curmaxcapacity;
     }
 
 }

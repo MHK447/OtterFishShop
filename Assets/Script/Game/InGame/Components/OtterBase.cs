@@ -4,6 +4,8 @@ using UnityEngine;
 using Spine.Unity;
 using BanpoFri;
 using UnityEngine.AI;
+using System.Linq;
+using UniRx;
 
 public class OtterBase : MonoBehaviour
 {
@@ -64,6 +66,8 @@ public class OtterBase : MonoBehaviour
 
     protected System.Action AnimAction;
 
+    private CompositeDisposable disposables = new CompositeDisposable();
+
     public virtual void Init()
     {
 
@@ -78,6 +82,23 @@ public class OtterBase : MonoBehaviour
             Progress.SetValue(0);
         });
 
+        var donebuylist = GameRoot.Instance.UserData.CurMode.UpgradeGroupData.StageUpgradeCollectionList.ToList().FindAll(x => x.IsBuyCheckProperty.Value == false);
+
+        disposables.Clear();
+
+        foreach (var donebuy in donebuylist)
+        {
+            donebuy.IsBuyCheckProperty.Subscribe(x => {
+                if (donebuy.UpgradeType == (int)UpgradeSystem.UpgradeType.PlayerSpeedUp)
+                {
+                    var buffvalue = GameRoot.Instance.UpgradeSystem.GetUpgradeValue(UpgradeSystem.UpgradeType.PlayerSpeedUp);
+
+                    var getcalcvalue = ProjectUtility.PercentCalc(GameRoot.Instance.InGameSystem.casher_move_speed, buffvalue);
+
+                    PlayerSpeed = GameRoot.Instance.InGameSystem.casher_move_speed + getcalcvalue;
+                }
+            }).AddTo(disposables);
+        }
 
         GameRoot.Instance.EffectSystem.MultiPlay<TextEffectMax>(ProgressTr.transform.position, (effect) =>
         {

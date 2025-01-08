@@ -44,7 +44,7 @@ public class RackComponent : FacilityComponent
             ProjectUtility.SetActiveCheck(AmountUI.gameObject, FacilityData.CapacityCountProperty.Value > 0);
             AmountUI.Init(AmountUITr);
             AmountUI.Set(FacilityData.FacilityIdx);
-            AmountUI.SetValue(FacilityData.CapacityCountProperty.Value);
+            AmountUI.SetValue(FacilityData.CapacityCountProperty.Value , CapacityMaxCount);
         });
 
         disposables.Clear();
@@ -52,18 +52,42 @@ public class RackComponent : FacilityComponent
         FishComponentList.ObserveAdd().Subscribe(x => {
             if (AmountUI != null)
             {   
-                AmountUI.SetValue(FishComponentList.Count);
+                AmountUI.SetValue(FishComponentList.Count , CapacityMaxCount);
             }
         }).AddTo(disposables);
 
         FishComponentList.ObserveRemove().Subscribe(x => {
             if (AmountUI != null)
             {
-                AmountUI.SetValue(FishComponentList.Count);
+                AmountUI.SetValue(FishComponentList.Count , CapacityMaxCount);
             }
         }).AddTo(disposables);
 
 
+        var donebuylist = GameRoot.Instance.UserData.CurMode.UpgradeGroupData.StageUpgradeCollectionList.ToList().FindAll(x => x.IsBuyCheckProperty.Value == false);
+
+        foreach (var donebuy in donebuylist)
+        {
+            donebuy.IsBuyCheckProperty.Subscribe(x => {
+                if (donebuy.UpgradeType == (int)UpgradeSystem.UpgradeType.ShelfCapacityUp)
+                {
+                    var stageidx = GameRoot.Instance.UserData.CurMode.StageData.StageIdx;
+
+                    var upgradetd = Tables.Instance.GetTable<UpgradeInfo>().GetData(new KeyValuePair<int, int>(stageidx, donebuy.UpgradeIdx));
+
+                    if (upgradetd != null && upgradetd.value2 == FacilityIdx)
+                    {
+                        var buffvalue = GameRoot.Instance.UpgradeSystem.GetUpgradeValue(UpgradeSystem.UpgradeType.ShelfCapacityUp, FacilityIdx);
+
+                        CapacityMaxCount = BaseCapacity + (int)buffvalue;
+
+                        if(AmountUI != null)
+                            AmountUI.SetValue(FacilityData.CapacityCountProperty.Value, CapacityMaxCount);
+                    }
+                }
+
+            }).AddTo(disposables);
+        }
 
         GameRoot.Instance.StartCoroutine(WaitOneFrame());
     }
