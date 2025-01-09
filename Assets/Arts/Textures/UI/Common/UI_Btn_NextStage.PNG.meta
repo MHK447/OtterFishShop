@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: d3488fbbf55520b48afc9c2f01d55af3
+guid: 74e84ee7398df1748a41cd1c25450ce3
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 3229143713890691827
-    second: Ingame_Food_005_0
+      213: -5861698426342385835
+    second: "\uC77C\uB7EC\uC2A4\uD2B82 (21)_0"
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -126,13 +126,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Ingame_Food_005_0
+      name: "\uC77C\uB7EC\uC2A4\uD2B82 (21)_0"
       rect:
         serializedVersion: 2
-        x: 2
-        y: 3
-        width: 85
-        height: 53
+        x: 0
+        y: 0
+        width: 118
+        height: 98
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -140,8 +140,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 3fae32b591930dc20800000000000000
-      internalID: 3229143713890691827
+      spriteID: 557556d765017aea0800000000000000
+      internalID: -5861698426342385835
       vertices: []
       indices: 
       edges: []
@@ -156,7 +156,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      "\uC77C\uB7EC\uC2A4\uD2B82 (21)_0": -5861698426342385835
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

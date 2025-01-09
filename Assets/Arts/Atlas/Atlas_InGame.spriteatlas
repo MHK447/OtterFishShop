@@ -83,13 +83,16 @@ SpriteAtlas:
     - 368645222e108c54bae716f4cfccd9ac: 21300000
     - b3a812d2346614149894c07ad8d86bf8: 21300000
     - 4fe0ba132073ec84f8398053471f9d81: 21300000
+    - 660d42b33c4bbf14dbf23e4f955e90a3: 21300000
     - e15447e3ba35a53499eeb464dfc11b6d: 21300000
     - bdf0da751646e3144bba7e69b0cdcb1c: 21300000
     - 5dd990360fc9b2540906ea03809337bc: 21300000
-    - 5d80f46831457eb45a5878ac5161a0f6: 21300000
+    - d192b798f8936fa4ea96115363b8345a: 21300000
     - d3488fbbf55520b48afc9c2f01d55af3: 21300000
     - 6e52d23cec6adf94b946ec7cf846bbdf: 21300000
     - 93df819cbbaf5ed41adf97c40b3315c9: 21300000
+    - f019cedc801b3e14f8d42fadcc3d9ba5: 21300000
+    - 296f7a4d98a09e244b2fbb77b56af44e: 21300000
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
   - {fileID: 21300000, guid: e66092306b41f02499d2db5c2be2d6eb, type: 3}
@@ -98,13 +101,16 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 368645222e108c54bae716f4cfccd9ac, type: 3}
   - {fileID: 21300000, guid: b3a812d2346614149894c07ad8d86bf8, type: 3}
   - {fileID: 21300000, guid: 4fe0ba132073ec84f8398053471f9d81, type: 3}
+  - {fileID: 21300000, guid: 660d42b33c4bbf14dbf23e4f955e90a3, type: 3}
   - {fileID: 21300000, guid: e15447e3ba35a53499eeb464dfc11b6d, type: 3}
   - {fileID: 21300000, guid: bdf0da751646e3144bba7e69b0cdcb1c, type: 3}
   - {fileID: 21300000, guid: 5dd990360fc9b2540906ea03809337bc, type: 3}
-  - {fileID: 21300000, guid: 5d80f46831457eb45a5878ac5161a0f6, type: 3}
+  - {fileID: 21300000, guid: d192b798f8936fa4ea96115363b8345a, type: 3}
   - {fileID: 21300000, guid: d3488fbbf55520b48afc9c2f01d55af3, type: 3}
   - {fileID: 21300000, guid: 6e52d23cec6adf94b946ec7cf846bbdf, type: 3}
   - {fileID: 21300000, guid: 93df819cbbaf5ed41adf97c40b3315c9, type: 3}
+  - {fileID: 21300000, guid: f019cedc801b3e14f8d42fadcc3d9ba5, type: 3}
+  - {fileID: 21300000, guid: 296f7a4d98a09e244b2fbb77b56af44e, type: 3}
   m_PackedSpriteNamesToIndex:
   - Ingame_Food_001
   - Icon_PayHeart
@@ -112,13 +118,16 @@ SpriteAtlas:
   - Coin
   - Icon_Repair_Color
   - Ingame_Food_004
+  - Ingame_Food_006
   - Gem
   - Ingame_Food_003
   - Icon_Trouble
-  - Icon_Upgrade_ConsumerAdd
+  - Ingame_Food_008
   - Ingame_Food_005
   - Ingame_Food_002
   - Icon_Repair_Gray
+  - Ingame_Food_009
+  - Ingame_Food_007
   m_RenderDataMap: {}
   m_Tag: Atlas_InGame
   m_IsVariant: 0
