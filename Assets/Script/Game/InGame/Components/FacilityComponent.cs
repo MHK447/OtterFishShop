@@ -151,7 +151,7 @@ public class FacilityComponent : MonoBehaviour
     
 
 
-    public bool IsMaxCountCheck()
+    public virtual bool IsMaxCountCheck()
     {
         if (FacilityData == null) return false;
 

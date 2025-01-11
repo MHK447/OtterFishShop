@@ -38,6 +38,7 @@ public class RackComponent : FacilityComponent
 
         FacilityData = GameRoot.Instance.UserData.CurMode.StageData.FindFacilityData(FacilityIdx);
 
+        FacilityData.CapacityCountProperty.Value = 0;
 
         GameRoot.Instance.UISystem.LoadFloatingUI<UI_AmountBubble>((_progress) => {
             AmountUI = _progress;
@@ -89,25 +90,7 @@ public class RackComponent : FacilityComponent
             }).AddTo(disposables);
         }
 
-        GameRoot.Instance.StartCoroutine(WaitOneFrame());
-    }
-
-
-    public IEnumerator WaitOneFrame()
-    {
-        yield return new WaitForSeconds(1f);
-
-        for (int i = 0; i < FacilityData.CapacityCountProperty.Value; ++i)
-        {
-            InGameStage.CreateFish(this.transform, 1, FishComponent.State.Rack, (fish) => {
-                fish.FishInBucketAction(FishTrList[i], (fish) => {
-                    fish.transform.SetParent(this.transform);
-                    FishComponentList.Add(fish);
-                }, 0f);
-            });
-        }
-
-
+        //GameRoot.Instance.StartCoroutine(WaitOneFrame());
     }
 
     public void RemoveFish()

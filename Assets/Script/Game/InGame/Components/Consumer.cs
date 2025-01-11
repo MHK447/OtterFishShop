@@ -200,7 +200,7 @@ public class Consumer : Chaser
                 break;
             case CurState.WaitProduct:
                 {
-                    var getfacility = Stage.GetOpenConsumerFacility();
+                    var getfacility = Stage.FindFacility(facilityidx);
 
                     if(getfacility != null)
                     {

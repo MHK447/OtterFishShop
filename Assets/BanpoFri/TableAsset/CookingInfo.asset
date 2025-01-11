@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1597fd8953e9c4e6d9d1d1368170944f, type: 3}
+  m_Name: CookingInfo
+  m_EditorClassIdentifier: 
+  mFirstKey:
+  - 1001
+  - 1002
+  mSecondKey: []
+  mDataList:
+  - _cookingidx: 1001
+    _material_idxs: 0100000002000000
+    _material_max_count: 5
+    _Food_idx: 3
+  - _cookingidx: 1002
+    _material_idxs: 0100000002000000
+    _material_max_count: 5
+    _Food_idx: 4

@@ -15653,7 +15653,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 960745299540407919, guid: ef347e2cec179a84095225182ca827cc, type: 3}
       propertyPath: m_Name
-      value: Rack_003
+      value: CookMachine
       objectReference: {fileID: 0}
     - target: {fileID: 2366242634038820061, guid: ef347e2cec179a84095225182ca827cc, type: 3}
       propertyPath: m_Mesh
@@ -15698,6 +15698,14 @@ PrefabInstance:
     - target: {fileID: 4772769529073543831, guid: ef347e2cec179a84095225182ca827cc, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6884829981719908217, guid: ef347e2cec179a84095225182ca827cc, type: 3}
+      propertyPath: CookIdx
+      value: 1001
+      objectReference: {fileID: 0}
+    - target: {fileID: 6884829981719908217, guid: ef347e2cec179a84095225182ca827cc, type: 3}
+      propertyPath: FacilityIdx
+      value: 1001
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

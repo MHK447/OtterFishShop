@@ -41,6 +41,13 @@ namespace BanpoFri
 			get { return _start_capacity;}
 			set { _start_capacity = value;}
 		}
+		[SerializeField]
+		private int _value_1;
+		public int value_1
+		{
+			get { return _value_1;}
+			set { _value_1 = value;}
+		}
 
     }
 

@@ -25,6 +25,8 @@ public class FishCushionComponent : MonoBehaviour
 
     private int CapacityMaxCount = 0;
 
+    private int FishIdx = 0;
+
     public void Init(FacilityData facility)
     {
         FacilityData = facility;
@@ -35,6 +37,7 @@ public class FishCushionComponent : MonoBehaviour
 
         if(td != null)
         {
+            FishIdx = td.value_1;
             CapacityMaxCount = td.start_capacity;
         }
 
@@ -141,7 +144,7 @@ public class FishCushionComponent : MonoBehaviour
             {
                 CurMoneyTime = 0f;
 
-                InGameStage.CreateFish(Target.GetFishTr, 1, FishComponent.State.Bucket, StartFishAction);
+                InGameStage.CreateFish(Target.GetFishTr, FishIdx, FishComponent.State.Bucket, StartFishAction);
 
             }
         }

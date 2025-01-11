@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
+using BanpoFri;
 
 public class FishComponent : MonoBehaviour
 {
@@ -38,6 +39,13 @@ public class FishComponent : MonoBehaviour
 
         FishIdx = fishidx;
         CurState = startstate;
+
+        var td = Tables.Instance.GetTable<FishInfo>().GetData(FishIdx);
+
+        if(td != null)
+        {
+            FishIcon.sprite = Config.Instance.GetIngameImg(td.icon);
+        }
     }
 
     public void FishInBucketAction(Transform tr, System.Action<FishComponent> fishaction = null, float time = 1f, float ypos = 0f)

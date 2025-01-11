@@ -195,6 +195,14 @@ public class OtterBase : MonoBehaviour
 
         TextEffectMaxCheck();
 
+        var fishcount = GetFishComponentList.Count;
+
+        var floory = (0.15f * (fishcount - 1));
+
+        fish.FishInBucketAction(GetFishCarryRoot.transform, (fish) =>
+        {
+            fish.transform.SetParent(GetFishCarryRoot);
+        }, 0.25f, floory);
     }
 
 

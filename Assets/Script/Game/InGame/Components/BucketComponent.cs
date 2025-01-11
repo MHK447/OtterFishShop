@@ -38,7 +38,9 @@ public class BucketComponent : MonoBehaviour
 
     private CompositeDisposable disposables = new CompositeDisposable();
 
-    private int CapacityMaxCount = 0; 
+    private int CapacityMaxCount = 0;
+
+    private int FishIdx = 0;
 
     public void Init(FacilityData facility)
     {
@@ -51,6 +53,7 @@ public class BucketComponent : MonoBehaviour
 
         if(td != null)
         {
+            FishIdx = td.value_1;
             CapacityMaxCount = td.start_capacity;
         }
 
@@ -88,7 +91,7 @@ public class BucketComponent : MonoBehaviour
         {
             var posy = FishPos_Y * (i + 1);
 
-            InGameStage.CreateFish(this.transform, 1, FishComponent.State.Bucket, (fish) => {
+            InGameStage.CreateFish(this.transform, FishIdx, FishComponent.State.Bucket, (fish) => {
                 fish.FishInBucketAction(this.transform, (fish) => {
                     FishStackComponent.Push(fish);
                 }, 0f, posy);
@@ -160,18 +163,7 @@ public class BucketComponent : MonoBehaviour
 
                 Target.AddFish(fishcomponent);
 
-                var fishcount = Target.GetFishComponentList.Count;
-
-                var floory = (FishPos_Y * (fishcount - 1));
-
-                int remainingFish = FishStackComponent.Count;
-                    
                 FacilityData.CapacityCountProperty.Value -= 1;
-
-                fishcomponent.FishInBucketAction(Target.GetFishCarryRoot.transform, (fish) =>
-                {
-                    fish.transform.SetParent(Target.GetFishCarryRoot);
-                }, 0.25f, floory);
             }
         }
     }

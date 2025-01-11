@@ -28,15 +28,15 @@ public class ConsumerOrderUI : InGameFloatingUI
 
     private Consumer Consumer;
 
-    private int MissionIdx = 0;
+    private int Facilityidx = 0;
 
     private int MaxCount = 0; 
 
-    public void Set(Consumer targetconsumer , int missionidx , int count  , int maxcount)
+    public void Set(Consumer targetconsumer , int facilityidx , int count  , int maxcount)
     {
         Consumer = targetconsumer;
 
-        MissionIdx = missionidx;
+        Facilityidx = facilityidx;
 
         MaxCount = maxcount;
 
@@ -44,11 +44,18 @@ public class ConsumerOrderUI : InGameFloatingUI
 
         SliderValue.fillAmount = 0f;
 
-        SetImage(ConsumerOrderUI.ConsumerState.Food);
+        SetFacilityImg(facilityidx);
     }
 
     public void SetFacilityImg(int facilityidx)
     {
+        var facilitytd = Tables.Instance.GetTable<FacilityInfo>().GetData(facilityidx);
+
+        if (facilitytd != null)
+        {
+            OrderImg.sprite = Config.Instance.GetIngameImg(facilitytd.image);
+        }
+
 
         if (facilityidx > 0 && facilityidx < 100) //기본 물품대 
         {
