@@ -34,6 +34,13 @@ namespace BanpoFri
 			get { return _Food_idx;}
 			set { _Food_idx = value;}
 		}
+		[SerializeField]
+		private int _break_count;
+		public int break_count
+		{
+			get { return _break_count;}
+			set { _break_count = value;}
+		}
 
     }
 

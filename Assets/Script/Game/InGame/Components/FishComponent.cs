@@ -12,6 +12,7 @@ public class FishComponent : MonoBehaviour
         None,
         Bucket,
         Rack,
+        Cook,
     }
 
     public System.Action<bool> OnEnd = null;

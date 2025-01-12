@@ -54,7 +54,7 @@ MonoBehaviour:
     _facilityidx: 2
   - _stageidx: 1
     _openorder: 5
-    _facilityidx: 3
+    _facilityidx: 1001
   - _stageidx: 2
     _openorder: 0
     _facilityidx: 1000

@@ -10,6 +10,7 @@ public class CookedComponent : FacilityComponent
 {
     public enum State
     {
+        None,
         Working,
         Break,
         Idle,
@@ -29,7 +30,7 @@ public class CookedComponent : FacilityComponent
 
     private Queue<FishComponent> FoodComponetQueue = new Queue<FishComponent>();
 
-    private State CurState = State.Idle;
+    private State CurState = State.None;
 
     private int MaterialMaxCount = 0;
 
@@ -43,13 +44,21 @@ public class CookedComponent : FacilityComponent
 
     private float FishCarrydeltime = 0f;
 
-    private float cookdeltime = 0f;
+    private float movematerialdeltime = 0f;
 
-    private int FoodIdx = 0; 
+    private int FoodIdx = 0;
+
+    private int CurBreakCount = 0;
+
+    private int MaxBreakCount = 0;
+
+    private bool IsCookStart = false;
 
     public override void Init()
     {
         base.Init();
+
+        IsCookStart = false;
 
         FoodComponetQueue.Clear();
 
@@ -57,6 +66,8 @@ public class CookedComponent : FacilityComponent
 
         if(td != null)
         {
+            MaxBreakCount = td.break_count;
+
             ChangeState(State.Idle);
 
             MaterialMaxCount = td.material_max_count;
@@ -74,7 +85,6 @@ public class CookedComponent : FacilityComponent
                 Progress.Init(ProgressTr);
                 Progress.SetValue(0);
             });
-
         }
     }
 
@@ -146,8 +156,16 @@ public class CookedComponent : FacilityComponent
 
         if (collision.gameObject.layer == LayerMask.NameToLayer("Player") || collision.gameObject.layer == LayerMask.NameToLayer("CarryCasher"))
         {
-            cookdeltime = 0f;
+            movematerialdeltime = 0f;
             var getvalue = collision.GetComponent<OtterBase>();
+
+            if(getvalue != null)
+            {
+                if (CurState == State.Break)
+                {
+                    ChangeState(State.Idle);
+                }
+            }
 
             if (getvalue != null && getvalue.GetFishComponentList.Count > 0)
             {
@@ -178,7 +196,7 @@ public class CookedComponent : FacilityComponent
 
         if (collision.gameObject.layer == LayerMask.NameToLayer("Player") || collision.gameObject.layer == LayerMask.NameToLayer("CarryCasher"))
         {
-            cookdeltime = 0f;
+            movematerialdeltime = 0f;
             var getvalue = collision.GetComponent<OtterBase>();
 
             if (getvalue != null && getvalue.GetFishComponentList.Count > 0)
@@ -242,11 +260,11 @@ public class CookedComponent : FacilityComponent
 
                         if(finddata != null)
                         {
-                            cookdeltime += Time.deltaTime;
+                            movematerialdeltime += Time.deltaTime;
 
-                            if(cookdeltime > 0.4f)
+                            if(movematerialdeltime > 0.4f)
                             {
-                                cookdeltime = 0f;
+                                movematerialdeltime = 0f;
 
                                 CasherOtterList[i].RemoveFish(findfish);
 
@@ -265,19 +283,72 @@ public class CookedComponent : FacilityComponent
 
     public void ProduceFood()
     {
-        if (IsMaxCountCheck()) return;
-
-        if (!MaterialAllCountCheck()) return;
-
-        // 음식을 만들기
-
-        InGameStage.CreateFish(FoodTrList[FoodComponetQueue.Count], FoodIdx, FishComponent.State.Bucket, FoodCreateComplete);
-
-        foreach(var material in CookedMaterialList)
+        if (CurState == State.Break)
         {
-            material.RemoveMaterial();
+            return;
         }
 
+        if (IsMaxCountCheck())
+        {
+            if (IsCookStart)
+                ChangeState(State.Idle);
+
+            return;
+        }
+
+        if (!MaterialAllCountCheck())
+        {
+            if (IsCookStart)
+                ChangeState(State.Idle);
+
+            return;
+        }
+
+        if(!IsCookStart)
+        {
+            IsCookStart = true;
+            ChangeState(State.Working);
+        }
+
+        Cookeddeltime += Time.deltaTime;
+
+        var cooltimevalue = Cookeddeltime / 1.5f;
+
+        CoolTimeActive(cooltimevalue);
+
+        if (Cookeddeltime > 1.5f)
+        {
+            Cookeddeltime = 0f;
+
+            CoolTimeActive(0f);
+
+            CurBreakCount += 1;
+
+            if(CurBreakCount >= MaxBreakCount)
+            {
+                GameRoot.Instance.WaitTimeAndCallback(2f, () =>
+                {
+                    BreakMachine();
+                });
+            }
+
+            InGameStage.CreateFish(FoodTrList[FoodComponetQueue.Count], FoodIdx, FishComponent.State.Cook, FoodCreateComplete);
+
+            foreach (var material in CookedMaterialList)
+            {
+                material.RemoveMaterial();
+            }
+        }
+    }
+
+    public void BreakMachine()
+    {
+
+        ChangeState(State.Break);
+        CurBreakCount = 0;
+        Cookeddeltime = 0f;
+        CoolTimeActive(0f);
+        IsCookStart = false;
     }
 
     public void FoodCreateComplete(FishComponent fish)
@@ -311,6 +382,7 @@ public class CookedComponent : FacilityComponent
 
         CheckFoodMoveOtter();
         CheckMaterialMoveOtter();
+        ProduceFood();
     }
 
 

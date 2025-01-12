@@ -56,6 +56,9 @@ public class InGameStage : MonoBehaviour
     [SerializeField]
     private List<RackComponent> RackComponentList = new List<RackComponent>();
 
+    [SerializeField]
+    private List<CookedComponent> CookComponentList = new List<CookedComponent>();
+
     public Transform CounterCasherTr;
 
     [SerializeField]
@@ -97,6 +100,11 @@ public class InGameStage : MonoBehaviour
         foreach(var rackcomponent in RackComponentList)
         {
             rackcomponent.Init();
+        }
+
+        foreach(var cook in CookComponentList)
+        {
+            cook.Init();
         }
 
         var stageidx = GameRoot.Instance.UserData.CurMode.StageData.StageIdx;

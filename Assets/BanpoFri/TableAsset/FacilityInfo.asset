@@ -20,6 +20,8 @@ MonoBehaviour:
   - 101
   - 102
   - 103
+  - 1001
+  - 1002
   mSecondKey: []
   mDataList:
   - _facilityidx: 1
@@ -64,3 +66,15 @@ MonoBehaviour:
     _initial_count: 5
     _start_capacity: 10
     _value_1: 3
+  - _facilityidx: 1001
+    _image: Ingame_Food_003
+    _facility_type: 4
+    _initial_count: 5
+    _start_capacity: 5
+    _value_1: -1
+  - _facilityidx: 1002
+    _image: Ingame_Food_004
+    _facility_type: 4
+    _initial_count: 5
+    _start_capacity: 4
+    _value_1: -1

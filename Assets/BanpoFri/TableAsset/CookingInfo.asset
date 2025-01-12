@@ -18,10 +18,12 @@ MonoBehaviour:
   mSecondKey: []
   mDataList:
   - _cookingidx: 1001
-    _material_idxs: 0100000002000000
+    _material_idxs: 01000000
     _material_max_count: 5
     _Food_idx: 3
+    _break_count: 3
   - _cookingidx: 1002
     _material_idxs: 0100000002000000
     _material_max_count: 5
     _Food_idx: 4
+    _break_count: 3
