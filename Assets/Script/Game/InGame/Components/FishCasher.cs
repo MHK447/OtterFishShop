@@ -86,7 +86,16 @@ public class FishCasher : OtterBase
 
     public void StartWork()
     {
-        SetDestination(FishRoomComponent.GetCushionComponent.transform, () => { ChangeState(OtterState.Idle); });
+        SetDestination(FishRoomComponent.GetCushionComponent.transform, () => {
+            if (FishRoomComponent.IsMaxCountCheck())
+            {
+                PlayAnimation(OtterState.Sleep, "napstart", false);
+            }
+            else
+            {
+                PlayAnimation(OtterState.Idle, "fishingidle", false);
+            }
+        });
     }
         
     private void OnDestroy()

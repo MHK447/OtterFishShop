@@ -97,21 +97,20 @@ public class CounterComponent : FacilityComponent
                     else
                         Player.CoolTimeActive(0f);
 
+
                     GameRoot.Instance.EffectSystem.MultiPlay<TextEffectMoney>(findconsumer.transform.position, (effect) =>
                     {
                         effect.SetAutoRemove(true, 1.5f);
                         effect.SetText(100);
                         GameRoot.Instance.UserData.SetReward((int)Config.RewardType.Currency, (int)Config.CurrencyID.Money, 100);
-
-
-                        var findconsumer = CounterConsumerList.Find(x => x.CurCounterOrder == 0);
-
-                        if (findconsumer != null)
-                        {
-                            findconsumer.OutCounterConsumer();
-                            CounterConsumerList.Remove(findconsumer);
-                        }
                     });
+
+
+                    if (findconsumer != null)
+                    {
+                        findconsumer.OutCounterConsumer();
+                        CounterConsumerList.Remove(findconsumer);
+                    }
                 }
             }
         }

@@ -199,7 +199,7 @@ public class CookedComponent : FacilityComponent
             movematerialdeltime = 0f;
             var getvalue = collision.GetComponent<OtterBase>();
 
-            if (getvalue != null && getvalue.GetFishComponentList.Count > 0)
+            if (getvalue != null)
             {
                 if (CasherOtterList.Contains(getvalue))
                 {
@@ -273,6 +273,11 @@ public class CookedComponent : FacilityComponent
                                 }, 0.2f);
 
                                 finddata.AddMaterial(findfish);
+
+                                if (CasherOtterList[i].GetFishComponentList.Count == 0)
+                                {
+                                    CasherOtterList[i].CarryEnd();
+                                }
                             }
                         }
                     }

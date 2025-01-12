@@ -205,6 +205,13 @@ public class OtterBase : MonoBehaviour
         }, 0.25f, floory);
     }
 
+    public void CarryEnd()
+    {
+        CarryStart(false);
+        ChangeState(OtterBase.OtterState.Wait);
+        PlayAnimation(OtterBase.OtterState.Idle, "idle", true);
+    }
+
 
     public void RemoveFish(FishComponent fish)
     {

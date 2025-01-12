@@ -86,6 +86,11 @@ public class TrashCanComponent : MonoBehaviour
                     }, 0.2f);
 
                     OtterList[i].RemoveFish(findfish);
+
+                    if(OtterList[i].GetFishComponentList.Count == 0)
+                    {
+                        OtterList[i].CarryEnd();
+                    }
                 }
             }
         }

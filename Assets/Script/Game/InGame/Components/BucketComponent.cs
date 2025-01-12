@@ -94,8 +94,15 @@ public class BucketComponent : MonoBehaviour
             InGameStage.CreateFish(this.transform, FishIdx, FishComponent.State.Bucket, (fish) => {
                 fish.FishInBucketAction(this.transform, (fish) => {
                     FishStackComponent.Push(fish);
+
+                    if (CountUI != null)
+                    {
+                        CountUI.Init(fish.transform);
+                    }
                 }, 0f, posy);
             });
+
+            
         }
 
     }

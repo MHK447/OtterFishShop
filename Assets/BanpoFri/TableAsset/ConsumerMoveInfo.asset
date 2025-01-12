@@ -24,6 +24,7 @@ MonoBehaviour:
   - 1
   - 1
   - 1
+  - 1
   mSecondKey:
   - 1
   - 2
@@ -33,9 +34,10 @@ MonoBehaviour:
   - 6
   - 7
   - 8
-  - 9
-  - 10
-  - 11
+  - 12
+  - 13
+  - 14
+  - 15
   mDataList:
   - _stageidx: 1
     _order: 1
@@ -70,14 +72,18 @@ MonoBehaviour:
     _facilityidx: 02000000e8030000
     _count: 01000000ffffffff
   - _stageidx: 1
-    _order: 9
-    _facilityidx: 03000000e8030000
-    _count: 0500000002000000
+    _order: 12
+    _facilityidx: 02000000e8030000
+    _count: 01000000ffffffff
   - _stageidx: 1
-    _order: 10
+    _order: 13
     _facilityidx: 03000000e8030000
-    _count: 0300000002000000
+    _count: 03000000ffffffff
   - _stageidx: 1
-    _order: 11
+    _order: 14
     _facilityidx: 03000000e8030000
-    _count: 0100000002000000
+    _count: 02000000ffffffff
+  - _stageidx: 1
+    _order: 15
+    _facilityidx: 03000000e8030000
+    _count: 01000000ffffffff

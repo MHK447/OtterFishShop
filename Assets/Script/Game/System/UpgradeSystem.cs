@@ -120,6 +120,10 @@ public class UpgradeSystem
                 }
                 break;
             case (int)UpgradeType.AddCustomer:
+                {
+                    var ingamestage = GameRoot.Instance.InGameSystem.GetInGame<InGameTycoon>();
+                    ingamestage.curInGameStage.CreateConsumer(1, ingamestage.curInGameStage.GetStartWayPoint);
+                }
                 break;
             case (int)UpgradeType.PlayerSpeedUp:
                 break;

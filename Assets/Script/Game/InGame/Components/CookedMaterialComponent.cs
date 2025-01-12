@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+ 
 
 public class CookedMaterialComponent : MonoBehaviour
 {
@@ -35,6 +36,7 @@ public class CookedMaterialComponent : MonoBehaviour
             MaterialTextCountUI.Init(MaterialCountTr);
             MaterialTextCountUI.SetText(FishComponentList.Count, MaxCount);
         });
+
     }
 
     public Transform GetCurFishTr()
@@ -52,6 +54,11 @@ public class CookedMaterialComponent : MonoBehaviour
         FishComponentList.Add(fish);
 
         MaterialTextCountUI.SetText(FishComponentList.Count, MaxCount);
+
+        ProjectUtility.SetActiveCheck(MaterialTextCountUI.gameObject, FishComponentList.Count > 0);
+
+        if (FishComponentList.Count > 0)
+            MaterialTextCountUI.Init(FishTrList[FishComponentList.Count - 1]);
     }
 
         public void RemoveMaterial()
@@ -65,5 +72,10 @@ public class CookedMaterialComponent : MonoBehaviour
         lastfish.ClearObj();
 
         MaterialTextCountUI.SetText(FishComponentList.Count, MaxCount);
+
+        ProjectUtility.SetActiveCheck(MaterialTextCountUI.gameObject, FishComponentList.Count > 0);
+
+        if (FishComponentList.Count > 0)
+            MaterialTextCountUI.Init(FishTrList[FishComponentList.Count - 1]);
     }
 }

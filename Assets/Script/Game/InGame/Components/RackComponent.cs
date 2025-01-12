@@ -207,8 +207,7 @@ public class RackComponent : FacilityComponent
 
                             if (TargetOtterList[i].GetFishComponentList.Count == 0)
                             {
-                                TargetOtterList[i].CarryStart(false);
-                                TargetOtterList[i].PlayAnimation(OtterBase.OtterState.Idle, "idle", true);
+                                TargetOtterList[i].CarryEnd();
                             }
                         }
 
