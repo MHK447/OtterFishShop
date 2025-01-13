@@ -17,6 +17,9 @@ public class CarryCasher : OtterBase
 
     private CompositeDisposable disposables = new CompositeDisposable();
 
+    private float sleepdeltime = 0f;
+
+
     public override void Init()
     {
         base.Init();
@@ -176,9 +179,11 @@ public class CarryCasher : OtterBase
         }
     }
 
-    private void Update()
+    public void StartWorkCheck()
     {
-        if(CurState == OtterState.Wait || (CurState == OtterState.Idle && FishComponentList.Count == 0 && WorkActionQueue.Count == 0))
+        if (CurState == OtterState.Sleep || CurState == OtterState.SleepMove) return;
+
+        if (CurState == OtterState.Wait || (CurState == OtterState.Idle && FishComponentList.Count == 0 && WorkActionQueue.Count == 0))
         {
             waitdeltime += Time.deltaTime;
 
@@ -191,6 +196,27 @@ public class CarryCasher : OtterBase
         }
     }
 
+    private void Update()
+    {
+        StartWorkCheck();
+
+
+        sleepdeltime += Time.deltaTime;
+
+
+        if (sleepdeltime >= GameRoot.Instance.InGameSystem.carry_sleep_time)
+        {
+            if (CurState != OtterState.Sleep && CurState != OtterState.SleepMove && FishComponentList.Count == 0)
+            {
+                WorkActionQueue.Clear();
+                sleepdeltime = 0f;
+                ChangeState(OtterState.SleepMove);
+                SetDestination(CurStage.CarrySleepTr, () => {
+                    PlayAnimation(OtterState.Sleep, "napstart", false);
+                });
+            }
+        }
+    }
 
     public void GoToTrashCan(System.Action endaction)
     {
@@ -257,12 +283,12 @@ public class CarryCasher : OtterBase
                 break;
             case "napstart":
                 {
-                    PlayAnimation(OtterState.Fishing, "napidle", true);
+                    skeletonAnimation.state.SetAnimation(0, "napidle", true);
                 }
                 break;
             case "napend":
                 {
-                    PlayAnimation(OtterState.Fishing, "fishingstart", true);
+                    PlayAnimation(OtterState.Idle, "idle", true);
                 }
                 break;
         }
@@ -271,6 +297,20 @@ public class CarryCasher : OtterBase
         AnimAction = null;
     }
 
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(CurState == OtterState.Sleep)
+        {
+            if(collision.gameObject.layer == LayerMask.NameToLayer("Player"))
+            {
+                sleepdeltime = 0f;
+
+                skeletonAnimation.state.SetAnimation(0, "napend", false);
+            }
+        }
+        
+    }
 
 
     private void OnDestroy()

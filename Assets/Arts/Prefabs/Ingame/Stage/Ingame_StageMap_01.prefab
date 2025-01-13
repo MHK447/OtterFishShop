@@ -10808,6 +10808,7 @@ Transform:
   - {fileID: 8791110746551232034}
   - {fileID: 6703524339857725778}
   - {fileID: 2225764269960876008}
+  - {fileID: 2064116789949129513}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &5313027281338084638
@@ -10858,6 +10859,7 @@ MonoBehaviour:
   - {fileID: 6817729354757124974}
   CounterCasherTr: {fileID: 1044619182421044098}
   CounterComponent: {fileID: 8768835646318829370}
+  CarrySleepTr: {fileID: 2064116789949129513}
 --- !u!1 &6957064912369941707
 GameObject:
   m_ObjectHideFlags: 0
@@ -13255,6 +13257,37 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &7960706718200067133
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2064116789949129513}
+  m_Layer: 0
+  m_Name: SleepTr
+  m_TagString: Untagged
+  m_Icon: {fileID: 1206586993520771344, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2064116789949129513
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7960706718200067133}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.65, y: 3.01, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8754972489758214775}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7980982178494875071
 GameObject:
   m_ObjectHideFlags: 0

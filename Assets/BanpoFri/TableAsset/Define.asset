@@ -14,7 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mFirstKey:
   - casher_move_speed
+  - carry_sleep_time
   mSecondKey: []
   mDataList:
   - _index: casher_move_speed
     _value: 400
+  - _index: carry_sleep_time
+    _value: 10

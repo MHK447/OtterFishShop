@@ -64,6 +64,7 @@ public class InGameStage : MonoBehaviour
     [SerializeField]
     private CounterComponent CounterComponent;
 
+    public Transform CarrySleepTr;
 
     public CounterComponent GetCounterComponent { get { return CounterComponent; } }
 

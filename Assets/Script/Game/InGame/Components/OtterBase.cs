@@ -18,6 +18,7 @@ public class OtterBase : MonoBehaviour
         Wait,
         Sleep,
         Work,
+        SleepMove,
     }
 
     protected OtterState CurState = OtterState.Idle;
@@ -299,7 +300,7 @@ public class OtterBase : MonoBehaviour
     public void SetDestination(Transform destination, System.Action arrivedaction)
     {
         TargetTr = destination;
-
+        
         _isMoving = true;
 
         if (((Vector2)transform.position - (Vector2)destination.position).magnitude < 0.1f)
@@ -386,8 +387,8 @@ public class OtterBase : MonoBehaviour
         }
 
         _currentMoveProcess = null;
-        arrivedaction?.Invoke();
         ReachProcess();
+        arrivedaction?.Invoke();
 
         yield break;
     }
