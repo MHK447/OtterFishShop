@@ -138,7 +138,6 @@ public class RackComponent : FacilityComponent
                 }
             }
         }
-
     }
 
     public override void OnTriggerExit2D(Collider2D collision)

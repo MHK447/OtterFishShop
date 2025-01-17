@@ -73,6 +73,7 @@ public class FacilityComponent : MonoBehaviour
 
         ProjectUtility.SetActiveCheck(FacilityContentsObj, false);
 
+
         var facilitytd = Tables.Instance.GetTable<FacilityInfo>().GetData(FacilityIdx);
 
         BaseCapacity = facilitytd.start_capacity;

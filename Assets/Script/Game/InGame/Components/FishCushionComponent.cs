@@ -101,6 +101,8 @@ public class FishCushionComponent : MonoBehaviour
 
     private void Update()
     {
+        if (FacilityData == null) return;
+
         if (Target == null)
         {
             var findcasher = InGameStage.FindCasher(CasherType.FishingCasher, FacilityData.FacilityIdx);
