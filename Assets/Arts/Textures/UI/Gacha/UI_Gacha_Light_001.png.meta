@@ -1,10 +1,13 @@
 fileFormatVersion: 2
-guid: c225aa34120939e45adcdbb52be962f9
+guid: 617cd4d9c3e94ca4c839794d00296d3a
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -7956821293454097264
-    second: UI_Gacha_BagBody_001_0
+      213: 277298120382160191
+    second: UI_Gacha_Light_001_0
+  - first:
+      213: -9141419568523337258
+    second: UI_Gacha_Light_001_1
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -126,13 +129,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: UI_Gacha_BagBody_001_0
+      name: UI_Gacha_Light_001_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 529
-        height: 354
+        width: 485
+        height: 484
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -140,8 +143,29 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 094876ec031b39190800000000000000
-      internalID: -7956821293454097264
+      spriteID: f3d134adb2929d300800000000000000
+      internalID: 277298120382160191
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_Gacha_Light_001_1
+      rect:
+        serializedVersion: 2
+        x: 235
+        y: 478
+        width: 9
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6d1ac53f557232180800000000000000
+      internalID: -9141419568523337258
       vertices: []
       indices: 
       edges: []
@@ -156,8 +180,7 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable:
-      UI_Gacha_BagBody_001_0: -7956821293454097264
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

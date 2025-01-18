@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: c225aa34120939e45adcdbb52be962f9
+guid: 5ac9a3795956fe444bd0186d910e5824
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -7956821293454097264
-    second: UI_Gacha_BagBody_001_0
+      213: -5391073974127633865
+    second: UI_Gacha_Light_001 1_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -49,8 +49,8 @@ TextureImporter:
   spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
-  alignment: 0
-  spritePivot: {x: 0.5, y: 0.5}
+  alignment: 9
+  spritePivot: {x: 0.4938271, y: 0.018518467}
   spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
@@ -126,22 +126,22 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: UI_Gacha_BagBody_001_0
+      name: UI_Gacha_Light_001 1_0
       rect:
         serializedVersion: 2
-        x: 0
+        x: 116
         y: 0
-        width: 529
-        height: 354
+        width: 68
+        height: 300
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 094876ec031b39190800000000000000
-      internalID: -7956821293454097264
+      spriteID: 73ad44e98ce0f25b0800000000000000
+      internalID: -5391073974127633865
       vertices: []
       indices: 
       edges: []
@@ -150,14 +150,14 @@ TextureImporter:
     physicsShape: []
     bones: []
     spriteID: 5e97eb03825dee720800000000000000
-    internalID: 0
+    internalID: 1537655665
     vertices: []
     indices: 
     edges: []
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      UI_Gacha_BagBody_001_0: -7956821293454097264
+      UI_Gacha_Light_001 1_0: -5391073974127633865
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

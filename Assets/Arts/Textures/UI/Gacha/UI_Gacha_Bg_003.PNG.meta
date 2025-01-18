@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 58d7ade6536fb134895c8bbec13271cb
+guid: 4aebe472ace016543aa78000a87d2153
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -4234145591959369750
-    second: UI_Gacha_BagEntrance _000_0
+      213: -7224607335118320206
+    second: UI_Gacha_Bg_003_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -52,7 +52,7 @@ TextureImporter:
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 100
-  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteBorder: {x: 482, y: 0, z: 0, w: 183}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
   alphaIsTransparency: 1
@@ -126,22 +126,22 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: UI_Gacha_BagEntrance _000_0
+      name: UI_Gacha_Bg_003_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 277
-        height: 414
+        width: 488
+        height: 187
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: ae7c9ff740b4d35c0800000000000000
-      internalID: -4234145591959369750
+      spriteID: 2bd479408e90dbb90800000000000000
+      internalID: -7224607335118320206
       vertices: []
       indices: 
       edges: []
@@ -150,14 +150,14 @@ TextureImporter:
     physicsShape: []
     bones: []
     spriteID: 5e97eb03825dee720800000000000000
-    internalID: 0
+    internalID: 1537655665
     vertices: []
     indices: 
     edges: []
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      UI_Gacha_BagEntrance _000_0: -4234145591959369750
+      UI_Gacha_Bg_003_0: -7224607335118320206
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
