@@ -156,7 +156,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      UI_Gacha_Seagull_BWing_000_0: -8372061119142442997
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

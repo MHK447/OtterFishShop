@@ -156,7 +156,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      UI_Gacha_Seagull_Mouth_001_0: 3835782062071237438
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

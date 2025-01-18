@@ -156,7 +156,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      UI_Gacha_Seagull_Sweat_0: 3734014721532698176
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

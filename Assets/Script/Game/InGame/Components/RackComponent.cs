@@ -42,11 +42,11 @@ public class RackComponent : FacilityComponent
 
         GameRoot.Instance.UISystem.LoadFloatingUI<UI_AmountBubble>((_progress) => {
             AmountUI = _progress;
-            ProjectUtility.SetActiveCheck(AmountUI.gameObject, true);
+            ProjectUtility.SetActiveCheck(AmountUI.gameObject, FacilityData.IsOpen);
             //ProjectUtility.SetActiveCheck(AmountUI.gameObject, FacilityData.CapacityCountProperty.Value > 0);
             AmountUI.Init(AmountUITr);
             AmountUI.Set(FacilityData.FacilityIdx);
-            AmountUI.SetValue(FacilityData.CapacityCountProperty.Value , CapacityMaxCount);
+            AmountUI.SetValue(FacilityData.CapacityCountProperty.Value,CapacityMaxCount);
         });
 
         disposables.Clear();
@@ -91,7 +91,9 @@ public class RackComponent : FacilityComponent
             }).AddTo(disposables);
         }
 
-        //GameRoot.Instance.StartCoroutine(WaitOneFrame());
+        if(AmountUI != null)
+            ProjectUtility.SetActiveCheck(AmountUI.gameObject, FacilityData.IsOpen);
+
     }
 
     public void RemoveFish()
