@@ -38,13 +38,16 @@ public class InGameSystem
 
     public float casher_move_speed = 0f;
     public float carry_sleep_time = 0f;
-
+    public int player_start_carry_count = 0;
+    public int carry_casher_count = 0; 
 
 
     public void Create()
     {
         casher_move_speed = Tables.Instance.GetTable<Define>().GetData("casher_move_speed").value / 100f;
         carry_sleep_time = Tables.Instance.GetTable<Define>().GetData("carry_sleep_time").value;
+        player_start_carry_count = Tables.Instance.GetTable<Define>().GetData("player_start_carry_count").value;
+        carry_casher_count = Tables.Instance.GetTable<Define>().GetData("carry_casher_count").value;
     }
 
     public T GetInGame<T>() where T : InGameMode

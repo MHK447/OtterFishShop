@@ -97,12 +97,13 @@ public class CounterComponent : FacilityComponent
                     else
                         Player.CoolTimeActive(0f);
 
-
                     GameRoot.Instance.EffectSystem.MultiPlay<TextEffectMoney>(findconsumer.transform.position, (effect) =>
                     {
+                        int reward = findconsumer.CheckRevenue();
+
                         effect.SetAutoRemove(true, 1.5f);
-                        effect.SetText(100);
-                        GameRoot.Instance.UserData.SetReward((int)Config.RewardType.Currency, (int)Config.CurrencyID.Money, 100);
+                        effect.SetText(reward);
+                        GameRoot.Instance.UserData.SetReward((int)Config.RewardType.Currency, (int)Config.CurrencyID.Money, reward);
                     });
 
 
@@ -127,6 +128,8 @@ public class CounterComponent : FacilityComponent
 
         return null;
     }
+
+
 
     public Transform GetEmptyConsumerTr()
     {

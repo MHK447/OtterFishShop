@@ -21,6 +21,12 @@ public class OtterBase : MonoBehaviour
         SleepMove,
     }
 
+    public enum OtterType
+    {
+        Player,
+        CarryCasher,
+    }
+
     protected OtterState CurState = OtterState.Idle;
 
     public bool IsIdle { get { return CurState == OtterState.Idle || CurState == OtterState.Wait; } }
@@ -28,6 +34,9 @@ public class OtterBase : MonoBehaviour
     public bool IsMove { get { return CurState == OtterState.Move; } }
 
     public bool IsFishing { get { return CurState == OtterState.Fishing; } }
+
+    [SerializeField]
+    private OtterType CurUnitType;
 
     [SerializeField]
     private float PlayerSpeed = 1f;
@@ -69,9 +78,11 @@ public class OtterBase : MonoBehaviour
 
     private CompositeDisposable disposables = new CompositeDisposable();
 
+    protected int StartCarryCount = 0;
+
+
     public virtual void Init()
     {
-
         CasherMoveSpeed = GameRoot.Instance.InGameSystem.casher_move_speed;
 
         CurStage = GameRoot.Instance.InGameSystem.GetInGame<InGameTycoon>().curInGameStage;
@@ -87,6 +98,8 @@ public class OtterBase : MonoBehaviour
 
         disposables.Clear();
 
+        SetCapacity();
+
         foreach (var donebuy in donebuylist)
         {
             donebuy.IsBuyCheckProperty.Subscribe(x => {
@@ -97,6 +110,11 @@ public class OtterBase : MonoBehaviour
                     var getcalcvalue = ProjectUtility.PercentCalc(GameRoot.Instance.InGameSystem.casher_move_speed, buffvalue);
 
                     PlayerSpeed = GameRoot.Instance.InGameSystem.casher_move_speed + getcalcvalue;
+                }
+                else if (donebuy.UpgradeType == (int)UpgradeSystem.UpgradeType.PlayerCapacityUp
+                || donebuy.UpgradeType == (int)UpgradeSystem.UpgradeType.TransportStaffCapacityUp)
+                {
+                    SetCapacity();
                 }
             }).AddTo(disposables);
         }
@@ -111,6 +129,23 @@ public class OtterBase : MonoBehaviour
     }
 
 
+    public void SetCapacity()
+    {
+        if(CurUnitType == OtterType.Player)
+        {
+            var buffvalue = GameRoot.Instance.UpgradeSystem.GetUpgradeValue(UpgradeSystem.UpgradeType.PlayerCapacityUp); ;
+
+            StartCarryCount = GameRoot.Instance.InGameSystem.player_start_carry_count + (int)buffvalue;
+        }
+        else if(CurUnitType == OtterType.CarryCasher)
+        {
+            var buffvalue = GameRoot.Instance.UpgradeSystem.GetUpgradeValue(UpgradeSystem.UpgradeType.TransportStaffCapacityUp); ;
+
+            StartCarryCount = GameRoot.Instance.InGameSystem.carry_casher_count + (int)buffvalue;
+        }
+    }
+
+     
     public void CoolTimeActive(float cooltimevalue)
     {
         if (Progress == null) return;
@@ -143,7 +178,6 @@ public class OtterBase : MonoBehaviour
         {
             ProjectUtility.SetActiveCheck(Progress.gameObject, isactive);
         }
-
     }
 
 
@@ -189,7 +223,7 @@ public class OtterBase : MonoBehaviour
         CarryStart(FishComponentList.Count > 0);
 
 
-        if (FishComponentList.Count >= 5)
+        if (FishComponentList.Count >= StartCarryCount)
         {
             ChangeState(OtterState.Idle);
         }
@@ -223,12 +257,12 @@ public class OtterBase : MonoBehaviour
     public void TextEffectMaxCheck()
     {
         if(TextEffectMax != null)
-        ProjectUtility.SetActiveCheck(TextEffectMax.gameObject, FishComponentList.Count >= 5);
+        ProjectUtility.SetActiveCheck(TextEffectMax.gameObject, FishComponentList.Count >= StartCarryCount);
     }
 
     public bool IsMaxFishCheck()
     {
-        return FishComponentList.Count >= 5;
+        return FishComponentList.Count >= StartCarryCount;
     }
 
 

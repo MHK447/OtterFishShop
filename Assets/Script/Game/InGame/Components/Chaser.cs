@@ -11,7 +11,7 @@ public class Chaser : MonoBehaviour
     [SerializeField] private NavMeshAgent _navMeshAgent;
 
     [SerializeField]
-    private SkeletonAnimation skeletonAnimation;
+    protected SkeletonAnimation skeletonAnimation;
 
     List<Vector2> _wayPoints = new List<Vector2>();
 

@@ -25,23 +25,28 @@ MonoBehaviour:
     _stage_name: name_test_1
     _start_consumer_count: 1
     _consumerfirst_idx: 1
+    _revenue_buff_profit: 100
   - _stageidx: 2
     _seedmoney_value: 100
     _stage_name: name_test_2
     _start_consumer_count: 1
     _consumerfirst_idx: 1
+    _revenue_buff_profit: 150
   - _stageidx: 3
     _seedmoney_value: 100
     _stage_name: name_test_3
     _start_consumer_count: 1
     _consumerfirst_idx: 1
+    _revenue_buff_profit: 200
   - _stageidx: 4
     _seedmoney_value: 100
     _stage_name: name_test_4
     _start_consumer_count: 1
     _consumerfirst_idx: 1
+    _revenue_buff_profit: 250
   - _stageidx: 5
     _seedmoney_value: 100
     _stage_name: name_test_5
     _start_consumer_count: 1
     _consumerfirst_idx: 1
+    _revenue_buff_profit: 300

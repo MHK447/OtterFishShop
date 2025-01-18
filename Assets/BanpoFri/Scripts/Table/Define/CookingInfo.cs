@@ -41,6 +41,13 @@ namespace BanpoFri
 			get { return _break_count;}
 			set { _break_count = value;}
 		}
+		[SerializeField]
+		private int _cooking_cooltime;
+		public int cooking_cooltime
+		{
+			get { return _cooking_cooltime;}
+			set { _cooking_cooltime = value;}
+		}
 
     }
 

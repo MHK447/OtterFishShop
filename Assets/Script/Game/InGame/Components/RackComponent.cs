@@ -42,7 +42,8 @@ public class RackComponent : FacilityComponent
 
         GameRoot.Instance.UISystem.LoadFloatingUI<UI_AmountBubble>((_progress) => {
             AmountUI = _progress;
-            ProjectUtility.SetActiveCheck(AmountUI.gameObject, FacilityData.CapacityCountProperty.Value > 0);
+            ProjectUtility.SetActiveCheck(AmountUI.gameObject, true);
+            //ProjectUtility.SetActiveCheck(AmountUI.gameObject, FacilityData.CapacityCountProperty.Value > 0);
             AmountUI.Init(AmountUITr);
             AmountUI.Set(FacilityData.FacilityIdx);
             AmountUI.SetValue(FacilityData.CapacityCountProperty.Value , CapacityMaxCount);

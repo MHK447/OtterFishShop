@@ -11,8 +11,6 @@ public class CarryCasher : OtterBase
 {
     private float waitdeltime = 0f;
 
-    private int MaxProductCount = 5;
-
     private Queue<System.Action> WorkActionQueue = new Queue<System.Action>();
 
     private CompositeDisposable disposables = new CompositeDisposable();
@@ -38,6 +36,8 @@ public class CarryCasher : OtterBase
         WorkActionQueue.Clear();
 
         GameRoot.Instance.WaitTimeAndCallback(1f, () => { StartWork(); });
+
+        SetCapacity();
 
         // Event 콜백 등록
         skeletonAnimation.AnimationState.Complete += HandleEvent;
@@ -233,7 +233,7 @@ public class CarryCasher : OtterBase
 
         while (elapsedTime < CheckDuration)
         {
-            if (FishComponentList.Count >= MaxProductCount)
+            if (FishComponentList.Count >= StartCarryCount)
             {
                 nextaction?.Invoke();
                 yield break; // 코루틴 종료

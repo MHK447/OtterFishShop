@@ -27,6 +27,13 @@ namespace BanpoFri
 			get { return _speed;}
 			set { _speed = value;}
 		}
+		[SerializeField]
+		private string _skin;
+		public string skin
+		{
+			get { return _skin;}
+			set { _skin = value;}
+		}
 
     }
 

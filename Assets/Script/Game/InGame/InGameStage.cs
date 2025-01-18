@@ -128,7 +128,6 @@ public class InGameStage : MonoBehaviour
                 {
                     CreateConsumer(1, StartWayPointTrList[i]);
                 }
-
             });
         }
     }

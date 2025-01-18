@@ -97,7 +97,6 @@ public class UpgradeSystem
         {
             case (int)UpgradeType.AddTransportStaff:
                 {
-
                     var ingamestage = GameRoot.Instance.InGameSystem.GetInGame<InGameTycoon>();
                     var finddata = ingamestage.curInGameStage.ActiveCarryCasher(CasherType.CarryCasher);
 
@@ -117,6 +116,7 @@ public class UpgradeSystem
             case (int)UpgradeType.TransportStaffSpeedUp:
                 {
 
+
                 }
                 break;
             case (int)UpgradeType.AddCustomer:
@@ -126,6 +126,9 @@ public class UpgradeSystem
                 }
                 break;
             case (int)UpgradeType.PlayerSpeedUp:
+                {
+
+                }
                 break;
             case (int)UpgradeType.PlayerCapacityUp:
                 break;

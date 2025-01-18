@@ -20,6 +20,13 @@ namespace BanpoFri
 			get { return _icon;}
 			set { _icon = value;}
 		}
+		[SerializeField]
+		private int _base_revenue;
+		public int base_revenue
+		{
+			get { return _base_revenue;}
+			set { _base_revenue = value;}
+		}
 
     }
 

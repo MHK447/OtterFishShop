@@ -105,7 +105,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skeletonDataAsset: {fileID: 11400000, guid: 9aa204161ed5581418cdbf7898c28491, type: 2}
-  initialSkinName: Consumer_004
+  initialSkinName: Consumer_000
   fixPrefabOverrideViaMeshFilter: 2
   initialFlipX: 0
   initialFlipY: 0
@@ -207,6 +207,7 @@ MonoBehaviour:
     _order: 0
     _facilityidx: 
     _count: 
+  skeletonAnimation: {fileID: 6902744124365164405}
   ProductRoot: {fileID: 1667258497595048112}
   IsArrivedCounter: 0
   CurCounterOrder: 0

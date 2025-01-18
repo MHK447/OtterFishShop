@@ -7,6 +7,8 @@ using UniRx;
 using System.Linq;
 using Spine.Unity;
 
+
+
 public class Consumer : Chaser
 {
     public enum CurState
@@ -35,7 +37,6 @@ public class Consumer : Chaser
     private Transform OrderTr;
 
     public ConsumerMoveInfoData CurMoveInfoData;
-
 
     [SerializeField]
     private Transform ProductRoot;
@@ -72,11 +73,11 @@ public class Consumer : Chaser
 
     private bool IsCounter = false;
 
-
-
     public override void Init(int idx)
     {
         base.Init(idx);
+
+        RandSetSkin();
 
         FacilityTarget = null;
         TargetRack = null;
@@ -146,20 +147,24 @@ public class Consumer : Chaser
             CurFacilityIdxProperty.Value = newdata.FacilityIdx;
             CurGoalValue = newdata.Count;
             CurCountProperty.Value = 0;
-            
 
             GoToFacility(newdata.FacilityIdx, ()=> {
                 NextMoveAction(CurFacilityIdxProperty.Value);
             });
         }
-        else
-        {
-
-            //lastmove
-
-        }
     }
 
+
+    public void RandSetSkin()
+    {
+        var tdlist = Tables.Instance.GetTable<ConsumerInfo>().DataList.ToList();
+
+        var randvalue = Random.Range(0, tdlist.Count);
+
+        var skinname = tdlist[randvalue].skin;
+
+        skeletonAnimation.Skeleton.SetSkin(skinname);
+    }
 
     public void NextMoveAction(int facilityidx)
     {
@@ -175,6 +180,36 @@ public class Consumer : Chaser
         {
             IsArrivedCounter = true;
         }
+    }
+
+
+    public int CheckRevenue()
+    {
+        int rewardvalue = 0;
+
+        var stageidx = GameRoot.Instance.UserData.CurMode.StageData.StageIdx;
+
+        var stagetd = Tables.Instance.GetTable<StageInfo>().GetData(stageidx);
+
+        if (stagetd != null)
+        {
+            foreach (var fish in CurFishComponentList)
+            {
+                var td = Tables.Instance.GetTable<FishInfo>().GetData(fish.GetFishIdx);
+
+                if (td != null)
+                {
+                    rewardvalue += td.base_revenue;
+                }
+            }
+
+            rewardvalue = rewardvalue * stagetd.revenue_buff_profit;
+
+            rewardvalue = rewardvalue / 100;
+        }
+
+        return rewardvalue;
+
     }
 
 

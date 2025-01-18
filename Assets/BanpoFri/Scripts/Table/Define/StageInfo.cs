@@ -41,6 +41,13 @@ namespace BanpoFri
 			get { return _consumerfirst_idx;}
 			set { _consumerfirst_idx = value;}
 		}
+		[SerializeField]
+		private int _revenue_buff_profit;
+		public int revenue_buff_profit
+		{
+			get { return _revenue_buff_profit;}
+			set { _revenue_buff_profit = value;}
+		}
 
     }
 

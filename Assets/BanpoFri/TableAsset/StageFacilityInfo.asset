@@ -12,18 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cacfef892848547baadc2672b41d1eb1, type: 3}
   m_Name: StageFacilityInfo
   m_EditorClassIdentifier: 
-  mFirstKey:
-  - 1
-  - 1
-  - 1
-  - 1
-  - 1
-  - 1
-  - 2
-  - 2
-  - 2
-  - 2
-  - 2
+  mFirstKey: []
   mSecondKey:
   - 1
   - 2

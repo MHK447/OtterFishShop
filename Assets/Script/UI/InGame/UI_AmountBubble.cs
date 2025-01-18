@@ -35,7 +35,7 @@ public class UI_AmountBubble : InGameFloatingUI
     public void SetValue(int count , int curmaxcapacity)
     {
         AmountCountText.text = $"{count}/{curmaxcapacity}";
-        ProjectUtility.SetActiveCheck(this.gameObject, count > 0);
+        //ProjectUtility.SetActiveCheck(this.gameObject, count > 0);
         SliderValue.fillAmount = (float)count / (float)curmaxcapacity;
     }
 

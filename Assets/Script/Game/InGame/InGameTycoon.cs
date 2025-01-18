@@ -35,8 +35,10 @@ public class InGameTycoon : InGameMode
     {
         base.Load();
 
+
         Addressables.InstantiateAsync("InGame1_1").Completed += (handle) =>
         {
+            StartCoroutine(UpdateNavMeshProcess());
             curInGameStage = handle.Result.GetComponent<InGameStage>();
             if (curInGameStage != null)
             {
@@ -44,8 +46,6 @@ public class InGameTycoon : InGameMode
             }
 
             Player.Init();
-
-            StartCoroutine(UpdateNavMeshProcess());
         };
 
         //CalculateGameSpeed();

@@ -5,6 +5,7 @@ using BanpoFri;
 using UnityEngine.UI;
 using Spine.Unity;
 using System.Linq;
+using UniRx;
 
 public class CookedComponent : FacilityComponent
 {
@@ -52,7 +53,11 @@ public class CookedComponent : FacilityComponent
 
     private int MaxBreakCount = 0;
 
+    private float CookingCoolTime = 0f;
+
     private bool IsCookStart = false;
+
+    private CompositeDisposable disposables = new CompositeDisposable();
 
     public override void Init()
     {
@@ -66,6 +71,8 @@ public class CookedComponent : FacilityComponent
 
         if(td != null)
         {
+            CookingCoolTime = (float)td.cooking_cooltime / 100f;
+
             MaxBreakCount = td.break_count;
 
             ChangeState(State.Idle);
@@ -85,9 +92,44 @@ public class CookedComponent : FacilityComponent
                 Progress.Init(ProgressTr);
                 Progress.SetValue(0);
             });
+
+            disposables.Clear();
+
+            SetCookedSpeed();
+
+            var donebuylist = GameRoot.Instance.UserData.CurMode.UpgradeGroupData.StageUpgradeCollectionList.ToList().FindAll(x => x.IsBuyCheckProperty.Value == false);
+            foreach (var donebuy in donebuylist)
+            {
+                donebuy.IsBuyCheckProperty.Subscribe(x =>
+                {
+                    if (donebuy.UpgradeType == (int)UpgradeSystem.UpgradeType.CookingSpeedUp)
+                    {
+                        SetCookedSpeed();
+                    }
+                }).AddTo(disposables);
+            }
         }
     }
 
+
+    public void SetCookedSpeed()
+    {
+        var td = Tables.Instance.GetTable<CookingInfo>().GetData(FacilityIdx);
+
+        if (td != null)
+        {
+            var upgradevalue = GameRoot.Instance.UpgradeSystem.GetUpgradeValue(UpgradeSystem.UpgradeType.ShelfCapacityUp, FacilityIdx);
+            var basevalue = (float)td.cooking_cooltime / 100f;
+            float buffvalue = 0f;
+
+            if (upgradevalue > 0f)
+            {
+                buffvalue = ProjectUtility.PercentCalc(CookingCoolTime, upgradevalue) / 100f;
+                CookingCoolTime = basevalue - buffvalue;
+            }
+        }
+
+    }
 
     public void ChangeState(State state)
     {
@@ -321,7 +363,7 @@ public class CookedComponent : FacilityComponent
 
         CoolTimeActive(cooltimevalue);
 
-        if (Cookeddeltime > 1.5f)
+        if (Cookeddeltime > 1)
         {
             Cookeddeltime = 0f;
 
