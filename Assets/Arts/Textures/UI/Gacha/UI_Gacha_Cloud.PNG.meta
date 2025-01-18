@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: df00c6740772e1f4c8d5816041ef62e8
+guid: f5f22898d1c6d4a499d5d14775c11b89
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 1832006097446191411
-    second: UI2 (3)_0
+      213: -6231395857301471975
+    second: UI_Gacha_Cloud_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -75,7 +75,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 2
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -126,13 +126,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: UI2 (3)_0
+      name: UI_Gacha_Cloud_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 750
-        height: 1334
+        width: 254
+        height: 125
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -140,8 +140,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 33141a8d6d79c6910800000000000000
-      internalID: 1832006097446191411
+      spriteID: 91d74beab72a589a0800000000000000
+      internalID: -6231395857301471975
       vertices: []
       indices: 
       edges: []
@@ -157,7 +157,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      UI2 (3)_0: 1832006097446191411
+      UI_Gacha_Cloud_0: -6231395857301471975
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
