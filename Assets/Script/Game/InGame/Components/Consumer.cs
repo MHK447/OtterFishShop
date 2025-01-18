@@ -209,7 +209,6 @@ public class Consumer : Chaser
         }
 
         return rewardvalue;
-
     }
 
 

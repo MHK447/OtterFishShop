@@ -156,7 +156,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      UI_Gacha_BagBody_002_0: 2635237170296273573
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

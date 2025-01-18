@@ -37,6 +37,7 @@ public class GameRoot : Singleton<GameRoot>
 	public TutorialSystem TutorialSystem { get; private set; } = new TutorialSystem();
 	public FacilitySystem FacilitySystem { get; private set; } = new FacilitySystem();
 	public UpgradeSystem UpgradeSystem { get; private set; } = new UpgradeSystem();
+	public GameNotificationSystem GameNotification { get; private set; } = new GameNotificationSystem();
 
 
 
@@ -233,8 +234,9 @@ public class GameRoot : Singleton<GameRoot>
 		InitSystem();
 
 		InGameSystem.Create();
+		GameNotification.Create();
 
-
+		 
 		GameRoot.instance.WaitTimeAndCallback(0.5f, () => {
 			JoyStick.Init();
 			BgmOn();
