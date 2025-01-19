@@ -95,7 +95,7 @@ MonoBehaviour:
     _count: 01000000ffffffff
   - _stageidx: 1
     _order: 13
-    _facilityidx: 65000000e8030000
+    _facilityidx: 01000000e8030000
     _count: 02000000ffffffff
   - _stageidx: 1
     _order: 14

@@ -22,7 +22,7 @@ MonoBehaviour:
   - _index: casher_move_speed
     _value: 400
   - _index: carry_sleep_time
-    _value: 10
+    _value: 180
   - _index: player_start_carry_count
     _value: 5
   - _index: carry_casher_count

@@ -64,13 +64,9 @@ public class CarryCasher : OtterBase
 
                     CasherMoveSpeed = GameRoot.Instance.InGameSystem.casher_move_speed + getcalcvalue;
                 }
-
             }).AddTo(disposables);
         }
     }
-
-
-
 
     public void StartWork()
     {
@@ -83,7 +79,6 @@ public class CarryCasher : OtterBase
         {
             waitdeltime = 0f;
             ChangeState(OtterState.Wait);
-
         }
     }
 
@@ -106,10 +101,17 @@ public class CarryCasher : OtterBase
             var mainFacility = CurStage.FindFacility(facilityInfo.facilityidx);
             if (mainFacility == null) continue;
 
+            if (HandleFishCookedDisplay(facility.FacilityIdx))
+            {
+                return true;
+            }
+
             if(HandleFishDisplay(facility.FacilityIdx, mainFacility))
             {
                 return true;
             }
+
+
         }
 
         return false;
@@ -129,6 +131,83 @@ public class CarryCasher : OtterBase
         EnqueueFishDisplayActions(fishRoom , rackfacility);
 
         return true;
+    }
+
+
+    private bool HandleFishCookedDisplay(int facilityidx)
+    {
+        var cookedfacility = CurStage.FindFacility(facilityidx);
+        if (cookedfacility == null) return false;
+
+        var facilitytd = Tables.Instance.GetTable<FacilityInfo>().GetData(facilityidx);
+
+        if (facilitytd == null) return false;
+
+        var cookcomponent = cookedfacility.GetComponent<CookedComponent>();
+
+        if (cookcomponent == null) return false;
+
+        var cookedtd = Tables.Instance.GetTable<CookingInfo>().GetData(cookcomponent.FacilityIdx);
+
+        if (cookedtd == null) return false;
+
+        foreach(var materialidx in cookedtd.material_idxs)
+        {
+            if(!cookcomponent.IsMaterialMaxCheck(materialidx))
+            {
+                var findfishroom = CurStage.FindFacility(materialidx + 100);
+
+                if(findfishroom != null)
+                {
+                    var fishRoom = findfishroom.GetComponent<FishRoomComponent>();
+
+                    if (fishRoom != null)
+                    {
+                        EnqueueFishDisplayActions(fishRoom, cookcomponent);
+                        return true;
+                    }
+                }
+            }
+        }
+
+        return false;
+    }
+
+
+
+    private void EnqueueFishDisplayActions(FishRoomComponent fishRoom, CookedComponent targetdisplay)
+    {
+        System.Action moveToBucket = () =>
+        {
+            SetDestination(fishRoom.GetBucketComponent.transform, () => {
+                GameRoot.Instance.StartCoroutine(CheckWaitProductMax(NextWorkAction));
+            });
+        };
+        WorkActionQueue.Enqueue(moveToBucket);
+
+        System.Action moveToDisplay = () =>
+        {
+            SetDestination(targetdisplay.GetCarryCasherWaitTr, () => {
+                PlayAnimation(OtterState.Idle, "idle", true);
+            });
+            GameRoot.Instance.StartCoroutine(CheckWaitProductNone(NextWorkAction, targetdisplay));
+        };
+        WorkActionQueue.Enqueue(moveToDisplay);
+
+        System.Action WaitToWork = () =>
+        {
+            if (FishComponentList.Count > 0)
+            {
+                GoToTrashCan(() => {
+                    GameRoot.Instance.StartCoroutine(CheckWaitTrashCan(() => {
+                        PlayAnimation(OtterState.Wait, "idle", true);
+                    }));
+                });
+            }
+            else
+                PlayAnimation(OtterState.Wait, "idle", true);
+        };
+        WorkActionQueue.Enqueue(WaitToWork);
     }
 
 
@@ -277,7 +356,7 @@ public class CarryCasher : OtterBase
             yield break;
         }
 
-        yield return new WaitUntil(() => cookedcomponent.FoodCompleteGetCount.Count == 0 || cookedcomponent.IsMaterialMaxCheck(fishidx));
+        yield return new WaitUntil(() => cookedcomponent.IsMaterialMaxCheck(fishidx) || FishComponentList.Count <= 0);
         nextaction?.Invoke();
     }
 

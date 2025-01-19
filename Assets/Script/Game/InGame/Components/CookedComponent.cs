@@ -388,6 +388,7 @@ public class CookedComponent : FacilityComponent
             return;
         }
 
+
         if(!IsCookStart)
         {
             IsCookStart = true;
@@ -458,11 +459,22 @@ public class CookedComponent : FacilityComponent
         return true;
     }
 
+    public bool MaterialMaxCheck(int materialidx)
+    {
+        var finddata = CookedMaterialList.Find(x => x.GetFishIdx == materialidx);
+
+        if(finddata != null)
+        {
+            return finddata.IsMaxCheck();
+        }
+        return false;
+    }
 
     public override bool IsMaxCountCheck()
     {
-        return FoodComponetQueue.Count >= MaterialMaxCount;
+        return FoodComponetQueue.Count >= CapacityMaxCount;
     }
+
 
     public override void Update()
     {
