@@ -144,6 +144,8 @@ public class FacilityComponent : MonoBehaviour
 
     public virtual Transform GetConsumerTr()
     {
+        if (ConsumerWaitTr.Count == 0) return null; 
+
         var randvalue = Random.Range(0, ConsumerWaitTr.Count);
         return ConsumerWaitTr[randvalue];
 

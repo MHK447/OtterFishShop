@@ -25,6 +25,15 @@ MonoBehaviour:
   - 1
   - 1
   - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
   mSecondKey:
   - 1
   - 2
@@ -38,6 +47,15 @@ MonoBehaviour:
   - 13
   - 14
   - 15
+  - 16
+  - 17
+  - 18
+  - 19
+  - 20
+  - 21
+  - 22
+  - 23
+  - 24
   mDataList:
   - _stageidx: 1
     _order: 1
@@ -50,7 +68,7 @@ MonoBehaviour:
   - _stageidx: 1
     _order: 3
     _facilityidx: 01000000e8030000
-    _count: 03000000ffffffff
+    _count: 02000000ffffffff
   - _stageidx: 1
     _order: 4
     _facilityidx: 01000000e8030000
@@ -66,7 +84,7 @@ MonoBehaviour:
   - _stageidx: 1
     _order: 7
     _facilityidx: 02000000e8030000
-    _count: 03000000ffffffff
+    _count: 02000000ffffffff
   - _stageidx: 1
     _order: 8
     _facilityidx: 02000000e8030000
@@ -77,13 +95,49 @@ MonoBehaviour:
     _count: 01000000ffffffff
   - _stageidx: 1
     _order: 13
-    _facilityidx: 03000000e8030000
-    _count: 03000000ffffffff
+    _facilityidx: 65000000e8030000
+    _count: 02000000ffffffff
   - _stageidx: 1
     _order: 14
-    _facilityidx: 03000000e8030000
+    _facilityidx: e9030000e8030000
     _count: 02000000ffffffff
   - _stageidx: 1
     _order: 15
-    _facilityidx: 03000000e8030000
+    _facilityidx: ea030000e8030000
+    _count: 01000000ffffffff
+  - _stageidx: 1
+    _order: 16
+    _facilityidx: e9030000e8030000
+    _count: 02000000ffffffff
+  - _stageidx: 1
+    _order: 17
+    _facilityidx: ea030000e8030000
+    _count: 01000000ffffffff
+  - _stageidx: 1
+    _order: 18
+    _facilityidx: e9030000e8030000
+    _count: 02000000ffffffff
+  - _stageidx: 1
+    _order: 19
+    _facilityidx: e9030000e8030000
+    _count: 02000000ffffffff
+  - _stageidx: 1
+    _order: 20
+    _facilityidx: e9030000e8030000
+    _count: 02000000ffffffff
+  - _stageidx: 1
+    _order: 21
+    _facilityidx: e9030000e8030000
+    _count: 02000000ffffffff
+  - _stageidx: 1
+    _order: 22
+    _facilityidx: e9030000e8030000
+    _count: 02000000ffffffff
+  - _stageidx: 1
+    _order: 23
+    _facilityidx: e9030000e8030000
+    _count: 02000000ffffffff
+  - _stageidx: 1
+    _order: 24
+    _facilityidx: ea030000e8030000
     _count: 01000000ffffffff

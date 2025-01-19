@@ -21,6 +21,9 @@ public class CookedComponent : FacilityComponent
     private Transform ProgressTr;
 
     [SerializeField]
+    private GameObject FixObj;
+
+    [SerializeField]
     private List<Transform> FoodTrList = new List<Transform>();
 
     [SerializeField]
@@ -29,9 +32,19 @@ public class CookedComponent : FacilityComponent
     [SerializeField]
     private List<CookedMaterialComponent> CookedMaterialList = new List<CookedMaterialComponent>();
 
+    [SerializeField]
+    private Transform TroubleUITr;
+
+    [SerializeField]
+    private Transform CarryCasherWaitTr;
+
+    public Transform GetCarryCasherWaitTr { get { return CarryCasherWaitTr; } }
+
     private Queue<FishComponent> FoodComponetQueue = new Queue<FishComponent>();
 
-    private State CurState = State.None;
+    public Queue<FishComponent> FoodCompleteGetCount { get { return FoodComponetQueue; } }
+
+    private State CurState = State.None;    
 
     private int MaterialMaxCount = 0;
 
@@ -39,7 +52,7 @@ public class CookedComponent : FacilityComponent
 
     private CooltimeProgress Progress;
 
-    private List<OtterBase> ConsumerOtterList = new List<OtterBase>();
+    private List<Consumer> ConsumerOtterList = new List<Consumer>();
 
     private List<OtterBase> CasherOtterList = new List<OtterBase>();
 
@@ -59,6 +72,8 @@ public class CookedComponent : FacilityComponent
 
     private CompositeDisposable disposables = new CompositeDisposable();
 
+    private UI_TroubleBubble TroubleBubble;
+
     public override void Init()
     {
         base.Init();
@@ -68,6 +83,8 @@ public class CookedComponent : FacilityComponent
         FoodComponetQueue.Clear();
 
         var td = Tables.Instance.GetTable<CookingInfo>().GetData(FacilityIdx);
+
+        ProjectUtility.SetActiveCheck(FixObj, false);
 
         if(td != null)
         {
@@ -97,6 +114,14 @@ public class CookedComponent : FacilityComponent
 
             SetCookedSpeed();
 
+            GameRoot.Instance.UISystem.LoadFloatingUI<UI_TroubleBubble>((_progress) => {
+                TroubleBubble = _progress;
+                ProjectUtility.SetActiveCheck(TroubleBubble.gameObject, false);
+                //ProjectUtility.SetActiveCheck(AmountUI.gameObject, FacilityData.CapacityCountProperty.Value > 0);
+                TroubleBubble.Init(TroubleUITr);
+            });
+
+
             var donebuylist = GameRoot.Instance.UserData.CurMode.UpgradeGroupData.StageUpgradeCollectionList.ToList().FindAll(x => x.IsBuyCheckProperty.Value == false);
             foreach (var donebuy in donebuylist)
             {
@@ -110,6 +135,8 @@ public class CookedComponent : FacilityComponent
             }
         }
     }
+
+
 
 
     public void SetCookedSpeed()
@@ -128,8 +155,36 @@ public class CookedComponent : FacilityComponent
                 CookingCoolTime = basevalue - buffvalue;
             }
         }
-
     }
+
+    public FishComponent RemoveFish()
+    {
+        if (FoodComponetQueue.Count == 0) return null;
+
+        var target = FoodComponetQueue.Dequeue();
+
+        FacilityData.CapacityCountProperty.Value -= 1;
+
+        return target;
+    }
+
+
+    public bool IsMaterialMaxCheck(int materialidx)
+    {
+        bool ismaxcheck = false;
+
+        var finddata = CookedMaterialList.Find(x => x.GetFishIdx == materialidx);
+
+        if(finddata != null)
+        {
+            ismaxcheck = finddata.IsMaxCheck();
+        }
+
+
+
+        return ismaxcheck;
+    }
+
 
     public void ChangeState(State state)
     {
@@ -185,9 +240,9 @@ public class CookedComponent : FacilityComponent
         if ((collision.gameObject.layer == LayerMask.NameToLayer("Consumer")))
         {
             FishCarrydeltime = 0f;
-            var getvalue = collision.gameObject.GetComponent<OtterBase>();
+            var getvalue = collision.gameObject.GetComponent<Consumer>();
 
-            if (getvalue != null && getvalue.GetFishComponentList.Count > 0)
+            if (getvalue != null && getvalue.GetState == Consumer.CurState.Idle)
             {
                 if (!ConsumerOtterList.Contains(getvalue))
                 {
@@ -205,6 +260,19 @@ public class CookedComponent : FacilityComponent
             {
                 if (CurState == State.Break)
                 {
+                    ProjectUtility.SetActiveCheck(FixObj, true);
+
+                    if (TroubleBubble != null)
+                        ProjectUtility.SetActiveCheck(TroubleBubble.gameObject, false);
+
+                    GameRoot.Instance.WaitTimeAndCallback(1f, () => {
+
+                        if(this != null)
+                        {
+                            ProjectUtility.SetActiveCheck(FixObj, false);
+                        }
+                    });
+
                     ChangeState(State.Idle);
                 }
             }
@@ -225,7 +293,7 @@ public class CookedComponent : FacilityComponent
 
         if (collision.gameObject.layer == LayerMask.NameToLayer("Consumer"))
         {
-            var getvalue = collision.gameObject.GetComponent<OtterBase>();
+            var getvalue = collision.gameObject.GetComponent<Consumer>();
 
             if (getvalue != null)
             {
@@ -251,37 +319,6 @@ public class CookedComponent : FacilityComponent
         }
     }
 
-
-    public void CheckFoodMoveOtter()
-    {
-        if (FoodComponetQueue.Count == 0) return;
-
-        for (int i = ConsumerOtterList.Count - 1; i >= 0; i--)
-        {
-            if (ConsumerOtterList[i].IsIdle && ConsumerOtterList[i].GetFishComponentList.Count > 0)
-            {
-                if (ConsumerOtterList[i].IsIdle && !ConsumerOtterList[i].IsMaxFishCheck()) 
-                {
-                    FishCarrydeltime += Time.deltaTime;
-
-                    if (FishCarrydeltime >= 0.2f)
-                    {
-                        FishCarrydeltime = 0f;
-
-                        var targetotter = ConsumerOtterList[i];
-
-                        if (!targetotter.IsMaxFishCheck())
-                        {
-                            var food = FoodComponetQueue.Dequeue();
-
-                            ConsumerOtterList[i].AddFish(food);
-                        }
-
-                    }
-                }
-            }
-        }
-    }
 
 
 
@@ -396,6 +433,11 @@ public class CookedComponent : FacilityComponent
         Cookeddeltime = 0f;
         CoolTimeActive(0f);
         IsCookStart = false;
+
+        if(TroubleBubble != null)
+        ProjectUtility.SetActiveCheck(TroubleBubble.gameObject, true);
+
+
     }
 
     public void FoodCreateComplete(FishComponent fish)
@@ -422,12 +464,10 @@ public class CookedComponent : FacilityComponent
         return FoodComponetQueue.Count >= MaterialMaxCount;
     }
 
-
     public override void Update()
     {
         base.Update();
 
-        CheckFoodMoveOtter();
         CheckMaterialMoveOtter();
         ProduceFood();
     }

@@ -39,6 +39,11 @@ public class CookedMaterialComponent : MonoBehaviour
 
     }
 
+    public  bool IsMaxCheck()
+    {
+        return FishComponentList.Count >= MaxCount;
+    }
+
     public Transform GetCurFishTr()
     {
         return FishTrList[FishComponentList.Count];
@@ -46,7 +51,7 @@ public class CookedMaterialComponent : MonoBehaviour
 
     public void AddMaterial(FishComponent fish)
     {
-        if (FishComponentList.Count >= MaxCount) return;
+        if (IsMaxCheck()) return;
 
 
         fish.FishInBucketAction(FishTrList[FishComponentList.Count], (fish)=> { fish.transform.SetParent(this.transform); });

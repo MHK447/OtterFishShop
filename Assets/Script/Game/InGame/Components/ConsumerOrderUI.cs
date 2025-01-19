@@ -57,13 +57,9 @@ public class ConsumerOrderUI : InGameFloatingUI
         }
 
 
-        if (facilityidx > 0 && facilityidx < 100) //기본 물품대 
+        if (facilityidx > 0) //기본 물품대 
         {
             SetImage(ConsumerOrderUI.ConsumerState.Food);
-        }
-        else if (facilityidx > 99 && facilityidx < 1000) // 조리대 
-        {
-
         }
         else if (facilityidx == 1000) //계산대
         {

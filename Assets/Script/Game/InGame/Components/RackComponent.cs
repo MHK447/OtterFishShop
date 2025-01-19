@@ -7,6 +7,11 @@ using UniRx;
 
 public class RackComponent : FacilityComponent
 {
+
+    protected IReactiveCollection<FishComponent> FishComponentList = new ReactiveCollection<FishComponent>();
+
+    public List<FishComponent> GetFishComponentList { get { return FishComponentList.ToList(); } }
+
     [SerializeField]
     private int FishIdx = 0;
 
@@ -15,10 +20,6 @@ public class RackComponent : FacilityComponent
 
     [SerializeField]
     private Transform AmountUITr;
-
-    private IReactiveCollection<FishComponent> FishComponentList = new ReactiveCollection<FishComponent>();
-
-    public List<FishComponent> GetFishComponentList { get { return FishComponentList.ToList(); } }
 
     private List<OtterBase> TargetOtterList = new List<OtterBase>();
 
@@ -103,6 +104,9 @@ public class RackComponent : FacilityComponent
         FishComponentList.Remove(target);
 
         FacilityData.CapacityCountProperty.Value -= 1;
+
+        if (AmountUI != null)
+            AmountUI.SetValue(FishComponentList.Count, CapacityMaxCount);
     }
 
     public Transform GetCarryCasherWaitTr(Transform carrycashertr)

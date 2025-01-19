@@ -84,7 +84,7 @@ public class InGameStage : MonoBehaviour
     {
         IsLoadComplete = false;
         disposable.Clear();
-        FishPool.Init(FishRef, this.transform ,10);
+        FishPool.Init(FishRef, this.transform ,40);
         ConsumerPool.Init(ConsumerRef, this.transform, 5);
         CreatePoolCasher(10);
 
@@ -240,7 +240,13 @@ public class InGameStage : MonoBehaviour
     {
         OtterBase casher = null;
 
-        switch(type)
+        if (this == null) return null;
+
+        if (activeCashers.Count == 0) return null;
+
+        if (activeCashers.Any(item => item == null)) return null;
+
+        switch (type)
         {
             case CasherType.FishingCasher:
                 {

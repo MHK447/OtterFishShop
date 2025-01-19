@@ -90,7 +90,7 @@ public class CarryCasher : OtterBase
     public bool TargetWorkFacility()
     {
         var facilitydatas = GameRoot.Instance.UserData.CurMode.StageData.StageFacilityDataList
-       .Where(x => x.IsOpen && (x.FacilityIdx > 100 && x.FacilityIdx < 1000)).ToList();
+       .Where(x => x.IsOpen && (x.FacilityIdx > 100)).ToList();
 
 
         foreach (var facility in facilitydatas)
@@ -196,8 +196,10 @@ public class CarryCasher : OtterBase
         }
     }
 
-    private void Update()
+    public override void Update()
     {
+        base.Update();
+
         StartWorkCheck();
 
 
@@ -259,6 +261,28 @@ public class CarryCasher : OtterBase
 
 
 
+    private IEnumerator CheckWaitProductNone(System.Action nextaction, CookedComponent cookedcomponent)
+    {
+        if (FishComponentList.Count == 0)
+        {
+            nextaction?.Invoke();
+            yield break;
+        }
+
+        var fishidx = FishComponentList[0].GetFishIdx;
+
+        if (cookedcomponent.IsMaterialMaxCheck(fishidx))
+        {
+            nextaction?.Invoke();
+            yield break;
+        }
+
+        yield return new WaitUntil(() => cookedcomponent.FoodCompleteGetCount.Count == 0 || cookedcomponent.IsMaterialMaxCheck(fishidx));
+        nextaction?.Invoke();
+    }
+
+
+
     private IEnumerator CheckWaitTrashCan(System.Action nextaction)
     {
         if (FishComponentList.Count == 0)
@@ -288,6 +312,7 @@ public class CarryCasher : OtterBase
                 break;
             case "napend":
                 {
+                    IsSleepStart = false;   
                     PlayAnimation(OtterState.Idle, "idle", true);
                 }
                 break;
@@ -297,14 +322,17 @@ public class CarryCasher : OtterBase
         AnimAction = null;
     }
 
+    private bool IsSleepStart = false;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(CurState == OtterState.Sleep)
+        if(CurState == OtterState.Sleep && !IsSleepStart)
         {
             if(collision.gameObject.layer == LayerMask.NameToLayer("Player"))
             {
                 sleepdeltime = 0f;
+
+                IsSleepStart = true;
 
                 skeletonAnimation.state.SetAnimation(0, "napend", false);
             }

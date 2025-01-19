@@ -36,4 +36,9 @@ public class CounterCasher : OtterBase
             ReachProcess();
         });
     }
+
+    public override void Update()
+    {
+        base.Update();
+    }
 }

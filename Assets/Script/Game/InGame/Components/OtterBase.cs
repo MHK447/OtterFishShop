@@ -225,7 +225,7 @@ public class OtterBase : MonoBehaviour
 
     }
 
-    void Update()
+    public virtual void Update()
     {
         // Y축 위치가 변경되었을 때만 정렬 업데이트
         if (Mathf.Abs(transform.position.y - lastYPosition) > Mathf.Epsilon)
@@ -294,6 +294,7 @@ public class OtterBase : MonoBehaviour
     {
         return FishComponentList.Count >= StartCarryCount;
     }
+
 
 
     public void PlayAnimation(OtterState state, string newAnimationName, bool isLooping)

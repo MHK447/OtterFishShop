@@ -55,7 +55,11 @@ public class Consumer : Chaser
 
     private CurState State = CurState.Idle;
 
+    public CurState GetState { get { return State; } }
+
     private RackComponent TargetRack;
+
+    private CookedComponent TargetCooked;
 
     private Transform FacilityTarget;
 
@@ -92,6 +96,7 @@ public class Consumer : Chaser
 
         FacilityTarget = null;
         TargetRack = null;
+        TargetCooked = null;
         IsCounter = false;
         IsArrivedCounter = false;
         CurFishComponentList.Clear();
@@ -183,9 +188,10 @@ public class Consumer : Chaser
         {
             ChangeState(CurState.WaitProduct, facilityidx);
         }
-        else if(facilityidx > 99 && facilityidx < 1000) // 조리대 
+        else if(facilityidx > 1000) // 조리대 
         {
 
+            ChangeState(CurState.WaitProduct, facilityidx);
         }
         else if(facilityidx == 1000) //계산대
         {
@@ -247,9 +253,19 @@ public class Consumer : Chaser
                 {
                     var getfacility = Stage.FindFacility(facilityidx);
 
-                    if(getfacility != null)
+                    if (facilityidx > 1000)
                     {
-                        TargetRack = getfacility.GetComponent<RackComponent>();
+                        if (getfacility != null)
+                        {
+                            TargetCooked = getfacility.GetComponent<CookedComponent>();
+                        }
+                    }
+                    else
+                    {
+                        if (getfacility != null)
+                        {
+                            TargetRack = getfacility.GetComponent<RackComponent>();
+                        }
                     }
 
                 }
@@ -296,7 +312,7 @@ public class Consumer : Chaser
 
     private void Update()
     {
-        if(TargetRack != null && State == CurState.WaitProduct )
+        if(TargetRack != null && State == CurState.WaitProduct)
         {
 
             if(CurCountProperty.Value >= CurGoalValue)
@@ -313,6 +329,22 @@ public class Consumer : Chaser
 
                     AddFish(target);
 
+                }
+            }
+        }
+        else if(TargetCooked != null && State == CurState.WaitProduct)
+        {
+            if (CurCountProperty.Value >= CurGoalValue)
+            {
+                MoveFacility();
+            }
+            else
+            {
+                if (TargetCooked.FoodCompleteGetCount.Count > 0)
+                {
+                    var getfish = TargetCooked.RemoveFish();
+
+                    AddFish(getfish);
                 }
             }
         }
@@ -390,7 +422,6 @@ public class Consumer : Chaser
                 OnEnd = null;
             });
         });
-
     }
 
     public void DataClear()

@@ -85,6 +85,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6827002248504676719}
   - component: {fileID: 3001333876593756871}
+  - component: {fileID: 6573735426096820246}
   m_Layer: 5
   m_Name: UI_TroubleBubble
   m_TagString: Untagged
@@ -134,6 +135,21 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &6573735426096820246
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3416001801154052740}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9222d0d922c4442f696d777952846336, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TrackingScale: 0
+  TrackingPos: 1
+  OffsetVec: {x: 0, y: 0, z: 0}
 --- !u!1 &5244838378881752116
 GameObject:
   m_ObjectHideFlags: 0

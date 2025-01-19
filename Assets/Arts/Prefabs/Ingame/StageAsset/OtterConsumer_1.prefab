@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 7305236676931360709}
   - component: {fileID: 9126566937612936517}
   - component: {fileID: -6886305821548593228}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: OtterConsumer_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -70,7 +70,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 119b098289d5fe743888a10ac5a7e878, type: 2}
+  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -121,11 +121,13 @@ MonoBehaviour:
   fixDrawOrder: 0
   addNormals: 0
   calculateTangents: 0
-  maskInteraction: 0
+  maskInteraction: 2
   maskMaterials:
-    materialsMaskDisabled: []
+    materialsMaskDisabled:
+    - {fileID: 2100000, guid: 119b098289d5fe743888a10ac5a7e878, type: 2}
     materialsInsideMask: []
-    materialsOutsideMask: []
+    materialsOutsideMask:
+    - {fileID: 0}
   disableRenderingOnOverride: 1
   physicsPositionInheritanceFactor: {x: 1, y: 1}
   physicsRotationInheritanceFactor: 1
@@ -207,10 +209,10 @@ MonoBehaviour:
     _order: 0
     _facilityidx: 
     _count: 
-  skeletonAnimation: {fileID: 6902744124365164405}
   ProductRoot: {fileID: 1667258497595048112}
   IsArrivedCounter: 0
   CurCounterOrder: 0
+  sortingOrderBase: 100
 --- !u!58 &-6886305821548593228
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -256,7 +258,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1667258497595048112}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: ProductTr
   m_TagString: Untagged
   m_Icon: {fileID: -5442936267250999957, guid: 0000000000000000d000000000000000, type: 0}
@@ -287,7 +289,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9044101349665869373}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: OrderTr
   m_TagString: Untagged
   m_Icon: {fileID: 0}

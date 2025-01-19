@@ -83,6 +83,7 @@ public class FishCushionComponent : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
+        if (InGameStage == null) return;
         if (InGameStage.FindCasher(CasherType.FishingCasher, FacilityData.FacilityIdx) != null) return;
 
 
