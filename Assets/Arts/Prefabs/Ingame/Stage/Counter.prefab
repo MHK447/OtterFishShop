@@ -199,7 +199,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Col: {fileID: 4640690894606757022}
   FacilityOpenList:
-  - {fileID: 4066459041201795867}
+  - {fileID: 2535791016034493064}
   FacilityContentsObj: {fileID: 5505239910029559678}
   FacilitySprite: {fileID: 2033720771130745225}
   MoneyRootTr: {fileID: 1007453332542749544}

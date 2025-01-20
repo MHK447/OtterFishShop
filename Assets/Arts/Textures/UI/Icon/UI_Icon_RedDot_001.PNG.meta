@@ -156,7 +156,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      UI_Icon_RedDot_001_0: -3501564780988104783
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -28,6 +28,8 @@ public class UpgradeSystem
         {
             if (upgradedata.IsBuyCheckProperty.Value)
             {
+                if ((int)UpgradeType.AddCustomer == upgradedata.UpgradeType) continue;
+
                 AddUpgradeData(upgradedata.UpgradeIdx, upgradedata.UpgradeType);
             } 
         }
@@ -49,8 +51,6 @@ public class UpgradeSystem
 
             if(td != null)
             {
-
-
                 foreach(var upgrade in upgradelist)
                 {
                     var upgradetd = Tables.Instance.GetTable<UpgradeInfo>().GetData(new KeyValuePair<int, int>(stageidx, upgrade.UpgradeIdx));

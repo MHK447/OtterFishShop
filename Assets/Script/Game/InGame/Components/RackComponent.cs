@@ -207,6 +207,7 @@ public class RackComponent : FacilityComponent
                             FacilityData.CapacityCountProperty.Value += 1;
 
                             findfish.FishInBucketAction(FishTrList[FishComponentList.Count], (fish) => {
+                                fish.transform.position = FishTrList[FishComponentList.Count].position;
                                 fish.transform.SetParent(this.transform);
                                 FishComponentList.Add(findfish);
                             }, 0.2f);

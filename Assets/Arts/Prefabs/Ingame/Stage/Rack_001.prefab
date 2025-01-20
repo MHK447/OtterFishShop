@@ -550,7 +550,6 @@ Transform:
   m_Children:
   - {fileID: 8780456542754236256}
   - {fileID: 7738836046121481755}
-  - {fileID: 4273012817127299542}
   m_Father: {fileID: 3269466604150441543}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3732158640580121396
@@ -592,7 +591,7 @@ Transform:
   - {fileID: 3234070391657544893}
   - {fileID: 2562900684850540163}
   - {fileID: 6240720394154293572}
-  m_Father: {fileID: 7519829239666379637}
+  m_Father: {fileID: 3717011814719939877}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4122457154258184081
 GameObject:
@@ -960,6 +959,7 @@ Transform:
   - {fileID: 6988966421732412220}
   - {fileID: 1661486274419915952}
   - {fileID: 4504908455461187721}
+  - {fileID: 4273012817127299542}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &7908702412931155243
@@ -976,7 +976,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Col: {fileID: 6873826400197395884}
   FacilityOpenList:
-  - {fileID: 3274016105963839557}
+  - {fileID: 4698694819027037527}
   FacilityContentsObj: {fileID: 6374116184859796725}
   FacilitySprite: {fileID: 588520357244928514}
   MoneyRootTr: {fileID: 3717011814719939877}
@@ -993,8 +993,8 @@ MonoBehaviour:
   - {fileID: 6240720394154293572}
   NewRoot: {fileID: 3015025829279095749}
   ConsumerOrder: 0
-  FacilityIdx: 1
-  FishIdx: 1
+  FacilityIdx: 2
+  FishIdx: 2
   FishTrList:
   - {fileID: 3207621461951223516}
   - {fileID: 5411119727094424689}

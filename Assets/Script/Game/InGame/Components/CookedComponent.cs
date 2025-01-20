@@ -349,6 +349,7 @@ public class CookedComponent : FacilityComponent
 
                                 findfish.FishInBucketAction(finddata.GetCurFishTr(), (fish) => {
                                     fish.transform.SetParent(this.transform);
+                                    fish.transform.position = finddata.GetCurFishTr().position;
                                 }, 0.2f);
 
                                 finddata.AddMaterial(findfish);

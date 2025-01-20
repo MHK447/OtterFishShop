@@ -54,7 +54,10 @@ public class CookedMaterialComponent : MonoBehaviour
         if (IsMaxCheck()) return;
 
 
-        fish.FishInBucketAction(FishTrList[FishComponentList.Count], (fish)=> { fish.transform.SetParent(this.transform); });
+        fish.FishInBucketAction(FishTrList[FishComponentList.Count], (fish)=> {
+            fish.transform.SetParent(this.transform);
+            fish.transform.position = FishTrList[FishComponentList.Count].position;
+        });
 
         FishComponentList.Add(fish);
 

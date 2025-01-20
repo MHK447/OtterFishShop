@@ -213,6 +213,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Col: {fileID: 8139082642065082164}
+  OpenAnim: {fileID: 8199783374325351737}
   FacilityOpenList:
   - {fileID: 2372311403671698869}
   FacilityContentsObj: {fileID: 282384905864027093}

@@ -10,6 +10,7 @@ public class FacilityComponent : MonoBehaviour
 {
     [SerializeField]
     protected BoxCollider2D Col;
+
     
     [SerializeField]
     private List<GameObject> FacilityOpenList = new List<GameObject>();
@@ -207,7 +208,7 @@ public class FacilityComponent : MonoBehaviour
 
         var stageinfotd = Tables.Instance.GetTable<StageInfo>().GetData(stageidx);
 
-        if(stageinfotd != null)
+        if (stageinfotd != null)
         {
             if (stageinfotd.consumerfirst_idx == FacilityIdx)
             {

@@ -122,7 +122,7 @@ public class InGameStage : MonoBehaviour
             {
                 GameRoot.Instance.UpgradeSystem.StartUpgradeCheck();
 
-                var upgradevalue = GameRoot.Instance.UpgradeSystem.GetUpgradeValue(UpgradeSystem.UpgradeType.AddCustomer);
+                var upgradevalue = GameRoot.Instance.UpgradeSystem.GetUpgradeValue(UpgradeSystem.UpgradeType.AddCustomer); //기본 베이스가 호출됨 
 
                 for (int i = 0; i < upgradevalue; ++i)
                 {
