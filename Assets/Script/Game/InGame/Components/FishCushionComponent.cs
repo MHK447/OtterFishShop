@@ -55,6 +55,18 @@ public class FishCushionComponent : MonoBehaviour
         {
             if(other.gameObject == fishcasher.gameObject)
             {
+                if(Target != null && LayerMask.NameToLayer("Player") == Target.gameObject.layer)
+                {
+                    var getvalue = Target.GetComponent<OtterBase>();
+
+                    if(getvalue != null)
+                    {
+                        Target = null;
+                        getvalue.IdleChange();
+                    }
+                }
+
+
                 IsOnEnter = true;
             }
 

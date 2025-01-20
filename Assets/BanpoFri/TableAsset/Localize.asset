@@ -21,7 +21,7 @@ MonoBehaviour:
   - food_load_01_desc
   - cooktool_speedup_01_desc
   - casher_stack_01_desc
-  - casher_add_02_name
+  - casher_add_09_name
   - casher_speedup_01_name
   - consumer_add_01_name
   - player_speedup_01_name
@@ -29,42 +29,44 @@ MonoBehaviour:
   - food_load_01_name
   - cooktool_speedup_01_name
   - casher_stack_01_name
+  - casher_add_10_name
+  - casher_add_01_name
   mSecondKey: []
   mDataList:
   - _idx: casher_add_02_desc
-    _ko: "<color=#3a8e62>+1\uBA85</color=#3a8e62> \uCD94\uAC00"
+    _ko: "<color=#3a8e62>+{0}\uBA85</color> \uCD94\uAC00"
     _en: 
     _ja: 
   - _idx: casher_speedup_01_desc
-    _ko: "<color=#3a8e62>+{0}</color=#3a8e62> \uC99D\uAC00"
+    _ko: "<color=#3a8e62>+{0}</color> \uC99D\uAC00"
     _en: 
     _ja: 
   - _idx: consumer_add_01_desc
-    _ko: "<color=#3a8e62>+{0}\uBA85</color=#3a8e62> \uCD94\uAC00"
+    _ko: "<color=#3a8e62>+{0}\uBA85</color> \uCD94\uAC00"
     _en: 
     _ja: 
   - _idx: player_speedup_01_desc
-    _ko: "<color=#3a8e62>+{0}</color=#3a8e62> \uC99D\uAC00"
+    _ko: "<color=#3a8e62>+{0}</color> \uC99D\uAC00"
     _en: 
     _ja: 
   - _idx: player_stack_01_desc
-    _ko: "<color=#3a8e62>+{0}\uAC1C</color=#3a8e62> \uC99D\uAC00"
+    _ko: "<color=#3a8e62>+{0}\uAC1C</color> \uC99D\uAC00"
     _en: 
     _ja: 
   - _idx: food_load_01_desc
-    _ko: "<color=#3a8e62>+{0}\uAC1C</color=#3a8e62>\uC99D\uAC00"
+    _ko: "<color=#3a8e62>+{0}\uAC1C</color>\uC99D\uAC00"
     _en: 
     _ja: 
   - _idx: cooktool_speedup_01_desc
-    _ko: "<color=#3a8e62>+{0}</color=#3a8e62> \uC99D\uAC00"
+    _ko: "<color=#3a8e62>+{0}</color> \uC99D\uAC00"
     _en: 
     _ja: 
   - _idx: casher_stack_01_desc
-    _ko: "<color=#3a8e62>+{0}\uAC1C</color=#3a8e62> \uC99D\uAC00"
+    _ko: "<color=#3a8e62>+{0}\uAC1C</color> \uC99D\uAC00"
     _en: 
     _ja: 
-  - _idx: casher_add_02_name
-    _ko: "\uC9C1\uC6D0\uC218"
+  - _idx: casher_add_09_name
+    _ko: "\uB09A\uC2DC \uC9C1\uC6D0\uC218"
     _en: 
     _ja: 
   - _idx: casher_speedup_01_name
@@ -93,5 +95,13 @@ MonoBehaviour:
     _ja: 
   - _idx: casher_stack_01_name
     _ko: "\uC9C1\uC6D0 \uBB3C\uAC74 \uC6A9\uB7C9"
+    _en: 
+    _ja: 
+  - _idx: casher_add_10_name
+    _ko: "\uACC4\uC0B0\uB300 \uC9C1\uC6D0\uC218"
+    _en: 
+    _ja: 
+  - _idx: casher_add_01_name
+    _ko: "\uC6B4\uBC18 \uC9C1\uC6D0\uC218"
     _en: 
     _ja: 

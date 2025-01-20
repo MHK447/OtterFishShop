@@ -225,6 +225,19 @@ public class OtterBase : MonoBehaviour
 
     }
 
+
+    public void IdleChange()
+    {
+        if (Progress != null && Progress.gameObject.activeSelf)
+        {
+            ProjectUtility.SetActiveCheck(Progress.gameObject, false);
+        }
+
+        PlayAnimation(OtterBase.OtterState.Idle, "idle", true);
+        ChangeState(OtterState.Idle);
+
+    }
+
     public virtual void Update()
     {
         // Y축 위치가 변경되었을 때만 정렬 업데이트

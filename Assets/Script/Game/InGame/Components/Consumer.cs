@@ -407,13 +407,7 @@ public class Consumer : Chaser
 
     public void OutCounterConsumer()
     {
-        foreach(var fish in CurFishComponentList)
-        {
-            fish.ClearObj();
-        }
-
-        CurFishComponentList.Clear();
-        ProjectUtility.SetActiveCheck(ConsumerOrderUI.gameObject, false);
+        ConsumerOrderUI.SetImage(ConsumerOrderUI.ConsumerState.Pay);
         SetDestination(Stage.GetMiddleEndTr , ()=> {
             SetDestination(Stage.GetEndTr , () => {
                 DataClear();
@@ -426,6 +420,14 @@ public class Consumer : Chaser
 
     public void DataClear()
     {
+        if (ConsumerOrderUI != null)
+            ProjectUtility.SetActiveCheck(ConsumerOrderUI.gameObject, false);
+
+        foreach (var fish in CurFishComponentList)
+        {
+            fish.ClearObj();
+        }
+        CurFishComponentList.Clear();
         CurFacilityIdxProperty.Value = 0;
         CurCountProperty.Value = 0;
         PatternOrderQueue.Clear();

@@ -57,13 +57,13 @@ public class ConsumerOrderUI : InGameFloatingUI
         }
 
 
-        if (facilityidx > 0) //기본 물품대 
-        {
-            SetImage(ConsumerOrderUI.ConsumerState.Food);
-        }
-        else if (facilityidx == 1000) //계산대
+        if (facilityidx == 1000) //계산대
         {
             SetImage(ConsumerOrderUI.ConsumerState.Counter);
+        }
+        else if (facilityidx > 0) //기본 물품대 
+        {
+            SetImage(ConsumerOrderUI.ConsumerState.Food);
         }
     }
 

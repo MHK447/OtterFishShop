@@ -43,27 +43,27 @@ MonoBehaviour:
     _cost: 50
     _value: 1
     _value2: 101
-    _icon: Common_Icon_Upgrade_Casher_Add_02
+    _icon: Common_Icon_Upgrade_Casher_Add_03
     _desc: casher_add_02_desc
-    _name: casher_add_02_name
+    _name: casher_add_09_name
   - _stageidx: 1
     _upgrade_idx: 2
     _upgrade_type: 1
     _cost: 100
-    _value: 10
+    _value: 1
     _value2: 0
     _icon: Common_Icon_Upgrade_Casher_Add_02
     _desc: casher_add_02_desc
-    _name: casher_add_02_name
+    _name: casher_add_01_name
   - _stageidx: 1
     _upgrade_idx: 3
     _upgrade_type: 10
     _cost: 100
-    _value: 10
+    _value: 1
     _value2: 0
-    _icon: Common_Icon_Upgrade_Casher_Add_02
+    _icon: Common_Icon_Upgrade_Casher_Add_01
     _desc: casher_add_02_desc
-    _name: casher_add_02_name
+    _name: casher_add_10_name
   - _stageidx: 1
     _upgrade_idx: 4
     _upgrade_type: 9
@@ -72,7 +72,7 @@ MonoBehaviour:
     _value2: 102
     _icon: Common_Icon_Upgrade_Casher_Add_02
     _desc: casher_add_02_desc
-    _name: casher_add_02_name
+    _name: casher_add_09_name
   - _stageidx: 1
     _upgrade_idx: 5
     _upgrade_type: 2
