@@ -1205,6 +1205,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4936870546518561201}
+  - component: {fileID: 3914347172697598922}
   m_Layer: 0
   m_Name: OpenFacility
   m_TagString: Untagged
@@ -1233,6 +1234,28 @@ Transform:
   - {fileID: 1740996690127200836}
   m_Father: {fileID: 1075834941865691527}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &3914347172697598922
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6549860184814350730}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 41147d71255ea1e4982140bbd124f113, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &6653947458712595248
 GameObject:
   m_ObjectHideFlags: 0
@@ -1922,12 +1945,20 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 437691003385931554}
     - target: {fileID: 6884829981719908217, guid: ef347e2cec179a84095225182ca827cc, type: 3}
+      propertyPath: FixObj
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6884829981719908217, guid: ef347e2cec179a84095225182ca827cc, type: 3}
       propertyPath: ProgressTr
       value: 
       objectReference: {fileID: 3510106705966970227}
     - target: {fileID: 6884829981719908217, guid: ef347e2cec179a84095225182ca827cc, type: 3}
       propertyPath: FacilityIdx
       value: 1002
+      objectReference: {fileID: 0}
+    - target: {fileID: 6884829981719908217, guid: ef347e2cec179a84095225182ca827cc, type: 3}
+      propertyPath: TroubleUITr
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 6884829981719908217, guid: ef347e2cec179a84095225182ca827cc, type: 3}
       propertyPath: skeletonAnimation
