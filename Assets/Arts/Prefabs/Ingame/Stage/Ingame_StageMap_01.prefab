@@ -15814,6 +15814,30 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 6520819932154313383}
     m_Modifications:
+    - target: {fileID: 3928397460664883950, guid: 907eac8d78fc44a4190977b1a3629d30, type: 3}
+      propertyPath: m_Color.b
+      value: 0.8352941
+      objectReference: {fileID: 0}
+    - target: {fileID: 3928397460664883950, guid: 907eac8d78fc44a4190977b1a3629d30, type: 3}
+      propertyPath: m_Color.g
+      value: 0.72156864
+      objectReference: {fileID: 0}
+    - target: {fileID: 3928397460664883950, guid: 907eac8d78fc44a4190977b1a3629d30, type: 3}
+      propertyPath: m_Color.r
+      value: 0.5411765
+      objectReference: {fileID: 0}
+    - target: {fileID: 4738904502290950469, guid: 907eac8d78fc44a4190977b1a3629d30, type: 3}
+      propertyPath: m_Color.b
+      value: 0.72156864
+      objectReference: {fileID: 0}
+    - target: {fileID: 4738904502290950469, guid: 907eac8d78fc44a4190977b1a3629d30, type: 3}
+      propertyPath: m_Color.g
+      value: 0.5254902
+      objectReference: {fileID: 0}
+    - target: {fileID: 4738904502290950469, guid: 907eac8d78fc44a4190977b1a3629d30, type: 3}
+      propertyPath: m_Color.r
+      value: 0.21176471
+      objectReference: {fileID: 0}
     - target: {fileID: 5679440103628128927, guid: 907eac8d78fc44a4190977b1a3629d30, type: 3}
       propertyPath: m_Name
       value: SeaOtter_01
