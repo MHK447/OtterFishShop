@@ -53,7 +53,7 @@ public class FishComponent : MonoBehaviour
     {
         TargetYPos = ypos;
         IsTracking = false;
-        Target = tr;
+        Target = tr;    
 
         this.transform.DOJump(new Vector3(tr.position.x, tr.position.y + ypos, tr.position.z), 3f, 1, time)
             .SetEase(Ease.InOutQuad)

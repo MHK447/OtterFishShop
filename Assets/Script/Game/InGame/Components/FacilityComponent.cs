@@ -96,9 +96,19 @@ public class FacilityComponent : MonoBehaviour
             var openorder = GameRoot.Instance.UserData.CurMode.StageData.NextFacilityOpenOrderProperty;
 
 
-            openorder.Subscribe(x => {
+            openorder.SkipLatestValueOnSubscribe().Subscribe(x => {
                 if(NewFacilityUI != null)
                 {
+                    if(!FacilityData.IsOpen && FacilityOpenOrder == openorder.Value)
+                    {
+                        GameRoot.Instance.WaitTimeAndCallback(1f, () => {
+                            GameRoot.Instance.InGameSystem.CurInGame.IngameCamera.FoucsPosition(NewFacilityUI.transform);
+                        });
+                        GameRoot.Instance.WaitTimeAndCallback(3f, () => {
+                            GameRoot.Instance.InGameSystem.CurInGame.IngameCamera.FocusOff();
+                        });
+                    }
+
                     ProjectUtility.SetActiveCheck(FacilityContentsObj, !FacilityData.IsOpen
                                     && FacilityOpenOrder == openorder.Value);
 

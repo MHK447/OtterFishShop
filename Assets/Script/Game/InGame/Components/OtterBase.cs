@@ -279,7 +279,6 @@ public class OtterBase : MonoBehaviour
 
         fish.FishInBucketAction(GetFishCarryRoot.transform, (fish) =>
         {
-            fish.transform.SetParent(GetFishCarryRoot);
         }, 0.25f, floory);
     }
 

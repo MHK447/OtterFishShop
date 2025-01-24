@@ -15,11 +15,20 @@ public class HUDTotal : UIBase
     [SerializeField]
     private Button UpgradeBtn;
 
+    [SerializeField]
+    private Button NextStageBtn;
+
 
     protected override void Awake()
     {
         base.Awake();
         UpgradeBtn.onClick.AddListener(OnClickUpgrade);
+        NextStageBtn.onClick.AddListener(OnClickNextStage);
+    }
+
+    public void OnClickNextStage()
+    {
+        GameRoot.Instance.UISystem.OpenUI<PopupNextStage>(popup => popup.Init());
     }
 
 

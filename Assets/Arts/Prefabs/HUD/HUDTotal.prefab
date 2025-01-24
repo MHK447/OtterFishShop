@@ -137,6 +137,7 @@ MonoBehaviour:
   touchLockTime: 0.5
   CurrencyTop: {fileID: 8046185700476817420}
   UpgradeBtn: {fileID: 8983135478131882836}
+  NextStageBtn: {fileID: 713099845145871911}
 --- !u!1001 &3017203920630239252
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -757,6 +758,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 357f5fe8e5576ba419aa39b72d4c1712, type: 3}
+--- !u!114 &713099845145871911 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6158040157549669184, guid: 357f5fe8e5576ba419aa39b72d4c1712, type: 3}
+  m_PrefabInstance: {fileID: 6670024984835452263}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &1934689606978256793 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5064814070919385854, guid: 357f5fe8e5576ba419aa39b72d4c1712, type: 3}

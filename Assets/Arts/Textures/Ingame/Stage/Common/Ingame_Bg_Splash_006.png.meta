@@ -156,7 +156,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Ingame_Bg_Splash_006_0: -8756553892513150967
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

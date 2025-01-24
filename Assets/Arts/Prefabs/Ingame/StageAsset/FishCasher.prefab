@@ -104,7 +104,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 008de9e22e827484e95427e35d0a4830, type: 2}
+  - {fileID: 2100000, guid: cc9200172ea9647b09e68f1dda0fd7b3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -155,11 +155,13 @@ MonoBehaviour:
   fixDrawOrder: 0
   addNormals: 0
   calculateTangents: 0
-  maskInteraction: 0
+  maskInteraction: 2
   maskMaterials:
-    materialsMaskDisabled: []
+    materialsMaskDisabled:
+    - {fileID: 2100000, guid: 008de9e22e827484e95427e35d0a4830, type: 2}
     materialsInsideMask: []
-    materialsOutsideMask: []
+    materialsOutsideMask:
+    - {fileID: 2100000, guid: cc9200172ea9647b09e68f1dda0fd7b3, type: 2}
   disableRenderingOnOverride: 1
   physicsPositionInheritanceFactor: {x: 1, y: 1}
   physicsRotationInheritanceFactor: 1
@@ -239,12 +241,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: feb419cc2ad7d4bba9e16854e879ca12, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CurUnitType: 0
   PlayerSpeed: 1
   ProgressTr: {fileID: 9063122242514546740}
   FishTr: {fileID: 3999100316851466616}
   skeletonAnimation: {fileID: 6902744124365164405}
   FishCarryRoot: {fileID: 8956759301778506394}
   IsCarry: 0
+  sortingOrderBase: 0
+  offset: 100
   CurAnimName: Idle
   loop: 1
   TargetTr: {fileID: 0}

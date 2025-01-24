@@ -3,6 +3,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.EventSystems;
+using DG.Tweening;
 
 /// <summary> A modular and easily customisable Unity MonoBehaviour for handling swipe and pinch motions on mobile. </summary>
 public class PanAndZoom : MonoBehaviour {
@@ -81,6 +82,8 @@ public class PanAndZoom : MonoBehaviour {
 
     bool canUseMouse;
 
+    private bool IsFocusing = false;
+
     /// <summary> Has the player at least one finger on the screen? </summary>
     public bool isTouching { get; private set; }
 
@@ -92,7 +95,9 @@ public class PanAndZoom : MonoBehaviour {
     private Vector3 camVelocity = Vector3.zero;
     private Vector3 posLastFrame = Vector3.zero;
     private bool multiTouch = false;
-    OtterBase _player;
+    Transform Target;
+    Transform PlayerTarget;
+
     void Start() {
         var aspectRatio = Mathf.Max(Screen.width, Screen.height) / Mathf.Min(Screen.width, Screen.height);
         var isTablet = (BanpoFri.Utility.DeviceDiagonalSizeInInches() > 6.5f && aspectRatio < 2f);
@@ -108,17 +113,24 @@ public class PanAndZoom : MonoBehaviour {
             boundMaxX = 4.0f;
         }
 
+        IsFocusing = false;
+
         canUseMouse = Application.platform != RuntimePlatform.Android && Application.platform != RuntimePlatform.IPhonePlayer && Input.mousePresent;
 
-        _player = GameRoot.Instance.InGameSystem.GetInGame<InGameTycoon>().GetPlayer;
+        PlayerTarget = Target = GameRoot.Instance.InGameSystem.GetInGame<InGameTycoon>().GetPlayer.transform;
         //cam.orthographicSize = Mathf.Min(cam.orthographicSize, ((boundMaxY - boundMinY) / 2) - 0.001f);
         //zoomOutSize = cam.orthographicSize = Mathf.Min(cam.orthographicSize, (Screen.height * (boundMaxX - boundMinX) / (2 * Screen.width)) - 0.001f);
     }
 
     void LateUpdate()
     {
+        if (Target == null) return;
+
+        if (IsFocusing) return;
+
+
         // SmoothDamp를 활용하여 카메라 이동 부드럽게 처리
-        Vector3 targetPosition = _player.transform.position + new Vector3(0f, 0f, -10f);
+        Vector3 targetPosition = Target.transform.position + new Vector3(0f, 0f, -10f);
         Vector3 smoothedPosition = Vector3.Lerp(cam.transform.position, targetPosition, smoothSpeed * Time.deltaTime);
         cam.transform.position = smoothedPosition;
 
@@ -127,25 +139,17 @@ public class PanAndZoom : MonoBehaviour {
         posLastFrame = cam.transform.position;
     }
 
-    void Update()
+
+    public void FoucsPosition(Transform target)
     {
+        IsFocusing = true;
+        this.transform.DOMove(new Vector3(target.position.x , target.position.y, -10f), 1f);
+    }
 
-            // camera clamp
-            // float x = Mathf.Clamp(followingTransform.position.x, cameraMinX, cameraMaxX);
-            // float y = Mathf.Clamp(followingTransform.position.y, cameraMinY, cameraMaxY);
-            // transform.position = new Vector3(x, y, _originZ);
-
-            // transform.position = new Vector3(followingTransform.position.x, followingTransform.position.y, _originZ);
-            // Debug.Log("$ " + ReverseCalculatePosition(transform.position));
-
-            // if (IsInsideArea(transform.position))
-            // {
-            //     //transform.position = new Vector3(followingTransform.position.x, followingTransform.position.y, _originZ);
-            // }
-            // else
-            // {
-            //}
-        
+    public void FocusOff()
+    {
+        Target = PlayerTarget;
+        IsFocusing = false;
     }
 
     private float EvaluateAutoScrollDampCurve(float t)
