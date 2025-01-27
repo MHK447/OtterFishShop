@@ -48,6 +48,27 @@ namespace BanpoFri
 			get { return _revenue_buff_profit;}
 			set { _revenue_buff_profit = value;}
 		}
+		[SerializeField]
+		private string _nextstage_name;
+		public string nextstage_name
+		{
+			get { return _nextstage_name;}
+			set { _nextstage_name = value;}
+		}
+		[SerializeField]
+		private string _nextstage_image;
+		public string nextstage_image
+		{
+			get { return _nextstage_image;}
+			set { _nextstage_image = value;}
+		}
+		[SerializeField]
+		private int _next_stage_money;
+		public int next_stage_money
+		{
+			get { return _next_stage_money;}
+			set { _next_stage_money = value;}
+		}
 
     }
 

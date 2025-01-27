@@ -12,7 +12,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cacfef892848547baadc2672b41d1eb1, type: 3}
   m_Name: StageFacilityInfo
   m_EditorClassIdentifier: 
-  mFirstKey: []
+  mFirstKey:
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 2
+  - 2
+  - 2
+  - 2
+  - 2
+  - 2
   mSecondKey:
   - 1
   - 2
@@ -20,11 +32,12 @@ MonoBehaviour:
   - 1000
   - 101
   - 102
-  - 1
-  - 2
   - 3
   - 4
+  - 103
+  - 104
   - 1000
+  - 105
   mDataList:
   - _stageidx: 1
     _facilityidx: 1
@@ -45,17 +58,20 @@ MonoBehaviour:
     _facilityidx: 102
     _open_cost: 100
   - _stageidx: 2
-    _facilityidx: 1
-    _open_cost: 10
-  - _stageidx: 2
-    _facilityidx: 2
-    _open_cost: 10
-  - _stageidx: 2
     _facilityidx: 3
     _open_cost: 10
   - _stageidx: 2
     _facilityidx: 4
     _open_cost: 10
   - _stageidx: 2
+    _facilityidx: 103
+    _open_cost: 10
+  - _stageidx: 2
+    _facilityidx: 104
+    _open_cost: 10
+  - _stageidx: 2
     _facilityidx: 1000
+    _open_cost: 10
+  - _stageidx: 2
+    _facilityidx: 105
     _open_cost: 10

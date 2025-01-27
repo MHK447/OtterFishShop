@@ -39,5 +39,11 @@ public class InGameFloatingUI : MonoBehaviour, IFloatingUI
             if (FollowTrans != null)
                 this.transform.localScale = FollowTrans.localScale;
         }
+
+
+        if(FollowTrans == null)
+        {
+            this.gameObject.SetActive(false);
+        }
     }
 }

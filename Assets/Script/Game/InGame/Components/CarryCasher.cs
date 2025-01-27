@@ -215,6 +215,9 @@ public class CarryCasher : OtterBase
     {
         System.Action moveToBucket = () =>
         {
+            if (this == null) return;
+            if (!this.gameObject.activeSelf) return;
+
             SetDestination(fishRoom.GetBucketComponent.transform, ()=> {
                 GameRoot.Instance.StartCoroutine(CheckWaitProductMax(NextWorkAction));
             });
@@ -225,6 +228,9 @@ public class CarryCasher : OtterBase
 
         System.Action moveToDisplay = () =>
         {
+            if (this == null) return;
+            if (!this.gameObject.activeSelf) return;
+
             SetDestination(rackcomponent.GetCarryCasherWaitTr(this.transform), () => {
                 PlayAnimation(OtterState.Idle, "idle" , true);
             });
@@ -234,7 +240,10 @@ public class CarryCasher : OtterBase
 
         System.Action WaitToWork = () =>
         {
-            if(FishComponentList.Count > 0)
+            if (this == null) return;
+            if (!this.gameObject.activeSelf) return;
+
+            if (FishComponentList.Count > 0)
             {
                 GoToTrashCan(() => {
                     GameRoot.Instance.StartCoroutine(CheckWaitTrashCan(()=> {

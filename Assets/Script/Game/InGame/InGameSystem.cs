@@ -73,6 +73,50 @@ public class InGameSystem
         SceneSystem.ChangeScene(type, loadCallback);
     }
 
+
+    public void NextGameStage(bool Init = false)
+    {
+        if (GameRoot.Instance.InGameSystem.CurInGame != null)
+            GameRoot.Instance.InGameSystem.CurInGame.UnLoad();
+
+        var saveTime = TimeSystem.GetCurTime().Ticks;
+        var curidx = GameRoot.Instance.UserData.CurMode.StageData.StageIdx;
+
+
+        GameRoot.Instance.UserData.CurMode.StageData.SetStageIdx(curidx + 1);
+
+        SoundPlayer.Instance.Load();
+        GameRoot.Instance.FacilitySystem.Create();
+        GameRoot.Instance.InGameSystem.Create();
+        GameRoot.Instance.FacilitySystem.CreateStageFacility(GameRoot.Instance.UserData.CurMode.StageData.StageIdx);
+        GameRoot.Instance.TutorialSystem.ClearRegisiter();
+        GameRoot.Instance.UserData.CurMode.Money.Value = 0;
+        GameRoot.Instance.UserData.Save();
+        if (!Init)
+        {
+            StartGame(GameRoot.Instance.CurInGameType, LoadCallBack);
+
+
+        }
+    }
+
+
+    public void LoadCallBack()
+    {
+        GameRoot.Instance.GetJoyStick.Init();
+ 
+        var curstageidx = GameRoot.Instance.UserData.CurMode.StageData.StageIdx;
+
+        var stagetd = Tables.Instance.GetTable<StageInfo>().GetData(curstageidx);
+
+        if(stagetd != null)
+        {
+            GameRoot.Instance.UpgradeSystem.StageSetUpgradeData(curstageidx);
+            GameRoot.Instance.UserData.CurMode.Money.Value = GameRoot.Instance.UserData.HUDMoney.Value = 0;
+            GameRoot.Instance.UserData.SetReward((int)Config.RewardType.Currency, (int)Config.CurrencyID.Money, stagetd.seedmoney_value);
+        }
+    }
+
     public bool inInitPopups { get; private set; } = false;
 
     public void InitPopups()

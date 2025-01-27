@@ -6,6 +6,7 @@ using UnityEngine.UI;
 using System.Linq;
 using UniRx;
 using TMPro;
+using System.Numerics;
 
 [UIPath("UI/Popup/PopupNextStage")]
 public class PopupNextStage : UIBase
@@ -39,6 +40,8 @@ public class PopupNextStage : UIBase
 
     private CompositeDisposable disposables = new CompositeDisposable();
 
+    private BigInteger PurChaseMoney;
+
     protected override void Awake()
     {
         base.Awake();
@@ -56,7 +59,8 @@ public class PopupNextStage : UIBase
 
     public void OnClickNextStage()
     {
-        //nextstage  
+        Hide();
+        GameRoot.Instance.InGameSystem.NextGameStage();
     }
 
 
@@ -70,7 +74,11 @@ public class PopupNextStage : UIBase
 
         if (td != null)
         {
+            PurChaseMoney = td.next_stage_money;
+
             disposables.Clear();
+
+            UpgradeSliderCheck();
 
             foreach (var upgrade in GameRoot.Instance.UserData.CurMode.UpgradeGroupData.StageUpgradeCollectionList)
             {
@@ -82,10 +90,21 @@ public class PopupNextStage : UIBase
                 }).AddTo(disposables);
             }
 
+            GameRoot.Instance.UserData.CurMode.Money.SkipLatestValueOnSubscribe().Subscribe(x => { UpgradeSliderCheck(); }).AddTo(disposables);
 
+            BeforeImg.sprite = Config.Instance.GetIngameImg(td.nextstage_image);
+            BeforeFoodNameText.text = Tables.Instance.GetTable<Localize>().GetString(td.nextstage_name);
+
+            NextStagePurchaseValueText.text = ProjectUtility.CalculateMoneyToString(PurChaseMoney);
+        }
+
+
+        if(nextstagetd != null)
+        {
+            AfterFoodNameText.text = Tables.Instance.GetTable<Localize>().GetString(nextstagetd.nextstage_name);
+            AfterFoodImg.sprite = Config.Instance.GetIngameImg(nextstagetd.nextstage_image);
         }
     }
-
 
     public void UpgradeSliderCheck()
     {
@@ -97,6 +116,7 @@ public class PopupNextStage : UIBase
 
         UpgradeCountText.text = $"{isbuylist.Count}/{upgradelist.Count}";
 
+        NextStageBtn.interactable = isbuylist.Count >= upgradelist.Count && GameRoot.Instance.UserData.CurMode.Money.Value >= PurChaseMoney;
     }
 
 }

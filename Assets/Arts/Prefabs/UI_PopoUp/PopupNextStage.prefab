@@ -602,7 +602,7 @@ MonoBehaviour:
   AfterFoodNameText: {fileID: 9138110932326078929}
   UpgradeSlider: {fileID: 5897191607900612730}
   UpgradeCountText: {fileID: 4178427445809813357}
-  NextStagePurchaseValueText: {fileID: 6875626216347916677}
+  NextStagePurchaseValueText: {fileID: 8501915924652845831}
   NextStageBtn: {fileID: 7274783697201286010}
   UpgradeBtn: {fileID: 6061186415804182848}
 --- !u!1 &2654538119173237096
@@ -2635,6 +2635,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 5362877629220322583, guid: 076892807ad332e42aea46776fec5061, type: 3}
   m_PrefabInstance: {fileID: 2515151169451242930}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &8501915924652845831 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6276685086379728565, guid: 076892807ad332e42aea46776fec5061, type: 3}
+  m_PrefabInstance: {fileID: 2515151169451242930}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &3894198371367628016
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3594,14 +3605,3 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 8460738628235301190, guid: 0171569247817f742b8b8cd019e8a2f3, type: 3}
   m_PrefabInstance: {fileID: 8101725914748366494}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &6875626216347916677 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3387900259431675675, guid: 0171569247817f742b8b8cd019e8a2f3, type: 3}
-  m_PrefabInstance: {fileID: 8101725914748366494}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

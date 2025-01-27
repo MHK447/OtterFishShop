@@ -68,7 +68,6 @@ public class ConsumerOrderUI : InGameFloatingUI
     }
 
 
-
     public void SetImage(ConsumerState state)
     {
         foreach(var obj in ConsumerStateList)

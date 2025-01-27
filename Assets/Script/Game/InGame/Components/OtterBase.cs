@@ -102,12 +102,22 @@ public class OtterBase : MonoBehaviour
 
         CurStage = GameRoot.Instance.InGameSystem.GetInGame<InGameTycoon>().curInGameStage;
 
-        GameRoot.Instance.UISystem.LoadFloatingUI<CooltimeProgress>((_progress) => {
-            Progress = _progress;
+        if (Progress == null)
+        {
+            GameRoot.Instance.UISystem.LoadFloatingUI<CooltimeProgress>((_progress) =>
+            {
+                Progress = _progress;
+                ProjectUtility.SetActiveCheck(Progress.gameObject, false);
+                Progress.Init(ProgressTr);
+                Progress.SetValue(0);
+            });
+        }
+        else
+        {
             ProjectUtility.SetActiveCheck(Progress.gameObject, false);
-            Progress.Init(ProgressTr);
-            Progress.SetValue(0);
-        });
+        }
+
+        DataClear();
 
         var donebuylist = GameRoot.Instance.UserData.CurMode.UpgradeGroupData.StageUpgradeCollectionList.ToList().FindAll(x => x.IsBuyCheckProperty.Value == false);
 
@@ -224,6 +234,26 @@ public class OtterBase : MonoBehaviour
         CurState = state;
 
     }
+
+
+    public void DataClear()
+    {
+        foreach(var fish in FishComponentList)
+        {
+            fish.ClearObj();
+        }
+
+        FishComponentList.Clear();
+
+
+        if(Progress != null)
+        {
+            ProjectUtility.SetActiveCheck(Progress.gameObject, false);
+        }
+
+
+    }
+       
 
 
     public void IdleChange()
@@ -498,8 +528,25 @@ public class OtterBase : MonoBehaviour
         return smoothPath.ToArray();
     }
 
+    private void OnDisable()
+    {
+        if(Progress != null)
+        {
+            ProjectUtility.SetActiveCheck(Progress.gameObject, false);
+            Destroy(Progress.gameObject);
+            Progress = null;
+        }
+    }
 
-
+    private void OnDestroy()
+    {
+        if (Progress != null)
+        {
+            ProjectUtility.SetActiveCheck(Progress.gameObject, false);
+            Destroy(Progress.gameObject);
+            Progress = null;
+        }
+    }
 
     public IEnumerator WaitOneFrame()
     {

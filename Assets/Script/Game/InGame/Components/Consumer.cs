@@ -154,6 +154,7 @@ public class Consumer : Chaser
 
 
 
+
     public void MoveFacility()
     {
         if (PatternOrderQueue.Count > 0)
@@ -237,6 +238,12 @@ public class Consumer : Chaser
     private void OnDisable()
     {
         disposables.Clear();
+
+        if(ConsumerOrderUI != null)
+        {
+            Destroy(ConsumerOrderUI.gameObject);
+            ConsumerOrderUI = null;
+        }
     }
 
     public void ChangeState(CurState state , int facilityidx = -1)
@@ -452,4 +459,5 @@ public class Consumer : Chaser
             ConsumerOrderUI.SetImage(ConsumerOrderUI.ConsumerState.Pay);
         }
     }
+
 }

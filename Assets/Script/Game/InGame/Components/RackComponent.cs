@@ -173,6 +173,12 @@ public class RackComponent : FacilityComponent
     private void OnDisable()
     {
         disposables.Clear();
+
+        if(AmountUI != null)
+        {
+            Destroy(AmountUI.gameObject);
+            AmountUI = null;
+        }
     }
 
 

@@ -185,4 +185,13 @@ public class BucketComponent : MonoBehaviour
         CountUI.Init(FishStackComponent.First().transform);
     }
 
+
+    private void OnDisable()
+    {
+        if(CountUI != null)
+        {
+            Destroy(CountUI.gameObject);
+            CountUI = null;
+        }
+    }
 }

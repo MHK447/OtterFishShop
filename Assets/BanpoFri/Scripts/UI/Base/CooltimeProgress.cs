@@ -14,4 +14,6 @@ public class CooltimeProgress : InGameFloatingUI
     {
         Progress.fillAmount = value;
     }
+
+   
 }

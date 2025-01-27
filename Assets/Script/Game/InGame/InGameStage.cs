@@ -136,7 +136,6 @@ public class InGameStage : MonoBehaviour
     public void ReturnMainScreen()
     {
         GameRoot.Instance.UserData.CurMode.GachaCoin.Value = 0;
-        GameRoot.Instance.UserData.CurMode.StageData.IsStartBattle = false;
     }
 
     private void OnDestroy()

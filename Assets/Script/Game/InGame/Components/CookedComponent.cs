@@ -103,12 +103,16 @@ public class CookedComponent : FacilityComponent
                 CookedMaterialList[i].Set(td.material_idxs[i], MaterialMaxCount);
             }
 
-            GameRoot.Instance.UISystem.LoadFloatingUI<CooltimeProgress>((_progress) => {
-                Progress = _progress;
-                ProjectUtility.SetActiveCheck(Progress.gameObject, false);
-                Progress.Init(ProgressTr);
-                Progress.SetValue(0);
-            });
+            if (Progress == null)
+            {
+                GameRoot.Instance.UISystem.LoadFloatingUI<CooltimeProgress>((_progress) =>
+                {
+                    Progress = _progress;
+                    ProjectUtility.SetActiveCheck(Progress.gameObject, false);
+                    Progress.Init(ProgressTr);
+                    Progress.SetValue(0);
+                });
+            }
 
             disposables.Clear();
 
@@ -485,6 +489,14 @@ public class CookedComponent : FacilityComponent
         ProduceFood();
     }
 
+    private void OnDisable()
+    {
+        if(Progress != null)
+        {
+            Destroy(Progress.gameObject);
+            Progress = null;
+        }
+    }
 
 
 

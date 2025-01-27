@@ -35,18 +35,24 @@ public class InGameTycoon : InGameMode
     {
         base.Load();
 
+        var stageidx = GameRoot.Instance.UserData.CurMode.StageData.StageIdx;
 
-        Addressables.InstantiateAsync("InGame1_1").Completed += (handle) =>
+        var td = Tables.Instance.GetTable<StageInfo>().GetData(stageidx);
+
+        if(td != null)
         {
-            StartCoroutine(UpdateNavMeshProcess());
-            curInGameStage = handle.Result.GetComponent<InGameStage>();
-            if (curInGameStage != null)
+            Addressables.InstantiateAsync($"InGame1_{stageidx}").Completed += (handle) =>
             {
-                curInGameStage.Init();
-            }
+                StartCoroutine(UpdateNavMeshProcess());
+                curInGameStage = handle.Result.GetComponent<InGameStage>();
+                if (curInGameStage != null)
+                {
+                    curInGameStage.Init();
+                }
 
-            Player.Init();
-        };
+                Player.Init();
+            };
+        }
 
         //CalculateGameSpeed();
 

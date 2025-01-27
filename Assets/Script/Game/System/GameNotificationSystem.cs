@@ -16,6 +16,7 @@ public class GameNotificationSystem
     public enum NotificationCategory
     {
         UpgradePopup,
+        StageClear,
     }
 
     public class NotificationData
@@ -77,7 +78,15 @@ public class GameNotificationSystem
 
         GameRoot.Instance.UserData.CurMode.Money.Subscribe(x => {
             UpdateNotification(NotificationCategory.UpgradePopup);
+            UpdateNotification(NotificationCategory.StageClear);
         }).AddTo(disposables);
+        
+        var upgradelist = GameRoot.Instance.UserData.CurMode.UpgradeGroupData.StageUpgradeCollectionList.ToList().FindAll(x=> x.IsBuyCheckProperty.Value == false);
+
+        foreach(var upgrade in upgradelist)
+        {
+            upgrade.IsBuyCheckProperty.SkipLatestValueOnSubscribe().Subscribe(x => { UpdateNotification(NotificationCategory.StageClear); }).AddTo(disposables);
+        }
 
     }
 
@@ -114,6 +123,31 @@ public class GameNotificationSystem
 
 
                     if (on != noti.on.Value)
+                        noti.on.Value = on;
+                }
+                break;
+
+            case NotificationCategory.StageClear:
+                {
+                    var noti = GetData(category, -1, -1);
+                    if (noti == null) return;
+
+                    bool on = false;
+
+                    var isnonebuyupgrade = GameRoot.Instance.UserData.CurMode.UpgradeGroupData.StageUpgradeCollectionList.ToList().Find(x=> x.IsBuyCheckProperty.Value == false);
+
+                    if(isnonebuyupgrade == null)
+                    {
+                        var stageidx = GameRoot.Instance.UserData.CurMode.StageData.StageIdx;
+
+                        var td = Tables.Instance.GetTable<StageInfo>().GetData(stageidx);
+
+                        if(td != null)
+                        {
+                            on = GameRoot.Instance.UserData.CurMode.Money.Value >= td.next_stage_money;
+                        }
+                    }
+
                         noti.on.Value = on;
                 }
                 break;

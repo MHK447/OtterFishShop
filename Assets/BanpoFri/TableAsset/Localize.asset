@@ -31,6 +31,11 @@ MonoBehaviour:
   - casher_stack_01_name
   - casher_add_10_name
   - casher_add_01_name
+  - next_stage_name_1
+  - next_stage_name_2
+  - next_stage_name_3
+  - next_stage_name_4
+  - next_stage_name_5
   mSecondKey: []
   mDataList:
   - _idx: casher_add_02_desc
@@ -103,5 +108,25 @@ MonoBehaviour:
     _ja: 
   - _idx: casher_add_01_name
     _ko: "\uC6B4\uBC18 \uC9C1\uC6D0\uC218"
+    _en: 
+    _ja: 
+  - _idx: next_stage_name_1
+    _ko: "\uC0DD\uC120\uAD6C\uC774 \uAC00\uAC8C"
+    _en: 
+    _ja: 
+  - _idx: next_stage_name_2
+    _ko: "\uCE74\uB808 \uAC00\uAC8C"
+    _en: 
+    _ja: 
+  - _idx: next_stage_name_3
+    _ko: "\b\uB124\uB124 \uCE58\uD0A8 1\uD638\uC810 \uAC00\uAC8C"
+    _en: 
+    _ja: 
+  - _idx: next_stage_name_4
+    _ko: "\b\uAD7D\uB124 \uCE58\uD0A8 2\uD638\uC810 \uAC00\uAC8C"
+    _en: 
+    _ja: 
+  - _idx: next_stage_name_5
+    _ko: "\bbbq 3\uD638\uC810 \uAC00\uAC8C"
     _en: 
     _ja: 

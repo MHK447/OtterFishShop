@@ -98,8 +98,6 @@ public class StageData
 
 	public int StageIdx { get; set; } = 1;
 	public IReactiveProperty<int> NextFacilityOpenOrderProperty = new ReactiveProperty<int>();
-	public bool IsStartBattle = false;
-
 
 	public FacilityData FindFacilityData(int facilityidx)
     {
@@ -119,17 +117,19 @@ public class StageData
 		}
     }
 
+
+	public void SetStageIdx(int idx)
+	{
+		StageFacilityDataList.Clear();
+		NextFacilityOpenOrderProperty.Value = 0;
+		StageIdx = idx;
+	}
+
 	public void StageEndClear()
     {
 
 	}
 
-
-	public void SetStage(int stageidx)
-	{
-		GameRoot.Instance.FacilitySystem.CreateStageFacility(GameRoot.Instance.UserData.CurMode.StageData.StageIdx);
-		StageIdx = stageidx;
-    }
 
 	public void SetWave(int waveidx)
     {

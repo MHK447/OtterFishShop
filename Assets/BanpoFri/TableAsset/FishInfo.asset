@@ -17,6 +17,11 @@ MonoBehaviour:
   - 2
   - 3
   - 4
+  - 5
+  - 6
+  - 7
+  - 8
+  - 9
   mSecondKey: []
   mDataList:
   - _idx: 1
@@ -31,3 +36,18 @@ MonoBehaviour:
   - _idx: 4
     _icon: Ingame_Food_004
     _base_revenue: 400
+  - _idx: 5
+    _icon: Ingame_Food_005
+    _base_revenue: 500
+  - _idx: 6
+    _icon: Ingame_Food_006
+    _base_revenue: 600
+  - _idx: 7
+    _icon: Ingame_Food_007
+    _base_revenue: 700
+  - _idx: 8
+    _icon: Ingame_Food_008
+    _base_revenue: 800
+  - _idx: 9
+    _icon: Ingame_Food_009
+    _base_revenue: 900
