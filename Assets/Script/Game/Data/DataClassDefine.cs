@@ -109,6 +109,8 @@ public class StageData
         }
 		else
         {
+			var stageidx = GameRoot.Instance.UserData.CurMode.StageData.StageIdx;
+				
 			var newfacilitydata = new FacilityData(facilityidx, 0, false, 0);
 
 			StageFacilityDataList.Add(newfacilitydata);

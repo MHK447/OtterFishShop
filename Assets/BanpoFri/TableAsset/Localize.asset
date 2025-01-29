@@ -51,7 +51,7 @@ MonoBehaviour:
     _en: 
     _ja: 
   - _idx: player_speedup_01_desc
-    _ko: "<color=#3a8e62>+{0}</color> \uC99D\uAC00"
+    _ko: "<color=#3a8e62>+{0}</color> \uC99D\uAC00 "
     _en: 
     _ja: 
   - _idx: player_stack_01_desc
@@ -119,14 +119,14 @@ MonoBehaviour:
     _en: 
     _ja: 
   - _idx: next_stage_name_3
-    _ko: "\b\uB124\uB124 \uCE58\uD0A8 1\uD638\uC810 \uAC00\uAC8C"
+    _ko: "\uB514\uC800\uD2B8 \uAC00\uAC8C"
     _en: 
     _ja: 
   - _idx: next_stage_name_4
-    _ko: "\b\uAD7D\uB124 \uCE58\uD0A8 2\uD638\uC810 \uAC00\uAC8C"
+    _ko: "\uD280\uAE40 \uAC00\uAC8C"
     _en: 
     _ja: 
   - _idx: next_stage_name_5
-    _ko: "\bbbq 3\uD638\uC810 \uAC00\uAC8C"
+    _ko: "\uC2A4\uD504 \uAC00\uAC8C"
     _en: 
     _ja: 

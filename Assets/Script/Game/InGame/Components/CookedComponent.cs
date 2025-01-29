@@ -240,6 +240,8 @@ public class CookedComponent : FacilityComponent
     {
         base.OnTriggerEnter2D(collision);
 
+        if (!IsOpenFacility()) return;
+
         // 충돌한 오브젝트의 레이어를 확인합니다.
         if ((collision.gameObject.layer == LayerMask.NameToLayer("Consumer")))
         {
@@ -293,7 +295,7 @@ public class CookedComponent : FacilityComponent
 
     public override void OnTriggerExit2D(Collider2D collision)
     {
-        base.OnTriggerEnter2D(collision);
+        base.OnTriggerExit2D(collision);
 
         if (collision.gameObject.layer == LayerMask.NameToLayer("Consumer"))
         {

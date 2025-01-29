@@ -78,15 +78,15 @@ public class AutoBuild
 	[MenuItem("BanpoFri/Build/BakeFont")]
 	public static void BakeFont()
 	{
-		// var font = AssetDatabase.LoadAssetAtPath<Text.TMP_FontAsset>("Assets/Arts/Fonts/IdleToyClaw SDF.asset");
-		// if(font != null)
-		// {
-		// 	font.ClearFontAssetData();
-		// 	var str = LocalizeTextOverlapRemover.GetLocalizeText();
-		// 	font.TryAddCharacters(str);
-		// 	font.ReadFontAssetDefinition();
-		// }
-		// EditorUtility.SetDirty(font);
+		var font = AssetDatabase.LoadAssetAtPath<TMPro.TMP_FontAsset>("Assets/Arts/Font/Tmp/ONE Mobile POP OTF SDF.asset");
+		if (font != null)
+		{
+			font.ClearFontAssetData();
+			var str = LocalizeTextOverlapRemover.GetLocalizeText();
+			font.TryAddCharacters(str);
+			font.ReadFontAssetDefinition();
+		}
+		EditorUtility.SetDirty(font);
 	}
 
     [MenuItem("BanpoFri/Build/PreBuild")]

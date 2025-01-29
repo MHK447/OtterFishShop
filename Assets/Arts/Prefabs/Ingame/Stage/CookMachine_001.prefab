@@ -213,7 +213,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Col: {fileID: 8139082642065082164}
-  OpenAnim: {fileID: 8199783374325351737}
   FacilityOpenList:
   - {fileID: 2372311403671698869}
   FacilityContentsObj: {fileID: 282384905864027093}
@@ -248,7 +247,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 960745299540407919}
-  m_BodyType: 2
+  m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -266,7 +265,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 7
 --- !u!1 &999957111107428310
 GameObject:
   m_ObjectHideFlags: 0

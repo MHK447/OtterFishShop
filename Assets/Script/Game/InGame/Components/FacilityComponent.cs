@@ -46,6 +46,8 @@ public class FacilityComponent : MonoBehaviour
 
     private bool OnEnter = false;
 
+    private int MoneySpeedCount = 0;
+
     private float moneydeltime =0f;
 
     private int GoalCount = 0;
@@ -56,7 +58,9 @@ public class FacilityComponent : MonoBehaviour
 
     protected InGameStage InGameStage;
 
-    protected int BaseCapacity = 0; 
+    protected int BaseCapacity = 0;
+
+    private float FacilityOpenSpeed = 0.2f;
 
     public virtual void Init()
     {
@@ -74,10 +78,16 @@ public class FacilityComponent : MonoBehaviour
 
         ProjectUtility.SetActiveCheck(FacilityContentsObj, false);
 
+        var stageidx = GameRoot.Instance.UserData.CurMode.StageData.StageIdx;
 
         var facilitytd = Tables.Instance.GetTable<FacilityInfo>().GetData(FacilityIdx);
 
         BaseCapacity = facilitytd.start_capacity;
+
+        var stagefacilitytd = Tables.Instance.GetTable<StageFacilityInfo>().DataList.Where(x => x.facilityidx == FacilityIdx
+        && x.stageidx == stageidx).FirstOrDefault();
+
+        if (stagefacilitytd == null) return;
 
         var buffvalue = GameRoot.Instance.UpgradeSystem.GetUpgradeValue(UpgradeSystem.UpgradeType.ShelfCapacityUp,FacilityIdx);
 
@@ -124,7 +134,7 @@ public class FacilityComponent : MonoBehaviour
             {
                 FacilitySprite.sprite = Config.Instance.GetIngameImg(facilitytd.image);
 
-                GoalCount = facilitytd.initial_count;
+                GoalCount = stagefacilitytd.open_cost;
 
 
                 if (NewFacilityUI == null)
@@ -137,7 +147,7 @@ public class FacilityComponent : MonoBehaviour
                             && FacilityOpenOrder == openorder.Value);
 
                         _newfacility.Init(NewRoot);
-                        _newfacility.SliderValue(FacilityData.MoneyCount, facilitytd.initial_count);
+                        _newfacility.SliderValue(FacilityData.MoneyCount, stagefacilitytd.open_cost);
                     });
                 }
             }
@@ -196,6 +206,8 @@ public class FacilityComponent : MonoBehaviour
         {
             if(NewFacilityUI != null && NewFacilityUI.gameObject.activeSelf)
             OnEnter = true;
+            MoneySpeedCount = 0;
+            FacilityOpenSpeed = 0.2f;
         }
     }
         
@@ -252,8 +264,12 @@ public class FacilityComponent : MonoBehaviour
             {
                 moneydeltime += Time.deltaTime;
 
-                if (moneydeltime >= 0.2f)
+                if (moneydeltime >= FacilityOpenSpeed)
                 {
+                    MoneySpeedCount += 1;
+
+                    FacilityOpenSpeed -= 0.02f;
+
                     GameRoot.Instance.EffectSystem.MultiPlay<MoneyEffect>(Player.transform.position, effect =>
                     {
                         effect.SetAutoRemove(true, 1f);

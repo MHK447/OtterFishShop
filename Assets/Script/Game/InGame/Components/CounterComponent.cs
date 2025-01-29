@@ -14,6 +14,8 @@ public class CounterComponent : FacilityComponent
 
     private OtterBase CasherCounter;
 
+    private bool IsPlayer = false;
+
     public override void Init()
     {
         base.Init();
@@ -25,29 +27,32 @@ public class CounterComponent : FacilityComponent
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (InGameStage.FindCasher(CasherType.CounterCasher, FacilityData.FacilityIdx) != null) return;
-
+        if (InGameStage.FindCasher(CasherType.CounterCasher, FacilityData.FacilityIdx) != null)
+        {
+            IsPlayer = true;
+            return;
+        }
 
         // 충돌한 오브젝트의 레이어를 확인합니다.
 
-        if (collision.gameObject.layer == LayerMask.NameToLayer("Player") || collision.gameObject.layer == LayerMask.NameToLayer("CarryCasher"))
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
             checkoutdeltime = 0f;
 
-            Player = collision.transform.GetComponent<OtterBase>();
-
-            if (Player != null)
-                Player.CoolTimeActive(0f);
+            IsPlayer = true;
         }
     }
 
 
     private void OnCollisionExit2D(Collision2D collision)
     {
-        if (InGameStage.FindCasher(CasherType.CounterCasher, FacilityData.FacilityIdx) != null) return;
+        if (InGameStage.FindCasher(CasherType.CounterCasher, FacilityData.FacilityIdx) != null)
+        {
+            IsPlayer = true;
+            return;
+        }
 
-
-        if (collision.gameObject.layer == LayerMask.NameToLayer("Player") || collision.gameObject.layer == LayerMask.NameToLayer("CarryCasher"))
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
             if (Player != null)
             {
@@ -55,8 +60,7 @@ public class CounterComponent : FacilityComponent
             }
 
             checkoutdeltime = 0f;
-
-            Player = null;
+            IsPlayer = false;
         }
     }
 
@@ -71,7 +75,7 @@ public class CounterComponent : FacilityComponent
             CasherCounter = InGameStage.FindCasher(CasherType.CounterCasher, FacilityData.FacilityIdx);
 
 
-        if ((Player != null || CasherCounter != null) && CounterConsumerList.Count > 0)
+        if ((IsPlayer && CounterConsumerList.Count > 0))
         {
             var findconsumer = CounterConsumerList.Find(x => x.CurCounterOrder == 0 && x.IsArrivedCounter);
 

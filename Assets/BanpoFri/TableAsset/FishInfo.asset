@@ -26,28 +26,28 @@ MonoBehaviour:
   mDataList:
   - _idx: 1
     _icon: Ingame_Food_001
-    _base_revenue: 100
+    _base_revenue: 10
   - _idx: 2
     _icon: Ingame_Food_002
-    _base_revenue: 200
+    _base_revenue: 20
   - _idx: 3
     _icon: Ingame_Food_003
-    _base_revenue: 300
+    _base_revenue: 20
   - _idx: 4
     _icon: Ingame_Food_004
-    _base_revenue: 400
+    _base_revenue: 20
   - _idx: 5
     _icon: Ingame_Food_005
-    _base_revenue: 500
+    _base_revenue: 20
   - _idx: 6
     _icon: Ingame_Food_006
-    _base_revenue: 600
+    _base_revenue: 20
   - _idx: 7
     _icon: Ingame_Food_007
-    _base_revenue: 700
+    _base_revenue: 20
   - _idx: 8
     _icon: Ingame_Food_008
-    _base_revenue: 800
+    _base_revenue: 20
   - _idx: 9
     _icon: Ingame_Food_009
-    _base_revenue: 900
+    _base_revenue: 20

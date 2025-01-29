@@ -14,6 +14,13 @@ namespace BanpoFri
 			set { _stageidx = value;}
 		}
 		[SerializeField]
+		private int _openorder;
+		public int openorder
+		{
+			get { return _openorder;}
+			set { _openorder = value;}
+		}
+		[SerializeField]
 		private int _facilityidx;
 		public int facilityidx
 		{

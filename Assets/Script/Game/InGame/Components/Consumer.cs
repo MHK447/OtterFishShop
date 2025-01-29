@@ -438,7 +438,7 @@ public class Consumer : Chaser
         CurFacilityIdxProperty.Value = 0;
         CurCountProperty.Value = 0;
         PatternOrderQueue.Clear();
-        CurFishComponentList.Clear();
+        CurFishComponentList.Clear();   
         IsCarry = false;
         CurCounterOrder = 0;
         FacilityTarget = null;
@@ -455,8 +455,6 @@ public class Consumer : Chaser
             var consumertr = CounterComponent.GetConsumerTr(order);
 
             SetDestination(consumertr, moveendaction);
-
-            ConsumerOrderUI.SetImage(ConsumerOrderUI.ConsumerState.Pay);
         }
     }
 
