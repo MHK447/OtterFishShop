@@ -10,7 +10,7 @@ public class InGameFloatingUI : MonoBehaviour, IFloatingUI
     private bool TrackingScale = false;
     [SerializeField]
     private bool TrackingPos = false;
-    private Transform FollowTrans = null;
+    protected Transform FollowTrans = null;
     [SerializeField]
     private Vector3 OffsetVec;
 
@@ -23,7 +23,7 @@ public class InGameFloatingUI : MonoBehaviour, IFloatingUI
     public void UpdatePos()
     {
         if (FollowTrans != null)
-            this.transform.position = FollowTrans.position;
+            this.transform.position = FollowTrans.position + OffsetVec;
     }
 
     protected virtual void Update()

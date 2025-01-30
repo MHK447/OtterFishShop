@@ -149,7 +149,7 @@ public class RackComponent : FacilityComponent
 
     public override void OnTriggerExit2D(Collider2D collision)
     {
-        base.OnTriggerEnter2D(collision);
+        base.OnTriggerExit2D(collision);
 
         if (collision.gameObject.layer == LayerMask.NameToLayer("Player") || collision.gameObject.layer == LayerMask.NameToLayer("CarryCasher"))
         {

@@ -84,8 +84,6 @@ public class Joystick : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, I
             targetZoom = Mathf.Clamp(targetZoom, _minCamera, _maxCamera);
         }
 
-        Camera.main.orthographicSize = Mathf.Lerp(Camera.main.orthographicSize, targetZoom, Time.fixedDeltaTime * 10f);
-
         if (_isTouch)
         {
             //Debug.Log("$ _vectorMove1 = " + _vectorMove);
@@ -118,19 +116,6 @@ public class Joystick : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, I
             _player.MoveVector(new Vector3(0.03f, 0f, -1f));
         }
 
-        if (Input.GetKeyDown(KeyCode.Q) && !Input.GetKey(KeyCode.E))
-        {
-            Camera.main.orthographicSize += 1f;
-        }
-        else if (Input.GetKeyDown(KeyCode.E) && !Input.GetKey(KeyCode.Q))
-        {
-            Camera.main.orthographicSize -= 1f;
-        }
-
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            Camera.main.orthographicSize = _defaultCamera;
-        }
 
         //if (Input.GetKey(KeyCode.Backspace))
         //{

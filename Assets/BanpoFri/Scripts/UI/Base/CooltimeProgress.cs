@@ -12,6 +12,7 @@ public class CooltimeProgress : InGameFloatingUI
 
     public void SetValue(float value)
     {
+        UpdatePos();
         Progress.fillAmount = value;
     }
 

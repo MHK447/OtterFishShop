@@ -222,6 +222,8 @@ public class CookedComponent : FacilityComponent
     {
         if (Progress == null) return;
 
+         Progress.SetValue(cooltimevalue);
+
         if (cooltimevalue > 0f && !Progress.gameObject.activeSelf)
         {
             ProjectUtility.SetActiveCheck(Progress.gameObject, true);
@@ -232,8 +234,6 @@ public class CookedComponent : FacilityComponent
             ProjectUtility.SetActiveCheck(Progress.gameObject, false);
         }
 
-        if (Progress.gameObject.activeSelf)
-            Progress.SetValue(cooltimevalue);
     }
 
     public override void OnTriggerEnter2D(Collider2D collision)

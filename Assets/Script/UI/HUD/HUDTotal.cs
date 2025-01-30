@@ -18,6 +18,10 @@ public class HUDTotal : UIBase
     [SerializeField]
     private Button NextStageBtn;
 
+    [SerializeField]
+    private Text FpsText;
+
+    private float deltaTime = 0.0f;
 
     protected override void Awake()
     {
@@ -37,4 +41,10 @@ public class HUDTotal : UIBase
         GameRoot.Instance.UISystem.OpenUI<PopupUpgrade>(popup => popup.Init());
     }
 
+    void Update()
+    {
+        deltaTime += (Time.deltaTime - deltaTime) * 0.1f;
+        float fps = 1.0f / deltaTime;
+        FpsText.text = $"FPS: {Mathf.CeilToInt(fps)}";
+    }
 }

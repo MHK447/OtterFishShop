@@ -6,7 +6,8 @@ using UnityEngine.EventSystems;
 using DG.Tweening;
 
 /// <summary> A modular and easily customisable Unity MonoBehaviour for handling swipe and pinch motions on mobile. </summary>
-public class PanAndZoom : MonoBehaviour {
+public class PanAndZoom : MonoBehaviour
+{
 
     /// <summary> Called as soon as the player touches the screen. The argument is the screen position. </summary>
     public event Action<Vector2> onStartTouch;
@@ -14,10 +15,6 @@ public class PanAndZoom : MonoBehaviour {
     public event Action<Vector2> onEndTouch;
     /// <summary> Called if the player completed a quick tap motion. The argument is the screen position. </summary>
     //public event Action<Vector2> onTap;
-    /// <summary> Called if the player swiped the screen. The argument is the screen movement delta. </summary>
-    public event Action<Vector2> onSwipe;
-    /// <summary> Called if the player pinched the screen. The arguments are the distance between the fingers before and after. </summary>
-    public event Action<float, float> onPinch;
 
     [Header("Tap")]
     [Tooltip("The maximum movement for a touch motion to be treated as a tap")]
@@ -36,7 +33,7 @@ public class PanAndZoom : MonoBehaviour {
     public bool controlCamera = true;
     [Tooltip("The controlled camera, ignored of controlCamera=false")]
     public Camera cam;
-    public bool IsZoomOutOver {get { return zoomOutSize < cam.orthographicSize;}}
+    public bool IsZoomOutOver { get { return zoomOutSize < cam.orthographicSize; } }
 
     [Header("UI")]
     [Tooltip("Are touch motions listened to if they are over UI elements?")]
@@ -61,7 +58,7 @@ public class PanAndZoom : MonoBehaviour {
 
     bool follow = false;
     Transform followTrans;
-    bool focusing = false;    
+    bool focusing = false;
     bool moving = false;
     float dragSpeed = 5f;
     Vector3 movingTarget = Vector3.zero;
@@ -72,9 +69,9 @@ public class PanAndZoom : MonoBehaviour {
     float focusDeltaTime = 0f;
     Vector2 touch0StartPosition;
     Vector2 touch0LastPosition;
-    float touch0StartTime;    
+    float touch0StartTime;
     [HideInInspector]
-    public float zoomOutSize= 0f;    
+    public float zoomOutSize = 0f;
 
     bool cameraControlEnabled = true;
 
@@ -98,14 +95,15 @@ public class PanAndZoom : MonoBehaviour {
     Transform Target;
     Transform PlayerTarget;
 
-    void Start() {
+    void Start()
+    {
         var aspectRatio = Mathf.Max(Screen.width, Screen.height) / Mathf.Min(Screen.width, Screen.height);
         var isTablet = (BanpoFri.Utility.DeviceDiagonalSizeInInches() > 6.5f && aspectRatio < 2f);
 
-        if(isTablet)
+        if (isTablet)
         {
             boundMinX = -5.0f;
-            boundMaxX = 5.0f; 
+            boundMaxX = 5.0f;
         }
         else
         {
@@ -122,28 +120,24 @@ public class PanAndZoom : MonoBehaviour {
         //zoomOutSize = cam.orthographicSize = Mathf.Min(cam.orthographicSize, (Screen.height * (boundMaxX - boundMinX) / (2 * Screen.width)) - 0.001f);
     }
 
-    void LateUpdate()
+    Vector3 velocity = Vector3.zero; // 클래스 변수로 선언
+    void FixedUpdate()
     {
         if (Target == null) return;
-
         if (IsFocusing) return;
 
+        Vector3 targetPosition = Target.transform.position;
+        targetPosition.z = -10f; // z 값 고정
 
-        // SmoothDamp를 활용하여 카메라 이동 부드럽게 처리
-        Vector3 targetPosition = Target.transform.position + new Vector3(0f, 0f, -10f);
-        Vector3 smoothedPosition = Vector3.Lerp(cam.transform.position, targetPosition, smoothSpeed * Time.deltaTime);
-        cam.transform.position = smoothedPosition;
+        cam.transform.position = Vector3.SmoothDamp(cam.transform.position, targetPosition, ref velocity, 0.15f);
 
-        // 카메라 속도 계산
-        camVelocity = (cam.transform.position - posLastFrame) / Time.deltaTime;
-        posLastFrame = cam.transform.position;
     }
 
 
     public void FoucsPosition(Transform target)
     {
         IsFocusing = true;
-        this.transform.DOMove(new Vector3(target.position.x , target.position.y, -10f), 1f);
+        this.transform.DOMove(new Vector3(target.position.x, target.position.y, -10f), 1f);
     }
 
     public void FocusOff()
@@ -160,232 +154,12 @@ public class PanAndZoom : MonoBehaviour {
         }
         return autoScrollDampCurve.Evaluate(t);
     }
-    
-    void UpdateWithMouse() {
-        if (Input.GetMouseButtonDown(0)) {
-            if (ignoreUI || (!focusing && !IsPointerOverUIObject(Input.mousePosition))) {
-                touch0StartPosition = Input.mousePosition;
-                touch0StartTime = Time.time;
-                touch0LastPosition = touch0StartPosition;
-                moving = false;
-                isTouching = true;
-                distanceOrigin = cam.transform.position;
 
-                if (onStartTouch != null) onStartTouch(Input.mousePosition);
-            }
-        }
 
-        if (Input.GetMouseButton(0) && isTouching) {
-            Vector2 move = (Vector2)Input.mousePosition - touch0LastPosition;
-            touch0LastPosition = Input.mousePosition;
-            
-
-            if (move != Vector2.zero) {
-                OnSwipe(move);
-            }
-        }
-
-        if (Input.GetMouseButtonUp(0) && isTouching) {
-            if (Time.time - touch0StartTime <= maxDurationForTap
-               && Vector2.Distance(Input.mousePosition, touch0StartPosition) <= maxDistanceForTap) {
-                OnClick(Input.mousePosition);
-            }
-
-            if (onEndTouch != null) onEndTouch(Input.mousePosition);
-            isTouching = false;
-            cameraControlEnabled = true;
-            
-            CheckMoveTarget((Vector2)Input.mousePosition);
-        }
-
-        if (Input.mouseScrollDelta.y != 0) {
-			//if(!IsPointerOverUIObject())
-			//	OnPinch(Input.mousePosition, 1, Input.mouseScrollDelta.y < 0 ? (1 / mouseScrollSpeed) : mouseScrollSpeed, Vector2.right);
-        }
-    }
-
-    void CheckMoveTarget(Vector2 input, bool touch = false)
-    {
-        timeRealDragStop = Time.realtimeSinceStartup;
-        cameraScrollVelocity = -camVelocity * 0.5f;
-        moving = true;
-        //var move = input - touch0LastPosition;
-        //var camMove = cam.ScreenToWorldPoint(move);
-        //var camOrigin = cam.ScreenToWorldPoint(Vector2.zero);
-        //timeRealDragStop = Time.realtimeSinceStartup;
-        //cameraScrollVelocity = -camVelocity * 0.5f;
-
-        //if ((camMove - camOrigin).sqrMagnitude < 0.1f)
-        //    return;
-
-        //Vector3 dir;
-        //if(touch)
-        //{
-        //    dir = (camMove - camOrigin).normalized * 15f;
-        //    dragSpeed = 7.5f;
-        //}
-        //else
-        //{
-        //    dir = (camMove - camOrigin).normalized * 6f;
-        //}
-
-        //moving = true;
-        //cameraScrollVelocity = dir;
-        //movingTarget = cam.transform.position - dir;
-
-        //Vector2 margin = cam.ScreenToWorldPoint((Vector2.up * Screen.height / 2) + (Vector2.right * Screen.width / 2)) - cam.ScreenToWorldPoint(Vector2.zero);
-
-        //float marginX = margin.x;
-        //float marginY = margin.y;
-
-        //float camMaxX = boundMaxX - marginX;
-        //float camMaxY = boundMaxY - marginY;
-        //float camMinX = boundMinX + marginX;
-        //float camMinY = boundMinY + marginY;       
-
-        //if(moving)
-        //{
-        //    if(camMinX > movingTarget.x )
-        //        movingTarget = new Vector3(camMinX, movingTarget.y, movingTarget.z);
-        //    if(camMaxX < movingTarget.x  )
-        //        movingTarget = new Vector3(camMaxX, movingTarget.y, movingTarget.z);
-        //    if(camMinY > movingTarget.y )
-        //        movingTarget = new Vector3(movingTarget.x, camMinY, movingTarget.z);
-        //    if(camMaxY < movingTarget.y )
-        //        movingTarget = new Vector3(movingTarget.x, camMaxY, movingTarget.z);                
-        //}
-    }
-
-  //  void UpdateWithTouch() {
-  //      int touchCount = Input.touches.Length;
-
-		//if(touchCount > 1)
-		//{
-		//	for (var i = 0; i < touchCount; ++i)
-		//	{
-		//		Touch touch = Input.touches[i];
-
-		//		if (touch.phase == TouchPhase.Ended)
-		//		{
-		//			if (!IsPointerOverUIObject(touch.position))
-		//			{
-		//				IsClickInGameObject(touch.position);
-		//			}
-		//		}
-		//	}
-  //          multiTouch = true;
-		//}
-  //      else if (touchCount == 1)
-  //      {
-		//	Touch touch = Input.touches[0];
-
-		//	switch (touch.phase)
-		//	{
-		//		case TouchPhase.Began:
-		//			{
-		//				if (ignoreUI || (!focusing && !IsPointerOverUIObject(touch.position)))
-		//				{
-		//					touch0StartPosition = touch.position;
-		//					touch0StartTime = Time.time;
-		//					touch0LastPosition = touch0StartPosition;
-		//					moving = false;
-		//					isTouching = true;
-
-		//					//if (onStartTouch != null) onStartTouch(touch0StartPosition);
-		//				}
-
-		//				break;
-		//			}
-		//		case TouchPhase.Moved:
-		//			{
-		//				touch0LastPosition = touch.position;
-
-		//				if (touch.deltaPosition != Vector2.zero && isTouching)
-		//				{
-		//					OnSwipe(touch.deltaPosition);
-		//				}
-		//				break;
-		//			}
-		//		case TouchPhase.Ended:
-		//			{
-  //                      if(multiTouch)
-  //                      {
-  //                          if (!IsPointerOverUIObject(touch.position))
-  //                          {
-  //                              IsClickInGameObject(touch.position);
-  //                          }
-  //                      }
-  //                      else
-		//				if (Time.time - touch0StartTime <= maxDurationForTap
-		//					&& Vector2.Distance(touch.position, touch0StartPosition) <= maxDistanceForTap
-		//					&& isTouching)
-		//				{
-		//					OnClick(touch.position);
-		//				}
-
-		//				if (onEndTouch != null) onEndTouch(touch.position);
-		//				isTouching = false;
-		//				cameraControlEnabled = true;
-  //                      multiTouch = false;
-
-		//				CheckMoveTarget(touch.position, true);
-		//				break;
-		//			}
-		//		case TouchPhase.Stationary:
-		//		case TouchPhase.Canceled:
-		//			break;
-		//	}            
-		//}
-  //  }
-
-    void OnClick(Vector2 position) {
-        // if (onTap != null && (ignoreUI || (!focusing && !IsPointerOverUIObject() && !IsClickInGameObject() ))) {
-        //     onTap(position);
-        // }
-        if(ignoreUI || (!focusing && !IsPointerOverUIObject(position) && !IsClickInGameObject(position) ))
-        {
-            
-        }
-    }
-    void OnSwipe(Vector2 deltaPosition) {
-        moving = false;
-        if (onSwipe != null) {
-            onSwipe(deltaPosition);
-        }
-
-        if (controlCamera && cameraControlEnabled) {
-            if (cam == null) cam = Camera.main;
-
-            var vec3 = (cam.ScreenToWorldPoint(deltaPosition) - cam.ScreenToWorldPoint(Vector2.zero));
-
-            //cam.transform.position -= new Vector3(vec3.x, 0, 0);
-        }
-    }
-    void OnPinch(Vector2 center, float oldDistance, float newDistance, Vector2 touchDelta) {
-        moving = false;
-        if (onPinch != null) {
-            onPinch(oldDistance, newDistance);
-        }
-
-        if (controlCamera && cameraControlEnabled) {
-            if (cam == null) cam = Camera.main;
-
-            if (cam.orthographic) {
-                var currentPinchPosition = cam.ScreenToWorldPoint(center);
-
-                //cam.orthographicSize = Mathf.Max(5f, cam.orthographicSize * oldDistance / newDistance);
-
-                var newPinchPosition = cam.ScreenToWorldPoint(center);
-
-                cam.transform.position -= newPinchPosition - currentPinchPosition;
-            } else {
-                cam.fieldOfView = Mathf.Clamp(cam.fieldOfView * oldDistance / newDistance, 0.1f, 179.9f);
-            }
-        }
-    }
 
     /// <summary> Checks if the the current input is over canvas UI </summary>
-    public bool IsPointerOverUIObject(Vector2 touchPosition) {
+    public bool IsPointerOverUIObject(Vector2 touchPosition)
+    {
         if (EventSystem.current == null) return false;
         PointerEventData eventDataCurrentPosition = new PointerEventData(EventSystem.current);
         eventDataCurrentPosition.position = new Vector2(touchPosition.x, touchPosition.y);
@@ -394,58 +168,52 @@ public class PanAndZoom : MonoBehaviour {
         return results.Count > 0;
     }
 
-    public Vector2 RandomPointInBounds() 
+    public Vector2 RandomPointInBounds()
     {
-		var paddingX = (Mathf.Abs(boundMinX) + Mathf.Abs(boundMaxX)) * 0.1f;
-		var paddingY = (Mathf.Abs(boundMinY) + Mathf.Abs(boundMaxY)) * 0.2f;
+        var paddingX = (Mathf.Abs(boundMinX) + Mathf.Abs(boundMaxX)) * 0.1f;
+        var paddingY = (Mathf.Abs(boundMinY) + Mathf.Abs(boundMaxY)) * 0.2f;
 
-		return new Vector2(
+        return new Vector2(
             UnityEngine.Random.Range(boundMinX + paddingX, boundMaxX - paddingX),
             UnityEngine.Random.Range(boundMinY + paddingY, boundMaxY - paddingY)
         );
     }
 
-	//private bool IsClickDust()
-	//{
-	//	var point = cam.ScreenToWorldPoint(Input.mousePosition);
-	//	var ray = new Ray2D(point, Vector2.zero);
-	//	RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction);
+    //private bool IsClickDust()
+    //{
+    //	var point = cam.ScreenToWorldPoint(Input.mousePosition);
+    //	var ray = new Ray2D(point, Vector2.zero);
+    //	RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction);
 
-	//	if (hit.collider != null)
-	//	{
-	//		var dust = hit.collider.gameObject.GetComponent<Dust>();
-	//		if (dust != null)
-	//		{
-	//			dust.Pressd();
-	//			return true;
-	//		}
-	//	}
-	//	return false;
-	//}
+    //	if (hit.collider != null)
+    //	{
+    //		var dust = hit.collider.gameObject.GetComponent<Dust>();
+    //		if (dust != null)
+    //		{
+    //			dust.Pressd();
+    //			return true;
+    //		}
+    //	}
+    //	return false;
+    //}
 
     public bool IsClickInGameObject(Vector2 touchPosition)
     {
         var point = cam.ScreenToWorldPoint(touchPosition);
         var ray = new Ray2D(point, Vector2.zero);
         RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction);
-        
-        if(hit.collider != null)
+
+        if (hit.collider != null)
         {
             var cc = hit.collider.gameObject.GetComponent<ClickCallback>();
-            if(cc != null)
+            if (cc != null)
             {
                 cc.Click(hit.collider.gameObject.tag);
             }
-        }        
+        }
         return false;
     }
 
-    public void FocusPositionImmediately(Vector3 worldPos, float _focusSize = 15f)
-    {
-        //cam.orthographicSize = _focusSize;
-        //cam.transform.position = worldPos;
-    }
-    
     public void FocusPosition(Vector3 worldPos, float _focusSize = 15f)
     {
         moving = false;
@@ -483,170 +251,13 @@ public class PanAndZoom : MonoBehaviour {
         focusOriginPos = cam.transform.position;
         focusDeltaTime = 0f;
         focusSize = zoomOutSize;
-        focusOriginCameraSize = cam.orthographicSize;        
+        focusOriginCameraSize = cam.orthographicSize;
     }
 
     /// <summary> Cancels camera movement for the current motion. Resets to use camera at the end of the touch motion.</summary>
-    public void CancelCamera() {
+    public void CancelCamera()
+    {
         cameraControlEnabled = false;
     }
 
-    void CameraInBounds() {
-        //if(follow)
-        //{
-        //    //cam.orthographicSize = Mathf.Lerp(focusOriginCameraSize, focusSize, Easing.Quartic.Out(focusDeltaTime / focusMoveDuration));
-        //    cam.transform.position = new Vector3(cam.transform.position.x, followTrans.position.y, cam.transform.position.z);
-        //    //if(focusDeltaTime < focusMoveDuration)
-        //    //    focusDeltaTime += Time.deltaTime;
-        //    //else
-        //    //    cam.orthographicSize = focusSize;
-        //    return;
-        //}
-
-   //     if(focusing)
-   //     {
-   //         if(focusDeltaTime >= focusMoveDuration)
-   //         {
-   //             focusing = false;
-   //             TpLog.Log("focusing false");
-   //             cam.orthographicSize = focusSize;
-   //             if(OnFoucusEnd != null)
-   //             {
-   //                 OnFoucusEnd.Invoke();
-   //                 OnFoucusEnd = null;                    
-   //             }
-   //             return;
-   //         }
-   //         moving = false;
-   //         var result = Vector3.Lerp(focusOriginPos, focusTargetPos, Easing.Quartic.Out(focusDeltaTime / focusMoveDuration));
-   //         //cam.transform.position = new Vector3( result.x, result.y, cam.transform.position.z);
-   //         //cam.orthographicSize = Mathf.Lerp(focusOriginCameraSize, focusSize, Easing.Quartic.Out(focusDeltaTime / focusMoveDuration));
-   //         focusDeltaTime += Time.deltaTime;
-   //     }
-   //     else
-   //     if(moving) 
-   //     {
-   //         Vector2 autoScrollVector = -cameraScrollVelocity * Time.deltaTime;
-   //         //cam.transform.position = new Vector3(cam.transform.position.x + autoScrollVector.x,
-   //         //    cam.transform.position.y + autoScrollVector.y,
-   //         //    cam.transform.position.z);
-                
-   //         if (onSwipe != null) {
-   //             onSwipe(autoScrollVector);
-   //         }
-   //     }
-
-   //     if(controlCamera && useBounds && cam != null && cam.orthographic) {
-   //         //cam.orthographicSize = Mathf.Min(cam.orthographicSize, ((boundMaxY - boundMinY) / 2) - 0.001f);
-   //         //cam.orthographicSize = Mathf.Min(cam.orthographicSize, (Screen.height * (boundMaxX - boundMinX) / (2 * Screen.width)) - 0.001f);
-
-   //         //Vector2 margin = cam.ScreenToWorldPoint((Vector2.up * Screen.height / 2) + (Vector2.right * Screen.width / 2)) - cam.ScreenToWorldPoint(Vector2.zero);
-
-   //         //float marginX = margin.x;
-   //         //float marginY = margin.y;
-
-   //         //float camMaxX = boundMaxX - marginX;
-   //         //float camMaxY = boundMaxY - marginY;
-   //         //float camMinX = boundMinX + marginX;
-   //         //float camMinY = boundMinY + marginY;
-
-   //         //bool over = false;
-   ////         Vector3 target = cam.transform.position;
-   ////         if (!isTouching)
-			////{                
-   ////             if (cam.transform.position.x < camMinX)
-   ////             {
-   ////                 over = true;
-   ////                 target.x = camMinX;
-   ////             }
-   ////             else if (cam.transform.position.x > camMaxX)
-   ////             {
-   ////                 over = true;
-   ////                 target.x = camMaxX;
-   ////             }
-   ////             if (cam.transform.position.y < camMinY)
-   ////             {
-   ////                 over = true;
-   ////                 target.y = camMinY;
-   ////             }
-   ////             else if (cam.transform.position.y > camMaxY)
-   ////             {
-   ////                 over = true;
-   ////                 target.y = camMaxY;
-   ////             }
-   //             //if (over)
-   //             //{
-   //             //    //cam.transform.position = new Vector3(target.x , 7.8f , -10);//Vector3.Lerp(cam.transform.position, target,  Time.deltaTime * 5f);
-   //             //    //cam.transform.position = new Vector3(result.x, result.y, cam.transform.position.z);
-
-   //             //    //FocusPosition(target, cam.orthographicSize);
-   //             //}
-   //         }
-   //         else
-			//{
-   //             //camMaxX *= 1.4f;
-   //             //camMaxY *= 1.4f;
-   //             //camMinX *= 1.4f;
-   //             //camMinY *= 1.4f;
-
-   //             //if (cam.transform.position.x < camMinX)
-   //             //{
-   //             //    over = true;
-   //             //    target.x = camMinX;
-   //             //}
-   //             //else if (cam.transform.position.x > camMaxX)
-   //             //{
-   //             //    over = true;
-   //             //    target.x = camMaxX;
-   //             //}
-   //             //if (cam.transform.position.y < camMinY)
-   //             //{
-   //             //    over = true;
-   //             //    target.y = camMinY;
-   //             //}
-   //             //else if (cam.transform.position.y > camMaxY)
-   //             //{
-   //             //    over = true;
-   //             //    target.y = camMaxY;
-   //             //}
-
-   //             //if (over)
-   //             //{
-   //             //    //cam.transform.position = new Vector3(target.x, 7.8f, -10);
-   //             //}
-   //         }
-
-   //         //float camX = Mathf.Clamp(cam.transform.position.x, camMinX, camMaxX);
-   //         //float camY = Mathf.Clamp(cam.transform.position.y, camMinY, camMaxY);
-           
-        }
-    }
-
-    //public Texture2D TakeScreenShot(bool _blur = true)
-    //{
-    //    if(blur != null && _blur)
-    //        blur.enabled = true;
-
-    //    //yield return new WaitForEndOfFrame();
-    //    cam.targetTexture = RenderTexture.GetTemporary( _blur ? Screen.width/4 : Screen.width, _blur ? Screen.height/4 : Screen.height, 24);
-    //    cam.Render();
-
-    //    // Activate the temporary render texture
-    //    RenderTexture previouslyActiveRenderTexture = RenderTexture.active;
-    //    RenderTexture.active = cam.targetTexture;
-
-    //    // Extract the image into a new texture without mipmaps
-    //    Texture2D texture = new Texture2D(cam.targetTexture.width, cam.targetTexture.height, TextureFormat.RGB24, false);
-    //    texture.ReadPixels(new Rect(0, 0, cam.targetTexture.width, cam.targetTexture.height), 0, 0);
-    //    texture.Apply(false);
-
-    //    // Reactivate the previously active render texture
-    //    RenderTexture.active = previouslyActiveRenderTexture;
-
-    //    if (blur != null && _blur)
-    //        blur.enabled = false;
-    //    // Clean up after ourselves
-    //    cam.targetTexture = null;
-    //    RenderTexture.ReleaseTemporary(cam.targetTexture);
-    //    return texture;
-    //}
+}

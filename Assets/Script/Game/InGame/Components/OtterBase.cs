@@ -175,7 +175,9 @@ public class OtterBase : MonoBehaviour
     {
         if (Progress == null) return;
 
-        if(cooltimevalue > 0f && !Progress.gameObject.activeSelf)
+        Progress.SetValue(cooltimevalue);
+
+        if (cooltimevalue > 0f && !Progress.gameObject.activeSelf)
         {   
             ProjectUtility.SetActiveCheck(Progress.gameObject, true);
         }
@@ -184,9 +186,6 @@ public class OtterBase : MonoBehaviour
         {
             ProjectUtility.SetActiveCheck(Progress.gameObject, false);
         }
-
-        if(Progress.gameObject.activeSelf)
-        Progress.SetValue(cooltimevalue);
     }
 
 
