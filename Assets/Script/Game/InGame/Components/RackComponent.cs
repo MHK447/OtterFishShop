@@ -194,7 +194,7 @@ public class RackComponent : FacilityComponent
 
         for (int i = TargetOtterList.Count -1; i >= 0; i--)
         {
-            if (TargetOtterList[i].IsIdle && TargetOtterList[i].GetFishComponentList.Count > 0)
+            if (TargetOtterList[i].GetFishComponentList.Count > 0)
             {
                 if (!TargetOtterList[i].IsFishing)
                 {
@@ -216,6 +216,8 @@ public class RackComponent : FacilityComponent
                                 fish.transform.position = FishTrList[FishComponentList.Count].position;
                                 fish.transform.SetParent(this.transform);
                                 FishComponentList.Add(findfish);
+
+                                fish.LivingFishAnim(false);
                             }, 0.2f);
 
                             if (TargetOtterList[i].GetFishComponentList.Count == 0)

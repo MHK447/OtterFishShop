@@ -287,6 +287,15 @@ public class OtterBase : MonoBehaviour
     {
         IsCarry = iscarry;
 
+        if (iscarry)
+        {
+            PlayAnimation(OtterBase.OtterState.Carry, "idle", true);
+        }
+        else
+        {
+            ChangeState(OtterBase.OtterState.Wait);
+            PlayAnimation(OtterBase.OtterState.Idle, "idle", true);
+        }
     }
 
     public virtual void AddFish(FishComponent fish)
@@ -308,14 +317,13 @@ public class OtterBase : MonoBehaviour
 
         fish.FishInBucketAction(GetFishCarryRoot.transform, (fish) =>
         {
+            fish.LivingFishAnim(false);
         }, 0.25f, floory);
     }
 
     public void CarryEnd()
     {
         CarryStart(false);
-        ChangeState(OtterBase.OtterState.Wait);
-        PlayAnimation(OtterBase.OtterState.Idle, "idle", true);
     }
 
 

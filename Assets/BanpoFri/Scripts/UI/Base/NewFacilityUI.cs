@@ -19,7 +19,7 @@ public class NewFacilityUI : InGameFloatingUI
 
     public void SliderValue(int rewardcount , int goalcount)
     {
-        MoneyText.text = goalcount.ToString();
+        MoneyText.text = Utility.CalculateMoneyToString(goalcount);
         SliderImg.fillAmount = (float)rewardcount / (float)goalcount;
     }
 

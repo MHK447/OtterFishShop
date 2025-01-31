@@ -171,6 +171,7 @@ public class FishCushionComponent : MonoBehaviour
     {
         var fishcount = BucketComponent.GetFishCount;
         var posy = FishPos_Y * fishcount;
+        fish.LivingFishAnim(true);
 
         fish.FishInBucketAction(BucketComponent.transform, (fish)=> {
             BucketComponent.AddFishQueue(fish);

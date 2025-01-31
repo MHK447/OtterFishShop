@@ -18,9 +18,7 @@ public class BucketComponent : MonoBehaviour
 
     public int GetFishCount { get { return FishStackComponent.Count; } }
 
-    private bool IsOnEnter = false;
-
-    private OtterBase Target;
+    private List<OtterBase> TargetOtterList = new List<OtterBase>();
 
     private InGameStage InGameStage;
 
@@ -94,7 +92,7 @@ public class BucketComponent : MonoBehaviour
             InGameStage.CreateFish(this.transform, FishIdx, FishComponent.State.Bucket, (fish) => {
                 fish.FishInBucketAction(this.transform, (fish) => {
                     FishStackComponent.Push(fish);
-
+                    fish.LivingFishAnim(true);
                     if (CountUI != null)
                     {
                         CountUI.Init(fish.transform);
@@ -113,13 +111,15 @@ public class BucketComponent : MonoBehaviour
         // 충돌한 오브젝트의 레이어를 확인합니다.
         if (other.gameObject.layer == LayerMask.NameToLayer("Player") || other.gameObject.layer == LayerMask.NameToLayer("CarryCasher"))
         {
-            IsOnEnter = true;
             FishCarrydeltime = 0f;
             var getvalue = other.GetComponent<OtterBase>();
 
             if (getvalue != null && getvalue.IsMaxFishCheck() == false)
             {
-                Target = getvalue;
+                if (!TargetOtterList.Contains(getvalue))
+                {
+                    TargetOtterList.Add(getvalue);
+                }
             }
         }
     }
@@ -131,46 +131,46 @@ public class BucketComponent : MonoBehaviour
     {
         if (collision.gameObject.layer == LayerMask.NameToLayer("Player") || collision.gameObject.layer == LayerMask.NameToLayer("CarryCasher"))
         {
-            if(Target != null)
-            {
-                Target.CoolTimeActive(0f);
-            }
+            var getvalue = collision.gameObject.GetComponent<OtterBase>();
 
-            Target = null;
-            IsOnEnter = false;
+            if (getvalue != null)
+            {
+                if (TargetOtterList.Contains(getvalue))
+                {
+                    TargetOtterList.Remove(getvalue);
+                }
+            }
         }
     }
 
 
     private void Update()
     {
-        if (Target == null) return;
-
         if (FishStackComponent.Count <= 0) return;
 
-        if (Target.IsIdle && !Target.IsFishing)
+        for (int i = 0; i < TargetOtterList.Count; ++i)
         {
-            Target.PlayAnimation(OtterBase.OtterState.Carry, "carryIdle", true);
-        }
-
-        if (IsOnEnter && !Target.IsFishing)
-        {
-            FishCarrydeltime += Time.deltaTime;
-
-            if (FishCarrydeltime >= FishCarryTime && !Target.IsMaxFishCheck())
+            if (TargetOtterList.Count > 0 && !TargetOtterList[i].IsFishing)
             {
-                FishCarrydeltime = 0f;
+                FishCarrydeltime += Time.deltaTime;
 
-                var fishcomponent = FishStackComponent.Pop();
+                if (FishCarrydeltime >= FishCarryTime && !TargetOtterList[i].IsMaxFishCheck())
+                {
+                    FishCarrydeltime = 0f;
 
-                if (FishStackComponent.Count > 0)
-                    CountUI.Init(FishStackComponent.First().transform);
-                else
-                    CountUI.Init(AmountUITr);
+                    var fishcomponent = FishStackComponent.Pop();
 
-                Target.AddFish(fishcomponent);
+                    if (FishStackComponent.Count > 0)
+                        CountUI.Init(FishStackComponent.First().transform);
+                    else
+                        CountUI.Init(AmountUITr);
 
-                FacilityData.CapacityCountProperty.Value -= 1;
+                    TargetOtterList[i].AddFish(fishcomponent);
+
+                    FacilityData.CapacityCountProperty.Value -= 1;
+
+                    break;
+                }
             }
         }
     }

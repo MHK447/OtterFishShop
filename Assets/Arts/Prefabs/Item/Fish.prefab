@@ -101,6 +101,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   FishIcon: {fileID: 3766471950918913976}
+  Anim: {fileID: 6081193916627658757}
 --- !u!95 &6081193916627658757
 Animator:
   serializedVersion: 7
@@ -109,7 +110,7 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4145588153542426747}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 1d71c7dbb08124b6e81d989f72762577, type: 2}
   m_CullingMode: 0

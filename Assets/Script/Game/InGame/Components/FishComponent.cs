@@ -20,6 +20,9 @@ public class FishComponent : MonoBehaviour
     [SerializeField]
     private SpriteRenderer FishIcon;
 
+    [SerializeField]
+    private Animator Anim;
+
     private int FishIdx = 0;
 
     public int GetFishIdx { get { return FishIdx; } }
@@ -37,6 +40,7 @@ public class FishComponent : MonoBehaviour
         this.transform.DOKill(); // 기존 Tween 제거
         IsTracking = false;      // 상태 초기화
         Target = null;
+        Anim.enabled = false;
 
         FishIdx = fishidx;
         CurState = startstate;
@@ -64,6 +68,12 @@ public class FishComponent : MonoBehaviour
                 fishaction?.Invoke(this);
             });
     }
+
+    public void LivingFishAnim(bool isactive)
+    {
+        Anim.enabled = isactive;
+    }
+
 
     public void ClearObj()
     {
