@@ -32,84 +32,70 @@ MonoBehaviour:
   - _facilityidx: 1
     _image: Ingame_Food_001
     _facility_type: 1
-    _initial_count: 5
-    _start_capacity: 5
+    _start_capacity: 15
     _value_1: -1
   - _facilityidx: 2
     _image: Ingame_Food_002
     _facility_type: 1
-    _initial_count: 5
-    _start_capacity: 5
+    _start_capacity: 15
     _value_1: -1
   - _facilityidx: 3
     _image: Ingame_Food_005
     _facility_type: 1
-    _initial_count: 5
-    _start_capacity: 5
+    _start_capacity: 15
     _value_1: -1
   - _facilityidx: 4
     _image: Ingame_Food_006
     _facility_type: 1
-    _initial_count: 5
-    _start_capacity: 5
+    _start_capacity: 15
     _value_1: -1
   - _facilityidx: 1000
     _image: Icon_Counter
     _facility_type: 2
-    _initial_count: 5
     _start_capacity: -1
     _value_1: -1
   - _facilityidx: 101
     _image: Ingame_Food_001
     _facility_type: 3
-    _initial_count: 5
     _start_capacity: 10
     _value_1: 1
   - _facilityidx: 102
     _image: Ingame_Food_002
     _facility_type: 3
-    _initial_count: 5
     _start_capacity: 10
     _value_1: 2
   - _facilityidx: 103
     _image: Ingame_Food_005
     _facility_type: 3
-    _initial_count: 5
     _start_capacity: 10
     _value_1: 5
   - _facilityidx: 104
     _image: Ingame_Food_006
     _facility_type: 3
-    _initial_count: 5
     _start_capacity: 10
     _value_1: 6
   - _facilityidx: 1001
     _image: Ingame_Food_003
     _facility_type: 4
-    _initial_count: 5
     _start_capacity: 5
     _value_1: -1
   - _facilityidx: 1002
     _image: Ingame_Food_004
     _facility_type: 4
-    _initial_count: 5
     _start_capacity: 4
     _value_1: -1
   - _facilityidx: 1003
     _image: Ingame_Food_007
     _facility_type: 4
-    _initial_count: 5
     _start_capacity: 5
     _value_1: -1
   - _facilityidx: 1004
     _image: Ingame_Food_008
     _facility_type: 4
-    _initial_count: 5
     _start_capacity: 4
     _value_1: -1
   - _facilityidx: 1005
     _image: Ingame_Food_009
     _facility_type: 4
-    _initial_count: 5
     _start_capacity: 4
     _value_1: -1

@@ -6,7 +6,7 @@ using System.Linq;
 
 public class CookedMaterialComponent : MonoBehaviour
 {
-    private TextCount_UI MaterialTextCountUI;
+    private UI_AmountBubble MaterialTextCountUI;
 
     [SerializeField]
     private Transform MaterialCountTr;
@@ -24,19 +24,20 @@ public class CookedMaterialComponent : MonoBehaviour
 
     public int MaterialCount { get { return FishComponentList.Count; } }
 
-    public void Set(int fishidx , int maxcount)
+    public void Set(int fishidx , int maxcount , bool isopen)
     {
         FishIdx = fishidx;
 
         MaxCount = maxcount;
 
-        GameRoot.Instance.UISystem.LoadFloatingUI<TextCount_UI>((_progress) => {
+        GameRoot.Instance.UISystem.LoadFloatingUI<UI_AmountBubble>((_progress) => {
             MaterialTextCountUI = _progress;
-            ProjectUtility.SetActiveCheck(MaterialTextCountUI.gameObject, FishComponentList.Count > 0);
+            ProjectUtility.SetActiveCheck(MaterialTextCountUI.gameObject, isopen);
+            //ProjectUtility.SetActiveCheck(AmountUI.gameObject, FacilityData.CapacityCountProperty.Value > 0);
             MaterialTextCountUI.Init(MaterialCountTr);
-            MaterialTextCountUI.SetText(FishComponentList.Count, MaxCount);
+            MaterialTextCountUI.Set(fishidx);
+            MaterialTextCountUI.SetValue(FishComponentList.Count, MaxCount);
         });
-
     }
 
     public  bool IsMaxCheck()
@@ -61,7 +62,7 @@ public class CookedMaterialComponent : MonoBehaviour
 
         FishComponentList.Add(fish);
 
-        MaterialTextCountUI.SetText(FishComponentList.Count, MaxCount);
+        MaterialTextCountUI.SetValue(FishComponentList.Count, MaxCount);
 
         ProjectUtility.SetActiveCheck(MaterialTextCountUI.gameObject, FishComponentList.Count > 0);
 
@@ -79,7 +80,7 @@ public class CookedMaterialComponent : MonoBehaviour
 
         lastfish.ClearObj();
 
-        MaterialTextCountUI.SetText(FishComponentList.Count, MaxCount);
+        MaterialTextCountUI.SetValue(FishComponentList.Count, MaxCount);
 
         ProjectUtility.SetActiveCheck(MaterialTextCountUI.gameObject, FishComponentList.Count > 0);
 

@@ -198,11 +198,9 @@ public class CarryCasher : OtterBase
         {
             if (FishComponentList.Count > 0)
             {
-                GoToTrashCan(() => {
-                    GameRoot.Instance.StartCoroutine(CheckWaitTrashCan(() => {
-                        PlayAnimation(OtterState.Wait, "idle", true);
-                    }));
-                });
+                GameRoot.Instance.StartCoroutine(CheckWaitTrashCan(() => {
+                    PlayAnimation(OtterState.Wait, "idle", true);
+                }));
             }
             else
                 PlayAnimation(OtterState.Wait, "idle", true);
@@ -245,11 +243,9 @@ public class CarryCasher : OtterBase
 
             if (FishComponentList.Count > 0)
             {
-                GoToTrashCan(() => {
-                    GameRoot.Instance.StartCoroutine(CheckWaitTrashCan(()=> {
-                        PlayAnimation(OtterState.Wait, "idle", true);
-                    }));
-                });
+                GameRoot.Instance.StartCoroutine(CheckWaitTrashCan(() => {
+                    PlayAnimation(OtterState.Wait, "idle", true);
+                }));
             }
             else
                 PlayAnimation(OtterState.Wait, "idle", true);

@@ -96,11 +96,11 @@ public class CookedComponent : FacilityComponent
 
             MaterialMaxCount = td.material_max_count;
 
-            FoodIdx = td.Food_idx;
+            FoodIdx = td.food_idx;
 
             for (int i = 0; i < td.material_idxs.Count; ++i)
             {
-                CookedMaterialList[i].Set(td.material_idxs[i], MaterialMaxCount);
+                CookedMaterialList[i].Set(td.material_idxs[i], MaterialMaxCount, FacilityData.IsOpen);
             }
 
             if (Progress == null)

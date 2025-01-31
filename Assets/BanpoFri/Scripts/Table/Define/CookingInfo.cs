@@ -28,11 +28,11 @@ namespace BanpoFri
 			set { _material_max_count = value;}
 		}
 		[SerializeField]
-		private int _Food_idx;
-		public int Food_idx
+		private int _food_idx;
+		public int food_idx
 		{
-			get { return _Food_idx;}
-			set { _Food_idx = value;}
+			get { return _food_idx;}
+			set { _food_idx = value;}
 		}
 		[SerializeField]
 		private int _break_count;

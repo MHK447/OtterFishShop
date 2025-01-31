@@ -266,6 +266,8 @@ public class FacilityComponent : MonoBehaviour
 
                 if (moneydeltime >= FacilityOpenSpeed)
                 {
+                    int addmoneycount = 0; 
+
                     MoneySpeedCount += 1;
 
                     FacilityOpenSpeed -= 0.02f;
@@ -281,9 +283,15 @@ public class FacilityComponent : MonoBehaviour
 
                     moneydeltime = 0f;
 
-                    GameRoot.Instance.UserData.SetReward((int)Config.RewardType.Currency, (int)Config.CurrencyID.Money, -1);
+                    var remaincount = GoalCount - FacilityData.MoneyCount;
 
-                    FacilityData.MoneyCount += 1;
+                    addmoneycount = System.Math.Min(MoneySpeedCount, remaincount);
+                    addmoneycount = System.Math.Min(addmoneycount, (int)GameRoot.Instance.UserData.CurMode.Money.Value);
+
+
+                    GameRoot.Instance.UserData.SetReward((int)Config.RewardType.Currency, (int)Config.CurrencyID.Money, -addmoneycount);
+
+                    FacilityData.MoneyCount += addmoneycount;
 
                     NewFacilityUI.SliderValue(FacilityData.MoneyCount, GoalCount);
 
