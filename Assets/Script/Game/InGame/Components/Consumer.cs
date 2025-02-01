@@ -165,6 +165,12 @@ public class Consumer : Chaser
             CurGoalValue = newdata.Count;
             CurCountProperty.Value = 0;
 
+            if (ConsumerOrderUI != null)
+            {
+                ConsumerOrderUI.SetFacilityImg(CurFacilityIdxProperty.Value);
+                ConsumerOrderUI.Set(this, CurMoveInfoData.facilityidx[CurMissionCount], 0, CurGoalValue);
+            }
+
             GoToFacility(newdata.FacilityIdx, ()=> {
                 NextMoveAction(CurFacilityIdxProperty.Value);
             });
@@ -258,6 +264,9 @@ public class Consumer : Chaser
                 break;
             case CurState.WaitProduct:
                 {
+                    TargetRack = null;
+                    TargetCooked = null;
+
                     var getfacility = Stage.FindFacility(facilityidx);
 
                     if (facilityidx > 1000)
@@ -328,7 +337,7 @@ public class Consumer : Chaser
             }
             else
             {
-                if(TargetRack.GetFishComponentList.Count > 0)
+                if(TargetRack.GetFishComponentList.Count > 0 && CurFacilityIdxProperty.Value == TargetRack.FacilityIdx)
                 {
                     var target = TargetRack.GetFishComponentList.Last();
 
@@ -347,7 +356,7 @@ public class Consumer : Chaser
             }
             else
             {
-                if (TargetCooked.FoodCompleteGetCount.Count > 0)
+                if (TargetCooked.FoodCompleteGetCount.Count > 0 && CurFacilityIdxProperty.Value == TargetCooked.FacilityIdx)
                 {
                     var getfish = TargetCooked.RemoveFish();
 
