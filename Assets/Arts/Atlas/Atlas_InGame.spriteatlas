@@ -90,6 +90,7 @@ SpriteAtlas:
     - d192b798f8936fa4ea96115363b8345a: 21300000
     - d3488fbbf55520b48afc9c2f01d55af3: 21300000
     - 6e52d23cec6adf94b946ec7cf846bbdf: 21300000
+    - ad9a519c1affded4490abe2a09321fdd: 21300000
     - 93df819cbbaf5ed41adf97c40b3315c9: 21300000
     - f019cedc801b3e14f8d42fadcc3d9ba5: 21300000
     - 296f7a4d98a09e244b2fbb77b56af44e: 21300000
@@ -108,6 +109,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: d192b798f8936fa4ea96115363b8345a, type: 3}
   - {fileID: 21300000, guid: d3488fbbf55520b48afc9c2f01d55af3, type: 3}
   - {fileID: 21300000, guid: 6e52d23cec6adf94b946ec7cf846bbdf, type: 3}
+  - {fileID: 21300000, guid: ad9a519c1affded4490abe2a09321fdd, type: 3}
   - {fileID: 21300000, guid: 93df819cbbaf5ed41adf97c40b3315c9, type: 3}
   - {fileID: 21300000, guid: f019cedc801b3e14f8d42fadcc3d9ba5, type: 3}
   - {fileID: 21300000, guid: 296f7a4d98a09e244b2fbb77b56af44e, type: 3}
@@ -125,6 +127,7 @@ SpriteAtlas:
   - Ingame_Food_008
   - Ingame_Food_005
   - Ingame_Food_002
+  - Icon_Table
   - Icon_Repair_Gray
   - Ingame_Food_009
   - Ingame_Food_007
