@@ -17,6 +17,8 @@ MonoBehaviour:
   - 2
   - 3
   - 4
+  - 5
+  - 6
   - 1000
   - 101
   - 102
@@ -46,6 +48,16 @@ MonoBehaviour:
     _value_1: -1
   - _facilityidx: 4
     _image: Ingame_Food_006
+    _facility_type: 1
+    _start_capacity: 15
+    _value_1: -1
+  - _facilityidx: 5
+    _image: Ingame_Food_003
+    _facility_type: 1
+    _start_capacity: 15
+    _value_1: -1
+  - _facilityidx: 6
+    _image: Ingame_Food_004
     _facility_type: 1
     _start_capacity: 15
     _value_1: -1

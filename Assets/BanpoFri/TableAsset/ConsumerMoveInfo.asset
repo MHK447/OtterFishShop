@@ -93,45 +93,45 @@ MonoBehaviour:
     _count: 02000000ffffffff
   - _stageidx: 1
     _order: 14
-    _facilityidx: 01000000e9030000e8030000
+    _facilityidx: 0100000005000000e8030000
     _count: 0200000003000000ffffffff
   - _stageidx: 1
     _order: 15
-    _facilityidx: 02000000ea030000e8030000
+    _facilityidx: 0200000006000000e8030000
     _count: 0200000003000000ffffffff
   - _stageidx: 1
     _order: 16
-    _facilityidx: e9030000ea030000e8030000
+    _facilityidx: 0500000006000000e8030000
     _count: 0200000001000000ffffffff
   - _stageidx: 1
     _order: 17
-    _facilityidx: 01000000ea030000e8030000
+    _facilityidx: 0100000006000000e8030000
     _count: 0100000002000000ffffffff
   - _stageidx: 1
     _order: 18
-    _facilityidx: 0100000089e89800e8030000
+    _facilityidx: 010000000600000005000000e8030000
     _count: 010000000200000002000000ffffffff
   - _stageidx: 1
     _order: 19
-    _facilityidx: e9030000e8030000
+    _facilityidx: 05000000e8030000
     _count: 02000000ffffffff
   - _stageidx: 1
     _order: 20
-    _facilityidx: 02000000e9030000e8030000
+    _facilityidx: 0200000005000000e8030000
     _count: 0100000002000000ffffffff
   - _stageidx: 1
     _order: 21
-    _facilityidx: e9030000e8030000
+    _facilityidx: 05000000e8030000
     _count: 02000000ffffffff
   - _stageidx: 1
     _order: 22
-    _facilityidx: 0200000001000000e9030000e8030000
+    _facilityidx: 020000000100000005000000e8030000
     _count: 010000000100000002000000ffffffff
   - _stageidx: 1
     _order: 23
-    _facilityidx: e9030000e8030000
+    _facilityidx: 05000000e8030000
     _count: 02000000ffffffff
   - _stageidx: 1
     _order: 24
-    _facilityidx: ea030000e8030000
+    _facilityidx: 06000000e8030000
     _count: 01000000ffffffff
