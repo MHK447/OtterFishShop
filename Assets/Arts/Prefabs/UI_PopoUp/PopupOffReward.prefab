@@ -2517,8 +2517,12 @@ PrefabInstance:
       value: 0.7
       objectReference: {fileID: 0}
     - target: {fileID: 5887880393422214579, guid: 076892807ad332e42aea46776fec5061, type: 3}
+      propertyPath: keyColor
+      value: Bg_Pink
+      objectReference: {fileID: 0}
+    - target: {fileID: 5887880393422214579, guid: 076892807ad332e42aea46776fec5061, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6276685086379728565, guid: 076892807ad332e42aea46776fec5061, type: 3}
       propertyPath: m_text
@@ -2561,8 +2565,12 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8526991965304017533, guid: 076892807ad332e42aea46776fec5061, type: 3}
+      propertyPath: keyColor
+      value: Line_Pink
+      objectReference: {fileID: 0}
+    - target: {fileID: 8526991965304017533, guid: 076892807ad332e42aea46776fec5061, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

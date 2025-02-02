@@ -134,7 +134,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.28627452, g: 0.4745098, b: 0.68235296, a: 1}
+  m_Color: {r: 0.21693665, g: 0.40526336, b: 0.6132076, a: 1}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -165,7 +165,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentImageType: 2
   SetEventMode: 0
-  keyColor: Line_BtnEnable
+  keyColor: Line_Blue
   eventKeyColor: []
   eventCount: 0
 --- !u!1 &6575959454720464656
@@ -425,7 +425,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentImageType: 2
   SetEventMode: 0
-  keyColor: Bg_BtnEnable
+  keyColor: Bg_Blue
   eventKeyColor: []
   eventCount: 0
 --- !u!224 &5362877629220322583 stripped
