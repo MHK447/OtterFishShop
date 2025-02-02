@@ -1005,12 +1005,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40cebaaae328c4c76a1c0b5f306fb452, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Col: {fileID: 6873826400197395884}
+  RigidCol: {fileID: 6873826400197395884}
   FacilityOpenList:
   - {fileID: 4698694819027037527}
-  FacilityContentsObj: {fileID: 6374116184859796725}
-  FacilitySprite: {fileID: 588520357244928514}
-  MoneyRootTr: {fileID: 3717011814719939877}
   ConsumerWaitTr:
   - {fileID: 5684569114210864030}
   - {fileID: 7196352973140762104}
@@ -1022,7 +1019,7 @@ MonoBehaviour:
   - {fileID: 3234070391657544893}
   - {fileID: 2562900684850540163}
   - {fileID: 6240720394154293572}
-  NewRoot: {fileID: 3015025829279095749}
+  ContentsOpenComponent: {fileID: 2092512991763831197}
   ConsumerOrder: 0
   FacilityIdx: 2
   FishIdx: 2
@@ -2153,16 +2150,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e9670b62be8ca254bb49b128b7b809c4, type: 3}
---- !u!212 &588520357244928514 stripped
-SpriteRenderer:
-  m_CorrespondingSourceObject: {fileID: 203942778999942347, guid: e9670b62be8ca254bb49b128b7b809c4, type: 3}
+--- !u!114 &2092512991763831197 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1726090042836694868, guid: e9670b62be8ca254bb49b128b7b809c4, type: 3}
   m_PrefabInstance: {fileID: 792163789891415753}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &6374116184859796725 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5947913854427417148, guid: e9670b62be8ca254bb49b128b7b809c4, type: 3}
-  m_PrefabInstance: {fileID: 792163789891415753}
-  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 87c6bb250d789470f84dddd2cb183a0a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &6988966421732412220 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7639124401695876597, guid: e9670b62be8ca254bb49b128b7b809c4, type: 3}

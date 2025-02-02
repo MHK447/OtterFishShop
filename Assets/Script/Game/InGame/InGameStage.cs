@@ -289,7 +289,7 @@ public class InGameStage : MonoBehaviour
     }
 
 
-    public Transform    GetFacilityConsumeTr(int facilityidx)
+    public Transform GetFacilityConsumeTr(int facilityidx)
     {
         var finddata = FacilityList.Find(x => x.FacilityIdx == facilityidx);
 

@@ -21,8 +21,13 @@ public struct facilityidata : IFlatbufferObject
 
   public int Facilityidx { get { int o = __p.__offset(4); return o != 0 ? __p.bb.GetInt(o + __p.bb_pos) : (int)0; } }
   public bool MutateFacilityidx(int facilityidx) { int o = __p.__offset(4); if (o != 0) { __p.bb.PutInt(o + __p.bb_pos, facilityidx); return true; } else { return false; } }
-  public int Moneycount { get { int o = __p.__offset(6); return o != 0 ? __p.bb.GetInt(o + __p.bb_pos) : (int)0; } }
-  public bool MutateMoneycount(int moneycount) { int o = __p.__offset(6); if (o != 0) { __p.bb.PutInt(o + __p.bb_pos, moneycount); return true; } else { return false; } }
+  public string Moneycount { get { int o = __p.__offset(6); return o != 0 ? __p.__string(o + __p.bb_pos) : null; } }
+#if ENABLE_SPAN_T
+  public Span<byte> GetMoneycountBytes() { return __p.__vector_as_span<byte>(6, 1); }
+#else
+  public ArraySegment<byte>? GetMoneycountBytes() { return __p.__vector_as_arraysegment(6); }
+#endif
+  public byte[] GetMoneycountArray() { return __p.__vector_as_array<byte>(6); }
   public bool Isopen { get { int o = __p.__offset(8); return o != 0 ? 0!=__p.bb.Get(o + __p.bb_pos) : (bool)false; } }
   public bool MutateIsopen(bool isopen) { int o = __p.__offset(8); if (o != 0) { __p.bb.Put(o + __p.bb_pos, (byte)(isopen ? 1 : 0)); return true; } else { return false; } }
   public int Capacitycount { get { int o = __p.__offset(10); return o != 0 ? __p.bb.GetInt(o + __p.bb_pos) : (int)0; } }
@@ -30,12 +35,12 @@ public struct facilityidata : IFlatbufferObject
 
   public static Offset<BanpoFri.Data.facilityidata> Createfacilityidata(FlatBufferBuilder builder,
       int facilityidx = 0,
-      int moneycount = 0,
+      StringOffset moneycountOffset = default(StringOffset),
       bool isopen = false,
       int capacitycount = 0) {
     builder.StartTable(4);
     facilityidata.AddCapacitycount(builder, capacitycount);
-    facilityidata.AddMoneycount(builder, moneycount);
+    facilityidata.AddMoneycount(builder, moneycountOffset);
     facilityidata.AddFacilityidx(builder, facilityidx);
     facilityidata.AddIsopen(builder, isopen);
     return facilityidata.Endfacilityidata(builder);
@@ -43,7 +48,7 @@ public struct facilityidata : IFlatbufferObject
 
   public static void Startfacilityidata(FlatBufferBuilder builder) { builder.StartTable(4); }
   public static void AddFacilityidx(FlatBufferBuilder builder, int facilityidx) { builder.AddInt(0, facilityidx, 0); }
-  public static void AddMoneycount(FlatBufferBuilder builder, int moneycount) { builder.AddInt(1, moneycount, 0); }
+  public static void AddMoneycount(FlatBufferBuilder builder, StringOffset moneycountOffset) { builder.AddOffset(1, moneycountOffset.Value, 0); }
   public static void AddIsopen(FlatBufferBuilder builder, bool isopen) { builder.AddBool(2, isopen, false); }
   public static void AddCapacitycount(FlatBufferBuilder builder, int capacitycount) { builder.AddInt(3, capacitycount, 0); }
   public static Offset<BanpoFri.Data.facilityidata> Endfacilityidata(FlatBufferBuilder builder) {

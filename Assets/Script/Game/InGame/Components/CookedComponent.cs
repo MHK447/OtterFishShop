@@ -38,11 +38,20 @@ public class CookedComponent : FacilityComponent
     [SerializeField]
     private Transform CarryCasherWaitTr;
 
+    [SerializeField]
+    private CookTableComponent TableComponent;
+
+    public CookTableComponent GetCookTableComponent { get { return TableComponent; } }
+
+    [SerializeField]
+    private ColActionComponent ColAction;
+
+    [SerializeField]
+    private RackComponent TargetCookedRack;
+
+    public RackComponent GetTargetCookedRack { get { return TargetCookedRack; } }
+
     public Transform GetCarryCasherWaitTr { get { return CarryCasherWaitTr; } }
-
-    private Queue<FishComponent> FoodComponetQueue = new Queue<FishComponent>();
-
-    public Queue<FishComponent> FoodCompleteGetCount { get { return FoodComponetQueue; } }
 
     private State CurState = State.None;    
 
@@ -52,11 +61,7 @@ public class CookedComponent : FacilityComponent
 
     private CooltimeProgress Progress;
 
-    private List<Consumer> ConsumerOtterList = new List<Consumer>();
-
     private List<OtterBase> CasherOtterList = new List<OtterBase>();
-
-    private float FishCarrydeltime = 0f;
 
     private float movematerialdeltime = 0f;
 
@@ -78,15 +83,21 @@ public class CookedComponent : FacilityComponent
     {
         base.Init();
 
+        TableComponent.Init(FacilityData);
         IsCookStart = false;
 
-        FoodComponetQueue.Clear();
+        ColAction.TriggerEnterEvent = OnTriggerEnter2D;
+        ColAction.TriggerExitEvent = OnTriggerExit2D;
 
         var td = Tables.Instance.GetTable<CookingInfo>().GetData(FacilityIdx);
 
         ProjectUtility.SetActiveCheck(FixObj, false);
 
-        if(td != null)
+        var ingametycoon = GameRoot.Instance.InGameSystem.GetInGame<InGameTycoon>();
+
+        Player = ingametycoon.GetPlayer;
+
+        if (td != null)
         {
             CookingCoolTime = (float)td.cooking_cooltime / 100f;
 
@@ -161,17 +172,6 @@ public class CookedComponent : FacilityComponent
         }
     }
 
-    public FishComponent RemoveFish()
-    {
-        if (FoodComponetQueue.Count == 0) return null;
-
-        var target = FoodComponetQueue.Dequeue();
-
-        FacilityData.CapacityCountProperty.Value -= 1;
-
-        return target;
-    }
-
 
     public bool IsMaterialMaxCheck(int materialidx)
     {
@@ -236,26 +236,24 @@ public class CookedComponent : FacilityComponent
 
     }
 
-    public override void OnTriggerEnter2D(Collider2D collision)
+    public void OnTriggerEnter2D(Collider2D collision)
     {
-        base.OnTriggerEnter2D(collision);
-
         if (!IsOpenFacility()) return;
 
-        // 충돌한 오브젝트의 레이어를 확인합니다.
-        if ((collision.gameObject.layer == LayerMask.NameToLayer("Consumer")))
-        {
-            FishCarrydeltime = 0f;
-            var getvalue = collision.gameObject.GetComponent<Consumer>();
+        //// 충돌한 오브젝트의 레이어를 확인합니다.
+        //if ((collision.gameObject.layer == LayerMask.NameToLayer("Consumer")))
+        //{
+        //    FishCarrydeltime = 0f;
+        //    var getvalue = collision.gameObject.GetComponent<Consumer>();
 
-            if (getvalue != null && getvalue.GetState == Consumer.CurState.Idle)
-            {
-                if (!ConsumerOtterList.Contains(getvalue))
-                {
-                    ConsumerOtterList.Add(getvalue);
-                }
-            }
-        }
+        //    if (getvalue != null && getvalue.GetState == Consumer.CurState.Idle)
+        //    {
+        //        if (!ConsumerOtterList.Contains(getvalue))
+        //        {
+        //            ConsumerOtterList.Add(getvalue);
+        //        }
+        //    }
+        //}
 
         if (collision.gameObject.layer == LayerMask.NameToLayer("Player") || collision.gameObject.layer == LayerMask.NameToLayer("CarryCasher"))
         {
@@ -293,23 +291,8 @@ public class CookedComponent : FacilityComponent
         }
     }
 
-    public override void OnTriggerExit2D(Collider2D collision)
+    public void OnTriggerExit2D(Collider2D collision)
     {
-        base.OnTriggerExit2D(collision);
-
-        if (collision.gameObject.layer == LayerMask.NameToLayer("Consumer"))
-        {
-            var getvalue = collision.gameObject.GetComponent<Consumer>();
-
-            if (getvalue != null)
-            {
-                if (ConsumerOtterList.Contains(getvalue))
-                {
-                    ConsumerOtterList.Remove(getvalue);
-                }
-            }
-        }
-
         if (collision.gameObject.layer == LayerMask.NameToLayer("Player") || collision.gameObject.layer == LayerMask.NameToLayer("CarryCasher"))
         {
             movematerialdeltime = 0f;
@@ -330,43 +313,40 @@ public class CookedComponent : FacilityComponent
 
     public void CheckMaterialMoveOtter()
     {
-
         for (int i = CasherOtterList.Count - 1; i >= 0; i--)
         {
-            if (CasherOtterList[i].IsIdle && CasherOtterList[i].GetFishComponentList.Count > 0)
+            if (CasherOtterList[i].GetFishComponentList.Count > 0)
             {
-                if (CasherOtterList[i].IsIdle)
+                var findfish = CasherOtterList[i].GetFishComponentList.Last();
+
+                if (findfish != null)
                 {
-                    var findfish = CasherOtterList[i].GetFishComponentList.Last();
+                    var finddata = CookedMaterialList.Find(x => x.GetFishIdx == findfish.GetFishIdx);
 
-                    if (findfish != null)
+                    if (finddata != null && !finddata.IsMaxCheck())
                     {
-                        var finddata = CookedMaterialList.Find(x => x.GetFishIdx == findfish.GetFishIdx);
+                        movematerialdeltime += Time.deltaTime;
 
-                        if(finddata != null)
+                        if (movematerialdeltime > 0.4f)
                         {
-                            movematerialdeltime += Time.deltaTime;
+                            movematerialdeltime = 0f;
 
-                            if(movematerialdeltime > 0.4f)
+                            CasherOtterList[i].RemoveFish(findfish);
+
+                            findfish.FishInBucketAction(finddata.GetCurFishTr(), (fish) => {
+                                fish.transform.SetParent(this.transform);
+                                fish.transform.position = finddata.GetCurFishTr().position;
+                            }, 0.2f);
+
+                            finddata.AddMaterial(findfish);
+
+                            if (CasherOtterList[i].GetFishComponentList.Count == 0)
                             {
-                                movematerialdeltime = 0f;
-
-                                CasherOtterList[i].RemoveFish(findfish);
-
-                                findfish.FishInBucketAction(finddata.GetCurFishTr(), (fish) => {
-                                    fish.transform.SetParent(this.transform);
-                                    fish.transform.position = finddata.GetCurFishTr().position;
-                                }, 0.2f);
-
-                                finddata.AddMaterial(findfish);
-
-                                if (CasherOtterList[i].GetFishComponentList.Count == 0)
-                                {
-                                    CasherOtterList[i].CarryEnd();
-                                }
+                                CasherOtterList[i].CarryEnd();
                             }
                         }
                     }
+
                 }
             }
         }
@@ -424,7 +404,7 @@ public class CookedComponent : FacilityComponent
                 });
             }
 
-            InGameStage.CreateFish(FoodTrList[FoodComponetQueue.Count], FoodIdx, FishComponent.State.Cook, FoodCreateComplete);
+            InGameStage.CreateFish(FoodTrList[TableComponent.FoodCompleteGetCount.Count], FoodIdx, FishComponent.State.Cook, FoodCreateComplete);
 
             foreach (var material in CookedMaterialList)
             {
@@ -450,7 +430,7 @@ public class CookedComponent : FacilityComponent
 
     public void FoodCreateComplete(FishComponent fish)
     {
-        FoodComponetQueue.Enqueue(fish);
+        TableComponent.FoodCompleteGetCount.Enqueue(fish);
     }
        
 
@@ -479,14 +459,12 @@ public class CookedComponent : FacilityComponent
 
     public override bool IsMaxCountCheck()
     {
-        return FoodComponetQueue.Count >= CapacityMaxCount;
+        return TableComponent.FoodCompleteGetCount.Count >= CapacityMaxCount;
     }
 
 
-    public override void Update()
+    public void Update()
     {
-        base.Update();
-
         CheckMaterialMoveOtter();
         ProduceFood();
     }

@@ -49,15 +49,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a28b0f7624c7485ebabdea79d235609, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Col: {fileID: 1445650704337965935}
+  RigidCol: {fileID: 1445650704337965935}
   FacilityOpenList:
   - {fileID: 7707537055779818739}
   - {fileID: 3694993214718777021}
-  FacilityContentsObj: {fileID: 55557112073237348}
-  FacilitySprite: {fileID: 5808183529847543187}
-  MoneyRootTr: {fileID: 4057114267642731693}
   ConsumerWaitTr: []
-  NewRoot: {fileID: 9125262459828048657}
+  ContentsOpenComponent: {fileID: 5024347552578063884}
   ConsumerOrder: 0
   FacilityIdx: 101
   CushionComponent: {fileID: 4212354560792076909}
@@ -291,21 +288,22 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e9670b62be8ca254bb49b128b7b809c4, type: 3}
---- !u!1 &55557112073237348 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5947913854427417148, guid: e9670b62be8ca254bb49b128b7b809c4, type: 3}
-  m_PrefabInstance: {fileID: 5930779761379539288}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &4057114267642731693 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7639124401695876597, guid: e9670b62be8ca254bb49b128b7b809c4, type: 3}
   m_PrefabInstance: {fileID: 5930779761379539288}
   m_PrefabAsset: {fileID: 0}
---- !u!212 &5808183529847543187 stripped
-SpriteRenderer:
-  m_CorrespondingSourceObject: {fileID: 203942778999942347, guid: e9670b62be8ca254bb49b128b7b809c4, type: 3}
+--- !u!114 &5024347552578063884 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1726090042836694868, guid: e9670b62be8ca254bb49b128b7b809c4, type: 3}
   m_PrefabInstance: {fileID: 5930779761379539288}
   m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 87c6bb250d789470f84dddd2cb183a0a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &6377142759912779405
 PrefabInstance:
   m_ObjectHideFlags: 0

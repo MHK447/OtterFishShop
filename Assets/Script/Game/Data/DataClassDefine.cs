@@ -18,11 +18,11 @@ public class FacilityData
 
 	public int FacilityIdx = 0;
 
-	public int MoneyCount = 0;
+	public System.Numerics.BigInteger MoneyCount = 0;
 
 	public IReactiveProperty<int> CapacityCountProperty = new ReactiveProperty<int>(0);
 
-	public FacilityData(int facilityidx , int moneycount , bool isopen , int capacitycount)
+	public FacilityData(int facilityidx , System.Numerics.BigInteger moneycount , bool isopen , int capacitycount)
     {
 		IsOpen = isopen;
 		FacilityIdx = facilityidx;

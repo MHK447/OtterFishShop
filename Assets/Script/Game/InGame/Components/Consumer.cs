@@ -348,22 +348,22 @@ public class Consumer : Chaser
                 }
             }
         }
-        else if(TargetCooked != null && State == CurState.WaitProduct)
-        {
-            if (CurCountProperty.Value >= CurGoalValue)
-            {
-                MoveFacility();
-            }
-            else
-            {
-                if (TargetCooked.FoodCompleteGetCount.Count > 0 && CurFacilityIdxProperty.Value == TargetCooked.FacilityIdx)
-                {
-                    var getfish = TargetCooked.RemoveFish();
+        //else if(TargetCooked != null && State == CurState.WaitProduct)
+        //{
+        //    if (CurCountProperty.Value >= CurGoalValue)
+        //    {
+        //        MoveFacility();
+        //    }
+        //    else
+        //    {
+        //        if (TargetCooked.FoodCompleteGetCount.Count > 0 && CurFacilityIdxProperty.Value == TargetCooked.FacilityIdx)
+        //        {
+        //            var getfish = TargetCooked.RemoveFish();
 
-                    AddFish(getfish);
-                }
-            }
-        }
+        //            AddFish(getfish);
+        //        }
+        //    }
+        //}
 
         if(IsCounter && CurCounterOrder > 0)
         {

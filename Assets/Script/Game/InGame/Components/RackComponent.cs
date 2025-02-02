@@ -127,10 +127,8 @@ public class RackComponent : FacilityComponent
         return closestTransform;
     }
 
-    public override void OnTriggerEnter2D(Collider2D collision)
+    public void OnTriggerEnter2D(Collider2D collision)
     {
-        base.OnTriggerEnter2D(collision);
-
         // 충돌한 오브젝트의 레이어를 확인합니다.
         if ((collision.gameObject.layer == LayerMask.NameToLayer("Player") || collision.gameObject.layer == LayerMask.NameToLayer("CarryCasher")))
         {
@@ -147,10 +145,8 @@ public class RackComponent : FacilityComponent
         }
     }
 
-    public override void OnTriggerExit2D(Collider2D collision)
+    public void OnTriggerExit2D(Collider2D collision)
     {
-        base.OnTriggerExit2D(collision);
-
         if (collision.gameObject.layer == LayerMask.NameToLayer("Player") || collision.gameObject.layer == LayerMask.NameToLayer("CarryCasher"))
         {
             var getvalue = collision.gameObject.GetComponent<OtterBase>();
@@ -182,13 +178,13 @@ public class RackComponent : FacilityComponent
     }
 
 
-    public override void Update()
+    public void Update()
     {
-        base.Update();
-
         if (TargetOtterList.Count == 0) return;
 
         if (FacilityData == null) return;
+
+        if (FacilityData.IsOpen == false) return;
 
         if (IsMaxCountCheck()) return;
 
@@ -196,6 +192,15 @@ public class RackComponent : FacilityComponent
         {
             if (TargetOtterList[i].GetFishComponentList.Count > 0)
             {
+                if (TargetOtterList[i].gameObject.layer == LayerMask.NameToLayer("CarryCasher"))
+                {
+                    if (TargetOtterList[i].IsMove)
+                    {
+                        continue;
+                    }
+                }
+
+
                 if (!TargetOtterList[i].IsFishing)
                 {
                     FishCarrydeltime += Time.deltaTime;

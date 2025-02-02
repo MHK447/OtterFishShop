@@ -288,8 +288,6 @@ public class GameRoot : Singleton<GameRoot>
 		QualitySettings.vSyncCount = 0;  // VSync 비활성화
 		Application.targetFrameRate = 120;  // (제한 없음)
 
-		Debug.Log("실행 됐다 vsync 및 fps");
-
 		var count = GameRoot.instance.UserData.GetRecordCount(Config.RecordCountKeys.Init);
 
 		if (GameRoot.Instance.UserData.CurMode.StageData.StageIdx == 1 && count == 0)

@@ -35,6 +35,6 @@ public class FishRoomComponent : FacilityComponent
 
         }
 
-        Col.enabled = !FacilityData.IsOpen;
+        RigidCol.enabled = !FacilityData.IsOpen;
     }
 }

@@ -65,11 +65,9 @@ public class CounterComponent : FacilityComponent
     }
 
 
-    public override void Update()
+    public void Update()
     {
         if (InGameStage == null) return;
-
-        base.Update();
 
         if(CasherCounter == null)
             CasherCounter = InGameStage.FindCasher(CasherType.CounterCasher, FacilityData.FacilityIdx);

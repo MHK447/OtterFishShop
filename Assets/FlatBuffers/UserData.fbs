@@ -25,7 +25,7 @@ table StageData
 table facilityidata
 {
   facilityidx:int = 0;
-  moneycount:int = 0;  
+  moneycount:string;  
   isopen:bool = false; 
   capacitycount:int = 0;  
 }

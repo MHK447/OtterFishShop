@@ -16,6 +16,8 @@ public class FacilitySystem
     }
 
 
+    public Vector2 NoneOpenSize = new Vector2(1.76f, 1.76f);
+
     public void Create()
     {
     }
