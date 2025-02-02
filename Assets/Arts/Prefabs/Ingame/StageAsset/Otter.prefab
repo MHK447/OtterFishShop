@@ -444,8 +444,8 @@ Transform:
   m_GameObject: {fileID: 1952691193626740388}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.010365768, y: 0.36169112, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -0.0103657665, y: 0.3498147, z: 0}
+  m_LocalScale: {x: 1, y: 0.95051533, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4451452446342066238}
@@ -569,7 +569,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2326897862142123347}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: -0.7833358, w: 0.6215988}
+  m_LocalRotation: {x: 0, y: 0, z: -0.69032145, w: 0.7235028}
   m_LocalPosition: {x: 0.34135738, y: 0.31209308, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -669,7 +669,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 76a3a050e050e564b9d36709b2d91eef, type: 2}
+  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -720,11 +720,13 @@ MonoBehaviour:
   fixDrawOrder: 0
   addNormals: 0
   calculateTangents: 0
-  maskInteraction: 0
+  maskInteraction: 2
   maskMaterials:
-    materialsMaskDisabled: []
+    materialsMaskDisabled:
+    - {fileID: 2100000, guid: 76a3a050e050e564b9d36709b2d91eef, type: 2}
     materialsInsideMask: []
-    materialsOutsideMask: []
+    materialsOutsideMask:
+    - {fileID: 0}
   disableRenderingOnOverride: 1
   physicsPositionInheritanceFactor: {x: 1, y: 1}
   physicsRotationInheritanceFactor: 1
@@ -1284,7 +1286,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4237025750443125890}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: -0.65346754, w: 0.75695455}
+  m_LocalRotation: {x: 0, y: 0, z: -0.70437086, w: 0.70983213}
   m_LocalPosition: {x: -0.33145368, y: 0.31209308, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0

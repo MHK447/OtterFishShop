@@ -94,6 +94,7 @@ SpriteAtlas:
     - 93df819cbbaf5ed41adf97c40b3315c9: 21300000
     - f019cedc801b3e14f8d42fadcc3d9ba5: 21300000
     - 296f7a4d98a09e244b2fbb77b56af44e: 21300000
+    - e650941f55415e14f9de9378252f6b55: 21300000
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
   - {fileID: 21300000, guid: e66092306b41f02499d2db5c2be2d6eb, type: 3}
@@ -113,6 +114,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 93df819cbbaf5ed41adf97c40b3315c9, type: 3}
   - {fileID: 21300000, guid: f019cedc801b3e14f8d42fadcc3d9ba5, type: 3}
   - {fileID: 21300000, guid: 296f7a4d98a09e244b2fbb77b56af44e, type: 3}
+  - {fileID: 21300000, guid: e650941f55415e14f9de9378252f6b55, type: 3}
   m_PackedSpriteNamesToIndex:
   - Ingame_Food_001
   - Icon_PayHeart
@@ -131,6 +133,7 @@ SpriteAtlas:
   - Icon_Repair_Gray
   - Ingame_Food_009
   - Ingame_Food_007
+  - Gem_Mini
   m_RenderDataMap: {}
   m_Tag: Atlas_InGame
   m_IsVariant: 0
