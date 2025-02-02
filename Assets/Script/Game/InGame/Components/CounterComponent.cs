@@ -22,6 +22,7 @@ public class CounterComponent : FacilityComponent
         CounterConsumerList.Clear();
 
         CasherCounter = InGameStage.FindCasher(CasherType.CounterCasher, FacilityData.FacilityIdx);
+
     }
 
 

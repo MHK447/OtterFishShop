@@ -43,6 +43,8 @@ public class FacilityComponent : MonoBehaviour
 
         InGameStage = GameRoot.Instance.InGameSystem.GetInGame<InGameTycoon>().curInGameStage;
 
+        Player = GameRoot.Instance.InGameSystem.GetInGame<InGameTycoon>().GetPlayer;
+
         FacilityData = GameRoot.Instance.UserData.CurMode.StageData.FindFacilityData(FacilityIdx);
 
         var stageidx = GameRoot.Instance.UserData.CurMode.StageData.StageIdx;
