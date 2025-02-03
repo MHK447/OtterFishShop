@@ -16841,6 +16841,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 3178344795613248773}
     m_Modifications:
+    - target: {fileID: 352490077792522085, guid: bd58ca183e1584cf08acf75b4a815ee4, type: 3}
+      propertyPath: 'FishTrList.Array.data[3]'
+      value: 
+      objectReference: {fileID: 7449280300042666551}
+    - target: {fileID: 352490077792522085, guid: bd58ca183e1584cf08acf75b4a815ee4, type: 3}
+      propertyPath: 'FishTrList.Array.data[4]'
+      value: 
+      objectReference: {fileID: 787204492375622645}
     - target: {fileID: 816887432922960494, guid: bd58ca183e1584cf08acf75b4a815ee4, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -17068,6 +17076,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1075834941865691527, guid: bd58ca183e1584cf08acf75b4a815ee4, type: 3}
   m_PrefabInstance: {fileID: 643970300784788647}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &787204492375622645 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 145067103245420370, guid: bd58ca183e1584cf08acf75b4a815ee4, type: 3}
+  m_PrefabInstance: {fileID: 643970300784788647}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1208817172512794339 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1740996690127200836, guid: bd58ca183e1584cf08acf75b4a815ee4, type: 3}
@@ -17196,6 +17209,11 @@ SortingGroup:
   m_SortingLayer: 0
   m_SortingOrder: 255
   m_SortAtRoot: 0
+--- !u!4 &7449280300042666551 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8038643192623924880, guid: bd58ca183e1584cf08acf75b4a815ee4, type: 3}
+  m_PrefabInstance: {fileID: 643970300784788647}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &8197545372691444343 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8731458807253071568, guid: bd58ca183e1584cf08acf75b4a815ee4, type: 3}
