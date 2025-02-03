@@ -1553,6 +1553,7 @@ GameObject:
   - component: {fileID: 3668974389535462748}
   - component: {fileID: 8879750292251177681}
   - component: {fileID: 1787536226027704499}
+  - component: {fileID: 5667046249109675289}
   m_Layer: 0
   m_Name: Sink
   m_TagString: Untagged
@@ -1659,6 +1660,18 @@ MonoBehaviour:
   - {fileID: 6122327602275017965}
   - {fileID: 3558055305535782948}
   - {fileID: 5303591757256141613}
+--- !u!210 &5667046249109675289
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6417663722473640441}
+  m_Enabled: 1
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 255
+  m_SortAtRoot: 0
 --- !u!1 &8727361096679796190
 GameObject:
   m_ObjectHideFlags: 0

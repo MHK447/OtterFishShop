@@ -828,7 +828,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: cc9200172ea9647b09e68f1dda0fd7b3, type: 2}
+  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -885,7 +885,7 @@ MonoBehaviour:
     - {fileID: 2100000, guid: 008de9e22e827484e95427e35d0a4830, type: 2}
     materialsInsideMask: []
     materialsOutsideMask:
-    - {fileID: 2100000, guid: cc9200172ea9647b09e68f1dda0fd7b3, type: 2}
+    - {fileID: 0}
   disableRenderingOnOverride: 1
   physicsPositionInheritanceFactor: {x: 1, y: 1}
   physicsRotationInheritanceFactor: 1
@@ -1629,6 +1629,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7537672123692797759}
   - component: {fileID: 7183599201270019892}
+  - component: {fileID: 8652310909551453191}
   m_Layer: 0
   m_Name: Hand1
   m_TagString: Untagged
@@ -1672,6 +1673,18 @@ MonoBehaviour:
   zPosition: 1
   overrideAlpha: 1
   hierarchy: {fileID: 1024928834081550424}
+--- !u!210 &8652310909551453191
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6746685734143735477}
+  m_Enabled: 1
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 255
+  m_SortAtRoot: 0
 --- !u!1 &6938267690358949322
 GameObject:
   m_ObjectHideFlags: 0

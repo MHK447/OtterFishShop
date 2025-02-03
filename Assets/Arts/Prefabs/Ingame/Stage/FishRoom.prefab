@@ -208,7 +208,10 @@ PrefabInstance:
     m_RemovedGameObjects:
     - {fileID: 462497131553333154, guid: 0044a1e008cc8c74aaa27d60a70485bc, type: 3}
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7766291862062938160, guid: 0044a1e008cc8c74aaa27d60a70485bc, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 474703420633014610}
   m_SourcePrefab: {fileID: 100100000, guid: 0044a1e008cc8c74aaa27d60a70485bc, type: 3}
 --- !u!114 &5530823079409611867 stripped
 MonoBehaviour:
@@ -231,6 +234,18 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 7766291862062938160, guid: 0044a1e008cc8c74aaa27d60a70485bc, type: 3}
   m_PrefabInstance: {fileID: 86066818014131395}
   m_PrefabAsset: {fileID: 0}
+--- !u!210 &474703420633014610
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7707537055779818739}
+  m_Enabled: 1
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 200
+  m_SortAtRoot: 0
 --- !u!1001 &5930779761379539288
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -444,8 +444,8 @@ Transform:
   m_GameObject: {fileID: 1952691193626740388}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.0103657665, y: 0.3498147, z: 0}
-  m_LocalScale: {x: 1, y: 0.95051533, z: 1}
+  m_LocalPosition: {x: -0.010365768, y: 0.36169112, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4451452446342066238}
@@ -569,7 +569,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2326897862142123347}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: -0.69032145, w: 0.7235028}
+  m_LocalRotation: {x: 0, y: 0, z: -0.7833358, w: 0.6215988}
   m_LocalPosition: {x: 0.34135738, y: 0.31209308, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -689,7 +689,7 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 100
+  m_SortingOrder: 300
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!114 &6902744124365164405
 MonoBehaviour:
@@ -861,6 +861,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9048207631454145641}
+  - component: {fileID: 1342483398203464009}
   m_Layer: 3
   m_Name: FishCarryRoot
   m_TagString: Untagged
@@ -883,6 +884,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 4473943629887547631}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!210 &1342483398203464009
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2714424444675837686}
+  m_Enabled: 1
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 500
+  m_SortAtRoot: 0
 --- !u!1 &2886131579524992082
 GameObject:
   m_ObjectHideFlags: 0
@@ -1286,7 +1299,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4237025750443125890}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: -0.70437086, w: 0.70983213}
+  m_LocalRotation: {x: 0, y: 0, z: -0.65346754, w: 0.75695455}
   m_LocalPosition: {x: -0.33145368, y: 0.31209308, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0

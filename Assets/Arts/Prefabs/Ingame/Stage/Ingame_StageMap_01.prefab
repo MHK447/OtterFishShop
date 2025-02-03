@@ -2028,7 +2028,7 @@ SpriteRenderer:
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
-  m_MaskInteraction: 1
+  m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &1134079853837006043
 GameObject:
@@ -3868,7 +3868,7 @@ SpriteRenderer:
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
-  m_MaskInteraction: 1
+  m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &2252871311708683102
 GameObject:
@@ -4643,7 +4643,7 @@ SpriteRenderer:
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
-  m_MaskInteraction: 1
+  m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &2835347692254468288
 GameObject:
@@ -5779,7 +5779,7 @@ SpriteRenderer:
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
-  m_MaskInteraction: 1
+  m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &3220078458201822689
 GameObject:
@@ -6211,7 +6211,7 @@ SpriteRenderer:
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
-  m_MaskInteraction: 1
+  m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &3377960976078388715
 GameObject:
@@ -7421,7 +7421,7 @@ SpriteRenderer:
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
-  m_MaskInteraction: 1
+  m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &4069635020418490600
 GameObject:
@@ -7741,7 +7741,7 @@ SpriteRenderer:
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
-  m_MaskInteraction: 1
+  m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &4295362387823119605
 GameObject:
@@ -8043,7 +8043,7 @@ SpriteRenderer:
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
-  m_MaskInteraction: 1
+  m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &4516120730005186501
 GameObject:
@@ -11324,7 +11324,7 @@ SpriteRenderer:
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
-  m_MaskInteraction: 1
+  m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &6592314748167596206
 GameObject:
@@ -11803,7 +11803,7 @@ SpriteRenderer:
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
-  m_MaskInteraction: 1
+  m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &6804976540504921740
 GameObject:
@@ -11975,7 +11975,7 @@ SpriteRenderer:
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
-  m_MaskInteraction: 1
+  m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &6888090259668555588
 GameObject:
@@ -12205,7 +12205,7 @@ SpriteRenderer:
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
-  m_MaskInteraction: 1
+  m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &6986192493433303088
 GameObject:
@@ -12810,7 +12810,7 @@ SpriteRenderer:
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
-  m_MaskInteraction: 1
+  m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &7220781498357903305
 GameObject:
@@ -13546,7 +13546,7 @@ SpriteRenderer:
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
-  m_MaskInteraction: 1
+  m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &7499606163113773865
 GameObject:
@@ -13844,7 +13844,7 @@ SpriteRenderer:
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
-  m_MaskInteraction: 1
+  m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &7593923466043949079
 GameObject:
@@ -15494,7 +15494,7 @@ SpriteRenderer:
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
-  m_MaskInteraction: 1
+  m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &8569612200072545486
 GameObject:
@@ -16496,7 +16496,7 @@ SpriteRenderer:
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
-  m_MaskInteraction: 1
+  m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &9160166742165077719
 GameObject:
@@ -16804,6 +16804,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5667046249109675289, guid: ef347e2cec179a84095225182ca827cc, type: 3}
+      propertyPath: m_SortingOrder
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 6243461982723325587, guid: ef347e2cec179a84095225182ca827cc, type: 3}
       propertyPath: TargetCookedRack
       value: 
@@ -16973,6 +16977,10 @@ PrefabInstance:
       propertyPath: 'FoodTrList.Array.data[20]'
       value: 
       objectReference: {fileID: 6239798648562425891}
+    - target: {fileID: 3511365075397851492, guid: bd58ca183e1584cf08acf75b4a815ee4, type: 3}
+      propertyPath: m_SortingOrder
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 3873897879862062183, guid: bd58ca183e1584cf08acf75b4a815ee4, type: 3}
       propertyPath: CasherTr
       value: 
@@ -17048,6 +17056,12 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1923613997870328174, guid: bd58ca183e1584cf08acf75b4a815ee4, type: 3}
       insertIndex: -1
       addedObject: {fileID: 4758238251722872705}
+    - targetCorrespondingSourceObject: {fileID: 7645646327613592964, guid: bd58ca183e1584cf08acf75b4a815ee4, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5539518823058363653}
+    - targetCorrespondingSourceObject: {fileID: 3424775324510134747, guid: bd58ca183e1584cf08acf75b4a815ee4, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5715749470528488010}
   m_SourcePrefab: {fileID: 100100000, guid: bd58ca183e1584cf08acf75b4a815ee4, type: 3}
 --- !u!4 &432897237122960672 stripped
 Transform:
@@ -17148,6 +17162,40 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 936fc994a3b614366974d72efb047666, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &2839775272593450364 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3424775324510134747, guid: bd58ca183e1584cf08acf75b4a815ee4, type: 3}
+  m_PrefabInstance: {fileID: 643970300784788647}
+  m_PrefabAsset: {fileID: 0}
+--- !u!210 &5715749470528488010
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2839775272593450364}
+  m_Enabled: 1
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 255
+  m_SortAtRoot: 0
+--- !u!1 &7130637746724426019 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7645646327613592964, guid: bd58ca183e1584cf08acf75b4a815ee4, type: 3}
+  m_PrefabInstance: {fileID: 643970300784788647}
+  m_PrefabAsset: {fileID: 0}
+--- !u!210 &5539518823058363653
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7130637746724426019}
+  m_Enabled: 1
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 255
+  m_SortAtRoot: 0
 --- !u!4 &8197545372691444343 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8731458807253071568, guid: bd58ca183e1584cf08acf75b4a815ee4, type: 3}
@@ -17174,6 +17222,10 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: 25aa0955f95459d428e5ce86c962b66d, type: 3}
+    - target: {fileID: 6077258607541116016, guid: 01c7c292b82434d81a61383517486809, type: 3}
+      propertyPath: m_SortingOrder
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 6908048993481582653, guid: 01c7c292b82434d81a61383517486809, type: 3}
       propertyPath: m_LocalPosition.x
       value: -10.49
@@ -18034,6 +18086,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: 1.9100001
       objectReference: {fileID: 0}
+    - target: {fileID: 6666646068528378474, guid: 383dd65f4e87ba4428e9f453bf97a7bf, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6717354474461137707, guid: 383dd65f4e87ba4428e9f453bf97a7bf, type: 3}
       propertyPath: m_Icon
       value: 
@@ -18300,7 +18356,7 @@ SortingGroup:
   m_Enabled: 1
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 10
+  m_SortingOrder: 100
   m_SortAtRoot: 0
 --- !u!4 &237263379915813934 stripped
 Transform:
@@ -18378,7 +18434,7 @@ SortingGroup:
   m_Enabled: 1
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 10
+  m_SortingOrder: 100
   m_SortAtRoot: 0
 --- !u!1 &7970889894264251844 stripped
 GameObject:
@@ -18400,7 +18456,7 @@ SortingGroup:
   m_Enabled: 1
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 80
   m_SortAtRoot: 0
 --- !u!1 &8646098152641010063 stripped
 GameObject:
@@ -18417,7 +18473,7 @@ SortingGroup:
   m_Enabled: 1
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 80
   m_SortAtRoot: 0
 --- !u!4 &8732525898354799063 stripped
 Transform:
@@ -18439,6 +18495,10 @@ PrefabInstance:
     - target: {fileID: 2387059367422710991, guid: 01c7c292b82434d81a61383517486809, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6077258607541116016, guid: 01c7c292b82434d81a61383517486809, type: 3}
+      propertyPath: m_SortingOrder
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 6908048993481582653, guid: 01c7c292b82434d81a61383517486809, type: 3}
       propertyPath: m_LocalPosition.x
@@ -18783,10 +18843,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: TrashCan
       objectReference: {fileID: 0}
+    - target: {fileID: 5336312249053180498, guid: 8a5ae57fb749728409cfa8f498ebd2f0, type: 3}
+      propertyPath: m_SortingOrder
+      value: 30
+      objectReference: {fileID: 0}
     - target: {fileID: 7746018512247707459, guid: 8a5ae57fb749728409cfa8f498ebd2f0, type: 3}
       propertyPath: ConsumerTr
       value: 
       objectReference: {fileID: 5959703829450262336}
+    - target: {fileID: 7766539468124370395, guid: 8a5ae57fb749728409cfa8f498ebd2f0, type: 3}
+      propertyPath: m_SortingOrder
+      value: 20
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:

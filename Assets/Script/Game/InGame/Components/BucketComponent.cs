@@ -181,8 +181,8 @@ public class BucketComponent : MonoBehaviour
         FacilityData.CapacityCountProperty.Value += 1;
 
 
-        if(FishStackComponent.Count > 0)
-        CountUI.Init(FishStackComponent.First().transform);
+        if (FishStackComponent.Count > 0)
+            CountUI.Init(FishStackComponent.First().transform);
     }
 
 

@@ -217,11 +217,10 @@ public class RackComponent : FacilityComponent
 
                             FacilityData.CapacityCountProperty.Value += 1;
 
-                            findfish.FishInBucketAction(FishTrList[FishComponentList.Count], (fish) => {
-                                fish.transform.position = FishTrList[FishComponentList.Count].position;
-                                fish.transform.SetParent(this.transform);
-                                FishComponentList.Add(findfish);
+                            FishComponentList.Add(findfish);
 
+                            findfish.FishInBucketAction(FishTrList[FishComponentList.Count - 1], (fish) => {
+                                fish.transform.position = FishTrList[FishComponentList.Count - 1].position;
                                 fish.LivingFishAnim(false);
                             }, 0.2f);
 
@@ -230,7 +229,6 @@ public class RackComponent : FacilityComponent
                                 TargetOtterList[i].CarryEnd();
                             }
                         }
-
                     }
                 }
             }

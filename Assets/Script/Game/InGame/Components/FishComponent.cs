@@ -66,6 +66,9 @@ public class FishComponent : MonoBehaviour
             {
                 IsTracking = true;
                 fishaction?.Invoke(this);
+                this.transform.SetParent(Target);
+                this.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
+                this.transform.localScale = new Vector3(1f, 1f, 1f);
             });
     }
 

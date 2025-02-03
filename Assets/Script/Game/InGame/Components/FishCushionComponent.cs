@@ -173,8 +173,9 @@ public class FishCushionComponent : MonoBehaviour
         var posy = FishPos_Y * fishcount;
         fish.LivingFishAnim(true);
 
+        BucketComponent.AddFishQueue(fish);
+
         fish.FishInBucketAction(BucketComponent.transform, (fish)=> {
-            BucketComponent.AddFishQueue(fish);
             fish.transform.position = BucketComponent.transform.position;
             Target.CoolTimeActive(FacilityData.CapacityCountProperty.Value < CapacityMaxCount);
         },1f , posy);

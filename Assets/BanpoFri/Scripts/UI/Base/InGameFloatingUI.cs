@@ -26,6 +26,11 @@ public class InGameFloatingUI : MonoBehaviour, IFloatingUI
             this.transform.position = FollowTrans.position + OffsetVec;
     }
 
+    public void SetUpdatePos(Vector3 position)
+    {
+        this.transform.position = position;
+    }
+
     protected virtual void Update()
     {
         if (TrackingPos)

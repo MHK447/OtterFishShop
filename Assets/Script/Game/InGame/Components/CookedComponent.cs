@@ -388,7 +388,7 @@ public class CookedComponent : FacilityComponent
 
         CoolTimeActive(cooltimevalue);
 
-        if (Cookeddeltime > 1)
+        if (cooltimevalue > 1)
         {
             Cookeddeltime = 0f;
 
