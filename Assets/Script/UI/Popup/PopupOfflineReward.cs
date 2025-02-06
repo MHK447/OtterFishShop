@@ -37,9 +37,9 @@ public class PopupOfflineReward : UIBase
     [SerializeField]
     private Button ADRewardBtn;
 
-    private int TiemSecond = 0;
+    public int TimeSecond = 0;
 
-    private System.Numerics.BigInteger RewardValue = 0 ;
+    private System.Numerics.BigInteger RewardValue = 0;
 
 
     protected override void Awake()
@@ -52,7 +52,7 @@ public class PopupOfflineReward : UIBase
     }
     public void Set(int timesecond)
     {
-        TiemSecond = timesecond;
+        TimeSecond = timesecond;
 
         RewardValue = ProjectUtility.CalcOfflineReward(timesecond);
 
@@ -60,18 +60,28 @@ public class PopupOfflineReward : UIBase
 
         AdRewardValueText.text =
          ProjectUtility.CalculateMoneyToString(RewardValue * GameRoot.Instance.InGameSystem.offline_reward_multiple);
+
+        CurTimeText.text = Utility.GetTimeStringFormattingLong(TimeSecond);
+
+        MaxTimeText.text = Utility.GetTimeStringFormattingLong(GameRoot.Instance.InGameSystem.max_offline_time);
+
+        TimeSliderValue.value = (float)TimeSecond / (float)GameRoot.Instance.InGameSystem.max_offline_time;
+
+        MiddleBenefitText.text = Tables.Instance.GetTable<Localize>().GetFormat("offline_time_middle_value" , GameRoot.Instance.InGameSystem.offline_reward_multiple);
+
+        UpBenefitText.text = Tables.Instance.GetTable<Localize>().GetFormat("offline_time_value" , GameRoot.Instance.InGameSystem.offline_reward_multiple);
     }
 
     public void OnClickAdReward()
     {
-        GameRoot.Instance.UserData.SetReward((int)Config.RewardType.Currency , (int)Config.CurrencyID.Money , RewardValue *
+        GameRoot.Instance.UserData.SetReward((int)Config.RewardType.Currency, (int)Config.CurrencyID.Money, RewardValue *
         GameRoot.Instance.InGameSystem.offline_reward_multiple);
         Hide();
     }
 
     public void OnClickReward()
     {
-        GameRoot.Instance.UserData.SetReward((int)Config.RewardType.Currency , (int)Config.CurrencyID.Money , RewardValue);
+        GameRoot.Instance.UserData.SetReward((int)Config.RewardType.Currency, (int)Config.CurrencyID.Money, RewardValue);
         Hide();
     }
 }

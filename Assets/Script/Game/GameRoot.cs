@@ -41,6 +41,8 @@ public class GameRoot : Singleton<GameRoot>
 
 
 
+	private Queue<System.Action> PauseActions = new Queue<System.Action>();
+
 	public AdManager GetAdManager { get { return AdManager; } }
 
 	public GameObject UILock;
@@ -68,7 +70,8 @@ public class GameRoot : Singleton<GameRoot>
 	public static void Load()
 	{
 		InitTry = true;
-		Addressables.InstantiateAsync("GameRoot").Completed += (handle) => {
+		Addressables.InstantiateAsync("GameRoot").Completed += (handle) =>
+		{
 			instance = handle.Result.GetComponent<GameRoot>();
 			instance.name = "GameRoot";
 		};
@@ -138,7 +141,7 @@ public class GameRoot : Singleton<GameRoot>
 				RectTransformUtility.ScreenPointToLocalPointInRectangle(MainCanvas.transform as RectTransform, Input.mousePosition,
 					MainCanvas.worldCamera, out localPos);
 
-			
+
 				if (!IsPointerOverUIObject(Input.mousePosition))
 				{
 				}
@@ -159,7 +162,7 @@ public class GameRoot : Singleton<GameRoot>
 				}
 			}
 		}
-		
+
 	}
 
 	public bool IsPointerOverUIObject(Vector2 touchPos)
@@ -200,7 +203,7 @@ public class GameRoot : Singleton<GameRoot>
 		//SnapshotCam = SnapshotCamera.MakeSnapshotCamera("SnapShot");
 		//SnapshotCam.transform.SetParent(this.transform);
 		//SnapshotCam.transform.position = new Vector3(0f, 0f, -1f);
-		//yield return TimeSystem.GetGoogleTime(null);
+		yield return TimeSystem.GetGoogleTime(null);
 		UISystem.SetMainUI(MainUITrans);
 		UISystem.SetHudUI(HUDUITrans);
 		UISystem.SetWorldCanvas(WorldCanvas);
@@ -216,13 +219,13 @@ public class GameRoot : Singleton<GameRoot>
 
 	private IEnumerator LoadGameData()
 	{
-		
+
 		yield return Config.Create();
 		yield return Tables.Create();
 		yield return SoundPlayer.Create();
 
 		// 로딩 팝업 어드레서블 로드
-	    loadcount = 0;
+		loadcount = 0;
 		InitUILoading();
 
 		yield return new WaitUntil(() => loadcount == 1);
@@ -236,8 +239,9 @@ public class GameRoot : Singleton<GameRoot>
 		InGameSystem.Create();
 		GameNotification.Create();
 
-		 
-		GameRoot.instance.WaitTimeAndCallback(0.5f, () => {
+
+		GameRoot.instance.WaitTimeAndCallback(0.5f, () =>
+		{
 			JoyStick.Init();
 			BgmOn();
 		});
@@ -279,7 +283,10 @@ public class GameRoot : Singleton<GameRoot>
 					break;
 			}
 			if (dataState != DataState.None)
+			{
 				UserData.ChangeDataMode(dataState);
+                GameRoot.Instance.UserData.CurMode.LastLoginTime = TimeSystem.GetCurTime();
+			}
 		}
 	}
 
@@ -356,44 +363,111 @@ public class GameRoot : Singleton<GameRoot>
 		if (!LoadComplete)
 			return;
 
-
-
-
 		if (pause)
 		{
 
 			PluginSystem.OnApplicationPause(pause);
 
-			
-				
+			GameRoot.Instance.UserData.CurMode.LastLoginTime = TimeSystem.GetCurTime();
 		}
 		else
 		{
-			
-
-
-			//if (time.Equals(default(System.DateTime)))
-			//{
-			//	return;
-			//}
-
-
 			if (InGameSystem.GetInGame<InGameTycoon>() == null) return;
 			if (InGameSystem.GetInGame<InGameTycoon>().curInGameStage == null) return;
 			if (InGameSystem.GetInGame<InGameTycoon>().curInGameStage.IsLoadComplete == false) return;
 
-			
+
+			if (GameRoot.Instance.TutorialSystem.IsActive())
+				return;
+
+			var time = GameRoot.Instance.UserData.CurMode.LastLoginTime;
+
+			if (time.Equals(default(System.DateTime)))
+				return;
+
+
+
+
+			System.Action NextAction = () => 
+			{
+				if (PauseActions.Count < 1)
+					return;
+
+				var action = PauseActions.Dequeue();
+				action.Invoke();
+			};
+
+			var diff = TimeSystem.GetCurTime().Subtract(time);
+
+			var minRewardTime = Tables.Instance.GetTable<Define>().GetData("max_offline_time").value;
+			var maxRewardTime = Tables.Instance.GetTable<Define>().GetData("offline_min_time").value;
+
+			var stage = GameRoot.instance.InGameSystem.GetInGame<InGameTycoon>().curInGameStage;
+
+			if (diff.TotalSeconds > minRewardTime)
+			{
+				PauseActions.Enqueue(() =>
+				{
+					var offlinereward = GameRoot.instance.UISystem.GetUI<PopupOfflineReward>();
+
+					if (offlinereward != null)
+					{
+						if (!offlinereward.gameObject.activeSelf)
+						{
+							if ((int)diff.TotalSeconds >= maxRewardTime)
+								GameRoot.instance.UISystem.OpenUI<PopupOfflineReward>(popup => popup.Set(maxRewardTime), NextAction);
+							else
+								GameRoot.instance.UISystem.OpenUI<PopupOfflineReward>(popup => popup.Set((int)diff.TotalSeconds), NextAction);
+						}
+						else
+						{
+							offlinereward.OnUIHideAfter = NextAction;
+
+							//기존 열린 팝업의 시간이 맥스가 아니면 오프라인 시간을 더해서 보상을 준다.
+							if (offlinereward.TimeSecond < maxRewardTime)
+							{
+								int rewardTime = 0;
+								var newRewardTime = offlinereward.TimeSecond + (int)diff.TotalSeconds;
+								if (newRewardTime >= maxRewardTime)
+								{
+									rewardTime = maxRewardTime;
+								}
+								else
+								{
+									rewardTime = newRewardTime;
+								}
+
+								offlinereward.Set(rewardTime);
+							}
+						}
+					}
+					else
+					{
+
+						if ((int)diff.TotalSeconds >= maxRewardTime)
+							GameRoot.instance.UISystem.OpenUI<PopupOfflineReward>(popup => popup.Set(maxRewardTime), NextAction); //offline max value 
+						else
+							GameRoot.instance.UISystem.OpenUI<PopupOfflineReward>(popup => popup.Set((int)diff.TotalSeconds), NextAction); //offline not max value
+
+					}
+				});
+			}
+			NextAction.Invoke();
+
 		}
+
+
+
 	}
 
 
 #if UNITY_EDITOR
-		private void OnApplicationQuit()
-		{
-			PluginSystem.OnApplicationPause(true);
-			UnityEditor.AssetDatabase.SaveAssets();
-			UnityEditor.AssetDatabase.Refresh();
-		}
+	private void OnApplicationQuit()
+	{
+		PluginSystem.OnApplicationPause(true);
+		UnityEditor.AssetDatabase.SaveAssets();
+		UnityEditor.AssetDatabase.Refresh();
+	}
 #endif
 
-	}
+}

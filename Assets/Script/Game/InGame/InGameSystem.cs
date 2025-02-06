@@ -95,6 +95,7 @@ public class InGameSystem
         SoundPlayer.Instance.Load();
         GameRoot.Instance.FacilitySystem.Create();
         GameRoot.Instance.InGameSystem.Create();
+        
         GameRoot.Instance.FacilitySystem.CreateStageFacility(GameRoot.Instance.UserData.CurMode.StageData.StageIdx);
         GameRoot.Instance.TutorialSystem.ClearRegisiter();
         GameRoot.Instance.UserData.CurMode.Money.Value = 0;
@@ -153,6 +154,39 @@ public class InGameSystem
             var action = ActionQueue.Dequeue();
             action.Invoke();
         };
+
+
+
+        var time = GameRoot.Instance.UserData.CurMode.LastLoginTime;
+
+        var diff = TimeSystem.GetCurTime().Subtract(time);
+        var minRewardTime = Tables.Instance.GetTable<Define>().GetData("offline_min_time").value;
+        var maxRewardTime = Tables.Instance.GetTable<Define>().GetData("max_offline_time").value;
+    
+
+        if (diff.TotalSeconds > minRewardTime)
+        {
+            int rewardTime = (int)diff.TotalSeconds;
+            if ((int)diff.TotalSeconds >= maxRewardTime)
+            {
+                rewardTime = maxRewardTime;
+
+                ActionQueue.Enqueue(() =>
+                {
+                    if (!GameRoot.Instance.TutorialSystem.IsActive())
+                        GameRoot.Instance.UISystem.OpenUI<PopupOfflineReward>(popup => popup.Set(maxRewardTime), () => NextAction());
+                });
+            }
+            else
+            {
+                ActionQueue.Enqueue(() =>
+                {
+                    if(!GameRoot.Instance.TutorialSystem.IsActive())
+                    GameRoot.Instance.UISystem.OpenUI<PopupOfflineReward>(popup => popup.Set((int)diff.TotalSeconds), () => NextAction()); //offline not max value
+                });
+            }
+        }
+
 
         if (!firstInit)
         {

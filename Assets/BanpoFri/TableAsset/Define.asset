@@ -20,6 +20,7 @@ MonoBehaviour:
   - max_offline_time
   - offline_value_time
   - offline_reward_multiple
+  - offline_min_time
   mSecondKey: []
   mDataList:
   - _index: casher_move_speed
@@ -36,3 +37,5 @@ MonoBehaviour:
     _value: 10
   - _index: offline_reward_multiple
     _value: 2
+  - _index: offline_min_time
+    _value: 10
