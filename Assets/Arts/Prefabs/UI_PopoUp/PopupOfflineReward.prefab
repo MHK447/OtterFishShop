@@ -255,7 +255,7 @@ GameObject:
   - component: {fileID: 879956085710324304}
   - component: {fileID: 3129793007641652732}
   m_Layer: 5
-  m_Name: PopupOffReward
+  m_Name: PopupOfflineReward
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
