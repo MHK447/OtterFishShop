@@ -17,6 +17,9 @@ MonoBehaviour:
   - carry_sleep_time
   - player_start_carry_count
   - carry_casher_count
+  - max_offline_time
+  - offline_value_time
+  - offline_reward_multiple
   mSecondKey: []
   mDataList:
   - _index: casher_move_speed
@@ -27,3 +30,9 @@ MonoBehaviour:
     _value: 5
   - _index: carry_casher_count
     _value: 3
+  - _index: max_offline_time
+    _value: 14400
+  - _index: offline_value_time
+    _value: 10
+  - _index: offline_reward_multiple
+    _value: 2

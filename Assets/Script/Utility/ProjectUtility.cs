@@ -295,6 +295,50 @@ public class ProjectUtility
     }
 
 
+
+    public static System.Numerics.BigInteger CalcOfflineReward(int _difftime)
+    {
+        var curstageidx = GameRoot.Instance.UserData.CurMode.StageData.StageIdx;
+
+        System.Numerics.BigInteger stagevalue = 0;
+
+        var tdlist = Tables.Instance.GetTable<StageInfo>().DataList.FindAll(x => x.stageidx == curstageidx).ToList();
+        var stagewavetd = Tables.Instance.GetTable<StageWaveInfo>().GetData(curstageidx);
+
+
+        var facilitydatas = GameRoot.Instance.UserData.CurMode.StageData.StageFacilityDataList.ToList();
+
+        int highfishidx = 0;
+
+        foreach(var faciliy in facilitydatas)
+        {
+            var td = Tables.Instance.GetTable<FacilityInfo>().GetData(faciliy.FacilityIdx);
+
+            if(td != null)
+            {
+                if(td.fish_idx > highfishidx)
+                {
+                    highfishidx = td.fish_idx;
+                }
+            }
+        }
+
+        if(highfishidx > 0)
+        {
+            var td = Tables.Instance.GetTable<FishInfo>().GetData(highfishidx);
+
+            if(td != null)
+            {
+                stagevalue = (td.base_revenue * _difftime)  / GameRoot.Instance.InGameSystem.offline_value_time;
+            }
+        }
+
+
+        return stagevalue;   
+    }
+
+
+
 }
 
 
@@ -354,23 +398,6 @@ public static class ScrollViewFocusFunctions
         scrollView.normalizedPosition = targetNormalizedPos;
 
         endaction?.Invoke();
-    }
-
-
-    public static System.Numerics.BigInteger CalcOfflineReward(int _difftime , int basevalue,int stageidx)
-    {
-        var curstageidx = GameRoot.Instance.UserData.CurMode.StageData.StageIdx;
-
-        System.Numerics.BigInteger stagevalue = 0;
-
-        var tdlist = Tables.Instance.GetTable<StageInfo>().DataList.FindAll(x => x.stageidx == curstageidx).ToList();
-        var stagewavetd = Tables.Instance.GetTable<StageWaveInfo>().GetData(stageidx);
-
-        int deadreward = 0;
-
-        
-
-        return stagevalue;   
     }
 
     public static IEnumerator FocusAtPointCoroutine(this ScrollRect scrollView, Vector2 focusPoint, float speed)

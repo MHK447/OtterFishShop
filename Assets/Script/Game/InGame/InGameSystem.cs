@@ -40,6 +40,10 @@ public class InGameSystem
     public float carry_sleep_time = 0f;
     public int player_start_carry_count = 0;
     public int carry_casher_count = 0; 
+    public int max_offline_time = 0;
+    public int offline_value_time = 0;
+
+    public int offline_reward_multiple = 0;
 
 
     public void Create()
@@ -48,6 +52,9 @@ public class InGameSystem
         carry_sleep_time = Tables.Instance.GetTable<Define>().GetData("carry_sleep_time").value;
         player_start_carry_count = Tables.Instance.GetTable<Define>().GetData("player_start_carry_count").value;
         carry_casher_count = Tables.Instance.GetTable<Define>().GetData("carry_casher_count").value;
+        max_offline_time = Tables.Instance.GetTable<Define>().GetData("max_offline_time").value;
+        offline_value_time = Tables.Instance.GetTable<Define>().GetData("offline_value_time").value;
+        offline_reward_multiple = Tables.Instance.GetTable<Define>().GetData("offline_reward_multiple").value;
     }
 
     public T GetInGame<T>() where T : InGameMode

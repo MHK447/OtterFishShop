@@ -53,7 +53,7 @@ public class CookedComponent : FacilityComponent
 
     public Transform GetCarryCasherWaitTr { get { return CarryCasherWaitTr; } }
 
-    private State CurState = State.None;    
+    private State CurState = State.None;
 
     private int MaterialMaxCount = 0;
 
@@ -129,7 +129,8 @@ public class CookedComponent : FacilityComponent
 
             SetCookedSpeed();
 
-            GameRoot.Instance.UISystem.LoadFloatingUI<UI_TroubleBubble>((_progress) => {
+            GameRoot.Instance.UISystem.LoadFloatingUI<UI_TroubleBubble>((_progress) =>
+            {
                 TroubleBubble = _progress;
                 ProjectUtility.SetActiveCheck(TroubleBubble.gameObject, false);
                 //ProjectUtility.SetActiveCheck(AmountUI.gameObject, FacilityData.CapacityCountProperty.Value > 0);
@@ -179,7 +180,7 @@ public class CookedComponent : FacilityComponent
 
         var finddata = CookedMaterialList.Find(x => x.GetFishIdx == materialidx);
 
-        if(finddata != null)
+        if (finddata != null)
         {
             ismaxcheck = finddata.IsMaxCheck();
         }
@@ -222,7 +223,7 @@ public class CookedComponent : FacilityComponent
     {
         if (Progress == null) return;
 
-         Progress.SetValue(cooltimevalue);
+        Progress.SetValue(cooltimevalue);
 
         if (cooltimevalue > 0f && !Progress.gameObject.activeSelf)
         {
@@ -260,7 +261,7 @@ public class CookedComponent : FacilityComponent
             movematerialdeltime = 0f;
             var getvalue = collision.GetComponent<OtterBase>();
 
-            if(getvalue != null)
+            if (getvalue != null)
             {
                 if (CurState == State.Break)
                 {
@@ -269,9 +270,10 @@ public class CookedComponent : FacilityComponent
                     if (TroubleBubble != null)
                         ProjectUtility.SetActiveCheck(TroubleBubble.gameObject, false);
 
-                    GameRoot.Instance.WaitTimeAndCallback(1f, () => {
+                    GameRoot.Instance.WaitTimeAndCallback(1f, () =>
+                    {
 
-                        if(this != null)
+                        if (this != null)
                         {
                             ProjectUtility.SetActiveCheck(FixObj, false);
                         }
@@ -333,7 +335,8 @@ public class CookedComponent : FacilityComponent
 
                             CasherOtterList[i].RemoveFish(findfish);
 
-                            findfish.FishInBucketAction(finddata.GetCurFishTr(), (fish) => {
+                            findfish.FishInBucketAction(finddata.GetCurFishTr(), (fish) =>
+                            {
                                 fish.transform.SetParent(this.transform);
                                 fish.transform.position = finddata.GetCurFishTr().position;
                             }, 0.2f);
@@ -376,7 +379,7 @@ public class CookedComponent : FacilityComponent
         }
 
 
-        if(!IsCookStart)
+        if (!IsCookStart)
         {
             IsCookStart = true;
             ChangeState(State.Working);
@@ -396,7 +399,7 @@ public class CookedComponent : FacilityComponent
 
             CurBreakCount += 1;
 
-            if(CurBreakCount >= MaxBreakCount)
+            if (CurBreakCount >= MaxBreakCount)
             {
                 GameRoot.Instance.WaitTimeAndCallback(2f, () =>
                 {
@@ -404,7 +407,11 @@ public class CookedComponent : FacilityComponent
                 });
             }
 
-            InGameStage.CreateFish(FoodTrList[TableComponent.FoodCompleteGetCount.Count], FoodIdx, FishComponent.State.Cook, FoodCreateComplete);
+            InGameStage.CreateFish(FoodTrList[TableComponent.FoodCompleteGetCount.Count], FoodIdx, FishComponent.State.Cook, (fish) =>
+            {
+                fish.transform.SetParent(FoodTrList[TableComponent.FoodCompleteGetCount.Count]);
+                FoodCreateComplete(fish);
+            });
 
             foreach (var material in CookedMaterialList)
             {
@@ -422,8 +429,8 @@ public class CookedComponent : FacilityComponent
         CoolTimeActive(0f);
         IsCookStart = false;
 
-        if(TroubleBubble != null)
-        ProjectUtility.SetActiveCheck(TroubleBubble.gameObject, true);
+        if (TroubleBubble != null)
+            ProjectUtility.SetActiveCheck(TroubleBubble.gameObject, true);
 
 
     }
@@ -432,7 +439,7 @@ public class CookedComponent : FacilityComponent
     {
         TableComponent.FoodCompleteGetCount.Enqueue(fish);
     }
-       
+
 
     public bool MaterialAllCountCheck()
     {
@@ -450,7 +457,7 @@ public class CookedComponent : FacilityComponent
     {
         var finddata = CookedMaterialList.Find(x => x.GetFishIdx == materialidx);
 
-        if(finddata != null)
+        if (finddata != null)
         {
             return finddata.IsMaxCheck();
         }
@@ -471,7 +478,7 @@ public class CookedComponent : FacilityComponent
 
     private void OnDisable()
     {
-        if(Progress != null)
+        if (Progress != null)
         {
             Destroy(Progress.gameObject);
             Progress = null;
