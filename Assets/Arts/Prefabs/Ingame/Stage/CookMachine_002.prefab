@@ -527,7 +527,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb30550dcb3ac4401a223ce49d84462c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CasherTr: {fileID: 0}
+  CasherTr: {fileID: 8731458807253071568}
 --- !u!61 &3185994210770323508
 BoxCollider2D:
   m_ObjectHideFlags: 0
