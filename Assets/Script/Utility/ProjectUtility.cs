@@ -203,8 +203,6 @@ public class ProjectUtility
     }
 
 
-    public static int 
-
     public static int GetRandGachaCard(int level)
     {
 
@@ -369,22 +367,8 @@ public static class ScrollViewFocusFunctions
         var stagewavetd = Tables.Instance.GetTable<StageWaveInfo>().GetData(stageidx);
 
         int deadreward = 0;
-        if (stagewavetd != null)
-        {
-            deadreward = stagewavetd.reward_boost;
-        }
 
-        //[restart_base] x[미접속시간] x[가장 높은 스테이지의 미네랄 획득 배율] x[인앱상품 미네랄 획득 배율]
-        var getcardbuff = GameRoot.Instance.CardSystem.GetCardbuff(CardBuff.Mineral, 1) * 100;
-
-        var starterbuff = GameRoot.Instance.ShopSystem.FindPackageBuff(Config.PackageType.StarterPackage) * 10;
-        var probuff = GameRoot.Instance.ShopSystem.FindPackageBuff(Config.PackageType.ProPackage) * 10;
-
-        stagevalue = deadreward * (int)getcardbuff * (int)starterbuff * (int)probuff;
         
-        stagevalue = stagevalue * basevalue * _difftime * deadreward;
-
-        stagevalue = stagevalue / 1000000; // buff + base value 할때 
 
         return stagevalue;   
     }
