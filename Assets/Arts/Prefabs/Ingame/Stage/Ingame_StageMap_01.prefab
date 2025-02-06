@@ -16553,6 +16553,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: CookMachine
       objectReference: {fileID: 0}
+    - target: {fileID: 2111403478283987472, guid: ef347e2cec179a84095225182ca827cc, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.688
+      objectReference: {fileID: 0}
+    - target: {fileID: 2111403478283987472, guid: ef347e2cec179a84095225182ca827cc, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.255
+      objectReference: {fileID: 0}
     - target: {fileID: 2366242634038820061, guid: ef347e2cec179a84095225182ca827cc, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -18227,6 +18235,14 @@ PrefabInstance:
     - target: {fileID: 1170470152488583947, guid: bd58ca183e1584cf08acf75b4a815ee4, type: 3}
       propertyPath: m_LocalPosition.y
       value: 0.35999966
+      objectReference: {fileID: 0}
+    - target: {fileID: 3948963835506459811, guid: bd58ca183e1584cf08acf75b4a815ee4, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.533
+      objectReference: {fileID: 0}
+    - target: {fileID: 3948963835506459811, guid: bd58ca183e1584cf08acf75b4a815ee4, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.167
       objectReference: {fileID: 0}
     - target: {fileID: 4721789424765785471, guid: bd58ca183e1584cf08acf75b4a815ee4, type: 3}
       propertyPath: m_Name
