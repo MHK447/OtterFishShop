@@ -95,7 +95,6 @@ public class InGameSystem
         SoundPlayer.Instance.Load();
         GameRoot.Instance.FacilitySystem.Create();
         GameRoot.Instance.InGameSystem.Create();
-        
         GameRoot.Instance.FacilitySystem.CreateStageFacility(GameRoot.Instance.UserData.CurMode.StageData.StageIdx);
         GameRoot.Instance.TutorialSystem.ClearRegisiter();
         GameRoot.Instance.UserData.CurMode.Money.Value = 0;

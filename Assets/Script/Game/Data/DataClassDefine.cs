@@ -94,14 +94,14 @@ public class UpgradeData
 } 
 
 
-public class FacilityUpgradeData
+public class StageFishUpgradeData
 {
-	public int FacilityIdx = 0;
+	public int FishIdx = 0;
 	public int Level = 0;
 
-	public FacilityUpgradeData(int facilityidx , int level)
+	public StageFishUpgradeData(int fishidx , int level)
 	{
-		FacilityIdx = facilityidx;
+		FishIdx = fishidx;
 		Level = level;
 	}
 }

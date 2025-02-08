@@ -38,6 +38,7 @@ MonoBehaviour:
   - next_stage_name_5
   - offline_time_value
   - offline_time_middle_value
+  - str_level
   mSecondKey: []
   mDataList:
   - _idx: casher_add_02_desc
@@ -138,5 +139,9 @@ MonoBehaviour:
     _ja: 
   - _idx: offline_time_middle_value
     _ko: "{0}\uBC30 \uBCF4\uC0C1\uBC1B\uAE30"
+    _en: 
+    _ja: 
+  - _idx: str_level
+    _ko: Lv.{0}
     _en: 
     _ja: 

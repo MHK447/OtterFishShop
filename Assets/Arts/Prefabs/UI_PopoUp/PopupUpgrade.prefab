@@ -3480,6 +3480,10 @@ PrefabInstance:
       propertyPath: m_SizeDelta.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 653788426834325767, guid: 6006994eeeacbbe4d94111a4d4f40890, type: 3}
+      propertyPath: m_text
+      value: 88.a
+      objectReference: {fileID: 0}
     - target: {fileID: 4406354349667520832, guid: 6006994eeeacbbe4d94111a4d4f40890, type: 3}
       propertyPath: m_Name
       value: UI_UpgradeList_Product

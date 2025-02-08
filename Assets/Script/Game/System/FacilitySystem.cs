@@ -87,6 +87,70 @@ public class FacilitySystem
     }
 
 
+    public StageFishUpgradeData GetFacilityUpgradeData(int facilityidx)
+    {
+        var finddata = GameRoot.Instance.UserData.CurMode.FishUpgradeDatas.Find(x=> x.FishIdx == facilityidx);
+
+        if(finddata == null)
+        {
+            finddata = new StageFishUpgradeData(facilityidx , 1);
+
+            GameRoot.Instance.UserData.CurMode.FishUpgradeDatas.Add(finddata);
+        }
+
+        return finddata;
+    }
+
+
+    public System.Numerics.BigInteger GetFishUpgradeLevelCost(int fishidx ,int level)
+    {
+        var stageidx = GameRoot.Instance.UserData.CurMode.StageData.StageIdx;
+
+        var td = Tables.Instance.GetTable<FacilityUpgrade>().GetData(new KeyValuePair<int, int>(stageidx , fishidx));
+
+        if(td != null)
+        {
+            return (td.base_income_cost * td.income_cost_multiple * level) / 100;
+        }
+
+        return 0;
+    }
+
+
+
+    public System.Numerics.BigInteger GetFishCurSellProductValue(int fishidx ,int level)
+    {
+        var stageidx = GameRoot.Instance.UserData.CurMode.StageData.StageIdx;
+
+        var td = Tables.Instance.GetTable<FacilityUpgrade>().GetData(new KeyValuePair<int, int>(stageidx , fishidx));
+
+        if(td != null)
+        {
+            var getbuffvalue = GetFishLevelBuffValue(fishidx,level);
+            
+            getbuffvalue = getbuffvalue == 1 ? 1 : 100;
+            return (td.base_income_cost * getbuffvalue) / 100;
+        }
+
+        return 0;
+    }
+
+
+
+    public System.Numerics.BigInteger GetFishLevelBuffValue(int fishidx ,int level)
+    {
+        var stageidx = GameRoot.Instance.UserData.CurMode.StageData.StageIdx;
+
+        var td = Tables.Instance.GetTable<FacilityUpgrade>().GetData(new KeyValuePair<int, int>(stageidx , fishidx));
+
+        if(td != null)
+        {
+            return (td.income_multiple_value * level);
+        }
+
+        return 1;
+    }
+
 
     public bool IsOpenPattern(List<int> facilityidxlist)
     {

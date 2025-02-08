@@ -88,15 +88,15 @@ public partial class UserDataSystem
         }
 
 
-        mainData.FacilityUpgradeDatas.Clear();
+        mainData.FishUpgradeDatas.Clear();
     
         for(int i = 0 ; i < flatBufferUserData.FacilityupgradedatasLength; ++i)
         {
             var data = flatBufferUserData.Facilityupgradedatas(i);
 
-            var newdata = new FacilityUpgradeData(data.Value.Faciltiyidx , data.Value.Level);
+            var newdata = new StageFishUpgradeData(data.Value.Faciltiyidx , data.Value.Level);
 
-            mainData.FacilityUpgradeDatas.Add(newdata);
+            mainData.FishUpgradeDatas.Add(newdata);
         }
 
     }

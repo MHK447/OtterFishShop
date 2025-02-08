@@ -157,14 +157,14 @@ public partial class UserDataSystem
 		Offset<BanpoFri.Data.FacilityUpgradeData>[] facilyupgradedatas = null;
 
 		facilyupgradedatas = new Offset<BanpoFri.Data.FacilityUpgradeData>
-		[mainData.FacilityUpgradeDatas.Count];
+		[mainData.FishUpgradeDatas.Count];
 
 		dataIdx = 0;
 
-		foreach(var upgrade in mainData.FacilityUpgradeDatas)
+		foreach(var upgrade in mainData.FishUpgradeDatas)
         {
 			facilyupgradedatas[dataIdx++] = BanpoFri.Data.FacilityUpgradeData.
-			CreateFacilityUpgradeData(builder, upgrade.Level , upgrade.FacilityIdx);
+			CreateFacilityUpgradeData(builder, upgrade.Level , upgrade.FishIdx);
         }
 
 		var faciltyupgradedata = BanpoFri.Data.UserData.CreateFacilityupgradedatasVector(builder, facilyupgradedatas);
