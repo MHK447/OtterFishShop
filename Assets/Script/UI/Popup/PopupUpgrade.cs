@@ -9,6 +9,16 @@ using System.Linq;
 [UIPath("UI/Popup/PopupUpgrade")]
 public class PopupUpgrade : UIBase
 {
+    public enum TabType
+    {
+        ProductTab,
+        FacilityTab,
+    }
+
+
+    [SerializeField]
+    private UpgradeProductComponentGroup ProductComponentGroup;
+
     [SerializeField]
     private List<GameObject> CachedComponents = new List<GameObject>();
 
@@ -17,17 +27,63 @@ public class PopupUpgrade : UIBase
 
     [SerializeField]
     private Transform CachedRoot;
+    
 
+    [SerializeField]
+    private GameObject ProductRoot;
+
+    [SerializeField]
+    private GameObject FacilityRoot;
+
+    private TabType CurrentTab = TabType.ProductTab;
+
+    [SerializeField]
+    private Button FacilityBtn;
+
+    [SerializeField]
+    private Button ProductBtn;
+
+    protected override void Awake()
+    {
+        base.Awake();
+        FacilityBtn.onClick.AddListener(OnClickFacility);
+        ProductBtn.onClick.AddListener(OnClickProduct);
+    }
+
+    public void OnClickFacility()
+    {
+        CurrentTab = TabType.FacilityTab;
+
+        ProjectUtility.SetActiveCheck(ProductRoot, CurrentTab == TabType.ProductTab);
+        ProjectUtility.SetActiveCheck(FacilityRoot , CurrentTab == TabType.FacilityTab);
+
+
+    }
+
+    public void OnClickProduct()
+    {
+        CurrentTab = TabType.ProductTab;
+
+        ProjectUtility.SetActiveCheck(ProductRoot, CurrentTab == TabType.ProductTab);
+        ProjectUtility.SetActiveCheck(FacilityRoot , CurrentTab == TabType.FacilityTab);
+    }
 
     public void Init()
     {
+        CurrentTab = TabType.ProductTab;
+
+        ProductComponentGroup.Init();   
+
+        OnClickProduct();
+
+        ProjectUtility.SetActiveCheck(ProductRoot.gameObject , CurrentTab == TabType.ProductTab);
+        ProjectUtility.SetActiveCheck(FacilityRoot.gameObject , CurrentTab == TabType.FacilityTab);
 
         foreach(var cachedobj in CachedComponents)
         {
             ProjectUtility.SetActiveCheck(cachedobj, false);
         }
 
-         
 
         foreach(var upgradedata in GameRoot.Instance.UserData.CurMode.UpgradeGroupData.StageUpgradeCollectionList)
         {

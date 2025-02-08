@@ -153,6 +153,23 @@ public partial class UserDataSystem
 			,facilitydatavec);
 
 
+		//facilyupgrade
+		Offset<BanpoFri.Data.FacilityUpgradeData>[] facilyupgradedatas = null;
+
+		facilyupgradedatas = new Offset<BanpoFri.Data.FacilityUpgradeData>
+		[mainData.FacilityUpgradeDatas.Count];
+
+		dataIdx = 0;
+
+		foreach(var upgrade in mainData.FacilityUpgradeDatas)
+        {
+			facilyupgradedatas[dataIdx++] = BanpoFri.Data.FacilityUpgradeData.
+			CreateFacilityUpgradeData(builder, upgrade.Level , upgrade.FacilityIdx);
+        }
+
+		var faciltyupgradedata = BanpoFri.Data.UserData.CreateFacilityupgradedatasVector(builder, facilyupgradedatas);
+
+
 		//upgradedata
 		Offset<BanpoFri.Data.UpgradeData>[] upgradedatas = null;
 
@@ -177,7 +194,7 @@ public partial class UserDataSystem
 		BanpoFri.Data.UserData.AddCash(builder, Cash.Value);
 		BanpoFri.Data.UserData.AddUpgradedatas(builder, upgradedata);
 		BanpoFri.Data.UserData.AddRecordcount(builder, recordCountVec);
-
+		BanpoFri.Data.UserData.AddFacilityupgradedatas(builder , faciltyupgradedata);
 
 		//end 
 		var orc = BanpoFri.Data.UserData.EndUserData(builder);

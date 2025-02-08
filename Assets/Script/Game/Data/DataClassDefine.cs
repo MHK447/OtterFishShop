@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using BanpoFri;
 using System.Linq;
+using BanpoFri.Data;
 
 public interface IReadOnlyData : ICloneable { 
 	void Create();
@@ -90,6 +91,19 @@ public class UpgradeData
 		IsBuyCheckProperty.Value = true;
 
     }
+} 
+
+
+public class FacilityUpgradeData
+{
+	public int FacilityIdx = 0;
+	public int Level = 0;
+
+	public FacilityUpgradeData(int facilityidx , int level)
+	{
+		FacilityIdx = facilityidx;
+		Level = level;
+	}
 }
 
 public class StageData

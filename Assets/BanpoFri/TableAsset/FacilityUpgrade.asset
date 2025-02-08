@@ -1,0 +1,89 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73d544eedccfa4db587ad423d6d3243e, type: 3}
+  m_Name: FacilityUpgrade
+  m_EditorClassIdentifier: 
+  mFirstKey:
+  - 1
+  - 1
+  - 1
+  - 1
+  - 2
+  - 2
+  - 2
+  - 2
+  - 2
+  mSecondKey:
+  - 1
+  - 2
+  - 3
+  - 4
+  - 5
+  - 6
+  - 7
+  - 8
+  - 9
+  mDataList:
+  - _stageidx: 1
+    _facilityidx: 1
+    _income_multiple_value: 10
+    _max_ugprade_count: 20
+    _base_income_cost: 20
+    _income_cost_multiple: 105
+  - _stageidx: 1
+    _facilityidx: 2
+    _income_multiple_value: 10
+    _max_ugprade_count: 20
+    _base_income_cost: 20
+    _income_cost_multiple: 105
+  - _stageidx: 1
+    _facilityidx: 3
+    _income_multiple_value: 10
+    _max_ugprade_count: 20
+    _base_income_cost: 20
+    _income_cost_multiple: 105
+  - _stageidx: 1
+    _facilityidx: 4
+    _income_multiple_value: 25
+    _max_ugprade_count: 20
+    _base_income_cost: 20
+    _income_cost_multiple: 105
+  - _stageidx: 2
+    _facilityidx: 5
+    _income_multiple_value: 25
+    _max_ugprade_count: 20
+    _base_income_cost: 20
+    _income_cost_multiple: 105
+  - _stageidx: 2
+    _facilityidx: 6
+    _income_multiple_value: 25
+    _max_ugprade_count: 20
+    _base_income_cost: 20
+    _income_cost_multiple: 105
+  - _stageidx: 2
+    _facilityidx: 7
+    _income_multiple_value: 25
+    _max_ugprade_count: 20
+    _base_income_cost: 20
+    _income_cost_multiple: 105
+  - _stageidx: 2
+    _facilityidx: 8
+    _income_multiple_value: 25
+    _max_ugprade_count: 20
+    _base_income_cost: 20
+    _income_cost_multiple: 105
+  - _stageidx: 2
+    _facilityidx: 9
+    _income_multiple_value: 25
+    _max_ugprade_count: 20
+    _base_income_cost: 20
+    _income_cost_multiple: 105

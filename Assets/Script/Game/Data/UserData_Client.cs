@@ -87,6 +87,18 @@ public partial class UserDataSystem
             mainData.UpgradeGroupData.StageUpgradeCollectionList.Add(newdata);
         }
 
+
+        mainData.FacilityUpgradeDatas.Clear();
+    
+        for(int i = 0 ; i < flatBufferUserData.FacilityupgradedatasLength; ++i)
+        {
+            var data = flatBufferUserData.Facilityupgradedatas(i);
+
+            var newdata = new FacilityUpgradeData(data.Value.Faciltiyidx , data.Value.Level);
+
+            mainData.FacilityUpgradeDatas.Add(newdata);
+        }
+
     }
 
 

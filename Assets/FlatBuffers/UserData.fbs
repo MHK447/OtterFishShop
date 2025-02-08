@@ -10,6 +10,7 @@ table UserData {
   stagedata: StageData;
   recordcount:[RecordCount];
   upgradedatas:[UpgradeData];
+  facilityupgradedatas:[FacilityUpgradeData];
 }
 
 
@@ -29,6 +30,13 @@ table facilityidata
   isopen:bool = false; 
   capacitycount:int = 0;  
 }
+
+table FacilityUpgradeData
+{
+  level:int = 0;
+  faciltiyidx:int = 0; 
+}
+
 
 table UpgradeData
 {

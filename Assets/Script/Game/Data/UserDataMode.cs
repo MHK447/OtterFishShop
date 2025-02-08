@@ -13,7 +13,8 @@ public interface IUserDataMode
 	IReactiveProperty<BigInteger> EnergyMoney { get; set; }
 	IReactiveProperty<int> GachaCoin { get; set; }
 	public UpgradeGroupData UpgradeGroupData { get; set; }
-	
+	public List<FacilityUpgradeData> FacilityUpgradeDatas {get; set;}
+
 }
 
 public class UserDataMain : IUserDataMode
@@ -25,6 +26,7 @@ public class UserDataMain : IUserDataMode
 	public UpgradeGroupData UpgradeGroupData { get; set; } = new UpgradeGroupData();
 	public IReactiveProperty<BigInteger> EnergyMoney { get; set; } = new ReactiveProperty<BigInteger>(0);
 	public IReactiveProperty<int> GachaCoin { get; set; } = new ReactiveProperty<int>(0);
+	public List<FacilityUpgradeData> FacilityUpgradeDatas  {get; set;} = new List<FacilityUpgradeData>();
 }
 
 public class UserDataEvent : UserDataMain

@@ -37,9 +37,7 @@ public class PopupNextStage : UIBase
 
     [SerializeField]
     private Button UpgradeBtn;
-
     private CompositeDisposable disposables = new CompositeDisposable();
-
     private BigInteger PurChaseMoney;
 
     protected override void Awake()
@@ -118,5 +116,4 @@ public class PopupNextStage : UIBase
 
         NextStageBtn.interactable = isbuylist.Count >= upgradelist.Count && GameRoot.Instance.UserData.CurMode.Money.Value >= PurChaseMoney;
     }
-
 }

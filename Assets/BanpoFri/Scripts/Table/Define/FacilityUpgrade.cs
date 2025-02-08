@@ -1,0 +1,59 @@
+using UnityEngine;
+using System.Collections.Generic;
+
+namespace BanpoFri
+{
+    [System.Serializable]
+    public class FacilityUpgradeData
+    {
+        [SerializeField]
+		private int _stageidx;
+		public int stageidx
+		{
+			get { return _stageidx;}
+			set { _stageidx = value;}
+		}
+		[SerializeField]
+		private int _facilityidx;
+		public int facilityidx
+		{
+			get { return _facilityidx;}
+			set { _facilityidx = value;}
+		}
+		[SerializeField]
+		private int _income_multiple_value;
+		public int income_multiple_value
+		{
+			get { return _income_multiple_value;}
+			set { _income_multiple_value = value;}
+		}
+		[SerializeField]
+		private int _max_ugprade_count;
+		public int max_ugprade_count
+		{
+			get { return _max_ugprade_count;}
+			set { _max_ugprade_count = value;}
+		}
+		[SerializeField]
+		private int _base_income_cost;
+		public int base_income_cost
+		{
+			get { return _base_income_cost;}
+			set { _base_income_cost = value;}
+		}
+		[SerializeField]
+		private int _income_cost_multiple;
+		public int income_cost_multiple
+		{
+			get { return _income_cost_multiple;}
+			set { _income_cost_multiple = value;}
+		}
+
+    }
+
+    [System.Serializable]
+    public class FacilityUpgrade : Table<FacilityUpgradeData, KeyValuePair<int,int>>
+    {
+    }
+}
+
