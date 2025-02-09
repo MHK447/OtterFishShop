@@ -23,11 +23,6 @@ public class PopupNextStage : UIBase
     [SerializeField]
     private TextMeshProUGUI AfterFoodNameText;
 
-    [SerializeField]
-    private Slider UpgradeSlider;
-
-    [SerializeField]
-    private TextMeshProUGUI UpgradeCountText;
 
     [SerializeField]
     private TextMeshProUGUI NextStagePurchaseValueText;
@@ -35,10 +30,28 @@ public class PopupNextStage : UIBase
     [SerializeField]
     private Button NextStageBtn;
 
-    [SerializeField]
-    private Button UpgradeBtn;
     private CompositeDisposable disposables = new CompositeDisposable();
     private BigInteger PurChaseMoney;
+
+    [SerializeField]
+    private TextMeshProUGUI FacilityUpgradeCountText;
+
+    [SerializeField]
+    private TextMeshProUGUI FishUpgradeMaxCountText;
+
+    [SerializeField]
+    private Button GoToFishUpgradeBtn;
+
+    [SerializeField]
+    private Button GotoFacilityUpgradeBtn;
+
+
+    [SerializeField]
+    private Slider FacilityUpgradeSlider;
+
+    [SerializeField]
+    private Slider FishUpgradeSlider;
+
 
     protected override void Awake()
     {
@@ -46,14 +59,28 @@ public class PopupNextStage : UIBase
 
         NextStageBtn.onClick.AddListener(OnClickNextStage);
 
-        UpgradeBtn.onClick.AddListener(OnClickUpgrade);
+        GotoFacilityUpgradeBtn.onClick.AddListener(OnClickFacilityUpgrade);
+
+        GoToFishUpgradeBtn.onClick.AddListener(OnClickFoodUpgrade);
     }
 
 
-    public void OnClickUpgrade()
+    public void OnClickFacilityUpgrade()
     {
-        GameRoot.Instance.UISystem.OpenUI<PopupUpgrade>(popup => popup.Init());
+        GameRoot.Instance.UISystem.OpenUI<PopupUpgrade>(popup => {
+            popup.Init();
+            popup.OnClickFacility();
+            });
     }
+
+    public void OnClickFoodUpgrade()
+    {
+        GameRoot.Instance.UISystem.OpenUI<PopupUpgrade>(popup =>{
+            popup.Init();   
+            popup.OnClickProduct();
+            });
+    }
+
 
     public void OnClickNextStage()
     {
@@ -110,10 +137,20 @@ public class PopupNextStage : UIBase
 
         var isbuylist = GameRoot.Instance.UserData.CurMode.UpgradeGroupData.StageUpgradeCollectionList.ToList().FindAll(x => x.IsBuyCheckProperty.Value);
 
-        UpgradeSlider.value = (float)isbuylist.Count / (float)upgradelist.Count;
+        FacilityUpgradeSlider.value = (float)isbuylist.Count / (float)upgradelist.Count;
 
-        UpgradeCountText.text = $"{isbuylist.Count}/{upgradelist.Count}";
+        FacilityUpgradeCountText.text = $"{isbuylist.Count}/{upgradelist.Count}";
 
-        NextStageBtn.interactable = isbuylist.Count >= upgradelist.Count && GameRoot.Instance.UserData.CurMode.Money.Value >= PurChaseMoney;
+        var stageidx = GameRoot.Instance.UserData.CurMode.StageData.StageIdx;
+
+        var tdlist = Tables.Instance.GetTable<FacilityUpgrade>().DataList.ToList().FindAll(x=> x.stageidx == stageidx);
+
+        var maxcount = GameRoot.Instance.FacilitySystem.GetFishUpgradeMaxLevelCount();
+
+        FishUpgradeMaxCountText.text = $"{maxcount}/{tdlist.Count}";
+
+        FishUpgradeSlider.value = (float)maxcount / (float)tdlist.Count;
+
+        NextStageBtn.interactable = isbuylist.Count >= upgradelist.Count && GameRoot.Instance.UserData.CurMode.Money.Value >= PurChaseMoney && maxcount >= tdlist.Count;
     }
 }

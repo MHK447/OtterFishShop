@@ -17,6 +17,7 @@ public class GameNotificationSystem
     {
         UpgradePopup,
         StageClear,
+        UpgradeProduct,
     }
 
     public class NotificationData
@@ -79,6 +80,7 @@ public class GameNotificationSystem
         GameRoot.Instance.UserData.CurMode.Money.Subscribe(x => {
             UpdateNotification(NotificationCategory.UpgradePopup);
             UpdateNotification(NotificationCategory.StageClear);
+            UpdateNotification(NotificationCategory.UpgradeProduct);
         }).AddTo(disposables);
         
         var upgradelist = GameRoot.Instance.UserData.CurMode.UpgradeGroupData.StageUpgradeCollectionList.ToList().FindAll(x=> x.IsBuyCheckProperty.Value == false);
@@ -113,7 +115,7 @@ public class GameNotificationSystem
 
                         if(td != null)
                         {
-                            if(GameRoot.Instance.UserData.CurMode.Money.Value >= td.cost)
+                            if(GameRoot.Instance.UserData.CurMode.Money.Value >= td.cost && !upgrade.IsBuyCheckProperty.Value)
                             {
                                 on = true;
                                 break;
@@ -134,11 +136,16 @@ public class GameNotificationSystem
 
                     bool on = false;
 
+                    var stageidx = GameRoot.Instance.UserData.CurMode.StageData.StageIdx;
+
                     var isnonebuyupgrade = GameRoot.Instance.UserData.CurMode.UpgradeGroupData.StageUpgradeCollectionList.ToList().Find(x=> x.IsBuyCheckProperty.Value == false);
 
-                    if(isnonebuyupgrade == null)
+                    var curmaxcount = GameRoot.Instance.FacilitySystem.GetFishUpgradeMaxLevelCount();
+
+                    var tdlist = Tables.Instance.GetTable<FacilityUpgrade>().DataList.ToList().FindAll(x=> x.stageidx == stageidx);
+
+                    if(isnonebuyupgrade == null && tdlist.Count == curmaxcount)
                     {
-                        var stageidx = GameRoot.Instance.UserData.CurMode.StageData.StageIdx;
 
                         var td = Tables.Instance.GetTable<StageInfo>().GetData(stageidx);
 
@@ -148,6 +155,37 @@ public class GameNotificationSystem
                         }
                     }
 
+                        noti.on.Value = on;
+                }
+                break;
+            case NotificationCategory.UpgradeProduct:
+                {
+                    var noti = GetData(category, -1, -1);
+                    if (noti == null) return;
+
+                    bool on = false;
+
+                    var fishupgradedatas = GameRoot.Instance.UserData.CurMode.FishUpgradeDatas.ToList();
+
+
+                    var stageidx = GameRoot.Instance.UserData.CurMode.StageData.StageIdx;
+
+                    foreach(var fishupgrade in fishupgradedatas)
+                    {
+                        var td = Tables.Instance.GetTable<FacilityUpgrade>().GetData(new KeyValuePair<int, int>(stageidx , fishupgrade.FishIdx));
+
+                        if(td != null && td.max_ugprade_count <= fishupgrade.Level) continue;
+
+
+                        var curprice = GameRoot.Instance.FacilitySystem.GetFishUpgradeLevelCost(fishupgrade.FishIdx, fishupgrade.Level);
+
+                        if(GameRoot.Instance.UserData.CurMode.Money.Value >= curprice)
+                        {
+                            on = true;
+                            break;
+                        }
+
+                    }
                         noti.on.Value = on;
                 }
                 break;

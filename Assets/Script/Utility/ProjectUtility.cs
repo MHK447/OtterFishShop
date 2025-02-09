@@ -6,6 +6,7 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using BanpoFri;
 using System.Linq;
+using UnityEngine.AddressableAssets;
 
 
 public class ProjectUtility 
@@ -203,6 +204,31 @@ public class ProjectUtility
     }
 
 
+    public static Sprite GetRewardItemIconImg(int rewardtype ,  int rewardidx , int grade = -1)
+    {
+        switch (rewardtype)
+        {
+            case (int)Config.RewardType.Currency:
+                {
+                    switch(rewardidx)
+                    {
+                        case (int)Config.CurrencyID.Money:
+                            {
+                                return Config.Instance.GetCommonImg("Coin");
+                            }
+                        case (int)Config.CurrencyID.Cash:
+                            {
+                                return Config.Instance.GetCommonImg("Gem");
+                            }
+                    }
+                }
+                break;
+        }
+
+        return null;    
+    }
+
+
     public static int GetRandGachaCard(int level)
     {
 
@@ -339,8 +365,107 @@ public class ProjectUtility
 
 
 
-}
+    public static void PlayGoodsEffect(UnityEngine.Vector3 startPos, int rewardType, int rewardIdx, int rewardGrade, System.Numerics.BigInteger value, bool isCenterStart = true, System.Action OnEnd = null, float delay = 0f, string viewText = "",  UIBase curui = null, bool reward = true, bool underOrder = false, UnityEngine.Vector3 endPos = default(UnityEngine.Vector3)
+        , bool iscurrencytext = true)
+    {
+        if (value <= 0)
+            return;
 
+        if (GameRoot.Instance.InGameSystem == null)
+        {
+            if (reward)
+            {
+                GameRoot.Instance.UserData.SetReward(rewardType, rewardIdx, value, false);
+            }
+            return;
+        }
+        if (GameRoot.Instance.InGameSystem.CurInGame == null)
+        {
+
+            if (reward)
+            {
+                GameRoot.Instance.UserData.SetReward(rewardType, rewardIdx, value, false);
+            }
+            return;
+        }
+
+        var pWidth = GameRoot.Instance.InGameSystem.CurInGame.CamPixelWidth;
+        var pHeight = GameRoot.Instance.InGameSystem.CurInGame.CamPixelHeight;
+        var center = new UnityEngine.Vector3(pWidth / 2, pHeight / 2, 0);
+        if (isCenterStart)
+        {
+            center = new UnityEngine.Vector3(pWidth / 2, pHeight / 2, 0);
+            startPos = center;
+        }
+        else
+        {
+            center = startPos;
+        }
+        if (endPos == default(UnityEngine.Vector3))
+            endPos = GameRoot.Instance.GetRewardEndPos(rewardType, rewardIdx, curui);
+
+        if (reward)
+        {
+            GameRoot.Instance.UserData.SetReward(rewardType, rewardIdx, value, false);
+        }
+
+
+        ProjectUtility.GoodsGetEffect(
+        startPos,
+        center,
+        endPos,
+        rewardType,
+        rewardIdx,
+        rewardGrade,
+        value,
+        OnEnd,
+        delay,
+        viewText,
+        reward,
+        underOrder,
+        "Show",
+        iscurrencytext);
+    }
+
+    public static void GoodsGetEffect(
+        UnityEngine.Vector3 worldStartPos,
+        UnityEngine.Vector3 worldMiddlePos,
+        UnityEngine.Vector3 worldEndPos,
+        int goodsType,
+        int goodsIdx,
+        int goodsGrade,
+        System.Numerics.BigInteger goodsCnt,
+        System.Action OnEnd = null,
+        float delay = 0f,
+        string viewText = "",
+        bool isreward = true,
+        bool underOrder = false,
+        string ani = "Show",
+        bool iscurrencytext = true)
+    {
+
+            var prefab = "UI/Component/GoodsEffect";
+            Addressables.InstantiateAsync(prefab).Completed += (obj) =>
+            {
+                if (obj.Result)
+                {
+                    var inst = obj.Result;
+                    inst.transform.SetParent(GameRoot.Instance.UISystem.UIRootT, false);
+
+                    var goodsEff = inst.GetComponent<GoodEffect>();
+                    if (goodsEff != null)
+                        goodsEff.Set(worldStartPos, worldMiddlePos, worldEndPos, goodsType, goodsIdx, goodsGrade, goodsCnt, OnEnd, delay, viewText, isreward, ani);
+
+                    if (underOrder)
+                    {
+                        var canvas = inst.GetComponent<Canvas>();
+                        if (canvas != null)
+                            canvas.sortingOrder = 9999;
+                    }
+                }
+            };
+    }
+}
 
 public static class ScrollViewFocusFunctions
 {
@@ -381,6 +506,8 @@ public static class ScrollViewFocusFunctions
     {
         scrollView.normalizedPosition = scrollView.CalculateFocusedScrollPosition(item);
     }
+
+
 
     private static IEnumerator LerpToScrollPositionCoroutine(this ScrollRect scrollView, Vector2 targetNormalizedPos, float speed , System.Action endaction = null)
     {

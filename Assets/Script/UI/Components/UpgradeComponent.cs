@@ -79,13 +79,13 @@ public class UpgradeComponent : MonoBehaviour
     {
         if(GameRoot.Instance.UserData.CurMode.Money.Value >= UpgradeCost)
         {
-            GameRoot.Instance.UserData.SetReward((int)Config.RewardType.Currency, (int)Config.CurrencyID.Money, -UpgradeCost);
-
             UpgradeData.UpgradeGet();
 
             ProjectUtility.SetActiveCheck(this.gameObject, false);
 
             GameRoot.Instance.UpgradeSystem.AddUpgradeData(UpgradeIdx , UpgradeData.UpgradeType);
+
+            GameRoot.Instance.UserData.SetReward((int)Config.RewardType.Currency, (int)Config.CurrencyID.Money, -UpgradeCost);
         }
 
     }

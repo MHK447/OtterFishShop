@@ -293,7 +293,7 @@ public class GameRoot : Singleton<GameRoot>
 	void InitSystem()
 	{
 		QualitySettings.vSyncCount = 0;  // VSync 비활성화
-		Application.targetFrameRate = 120;  // (제한 없음)
+		Application.targetFrameRate = 60;  // (제한 없음)
 
 		var count = GameRoot.instance.UserData.GetRecordCount(Config.RecordCountKeys.Init);
 
@@ -351,9 +351,9 @@ public class GameRoot : Singleton<GameRoot>
 		StartCoroutine(waitFrameAndCallback(frame, callback));
 	}
 
-	public Vector3 GetRewardEndPos(int rewardType, int rewardIdx)
+	public Vector3 GetRewardEndPos(int rewardType, int rewardIdx , UIBase ui)
 	{
-		return Vector3.zero;
+		return ui.GetCurrencyImgTr(rewardType , rewardIdx).position;
 	}
 
 

@@ -113,6 +113,9 @@ namespace BanpoFri
 
         }
 
+        public HudCurrencyTop CurrencyTop;
+
+
         [Serializable]
         public class SortingOrder
         {
@@ -245,6 +248,11 @@ namespace BanpoFri
             }
         }
 
+        public Transform GetCurrencyImgTr(int rewardtypeidx , int rewardidx)
+        {
+            return CurrencyTop.GetImageTr(rewardtypeidx , rewardidx);
+        }
+
         public virtual void Show()
         {
             if(closeBtn != null)    
@@ -285,6 +293,11 @@ namespace BanpoFri
 
             OnUIShowAfter?.Invoke();
             OnUIShowAfter = null;
+        }
+
+        public virtual void TopCurrencySync()
+        {
+
         }
 
         public virtual void CustomSortingOrder()

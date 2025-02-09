@@ -1,7 +1,11 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using System.Collections;
+using System;
+using System.Globalization;
+using UnityEngine.Networking;
 using UniRx;
+using UnityEditor;
+
 
 public class PlayTimeSystem
 {
@@ -10,6 +14,12 @@ public class PlayTimeSystem
 
     private float deltaTime = 0f;
 
+
+    public IObservable<float> CreateCountDownObservable(float countTime) =>
+        Observable
+            .Timer(TimeSpan.FromSeconds(0), TimeSpan.FromSeconds(1))
+            .Select(x => (countTime - x))
+            .TakeWhile(x => x > 0);
     
 
     public void Update()

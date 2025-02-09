@@ -17,6 +17,8 @@ public abstract class InGameMode : MonoBehaviour, IInGameMode
     private PanAndZoom ingameCamera;
     public PanAndZoom IngameCamera {get{ return ingameCamera;}}
     public Camera MainCamera {get {return IngameCamera.cam;}}
+     public float CamPixelWidth { get; private set; }
+    public float CamPixelHeight { get; private set; }
 
     [SerializeField]
     private float zoomTime = 3f;
@@ -25,6 +27,8 @@ public abstract class InGameMode : MonoBehaviour, IInGameMode
 
     private void Awake()
     {
+        CamPixelWidth = ingameCamera.cam.pixelWidth;
+        CamPixelHeight = ingameCamera.cam.pixelHeight;
         if(GameRoot.IsInit())
         {
             GameRoot.Instance.InGameSystem.RegisteInGame(this);

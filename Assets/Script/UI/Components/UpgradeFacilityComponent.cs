@@ -4,11 +4,15 @@ using UnityEngine;
 using UnityEngine.UI;
 using BanpoFri;
 using TMPro;
-
+using UniRx;
+using Unity.VisualScripting;
 
 
 public class UpgradeFacilityComponent : MonoBehaviour
 {
+    [SerializeField]
+    private Image FishImg;
+
     [SerializeField]
     private TextMeshProUGUI BefroreValueText;
 
@@ -24,7 +28,19 @@ public class UpgradeFacilityComponent : MonoBehaviour
     [SerializeField]
     private ButtonPressed UpgradeBtn;
 
-    private int FacilityIdx = 0;
+    [SerializeField]
+    private Slider MiddleSlider;
+
+    [SerializeField]
+    private TextMeshProUGUI MiddleSliderValueText;
+
+    [SerializeField]
+    private GameObject ButtonCurrencyObj;
+
+    [SerializeField]
+    private RectTransform OpacityRoot;
+
+    private int FishIdx = 0;
 
     private StageFishUpgradeData CurStageFacilityData = null;
 
@@ -32,28 +48,49 @@ public class UpgradeFacilityComponent : MonoBehaviour
 
     private FacilityUpgradeData FacilityUpgradeData;
 
+    private CompositeDisposable disposables = new CompositeDisposable();
+
+    private bool IsMaxLevel = false;
+
+
     private void Awake()
     {
         UpgradeBtn.OnPressed = () => OnClickUpgrade();
     }
 
 
-    public void Set(int facilityidx)
+    public void Set(int fishidx)
     {
-        FacilityIdx = facilityidx;
+        FishIdx = fishidx;
 
         var stageidx = GameRoot.Instance.UserData.CurMode.StageData.StageIdx;
 
-        var td = Tables.Instance.GetTable<FacilityUpgrade>().GetData(new KeyValuePair<int, int>(stageidx, FacilityIdx));
+        var td = Tables.Instance.GetTable<FacilityUpgrade>().GetData(new KeyValuePair<int, int>(stageidx, FishIdx));
 
-        FacilityUpgradeData = Tables.Instance.GetTable<FacilityUpgrade>().GetData(new KeyValuePair<int, int>(stageidx, facilityidx));
+        FacilityUpgradeData = Tables.Instance.GetTable<FacilityUpgrade>().GetData(new KeyValuePair<int, int>(stageidx, fishidx));
 
         if (td != null)
         {
-            CurStageFacilityData = GameRoot.Instance.FacilitySystem.GetFacilityUpgradeData(FacilityIdx);
+            CurStageFacilityData = GameRoot.Instance.FacilitySystem.GetFacilityUpgradeData(FishIdx);
             SetInfo();
-
         }
+
+
+        var fishtd = Tables.Instance.GetTable<FishInfo>().GetData(FishIdx);
+
+        if (fishtd != null)
+        {
+            FishImg.sprite = Config.Instance.GetIngameImg(fishtd.icon);
+        }
+
+        UpgradeBtn.Interactable =  GameRoot.Instance.UserData.CurMode.Money.Value >= CurPrice;
+
+        disposables.Clear();
+
+
+        GameRoot.Instance.UserData.CurMode.Money.Subscribe(x=> {
+            UpgradeBtn.Interactable = x >= CurPrice && !IsMaxLevel;
+        }).AddTo(disposables);
     }
 
 
@@ -61,26 +98,61 @@ public class UpgradeFacilityComponent : MonoBehaviour
     {
         LevelText.text = Tables.Instance.GetTable<Localize>().GetFormat("str_level", CurStageFacilityData.Level);
 
-        CurPrice = GameRoot.Instance.FacilitySystem.GetFishUpgradeLevelCost(FacilityIdx, CurStageFacilityData.Level);
+        CurPrice = GameRoot.Instance.FacilitySystem.GetFishUpgradeLevelCost(FishIdx, CurStageFacilityData.Level);
 
 
         CurCostValueText.text = Utility.CalculateMoneyToString(CurPrice);
 
-        BefroreValueText.text = Utility.CalculateMoneyToString(GameRoot.Instance.FacilitySystem.GetFishCurSellProductValue(FacilityIdx, CurStageFacilityData.Level));
-        AfterValueText.text = Utility.CalculateMoneyToString(GameRoot.Instance.FacilitySystem.GetFishCurSellProductValue(FacilityIdx, CurStageFacilityData.Level + 1));
+        BefroreValueText.text = Utility.CalculateMoneyToString(GameRoot.Instance.FacilitySystem.GetFishCurSellProductValue(FishIdx, CurStageFacilityData.Level));
+        AfterValueText.text = Utility.CalculateMoneyToString(GameRoot.Instance.FacilitySystem.GetFishCurSellProductValue(FishIdx, CurStageFacilityData.Level + 1));
 
+
+        var curvalue = CurStageFacilityData.Level % FacilityUpgradeData.value_count;
+        MiddleSlider.value = (float)curvalue / (float)FacilityUpgradeData.value_count;
+
+        MiddleSliderValueText.text = $"{curvalue}/{FacilityUpgradeData.value_count}";
+
+
+        IsMaxLevel = CurStageFacilityData.Level >= FacilityUpgradeData.max_ugprade_count;
+
+        ProjectUtility.SetActiveCheck(ButtonCurrencyObj , !IsMaxLevel);
+        if(IsMaxLevel)
+        {
+            MiddleSlider.value = 1f;
+            LevelText.text =  Tables.Instance.GetTable<Localize>().GetString("str_lv_max");
+            MiddleSliderValueText.text = CurCostValueText.text = Tables.Instance.GetTable<Localize>().GetString("str_max");
+            
+        }
+
+        OpacityRoot.anchoredPosition = IsMaxLevel ? new Vector2(OpacityRoot.anchoredPosition.x , -20f) : Vector2.zero;
     }
 
     public void OnClickUpgrade()
     {
-        if(CurPrice <= GameRoot.Instance.UserData.CurMode.Money.Value)
+        if (CurPrice <= GameRoot.Instance.UserData.CurMode.Money.Value)
         {
-            GameRoot.Instance.UserData.SetReward((int)Config.RewardType.Currency ,(int)Config.CurrencyID.Money,  -CurPrice);
+            GameRoot.Instance.UserData.SetReward((int)Config.RewardType.Currency, (int)Config.CurrencyID.Money, -CurPrice);
 
             CurStageFacilityData.Level += 1;
 
             SetInfo();
+
+            if(CurStageFacilityData.Level % FacilityUpgradeData.value_count == 0)
+            {
+                var getui = GameRoot.Instance.UISystem.GetUI<PopupUpgrade>();
+                ProjectUtility.PlayGoodsEffect(Vector3.zero,(int)Config.RewardType.Currency , (int)Config.CurrencyID.Cash , 1 , 1 , true , null , 0 , "" , getui);
+            }
         }
 
+    }
+
+    private void OnDestroy()
+    {
+        disposables.Clear();
+    }
+
+    private void OnDisable()
+    {
+       disposables.Clear();
     }
 }

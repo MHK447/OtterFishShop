@@ -3,6 +3,7 @@ using System.Linq;
 using BanpoFri;
 using UnityEngine;
 using UniRx;
+using System;
 public enum InGameType
 {
     Main,
@@ -162,8 +163,8 @@ public class InGameSystem
         var minRewardTime = Tables.Instance.GetTable<Define>().GetData("offline_min_time").value;
         var maxRewardTime = Tables.Instance.GetTable<Define>().GetData("max_offline_time").value;
     
-
-        if (diff.TotalSeconds > minRewardTime)
+        
+        if (diff.TotalSeconds > minRewardTime && time != DateTime.MinValue)
         {
             int rewardTime = (int)diff.TotalSeconds;
             if ((int)diff.TotalSeconds >= maxRewardTime)

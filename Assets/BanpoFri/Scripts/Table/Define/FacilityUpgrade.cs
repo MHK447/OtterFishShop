@@ -21,6 +21,27 @@ namespace BanpoFri
 			set { _facilityidx = value;}
 		}
 		[SerializeField]
+		private int _upgrade_reward_idx;
+		public int upgrade_reward_idx
+		{
+			get { return _upgrade_reward_idx;}
+			set { _upgrade_reward_idx = value;}
+		}
+		[SerializeField]
+		private int _upgrade_reward_count;
+		public int upgrade_reward_count
+		{
+			get { return _upgrade_reward_count;}
+			set { _upgrade_reward_count = value;}
+		}
+		[SerializeField]
+		private int _value_count;
+		public int value_count
+		{
+			get { return _value_count;}
+			set { _value_count = value;}
+		}
+		[SerializeField]
 		private int _income_multiple_value;
 		public int income_multiple_value
 		{

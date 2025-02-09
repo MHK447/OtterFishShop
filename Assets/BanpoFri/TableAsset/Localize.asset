@@ -39,6 +39,8 @@ MonoBehaviour:
   - offline_time_value
   - offline_time_middle_value
   - str_level
+  - str_lv_max
+  - str_max
   mSecondKey: []
   mDataList:
   - _idx: casher_add_02_desc
@@ -143,5 +145,13 @@ MonoBehaviour:
     _ja: 
   - _idx: str_level
     _ko: Lv.{0}
+    _en: 
+    _ja: 
+  - _idx: str_lv_max
+    _ko: Lv.MAX
+    _en: 
+    _ja: 
+  - _idx: str_max
+    _ko: MAX
     _en: 
     _ja: 

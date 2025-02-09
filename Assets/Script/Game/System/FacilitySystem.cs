@@ -102,6 +102,31 @@ public class FacilitySystem
     }
 
 
+    public int GetFishUpgradeMaxLevelCount()
+    {
+        int count = 0;
+
+
+        var stageidx = GameRoot.Instance.UserData.CurMode.StageData.StageIdx;
+
+
+        var upgradelist = GameRoot.Instance.UserData.CurMode.FishUpgradeDatas.ToList();
+
+        foreach(var upgrade in upgradelist)
+        {
+            var td = Tables.Instance.GetTable<FacilityUpgrade>().GetData(new KeyValuePair<int, int>(stageidx ,upgrade.FishIdx));
+
+            if(td != null && td.max_ugprade_count <= upgrade.Level)
+            {
+                count += 1;
+            }
+        }
+
+
+        return count;
+    }
+
+
     public System.Numerics.BigInteger GetFishUpgradeLevelCost(int fishidx ,int level)
     {
         var stageidx = GameRoot.Instance.UserData.CurMode.StageData.StageIdx;
@@ -128,7 +153,7 @@ public class FacilitySystem
         {
             var getbuffvalue = GetFishLevelBuffValue(fishidx,level);
             
-            getbuffvalue = getbuffvalue == 1 ? 1 : 100;
+            getbuffvalue = getbuffvalue == 1 ? 1 : getbuffvalue;
             return (td.base_income_cost * getbuffvalue) / 100;
         }
 

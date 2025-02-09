@@ -9,10 +9,6 @@ using UniRx;
 public class HUDTotal : UIBase
 {
     [SerializeField]
-    private HudCurrencyTop CurrencyTop;
-
-
-    [SerializeField]
     private Button UpgradeBtn;
 
     [SerializeField]
@@ -28,6 +24,7 @@ public class HUDTotal : UIBase
         base.Awake();
         UpgradeBtn.onClick.AddListener(OnClickUpgrade);
         NextStageBtn.onClick.AddListener(OnClickNextStage);
+        TopCurrencySync();
     }
 
     public void OnClickNextStage()
@@ -46,5 +43,39 @@ public class HUDTotal : UIBase
         deltaTime += (Time.deltaTime - deltaTime) * 0.1f;
         float fps = 1.0f / deltaTime;
         FpsText.text = $"FPS: {Mathf.CeilToInt(fps)}";
+    }
+
+
+    public override void TopCurrencySync()
+    {
+        base.TopCurrencySync();
+
+        if (CurrencyTop.CashText != null)
+        {
+            CurrencyTop.CashText.text = GameRoot.Instance.UserData.Cash.Value.ToString();
+            GameRoot.Instance.UserData.HUDCash.Subscribe(x=>
+            {
+                CurrencyTop.CashText.text = x.ToString();
+            }).AddTo(this);
+
+
+                CurrencyTop.CashText.text = GameRoot.Instance.UserData.Cash.Value.ToString();
+
+        }
+
+
+        if (CurrencyTop.MoneyText != null)
+        {
+            CurrencyTop.MoneyText.text = ProjectUtility.CalculateMoneyToString(GameRoot.Instance.UserData.CurMode.Money.Value);
+
+            GameRoot.Instance.UserData.HUDMoney.Subscribe(x =>
+            {
+                
+                CurrencyTop.MoneyText.text = ProjectUtility.CalculateMoneyToString(GameRoot.Instance.UserData.CurMode.Money.Value);
+            }).AddTo(this);
+        }
+
+        CurrencyTop.MoneyText.text = ProjectUtility.CalculateMoneyToString(GameRoot.Instance.UserData.CurMode.Money.Value);
+
     }
 }

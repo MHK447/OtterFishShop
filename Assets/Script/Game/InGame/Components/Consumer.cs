@@ -207,9 +207,9 @@ public class Consumer : Chaser
     }
 
 
-    public int CheckRevenue()
+    public System.Numerics.BigInteger CheckRevenue()
     {
-        int rewardvalue = 0;
+        System.Numerics.BigInteger rewardvalue = 0;
 
         var stageidx = GameRoot.Instance.UserData.CurMode.StageData.StageIdx;
 
@@ -223,7 +223,10 @@ public class Consumer : Chaser
 
                 if (td != null)
                 {
-                    rewardvalue += td.base_revenue;
+                    var finddata = GameRoot.Instance.UserData.CurMode.FishUpgradeDatas.Find(x=> x.FishIdx == fish.GetFishIdx);
+
+                    if(finddata != null)
+                    rewardvalue += GameRoot.Instance.FacilitySystem.GetFishCurSellProductValue(fish.GetFishIdx , finddata.Level);
                 }
             }
 

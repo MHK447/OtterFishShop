@@ -104,7 +104,7 @@ public class CounterComponent : FacilityComponent
 
                     GameRoot.Instance.EffectSystem.MultiPlay<TextEffectMoney>(findconsumer.transform.position, (effect) =>
                     {
-                        int reward = findconsumer.CheckRevenue();
+                        System.Numerics.BigInteger reward = findconsumer.CheckRevenue();
 
                         effect.SetAutoRemove(true, 1.5f);
                         effect.SetText(reward);
