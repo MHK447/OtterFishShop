@@ -660,6 +660,7 @@ MonoBehaviour:
   TabToggles:
   - {fileID: 2652098632889848448}
   - {fileID: 3920413078737139776}
+  EndGroupObj: {fileID: 9162416612771218085}
 --- !u!223 &1863915534644295194
 Canvas:
   m_ObjectHideFlags: 0

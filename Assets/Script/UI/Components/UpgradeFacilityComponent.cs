@@ -11,6 +11,9 @@ using Unity.VisualScripting;
 public class UpgradeFacilityComponent : MonoBehaviour
 {
     [SerializeField]
+    private Image CashImg;
+
+    [SerializeField]
     private Image FishImg;
 
     [SerializeField]
@@ -123,6 +126,8 @@ public class UpgradeFacilityComponent : MonoBehaviour
             MiddleSliderValueText.text = CurCostValueText.text = Tables.Instance.GetTable<Localize>().GetString("str_max");
             
         }
+
+        ProjectUtility.SetActiveCheck(CashImg.gameObject , !IsMaxLevel);
 
         OpacityRoot.anchoredPosition = IsMaxLevel ? new Vector2(OpacityRoot.anchoredPosition.x , -20f) : Vector2.zero;
     }

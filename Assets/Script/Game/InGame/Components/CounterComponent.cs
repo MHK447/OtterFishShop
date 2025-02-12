@@ -73,6 +73,8 @@ public class CounterComponent : FacilityComponent
         if (CasherCounter == null)
         {
             CasherCounter = InGameStage.FindCasher(CasherType.CounterCasher, FacilityData.FacilityIdx);
+
+            if(CasherCounter != null)
             IsPlayer = true;
         }
 

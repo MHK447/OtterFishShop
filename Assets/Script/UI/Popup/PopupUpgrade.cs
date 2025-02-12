@@ -40,7 +40,12 @@ public class PopupUpgrade : UIBase
     [SerializeField]
     private List<Toggle> TabToggles = new List<Toggle>();
 
+    [SerializeField]
+    private GameObject EndGroupObj;
+
     private TabType defualtOption = TabType.ProductTab;
+
+    private CompositeDisposable disposables = new CompositeDisposable();
 
     protected override void Awake()
     {
@@ -94,6 +99,17 @@ public class PopupUpgrade : UIBase
         {
             ProjectUtility.SetActiveCheck(cachedobj, false);
         }
+
+        disposables.Clear();
+
+        GameRoot.Instance.UserData.CurMode.UpgradeGroupData.StageUpgradeCollectionList.ObserveAdd().Subscribe(x=> {
+ var finddata =GameRoot.Instance.UserData.CurMode.UpgradeGroupData.StageUpgradeCollectionList.ToList().Find(x=> !x.IsBuyCheckProperty.Value);
+    ProjectUtility.SetActiveCheck(EndGroupObj , finddata == null);
+        }).AddTo(disposables);
+
+        var finddata = GameRoot.Instance.UserData.CurMode.UpgradeGroupData.StageUpgradeCollectionList.ToList().Find(x=> !x.IsBuyCheckProperty.Value);
+
+        ProjectUtility.SetActiveCheck(EndGroupObj, finddata == null);
 
 
         foreach(var upgradedata in GameRoot.Instance.UserData.CurMode.UpgradeGroupData.StageUpgradeCollectionList)
@@ -283,5 +299,16 @@ public class PopupUpgrade : UIBase
         {
             getui.UpgradeSliderCheck();
         }
+    }
+
+
+    void OnDestroy()
+    {
+        disposables.Clear();
+    }
+
+    void OnDisable()
+    {
+        disposables.Clear();
     }
 }

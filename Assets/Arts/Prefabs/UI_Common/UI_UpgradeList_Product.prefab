@@ -206,6 +206,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88fe79620f3bd446e9ba9eb006fcfadc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CashImg: {fileID: 123760388100744079}
   FishImg: {fileID: 1023587798100452766}
   BefroreValueText: {fileID: 653788426834325767}
   AfterValueText: {fileID: 6534019882923510184}
@@ -1592,6 +1593,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fb411b0455c2a8645ba3001972839889, type: 3}
+--- !u!114 &123760388100744079 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8615686782830377163, guid: fb411b0455c2a8645ba3001972839889, type: 3}
+  m_PrefabInstance: {fileID: 8513701129985694532}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1531716936960018279 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7162832690307144739, guid: fb411b0455c2a8645ba3001972839889, type: 3}
