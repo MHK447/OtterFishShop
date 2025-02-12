@@ -49,7 +49,7 @@ public class BucketComponent : MonoBehaviour
 
         var td = Tables.Instance.GetTable<FacilityInfo>().GetData(FacilityData.FacilityIdx);
 
-        if(td != null)
+        if (td != null)
         {
             FishIdx = td.value_1;
             CapacityMaxCount = td.start_capacity;
@@ -57,17 +57,19 @@ public class BucketComponent : MonoBehaviour
 
         ProjectUtility.SetActiveCheck(this.gameObject, FacilityData.IsOpen);
 
-        GameRoot.Instance.UISystem.LoadFloatingUI<TextCount_UI>((_progress) => {
+        GameRoot.Instance.UISystem.LoadFloatingUI<TextCount_UI>((_progress) =>
+        {
             CountUI = _progress;
             ProjectUtility.SetActiveCheck(CountUI.gameObject, FacilityData.CapacityCountProperty.Value > 0);
             CountUI.Init(AmountUITr);
-            CountUI.SetText(FacilityData.CapacityCountProperty.Value , CapacityMaxCount);
+            CountUI.SetText(FacilityData.CapacityCountProperty.Value, CapacityMaxCount);
         });
 
         disposables.Clear();
 
 
-        FacilityData.CapacityCountProperty.Subscribe(x => {
+        FacilityData.CapacityCountProperty.Subscribe(x =>
+        {
             if (CountUI != null)
             {
                 ProjectUtility.SetActiveCheck(CountUI.gameObject, x > 0);
@@ -89,8 +91,10 @@ public class BucketComponent : MonoBehaviour
         {
             var posy = FishPos_Y * (i + 1);
 
-            InGameStage.CreateFish(this.transform, FishIdx, FishComponent.State.Bucket, (fish) => {
-                fish.FishInBucketAction(this.transform, (fish) => {
+            InGameStage.CreateFish(this.transform, FishIdx, FishComponent.State.Bucket, (fish) =>
+            {
+                fish.FishInBucketAction(this.transform, (fish) =>
+                {
                     FishStackComponent.Push(fish);
                     fish.LivingFishAnim(true);
                     if (CountUI != null)
@@ -99,9 +103,12 @@ public class BucketComponent : MonoBehaviour
                     }
                 }, 0f, posy);
             });
-
-            
         }
+
+
+        yield return new WaitForSeconds(1f);
+
+        CountUICheck();
 
     }
 
@@ -124,7 +131,7 @@ public class BucketComponent : MonoBehaviour
         }
     }
 
-    
+
 
 
     private void OnTriggerExit2D(Collider2D collision)
@@ -162,8 +169,6 @@ public class BucketComponent : MonoBehaviour
 
                     if (FishStackComponent.Count > 0)
                         CountUI.Init(FishStackComponent.First().transform);
-                    else
-                        CountUI.Init(AmountUITr);
 
                     TargetOtterList[i].AddFish(fishcomponent);
 
@@ -180,15 +185,23 @@ public class BucketComponent : MonoBehaviour
         FishStackComponent.Push(fish);
         FacilityData.CapacityCountProperty.Value += 1;
 
+    }
 
-        if (FishStackComponent.Count > 0)
-            CountUI.Init(FishStackComponent.First().transform);
+    public void CountUICheck()
+    {
+        GameRoot.Instance.WaitTimeAndCallback(0.1f, () =>
+        {
+
+            if (FishStackComponent.Count > 0)
+                CountUI.SetUpdatePos(FishStackComponent.First().transform.position);
+
+        });
     }
 
 
     private void OnDisable()
     {
-        if(CountUI != null)
+        if (CountUI != null)
         {
             Destroy(CountUI.gameObject);
             CountUI = null;

@@ -28,7 +28,7 @@ public class InGameFloatingUI : MonoBehaviour, IFloatingUI
 
     public void SetUpdatePos(Vector3 position)
     {
-        this.transform.position = position;
+        this.transform.position = position + OffsetVec;
     }
 
     protected virtual void Update()
