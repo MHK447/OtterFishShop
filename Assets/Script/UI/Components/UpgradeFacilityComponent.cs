@@ -92,6 +92,7 @@ public class UpgradeFacilityComponent : MonoBehaviour
 
 
         GameRoot.Instance.UserData.CurMode.Money.Subscribe(x=> {
+            SetInfo();
             UpgradeBtn.Interactable = x >= CurPrice && !IsMaxLevel;
         }).AddTo(disposables);
     }
@@ -136,9 +137,9 @@ public class UpgradeFacilityComponent : MonoBehaviour
     {
         if (CurPrice <= GameRoot.Instance.UserData.CurMode.Money.Value)
         {
-            GameRoot.Instance.UserData.SetReward((int)Config.RewardType.Currency, (int)Config.CurrencyID.Money, -CurPrice);
-
             CurStageFacilityData.Level += 1;
+
+            GameRoot.Instance.UserData.SetReward((int)Config.RewardType.Currency, (int)Config.CurrencyID.Money, -CurPrice);
 
             SetInfo();
 
@@ -156,8 +157,4 @@ public class UpgradeFacilityComponent : MonoBehaviour
         disposables.Clear();
     }
 
-    private void OnDisable()
-    {
-       disposables.Clear();
-    }
 }

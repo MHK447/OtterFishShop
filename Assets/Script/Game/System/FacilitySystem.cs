@@ -4,7 +4,7 @@ using UnityEngine;
 using BanpoFri;
 using System.Linq;
 
-public class FacilitySystem 
+public class FacilitySystem
 {
     public enum FacilityType
     {
@@ -12,7 +12,7 @@ public class FacilitySystem
         Counter = 2,
         Fishing = 3,
         Cooked = 4,
-      
+
     }
 
 
@@ -30,7 +30,7 @@ public class FacilitySystem
 
         foreach (var stageinfo in stageinfotd)
         {
-            var newfacility = new FacilityData(stageinfo.facilityidx, 0, false , 0);
+            var newfacility = new FacilityData(stageinfo.facilityidx, 0, false, 0);
 
             GameRoot.Instance.UserData.CurMode.StageData.StageFacilityDataList.Add(newfacility);
         }
@@ -41,7 +41,7 @@ public class FacilitySystem
 
     public ConsumerMoveInfoData CreatePattern(int stageidx)
     {
-        var tdstagelist = Tables.Instance.GetTable<ConsumerMoveInfo>().DataList.ToList().FindAll(x=> x.stageidx == stageidx); // facility 안열린것도 포함시키기 
+        var tdstagelist = Tables.Instance.GetTable<ConsumerMoveInfo>().DataList.ToList().FindAll(x => x.stageidx == stageidx); // facility 안열린것도 포함시키기 
 
         List<ConsumerMoveInfoData> patternlist = new List<ConsumerMoveInfoData>();
 
@@ -54,7 +54,7 @@ public class FacilitySystem
             {
                 var finddata = GameRoot.Instance.InGameSystem.GetInGame<InGameTycoon>().curInGameStage.FindFacility(tdstagelist[i].facilityidx[j]);
 
-                if(finddata == null)
+                if (finddata == null)
                 {
                     allFound = false;
                     break;
@@ -75,7 +75,7 @@ public class FacilitySystem
         }
 
 
-        if(patternlist.Count > 0 )
+        if (patternlist.Count > 0)
         {
             var randvalue = Random.Range(0, patternlist.Count);
 
@@ -89,11 +89,11 @@ public class FacilitySystem
 
     public StageFishUpgradeData GetFacilityUpgradeData(int facilityidx)
     {
-        var finddata = GameRoot.Instance.UserData.CurMode.FishUpgradeDatas.Find(x=> x.FishIdx == facilityidx);
+        var finddata = GameRoot.Instance.UserData.CurMode.FishUpgradeDatas.Find(x => x.FishIdx == facilityidx);
 
-        if(finddata == null)
+        if (finddata == null)
         {
-            finddata = new StageFishUpgradeData(facilityidx , 1);
+            finddata = new StageFishUpgradeData(facilityidx, 1);
 
             GameRoot.Instance.UserData.CurMode.FishUpgradeDatas.Add(finddata);
         }
@@ -112,11 +112,11 @@ public class FacilitySystem
 
         var upgradelist = GameRoot.Instance.UserData.CurMode.FishUpgradeDatas.ToList();
 
-        foreach(var upgrade in upgradelist)
+        foreach (var upgrade in upgradelist)
         {
-            var td = Tables.Instance.GetTable<FacilityUpgrade>().GetData(new KeyValuePair<int, int>(stageidx ,upgrade.FishIdx));
+            var td = Tables.Instance.GetTable<FacilityUpgrade>().GetData(new KeyValuePair<int, int>(stageidx, upgrade.FishIdx));
 
-            if(td != null && td.max_ugprade_count <= upgrade.Level)
+            if (td != null && td.max_ugprade_count <= upgrade.Level)
             {
                 count += 1;
             }
@@ -127,15 +127,27 @@ public class FacilitySystem
     }
 
 
-    public System.Numerics.BigInteger GetFishUpgradeLevelCost(int fishidx ,int level)
+    public System.Numerics.BigInteger GetFishUpgradeLevelCost(int fishidx, int level)
     {
         var stageidx = GameRoot.Instance.UserData.CurMode.StageData.StageIdx;
 
-        var td = Tables.Instance.GetTable<FacilityUpgrade>().GetData(new KeyValuePair<int, int>(stageidx , fishidx));
+        var td = Tables.Instance.GetTable<FacilityUpgrade>().GetData(new KeyValuePair<int, int>(stageidx, fishidx));
 
-        if(td != null)
+
+        if (td != null)
         {
-            return (td.base_income_cost * td.income_cost_multiple * level) / 100;
+            var costincrease = td.base_income_cost * (td.income_cost_multiple * (level - 1)) / 100;
+
+            int exponent = level / td.value_count; // 5당 2배 증가
+
+            var levelgroupbuffvalue = exponent == 0 ? 1 : exponent  * td.income_cost_level_multiple;
+
+            var lastvalue = (td.base_income_cost + costincrease) * levelgroupbuffvalue;
+
+            int percentage = levelgroupbuffvalue == 1 ? 1 : 100;
+
+            return lastvalue / percentage;
+
         }
 
         return 0;
@@ -143,20 +155,28 @@ public class FacilitySystem
 
 
 
-    public System.Numerics.BigInteger GetFishCurSellProductValue(int fishidx ,int level)
+    public System.Numerics.BigInteger GetFishCurSellProductValue(int fishidx, int level)
     {
         var stageidx = GameRoot.Instance.UserData.CurMode.StageData.StageIdx;
 
-        var td = Tables.Instance.GetTable<FacilityUpgrade>().GetData(new KeyValuePair<int, int>(stageidx , fishidx));
+        var td = Tables.Instance.GetTable<FacilityUpgrade>().GetData(new KeyValuePair<int, int>(stageidx, fishidx));
 
-        if(td != null)
+        var basevalue = Tables.Instance.GetTable<FishInfo>().GetData(fishidx).base_revenue;
+
+        if (td != null)
         {
-            var getbuffvalue = GetFishLevelBuffValue(fishidx,level);
+            var levelbuff = basevalue * (td.income_multiple_value * (level - 1)) / 100;
 
-            var baserevenue = Tables.Instance.GetTable<FishInfo>().GetData(fishidx).base_revenue;
-            
-            getbuffvalue = getbuffvalue == 0 ? 100 : getbuffvalue;
-            return (baserevenue * getbuffvalue) / 100;
+            int exponent = level / td.value_count; // 5당 2배 증가
+
+            var levelgroupbuffvalue = exponent == 0 ? 1 : exponent * td.income_multiple_value_group;
+
+    
+            var lastvalue = (basevalue + levelbuff) * levelgroupbuffvalue;
+
+            int percentage = levelgroupbuffvalue == 1 ? 1 : 100;
+
+            return lastvalue / percentage;
         }
 
         return 0;
@@ -164,13 +184,13 @@ public class FacilitySystem
 
 
 
-    public System.Numerics.BigInteger GetFishLevelBuffValue(int fishidx ,int level)
+    public System.Numerics.BigInteger GetFishLevelBuffValue(int fishidx, int level)
     {
         var stageidx = GameRoot.Instance.UserData.CurMode.StageData.StageIdx;
 
-        var td = Tables.Instance.GetTable<FacilityUpgrade>().GetData(new KeyValuePair<int, int>(stageidx , fishidx));
+        var td = Tables.Instance.GetTable<FacilityUpgrade>().GetData(new KeyValuePair<int, int>(stageidx, fishidx));
 
-        if(td != null)
+        if (td != null)
         {
             return (td.income_multiple_value * (level - 1));
         }
@@ -184,7 +204,7 @@ public class FacilitySystem
         bool isopen = true;
 
 
-        foreach(var facilityidx in facilityidxlist)
+        foreach (var facilityidx in facilityidxlist)
         {
             var facilitydata = GameRoot.Instance.UserData.CurMode.StageData.StageFacilityDataList.Find(x => x.FacilityIdx == facilityidx);
             if (facilitydata != null && facilitydata.IsOpen == false)

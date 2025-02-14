@@ -38,79 +38,97 @@ MonoBehaviour:
     _upgrade_reward_idx: 2
     _upgrade_reward_count: 1
     _value_count: 5
-    _income_multiple_value: 110
+    _income_multiple_value_group: 75
+    _income_multiple_value: 20
     _max_ugprade_count: 20
-    _base_income_cost: 20
-    _income_cost_multiple: 105
+    _base_income_cost: 5
+    _income_cost_multiple: 100
+    _income_cost_level_multiple: 90
   - _stageidx: 1
     _facilityidx: 2
     _upgrade_reward_idx: 2
     _upgrade_reward_count: 1
     _value_count: 5
-    _income_multiple_value: 110
+    _income_multiple_value_group: 75
+    _income_multiple_value: 20
     _max_ugprade_count: 20
     _base_income_cost: 20
-    _income_cost_multiple: 105
+    _income_cost_multiple: 100
+    _income_cost_level_multiple: 90
   - _stageidx: 1
     _facilityidx: 3
     _upgrade_reward_idx: 2
     _upgrade_reward_count: 1
     _value_count: 5
-    _income_multiple_value: 110
+    _income_multiple_value_group: 75
+    _income_multiple_value: 50
     _max_ugprade_count: 20
     _base_income_cost: 20
-    _income_cost_multiple: 105
+    _income_cost_multiple: 100
+    _income_cost_level_multiple: 90
   - _stageidx: 1
     _facilityidx: 4
     _upgrade_reward_idx: 2
     _upgrade_reward_count: 1
     _value_count: 5
-    _income_multiple_value: 110
+    _income_multiple_value_group: 75
+    _income_multiple_value: 50
     _max_ugprade_count: 20
     _base_income_cost: 20
-    _income_cost_multiple: 105
+    _income_cost_multiple: 100
+    _income_cost_level_multiple: 90
   - _stageidx: 2
     _facilityidx: 5
     _upgrade_reward_idx: 2
     _upgrade_reward_count: 1
     _value_count: 5
-    _income_multiple_value: 110
+    _income_multiple_value_group: 75
+    _income_multiple_value: 50
     _max_ugprade_count: 20
     _base_income_cost: 20
-    _income_cost_multiple: 105
+    _income_cost_multiple: 100
+    _income_cost_level_multiple: 90
   - _stageidx: 2
     _facilityidx: 6
     _upgrade_reward_idx: 2
     _upgrade_reward_count: 1
     _value_count: 5
-    _income_multiple_value: 110
+    _income_multiple_value_group: 75
+    _income_multiple_value: 50
     _max_ugprade_count: 20
     _base_income_cost: 20
-    _income_cost_multiple: 105
+    _income_cost_multiple: 100
+    _income_cost_level_multiple: 90
   - _stageidx: 2
     _facilityidx: 7
     _upgrade_reward_idx: 2
     _upgrade_reward_count: 1
     _value_count: 5
-    _income_multiple_value: 110
+    _income_multiple_value_group: 75
+    _income_multiple_value: 50
     _max_ugprade_count: 20
     _base_income_cost: 20
-    _income_cost_multiple: 105
+    _income_cost_multiple: 100
+    _income_cost_level_multiple: 90
   - _stageidx: 2
     _facilityidx: 8
     _upgrade_reward_idx: 2
     _upgrade_reward_count: 1
     _value_count: 5
-    _income_multiple_value: 110
+    _income_multiple_value_group: 75
+    _income_multiple_value: 50
     _max_ugprade_count: 20
     _base_income_cost: 20
-    _income_cost_multiple: 105
+    _income_cost_multiple: 100
+    _income_cost_level_multiple: 90
   - _stageidx: 2
     _facilityidx: 9
     _upgrade_reward_idx: 2
     _upgrade_reward_count: 1
     _value_count: 5
-    _income_multiple_value: 110
+    _income_multiple_value_group: 75
+    _income_multiple_value: 50
     _max_ugprade_count: 20
     _base_income_cost: 20
-    _income_cost_multiple: 105
+    _income_cost_multiple: 100
+    _income_cost_level_multiple: 90

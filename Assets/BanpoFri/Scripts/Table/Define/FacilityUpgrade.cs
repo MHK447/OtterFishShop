@@ -42,6 +42,13 @@ namespace BanpoFri
 			set { _value_count = value;}
 		}
 		[SerializeField]
+		private int _income_multiple_value_group;
+		public int income_multiple_value_group
+		{
+			get { return _income_multiple_value_group;}
+			set { _income_multiple_value_group = value;}
+		}
+		[SerializeField]
 		private int _income_multiple_value;
 		public int income_multiple_value
 		{
@@ -68,6 +75,13 @@ namespace BanpoFri
 		{
 			get { return _income_cost_multiple;}
 			set { _income_cost_multiple = value;}
+		}
+		[SerializeField]
+		private int _income_cost_level_multiple;
+		public int income_cost_level_multiple
+		{
+			get { return _income_cost_level_multiple;}
+			set { _income_cost_level_multiple = value;}
 		}
 
     }
