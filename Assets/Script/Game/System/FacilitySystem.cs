@@ -152,9 +152,11 @@ public class FacilitySystem
         if(td != null)
         {
             var getbuffvalue = GetFishLevelBuffValue(fishidx,level);
+
+            var baserevenue = Tables.Instance.GetTable<FishInfo>().GetData(fishidx).base_revenue;
             
-            getbuffvalue = getbuffvalue == 1 ? 1 : getbuffvalue;
-            return (td.base_income_cost * getbuffvalue) / 100;
+            getbuffvalue = getbuffvalue == 0 ? 100 : getbuffvalue;
+            return (baserevenue * getbuffvalue) / 100;
         }
 
         return 0;
@@ -170,7 +172,7 @@ public class FacilitySystem
 
         if(td != null)
         {
-            return (td.income_multiple_value * level);
+            return (td.income_multiple_value * (level - 1));
         }
 
         return 1;

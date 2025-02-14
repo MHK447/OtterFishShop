@@ -223,8 +223,8 @@ public class Consumer : Chaser
 
                 if (td != null)
                 {
-                    var finddata = GameRoot.Instance.UserData.CurMode.FishUpgradeDatas.Find(x=> x.FishIdx == fish.GetFishIdx);
-
+                    var finddata = GameRoot.Instance.FacilitySystem.GetFacilityUpgradeData(fish.GetFishIdx);
+                    
                     if(finddata != null)
                     rewardvalue += GameRoot.Instance.FacilitySystem.GetFishCurSellProductValue(fish.GetFishIdx , finddata.Level);
                 }
