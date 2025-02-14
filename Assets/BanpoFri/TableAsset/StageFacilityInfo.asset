@@ -64,11 +64,11 @@ MonoBehaviour:
   - _stageidx: 1
     _openorder: 4
     _facilityidx: 2
-    _open_cost: 100
+    _open_cost: 200
   - _stageidx: 1
     _openorder: 5
     _facilityidx: 102
-    _open_cost: 250
+    _open_cost: 100
   - _stageidx: 1
     _openorder: 6
     _facilityidx: 5
