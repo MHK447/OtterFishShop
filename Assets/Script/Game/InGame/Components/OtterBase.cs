@@ -420,7 +420,7 @@ public class OtterBase : MonoBehaviour
         if (((Vector2)transform.position - (Vector2)destination.position).magnitude < 0.1f)
         {
             ReachProcess();
-        }
+        }   
         else
         {
             var driftPos = destination.position;

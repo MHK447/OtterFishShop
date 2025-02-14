@@ -18043,14 +18043,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Room_1
       objectReference: {fileID: 0}
-    - target: {fileID: 2387059367422710991, guid: 01c7c292b82434d81a61383517486809, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6077258607541116016, guid: 01c7c292b82434d81a61383517486809, type: 3}
-      propertyPath: m_SortingOrder
-      value: 20
-      objectReference: {fileID: 0}
     - target: {fileID: 6908048993481582653, guid: 01c7c292b82434d81a61383517486809, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -18090,14 +18082,6 @@ PrefabInstance:
     - target: {fileID: 6908048993481582653, guid: 01c7c292b82434d81a61383517486809, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9125262459828048657, guid: 01c7c292b82434d81a61383517486809, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 3.65
-      objectReference: {fileID: 0}
-    - target: {fileID: 9125262459828048657, guid: 01c7c292b82434d81a61383517486809, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -3.64
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

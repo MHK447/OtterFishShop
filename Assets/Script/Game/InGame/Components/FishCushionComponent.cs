@@ -9,6 +9,11 @@ public class FishCushionComponent : MonoBehaviour
     [SerializeField]
     private BucketComponent BucketComponent;
 
+    [SerializeField]
+    private Transform FishCasherTr;
+
+    public Transform GetFishCasherTr{get {return FishCasherTr; }}
+
     private bool IsOnEnter = false;
 
     public float CurMoneyTime = 0f;

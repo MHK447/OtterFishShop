@@ -105,6 +105,37 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1.8346181, y: 1.7511559}
   m_EdgeRadius: 0
+--- !u!1 &6094529177520672321
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4668233208375240616}
+  m_Layer: 0
+  m_Name: OtterTr
+  m_TagString: Untagged
+  m_Icon: {fileID: -5442936267250999957, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4668233208375240616
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6094529177520672321}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.5, y: -0.5, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 260488270633701721}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6681763740138930366
 GameObject:
   m_ObjectHideFlags: 0
@@ -130,7 +161,7 @@ Transform:
   m_GameObject: {fileID: 6681763740138930366}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.52, y: -2.99, z: 0}
+  m_LocalPosition: {x: 3.65, y: -3.64, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -151,6 +182,10 @@ PrefabInstance:
     - target: {fileID: 148687131216777485, guid: 0044a1e008cc8c74aaa27d60a70485bc, type: 3}
       propertyPath: m_Offset.x
       value: 0.1587987
+      objectReference: {fileID: 0}
+    - target: {fileID: 6153896012672034995, guid: 0044a1e008cc8c74aaa27d60a70485bc, type: 3}
+      propertyPath: m_SortingOrder
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 6445464331653576896, guid: 0044a1e008cc8c74aaa27d60a70485bc, type: 3}
       propertyPath: m_LocalPosition.x
@@ -376,6 +411,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7130715170137705696, guid: 25b5c8baaaae4d34ea3db517c0d31633, type: 3}
+      propertyPath: FishCasherTr
+      value: 
+      objectReference: {fileID: 4668233208375240616}
+    - target: {fileID: 7130715170137705696, guid: 25b5c8baaaae4d34ea3db517c0d31633, type: 3}
       propertyPath: BucketComponent
       value: 
       objectReference: {fileID: 5530823079409611867}
@@ -385,7 +424,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 6565501957850087380, guid: 25b5c8baaaae4d34ea3db517c0d31633, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4668233208375240616}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 25b5c8baaaae4d34ea3db517c0d31633, type: 3}
 --- !u!4 &260488270633701721 stripped
