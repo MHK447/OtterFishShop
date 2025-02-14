@@ -86,7 +86,7 @@ public class FishCasher : OtterBase
 
     public void StartWork()
     {
-        SetDestination(FishRoomComponent.GetCushionComponent.transform, () => {
+        SetDestination(FishRoomComponent.GetCushionComponent.GetFishCasherTr, () => {
             if (FishRoomComponent.IsMaxCountCheck())
             {
                 PlayAnimation(OtterState.Sleep, "napstart", false);
