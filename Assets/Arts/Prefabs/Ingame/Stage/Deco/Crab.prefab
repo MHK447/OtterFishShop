@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2223034393234394138}
   - component: {fileID: 9037169824873683653}
+  - component: {fileID: -4763580007937619738}
   m_Layer: 0
   m_Name: Crab
   m_TagString: Untagged
@@ -50,6 +51,21 @@ Animation:
   m_AnimatePhysics: 0
   m_UpdateMode: 0
   m_CullingType: 0
+--- !u!114 &-4763580007937619738
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 154290669882870217}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7a7bddc8b74c9c40a2112fdb0f78a33, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  anim: {fileID: 9037169824873683653}
+  delayMin: 0
+  delayMax: 1
 --- !u!1 &1940669050174266398
 GameObject:
   m_ObjectHideFlags: 0
