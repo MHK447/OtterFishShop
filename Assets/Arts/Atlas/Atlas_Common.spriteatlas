@@ -77,10 +77,14 @@ SpriteAtlas:
     isAtlasV2: 0
     cachedData: {fileID: 0}
     packedSpriteRenderDataKeys:
+    - 2ecc46105143e664e9d0fdca3b8b2ad8: 21300000
+    - f9033240b9055ba45b165b2447f82f91: 21300000
     - 53ff9550bc6500045b7ff8e9f2e2780c: 21300000
     - 490f1e50373c04a44878622b0f9d4617: 21300000
     - 9c072d51a27946b46aca1956695003ee: 21300000
     - 90116e91320981349996abe805b89343: 21300000
+    - f6a17002c7871fa45a07b5a2d303d887: 21300000
+    - da34a902574a3254d88cbb9fd619aa2c: 21300000
     - 368645222e108c54bae716f4cfccd9ac: 21300000
     - b3a812d2346614149894c07ad8d86bf8: 21300000
     - 3053e0f2ae3dc514083cf94bca81f7ba: 21300000
@@ -91,10 +95,17 @@ SpriteAtlas:
     - 95dd5a650d759ee4388be07e109a2d7f: 21300000
     - e38680e5a736e844682dacd56a26b6be: 21300000
     - 6dbc7206a533b8a4e997257b206543fe: 21300000
+    - 4073ef16d3ad671489aa1a877f6a8f5c: 21300000
     - 5dd990360fc9b2540906ea03809337bc: 21300000
+    - 094c50c6038a8a24d987bda886fa7fe8: 21300000
     - 973d06974d7e4954da41057f5e1cdfcc: 21300000
+    - faf508a7353c3f5478074f0e493ae197: 21300000
+    - 5db96e2864170854596e7eb79f2e2b25: 21300000
+    - 39a1d14886fee7048bcd82566e51cf5d: 21300000
     - 93cb0778be5d51740ad3b5b87b84fcf6: 21300000
     - b0ac42790f4c47442ac23e20b51f3c9d: 21300000
+    - 36979c9ae251ad646a5ea034078876ed: 21300000
+    - a794fa9bb238bd542b8475173c913737: 21300000
     - ad9a519c1affded4490abe2a09321fdd: 21300000
     - 93df819cbbaf5ed41adf97c40b3315c9: 21300000
     - 501b502e5b62e2245adb9806fa811999: 21300000
@@ -103,10 +114,14 @@ SpriteAtlas:
     - 3f82c07f62a344b448e28eaa1f63c4c3: 21300000
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
+  - {fileID: 21300000, guid: 2ecc46105143e664e9d0fdca3b8b2ad8, type: 3}
+  - {fileID: 21300000, guid: f9033240b9055ba45b165b2447f82f91, type: 3}
   - {fileID: 21300000, guid: 53ff9550bc6500045b7ff8e9f2e2780c, type: 3}
   - {fileID: 21300000, guid: 490f1e50373c04a44878622b0f9d4617, type: 3}
   - {fileID: 21300000, guid: 9c072d51a27946b46aca1956695003ee, type: 3}
   - {fileID: 21300000, guid: 90116e91320981349996abe805b89343, type: 3}
+  - {fileID: 21300000, guid: f6a17002c7871fa45a07b5a2d303d887, type: 3}
+  - {fileID: 21300000, guid: da34a902574a3254d88cbb9fd619aa2c, type: 3}
   - {fileID: 21300000, guid: 368645222e108c54bae716f4cfccd9ac, type: 3}
   - {fileID: 21300000, guid: b3a812d2346614149894c07ad8d86bf8, type: 3}
   - {fileID: 21300000, guid: 3053e0f2ae3dc514083cf94bca81f7ba, type: 3}
@@ -117,10 +132,17 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 95dd5a650d759ee4388be07e109a2d7f, type: 3}
   - {fileID: 21300000, guid: e38680e5a736e844682dacd56a26b6be, type: 3}
   - {fileID: 21300000, guid: 6dbc7206a533b8a4e997257b206543fe, type: 3}
+  - {fileID: 21300000, guid: 4073ef16d3ad671489aa1a877f6a8f5c, type: 3}
   - {fileID: 21300000, guid: 5dd990360fc9b2540906ea03809337bc, type: 3}
+  - {fileID: 21300000, guid: 094c50c6038a8a24d987bda886fa7fe8, type: 3}
   - {fileID: 21300000, guid: 973d06974d7e4954da41057f5e1cdfcc, type: 3}
+  - {fileID: 21300000, guid: faf508a7353c3f5478074f0e493ae197, type: 3}
+  - {fileID: 21300000, guid: 5db96e2864170854596e7eb79f2e2b25, type: 3}
+  - {fileID: 21300000, guid: 39a1d14886fee7048bcd82566e51cf5d, type: 3}
   - {fileID: 21300000, guid: 93cb0778be5d51740ad3b5b87b84fcf6, type: 3}
   - {fileID: 21300000, guid: b0ac42790f4c47442ac23e20b51f3c9d, type: 3}
+  - {fileID: 21300000, guid: 36979c9ae251ad646a5ea034078876ed, type: 3}
+  - {fileID: 21300000, guid: a794fa9bb238bd542b8475173c913737, type: 3}
   - {fileID: 21300000, guid: ad9a519c1affded4490abe2a09321fdd, type: 3}
   - {fileID: 21300000, guid: 93df819cbbaf5ed41adf97c40b3315c9, type: 3}
   - {fileID: 21300000, guid: 501b502e5b62e2245adb9806fa811999, type: 3}
@@ -128,10 +150,14 @@ SpriteAtlas:
   - {fileID: 21300000, guid: e650941f55415e14f9de9378252f6b55, type: 3}
   - {fileID: 21300000, guid: 3f82c07f62a344b448e28eaa1f63c4c3, type: 3}
   m_PackedSpriteNamesToIndex:
+  - Common_Icon_Upgrade_Food_Load_05
+  - Common_Icon_Upgrade_Food_Load_12
   - Icon_PayHeart
   - Common_Icon_Upgrade_Casher_Add_03
   - Icon_Counter
   - Common_Icon_Upgrade_Casher_Stack_01
+  - Common_Icon_Upgrade_Food_Load_13
+  - Common_Icon_Upgrade_Food_Load_08
   - Coin
   - Icon_Repair_Color
   - Common_Icon_Upgrade_Casher_Add_01
@@ -142,10 +168,17 @@ SpriteAtlas:
   - Common_Icon_Upgrade_Food_Load_01
   - Common_Icon_Upgrade_CookTools_SpeedUp_02
   - Common_Icon_Upgrade_Casher_SpeedUp_01
+  - Common_Icon_Upgrade_Food_Load_07
   - Icon_Trouble
+  - Common_Icon_Upgrade_Food_Load_06
   - Common_Icon_Upgrade_Player_Stack_01
+  - Common_Icon_Upgrade_Food_Load_09
+  - Common_Icon_Upgrade_CookTools_SpeedUp_03
+  - Common_Icon_Upgrade_Food_Load_10
   - Common_Icon_Upgrade_Food_Load_04
   - Common_Icon_Upgrade_CookTools_SpeedUp_01
+  - Common_Icon_Upgrade_Food_Load_11
+  - Common_Icon_Upgrade_Food_Load_04 1
   - Icon_Table
   - Icon_Repair_Gray
   - Common_Icon_Upgrade_Food_Load_03
