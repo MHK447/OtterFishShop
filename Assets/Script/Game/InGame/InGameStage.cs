@@ -84,7 +84,7 @@ public class InGameStage : MonoBehaviour
     {
         IsLoadComplete = false;
         disposable.Clear();
-        FishPool.Init(FishRef, this.transform ,40);
+        FishPool.Init(FishRef, this.transform, 40);
         ConsumerPool.Init(ConsumerRef, this.transform, 5);
         CreatePoolCasher(10);
 
@@ -93,17 +93,17 @@ public class InGameStage : MonoBehaviour
 
         TrashCanComponent.Init();
 
-        foreach(var fishroom in FishRoomList)
+        foreach (var fishroom in FishRoomList)
         {
             fishroom.Init();
         }
 
-        foreach(var rackcomponent in RackComponentList)
+        foreach (var rackcomponent in RackComponentList)
         {
             rackcomponent.Init();
         }
 
-        foreach(var cook in CookComponentList)
+        foreach (var cook in CookComponentList)
         {
             cook.Init();
         }
@@ -124,6 +124,12 @@ public class InGameStage : MonoBehaviour
 
                 var upgradevalue = GameRoot.Instance.UpgradeSystem.GetUpgradeValue(UpgradeSystem.UpgradeType.AddCustomer); //기본 베이스가 호출됨 
 
+                var getui = GameRoot.Instance.UISystem.GetUI<HUDTotal>();
+
+                if (getui != null)
+                {
+                    ProjectUtility.SetActiveCheck(getui.GetUpgradeBtnTr.gameObject, true);
+                }
                 for (int i = 0; i < upgradevalue; ++i)
                 {
                     CreateConsumer(1, StartWayPointTrList[i]);
@@ -132,7 +138,7 @@ public class InGameStage : MonoBehaviour
         }
     }
 
-            
+
     public void ReturnMainScreen()
     {
         GameRoot.Instance.UserData.CurMode.GachaCoin.Value = 0;
@@ -144,32 +150,36 @@ public class InGameStage : MonoBehaviour
     }
 
 
-    public void CreateFish(Transform starttr , int fishidx , FishComponent.State state , System.Action<FishComponent> fishcallback = null)
+    public void CreateFish(Transform starttr, int fishidx, FishComponent.State state, System.Action<FishComponent> fishcallback = null)
     {
-        FishPool.Get((obj) => {
+        FishPool.Get((obj) =>
+        {
             obj.transform.position = starttr.position;
             obj.transform.rotation = Quaternion.identity;
             obj.transform.localScale = Vector3.one;
 
             activeFishObjs.Add(obj);
-            obj.OnEnd += (complete) => {
+            obj.OnEnd += (complete) =>
+            {
                 obj.transform.SetParent(this.transform);
                 FishPool.Return(obj);
                 activeFishObjs.Remove(obj);
             };
 
-            obj.Set(fishidx , state);
+            obj.Set(fishidx, state);
             fishcallback?.Invoke(obj);
         });
     }
 
 
-    public void CreateConsumer(int consumeridx , Transform starttr,  System.Action<Consumer> consumercallback = null)
+    public void CreateConsumer(int consumeridx, Transform starttr, System.Action<Consumer> consumercallback = null)
     {
-        ConsumerPool.Get((obj) => {
+        ConsumerPool.Get((obj) =>
+        {
             obj.transform.position = starttr.position;
             activeConsumerObjs.Add(obj);
-            obj.OnEnd += (complete) => {
+            obj.OnEnd += (complete) =>
+            {
 
                 ConsumerPool.Return(obj);
                 activeConsumerObjs.Remove(obj);
@@ -185,9 +195,10 @@ public class InGameStage : MonoBehaviour
 
     public void CreatePoolCasher(int count)
     {
-        for(int i = 0; i < count; ++i)
+        for (int i = 0; i < count; ++i)
         {
-            Addressables.InstantiateAsync("CarryCasher").Completed += (handle) => {
+            Addressables.InstantiateAsync("CarryCasher").Completed += (handle) =>
+            {
                 var casher = handle.Result.GetComponent<CarryCasher>();
 
                 if (casher != null)
@@ -198,7 +209,8 @@ public class InGameStage : MonoBehaviour
 
             };
 
-            Addressables.InstantiateAsync("FishCasher").Completed += (handle) => {
+            Addressables.InstantiateAsync("FishCasher").Completed += (handle) =>
+            {
                 var casher = handle.Result.GetComponent<FishCasher>();
 
                 if (casher != null)
@@ -209,7 +221,8 @@ public class InGameStage : MonoBehaviour
 
             };
 
-            Addressables.InstantiateAsync("CounterCasher").Completed += (handle) => {
+            Addressables.InstantiateAsync("CounterCasher").Completed += (handle) =>
+            {
                 var casher = handle.Result.GetComponent<CounterCasher>();
 
                 if (casher != null)
@@ -226,7 +239,7 @@ public class InGameStage : MonoBehaviour
     {
         var finddata = activeCashers.Find(x => x.gameObject.activeSelf == false && x.GetCasherIdx == (int)type);
 
-        if(finddata != null)
+        if (finddata != null)
         {
             return finddata;
         }
@@ -235,7 +248,7 @@ public class InGameStage : MonoBehaviour
         return null;
     }
 
-    public OtterBase FindCasher(CasherType type , int facilityidx)
+    public OtterBase FindCasher(CasherType type, int facilityidx)
     {
         OtterBase casher = null;
 
@@ -252,9 +265,9 @@ public class InGameStage : MonoBehaviour
                     var findcashers = activeCashers.FindAll(x => x.GetCasherIdx == (int)type && x.gameObject.activeSelf);
 
 
-                    foreach(var fishcasher in findcashers)
+                    foreach (var fishcasher in findcashers)
                     {
-                        if(fishcasher.GetComponent<FishCasher>().GetFacilityIdx == facilityidx)
+                        if (fishcasher.GetComponent<FishCasher>().GetFacilityIdx == facilityidx)
                         {
                             casher = fishcasher;
                         }
@@ -265,7 +278,7 @@ public class InGameStage : MonoBehaviour
                 {
                     var findcashers = activeCashers.Find(x => x.GetCasherIdx == (int)type && x.gameObject.activeSelf);
 
-                    if(findcashers != null)
+                    if (findcashers != null)
                     {
                         casher = findcashers;
                     }
@@ -280,7 +293,7 @@ public class InGameStage : MonoBehaviour
 
     public Transform GetWaitLine(int order)
     {
-        if(WaitLineListTr.Count > order)
+        if (WaitLineListTr.Count > order)
         {
             return WaitLineListTr[order];
         }
@@ -293,7 +306,7 @@ public class InGameStage : MonoBehaviour
     {
         var finddata = FacilityList.Find(x => x.FacilityIdx == facilityidx);
 
-        if(finddata != null)
+        if (finddata != null)
         {
             return finddata.GetConsumerTr();
         }

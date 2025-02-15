@@ -142,6 +142,8 @@ public class FacilitySystem
 
             var levelgroupbuffvalue = exponent == 0 ? 1 : exponent  * td.income_cost_level_multiple;
 
+            levelgroupbuffvalue = levelgroupbuffvalue == 0 ? 1 : levelgroupbuffvalue;
+
             var lastvalue = (td.base_income_cost + costincrease) * levelgroupbuffvalue;
 
             int percentage = levelgroupbuffvalue == 1 ? 1 : 100;
@@ -171,6 +173,7 @@ public class FacilitySystem
 
             var levelgroupbuffvalue = exponent == 0 ? 1 : exponent * td.income_multiple_value_group;
 
+            levelgroupbuffvalue = levelgroupbuffvalue == 0 ? 1 : levelgroupbuffvalue;
     
             var lastvalue = (basevalue + levelbuff) * levelgroupbuffvalue;
 

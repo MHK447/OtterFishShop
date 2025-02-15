@@ -17,6 +17,8 @@ public class HUDTotal : UIBase
     [SerializeField]
     private Text FpsText;
 
+    public Transform GetUpgradeBtnTr {get {return UpgradeBtn.transform; }}
+
     private float deltaTime = 0.0f;
 
     protected override void Awake()
@@ -25,6 +27,8 @@ public class HUDTotal : UIBase
         UpgradeBtn.onClick.AddListener(OnClickUpgrade);
         NextStageBtn.onClick.AddListener(OnClickNextStage);
         TopCurrencySync();
+
+        ProjectUtility.SetActiveCheck(UpgradeBtn.gameObject , false);
     }
 
     public void OnClickNextStage()

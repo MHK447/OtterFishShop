@@ -127,7 +127,8 @@ public class OtterBase : MonoBehaviour
 
         foreach (var donebuy in donebuylist)
         {
-            donebuy.IsBuyCheckProperty.Subscribe(x => {
+            donebuy.IsBuyCheckProperty.Subscribe(x =>
+            {
                 if (donebuy.UpgradeType == (int)UpgradeSystem.UpgradeType.PlayerSpeedUp)
                 {
                     var buffvalue = GameRoot.Instance.UpgradeSystem.GetUpgradeValue(UpgradeSystem.UpgradeType.PlayerSpeedUp);
@@ -156,13 +157,13 @@ public class OtterBase : MonoBehaviour
 
     public void SetCapacity()
     {
-        if(CurUnitType == OtterType.Player)
+        if (CurUnitType == OtterType.Player)
         {
             var buffvalue = GameRoot.Instance.UpgradeSystem.GetUpgradeValue(UpgradeSystem.UpgradeType.PlayerCapacityUp); ;
 
             StartCarryCount = GameRoot.Instance.InGameSystem.player_start_carry_count + (int)buffvalue;
         }
-        else if(CurUnitType == OtterType.CarryCasher)
+        else if (CurUnitType == OtterType.CarryCasher)
         {
             var buffvalue = GameRoot.Instance.UpgradeSystem.GetUpgradeValue(UpgradeSystem.UpgradeType.TransportStaffCapacityUp); ;
 
@@ -170,7 +171,7 @@ public class OtterBase : MonoBehaviour
         }
     }
 
-     
+
     public void CoolTimeActive(float cooltimevalue)
     {
         if (Progress == null) return;
@@ -178,11 +179,11 @@ public class OtterBase : MonoBehaviour
         Progress.SetValue(cooltimevalue);
 
         if (cooltimevalue > 0f && !Progress.gameObject.activeSelf)
-        {   
+        {
             ProjectUtility.SetActiveCheck(Progress.gameObject, true);
         }
 
-        if(cooltimevalue <= 0f && Progress.gameObject.activeSelf)
+        if (cooltimevalue <= 0f && Progress.gameObject.activeSelf)
         {
             ProjectUtility.SetActiveCheck(Progress.gameObject, false);
         }
@@ -210,7 +211,7 @@ public class OtterBase : MonoBehaviour
     {
         transform.position += (moveVector * PlayerSpeed);
 
-        PlayAnimation(OtterState.Move,"move", true);
+        PlayAnimation(OtterState.Move, "move", true);
 
         if (moveVector.x != 0)
         {
@@ -220,16 +221,16 @@ public class OtterBase : MonoBehaviour
 
     public void ChangeState(OtterState state)
     {
-        if(state == OtterState.Move && CurState == OtterState.Fishing)
+        if (state == OtterState.Move && CurState == OtterState.Fishing)
         {
-            if(Progress != null && Progress.gameObject.activeSelf)
+            if (Progress != null && Progress.gameObject.activeSelf)
             {
                 ProjectUtility.SetActiveCheck(Progress.gameObject, false);
             }
         }
 
         if (state == CurState) return;
-        
+
         CurState = state;
 
     }
@@ -237,7 +238,7 @@ public class OtterBase : MonoBehaviour
 
     public void DataClear()
     {
-        foreach(var fish in FishComponentList)
+        foreach (var fish in FishComponentList)
         {
             fish.ClearObj();
         }
@@ -245,14 +246,14 @@ public class OtterBase : MonoBehaviour
         FishComponentList.Clear();
 
 
-        if(Progress != null)
+        if (Progress != null)
         {
             ProjectUtility.SetActiveCheck(Progress.gameObject, false);
         }
 
 
     }
-       
+
 
 
     public void IdleChange()
@@ -335,8 +336,8 @@ public class OtterBase : MonoBehaviour
 
     public void TextEffectMaxCheck()
     {
-        if(TextEffectMax != null)
-        ProjectUtility.SetActiveCheck(TextEffectMax.gameObject, FishComponentList.Count >= StartCarryCount);
+        if (TextEffectMax != null)
+            ProjectUtility.SetActiveCheck(TextEffectMax.gameObject, FishComponentList.Count >= StartCarryCount);
     }
 
     public bool IsMaxFishCheck()
@@ -352,9 +353,9 @@ public class OtterBase : MonoBehaviour
 
         var animationname = newAnimationName;
 
-        if(IsCarry)
+        if (IsCarry)
         {
-            switch(animationname)
+            switch (animationname)
             {
                 case "idle":
                     {
@@ -366,7 +367,7 @@ public class OtterBase : MonoBehaviour
                         animationname = "carry";
                     }
                     break;
-                
+
             }
         }
 
@@ -409,33 +410,28 @@ public class OtterBase : MonoBehaviour
     private CasherType CasherType;
 
     [HideInInspector]
-    public int GetCasherIdx {  get { return (int)CasherType; } }
+    public int GetCasherIdx { get { return (int)CasherType; } }
 
-    public void SetDestination(Transform destination, System.Action arrivedaction)
+    public void SetDestination(Transform destination, System.Action arrivedAction)
     {
         TargetTr = destination;
-        
         _isMoving = true;
 
-        if (((Vector2)transform.position - (Vector2)destination.position).magnitude < 0.1f)
+        // 목표 지점과의 거리 계산 (더 정밀하게)
+        if (Vector2.Distance(transform.position, destination.position) < Mathf.Epsilon)
         {
             ReachProcess();
-        }   
-        else
+            arrivedAction?.Invoke();
+            return;
+        }
+
+        // 길찾기 경로 설정 (WayPoints 조정)
+        SetWayPoints();
+
+        // 이동 코루틴 실행 (중복 실행 방지)
+        if (_currentMoveProcess == null)
         {
-            var driftPos = destination.position;
-            if (Mathf.Abs(transform.position.x - destination.position.x) < _agentDrift)
-            {
-                driftPos = destination.position + new Vector3(_agentDrift, 0f, 0f);
-            }
-
-            _destinationPosition = driftPos;
-            SetWayPoints();
-
-            if (_currentMoveProcess == null)
-            {
-                _currentMoveProcess = StartCoroutine(MoveProcess(arrivedaction));
-            }
+            _currentMoveProcess = StartCoroutine(MoveProcess(arrivedAction));
         }
     }
 
@@ -476,25 +472,38 @@ public class OtterBase : MonoBehaviour
     }
 
 
-    IEnumerator MoveProcess(System.Action arrivedaction = null)
+    IEnumerator MoveProcess(System.Action arrivedAction = null)
     {
         while (_wayPoints.Count > 0)
         {
             var currentWayPoint = _wayPoints[0];
-            if (((Vector2)transform.position - currentWayPoint).magnitude < reachRadius)
+
+            // 목표 지점과의 거리 계산
+            float distance = Vector2.Distance(transform.position, currentWayPoint);
+
+            if (distance <= reachRadius)
             {
                 _wayPoints.RemoveAt(0);
+
+                // 최종 도착 처리 (부드럽게)
+                if (_wayPoints.Count == 0)
+                {
+                    StartCoroutine(SmoothArrival(TargetTr.position, arrivedAction));
+                    yield break;
+                }
             }
             else
             {
                 _isMoving = true;
-
                 var animname = IsCarry ? "carry" : "move";
 
                 PlayAnimation(OtterState.Move, animname, true);
 
                 transform.localScale = new Vector3(transform.position.x - currentWayPoint.x > 0 ? 1f : -1f, 1f, 1f);
-                transform.position = Vector2.MoveTowards(transform.position, currentWayPoint, Time.deltaTime * CasherMoveSpeed);
+
+                // 🔹 이동 속도 제한 (현재 속도보다 더 멀리 이동하지 않도록 보정)
+                float step = Mathf.Min(Time.deltaTime * CasherMoveSpeed, distance);
+                transform.position = Vector2.MoveTowards(transform.position, currentWayPoint, step);
             }
 
             yield return _waitTick;
@@ -502,11 +511,33 @@ public class OtterBase : MonoBehaviour
 
         _currentMoveProcess = null;
         ReachProcess();
-        arrivedaction?.Invoke();
-
-        yield break;
+        arrivedAction?.Invoke();
     }
 
+
+
+    // 🔹 최종 도착을 부드럽게 처리하는 함수
+    IEnumerator SmoothArrival(Vector2 finalPosition, System.Action arrivedAction)
+    {
+        float duration = 0.2f; // 최종 도착에 걸리는 시간 (부드럽게 감속)
+        float elapsedTime = 0f;
+        Vector2 startPos = transform.position;
+
+        while (elapsedTime < duration)
+        {
+            float t = elapsedTime / duration;
+            t = t * (2 - t); // Ease-out (부드럽게 감속)
+
+            transform.position = Vector2.Lerp(startPos, finalPosition, t);
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+
+        transform.position = finalPosition; // 정확한 위치 보정
+        _currentMoveProcess = null;
+        ReachProcess();
+        arrivedAction?.Invoke();
+    }
 
     Vector2[] SmoothPath(Vector3[] pathCorners)
     {
@@ -537,7 +568,7 @@ public class OtterBase : MonoBehaviour
 
     private void OnDisable()
     {
-        if(Progress != null)
+        if (Progress != null)
         {
             ProjectUtility.SetActiveCheck(Progress.gameObject, false);
             Destroy(Progress.gameObject);

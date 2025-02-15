@@ -10,7 +10,7 @@ public class FacilityComponent : MonoBehaviour
 {
     [SerializeField]
     protected BoxCollider2D RigidCol;
-    
+
     [SerializeField]
     private List<GameObject> FacilityOpenList = new List<GameObject>();
 
@@ -58,12 +58,12 @@ public class FacilityComponent : MonoBehaviour
 
         if (stagefacilitytd == null) return;
 
-        var buffvalue = GameRoot.Instance.UpgradeSystem.GetUpgradeValue(UpgradeSystem.UpgradeType.ShelfCapacityUp,FacilityIdx);
+        var buffvalue = GameRoot.Instance.UpgradeSystem.GetUpgradeValue(UpgradeSystem.UpgradeType.ShelfCapacityUp, FacilityIdx);
 
         CapacityMaxCount = BaseCapacity + (int)buffvalue;
 
         RigidCol.isTrigger = !FacilityData.IsOpen;
-      
+
         foreach (var facility in FacilityOpenList)
         {
             ProjectUtility.SetActiveCheck(facility, FacilityData.IsOpen);
@@ -74,14 +74,14 @@ public class FacilityComponent : MonoBehaviour
 
     public virtual Transform GetConsumerTr()
     {
-        if (ConsumerWaitTr.Count == 0) return null; 
+        if (ConsumerWaitTr.Count == 0) return null;
 
         var randvalue = Random.Range(0, ConsumerWaitTr.Count);
         return ConsumerWaitTr[randvalue];
 
     }
 
-    
+
 
 
     public virtual bool IsMaxCountCheck()
@@ -91,7 +91,7 @@ public class FacilityComponent : MonoBehaviour
 
         return FacilityData.CapacityCountProperty.Value >= CapacityMaxCount;
     }
-    
+
 
     public Transform GetConsumerTr(int order)
     {
@@ -123,6 +123,13 @@ public class FacilityComponent : MonoBehaviour
             if (stageinfotd.consumerfirst_idx == FacilityIdx)
             {
                 var upgradevalue = GameRoot.Instance.UpgradeSystem.GetUpgradeValue(UpgradeSystem.UpgradeType.AddCustomer);
+
+                var getui = GameRoot.Instance.UISystem.GetUI<HUDTotal>();
+
+                if (getui != null)
+                {
+                    ProjectUtility.SetActiveCheck(getui.GetUpgradeBtnTr.gameObject, true);
+                }
 
                 for (int i = 0; i < upgradevalue; ++i)
                 {

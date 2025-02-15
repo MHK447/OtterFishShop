@@ -17,24 +17,29 @@ public class UpgradeProductComponentGroup : MonoBehaviour
     private Transform CachedRoot;
 
     public void Init()
-    {   
-        foreach(var cachedobj in CachedComponents)
+    {
+        foreach (var cachedobj in CachedComponents)
         {
-            ProjectUtility.SetActiveCheck(cachedobj , false);
+            ProjectUtility.SetActiveCheck(cachedobj, false);
         }
 
         var curstageidx = GameRoot.Instance.UserData.CurMode.StageData.StageIdx;
 
-        var tdlist = Tables.Instance.GetTable<FacilityUpgrade>().DataList.ToList().FindAll(x=> x.stageidx == curstageidx);
+        var tdlist = Tables.Instance.GetTable<FacilityUpgrade>().DataList.ToList().FindAll(x => x.stageidx == curstageidx);
 
-        foreach(var td in tdlist)
+        foreach (var td in tdlist)
         {
-            var getobj = GetCachedObject().GetComponent<UpgradeFacilityComponent>();
+            var finddata = GameRoot.Instance.UserData.CurMode.StageData.FindFacilityData(td.facilityidx);
 
-            if(getobj != null)
+            if (finddata != null && finddata.IsOpen)
             {
-                ProjectUtility.SetActiveCheck(getobj.gameObject , true);
-                getobj.Set(td.facilityidx);
+                var getobj = GetCachedObject().GetComponent<UpgradeFacilityComponent>();
+
+                if (getobj != null)
+                {
+                    ProjectUtility.SetActiveCheck(getobj.gameObject, true);
+                    getobj.Set(td.facilityidx);
+                }
             }
         }
 

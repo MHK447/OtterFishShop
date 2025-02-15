@@ -90,6 +90,13 @@ public class GameNotificationSystem
             upgrade.IsBuyCheckProperty.SkipLatestValueOnSubscribe().Subscribe(x => { UpdateNotification(NotificationCategory.StageClear); }).AddTo(disposables);
         }
 
+
+        GameRoot.Instance.WaitTimeAndCallback(1f, ()=> {
+            UpdateNotification(NotificationCategory.UpgradePopup);
+            UpdateNotification(NotificationCategory.StageClear);
+            UpdateNotification(NotificationCategory.UpgradeProduct);
+        });
+
     }
 
 
@@ -176,6 +183,9 @@ public class GameNotificationSystem
 
                         if(td != null && td.max_ugprade_count <= fishupgrade.Level) continue;
 
+                        var getfindfacility = GameRoot.Instance.UserData.CurMode.StageData.FindFacilityData(td.facilityidx);
+
+                        if(getfindfacility == null || !getfindfacility.IsOpen) continue;
 
                         var curprice = GameRoot.Instance.FacilitySystem.GetFishUpgradeLevelCost(fishupgrade.FishIdx, fishupgrade.Level);
 
