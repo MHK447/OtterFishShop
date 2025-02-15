@@ -29,7 +29,7 @@ public class UpgradeProductComponentGroup : MonoBehaviour
 
         foreach (var td in tdlist)
         {
-            var finddata = GameRoot.Instance.UserData.CurMode.StageData.FindFacilityData(td.facilityidx);
+            var finddata = GameRoot.Instance.UserData.CurMode.StageData.FindFacilityData(td.openfacilitycheck);
 
             if (finddata != null && finddata.IsOpen)
             {

@@ -116,11 +116,17 @@ public class FishCushionComponent : MonoBehaviour
         }
     }
 
+    public void ChangeTarget(OtterBase otter)
+    {
+        Target = otter;
+    }
+
 
     private void Update()
     {
         if (FacilityData == null) return;
 
+        
         if (Target == null)
         {
             var findcasher = InGameStage.FindCasher(CasherType.FishingCasher, FacilityData.FacilityIdx);
@@ -135,6 +141,7 @@ public class FishCushionComponent : MonoBehaviour
                 return;
             }
         }
+
 
         if (FacilityData == null) return;
 

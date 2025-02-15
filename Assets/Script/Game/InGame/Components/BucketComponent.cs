@@ -14,6 +14,7 @@ public class BucketComponent : MonoBehaviour
     [SerializeField]
     private Transform AmountUITr;
 
+    [SerializeField]
     private Stack<FishComponent> FishStackComponent = new Stack<FishComponent>();
 
     public int GetFishCount { get { return FishStackComponent.Count; } }
@@ -93,14 +94,15 @@ public class BucketComponent : MonoBehaviour
 
             InGameStage.CreateFish(this.transform, FishIdx, FishComponent.State.Bucket, (fish) =>
             {
+                FishStackComponent.Push(fish);
+                fish.LivingFishAnim(true);
+                if (CountUI != null)
+                {
+                    CountUI.Init(fish.transform);
+                }
                 fish.FishInBucketAction(this.transform, (fish) =>
                 {
-                    FishStackComponent.Push(fish);
-                    fish.LivingFishAnim(true);
-                    if (CountUI != null)
-                    {
-                        CountUI.Init(fish.transform);
-                    }
+
                 }, 0f, posy);
             });
         }

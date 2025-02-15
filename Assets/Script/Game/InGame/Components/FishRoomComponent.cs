@@ -12,6 +12,11 @@ public class FishRoomComponent : FacilityComponent
     [SerializeField]
     private BucketComponent BucketComponent;
 
+    [SerializeField]
+    private Transform BucketCarryCasherTr;
+
+    public Transform GetBucketCarryCasherTr { get { return BucketCarryCasherTr; } }
+
 
     public FishCushionComponent GetCushionComponent { get { return CushionComponent; } }
 
@@ -28,7 +33,7 @@ public class FishRoomComponent : FacilityComponent
 
         var finddata = GameRoot.Instance.UserData.CurMode.StageData.FindFacilityData(FacilityIdx);
 
-        if(finddata != null)
+        if (finddata != null)
         {
             CushionComponent.Init(finddata);
             BucketComponent.Init(finddata);

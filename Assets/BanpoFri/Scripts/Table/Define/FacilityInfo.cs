@@ -48,6 +48,13 @@ namespace BanpoFri
 			get { return _value_1;}
 			set { _value_1 = value;}
 		}
+		[SerializeField]
+		private int _cooking_group;
+		public int cooking_group
+		{
+			get { return _cooking_group;}
+			set { _cooking_group = value;}
+		}
 
     }
 

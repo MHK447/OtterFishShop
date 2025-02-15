@@ -83,6 +83,13 @@ namespace BanpoFri
 			get { return _income_cost_level_multiple;}
 			set { _income_cost_level_multiple = value;}
 		}
+		[SerializeField]
+		private int _openfacilitycheck;
+		public int openfacilitycheck
+		{
+			get { return _openfacilitycheck;}
+			set { _openfacilitycheck = value;}
+		}
 
     }
 

@@ -38,4 +38,4 @@ MonoBehaviour:
   - _index: offline_reward_multiple
     _value: 2
   - _index: offline_min_time
-    _value: 10
+    _value: 600

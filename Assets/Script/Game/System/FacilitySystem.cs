@@ -65,6 +65,20 @@ public class FacilitySystem
                     allFound = false;
                     break;
                 }
+
+                var facilityinfotd = Tables.Instance.GetTable<FacilityInfo>().GetData(tdstagelist[i].facilityidx[j]);
+
+                if(facilityinfotd != null && facilityinfotd.cooking_group > 0)
+                {
+                    var findcookfacility = GameRoot.Instance.UserData.CurMode.StageData.FindFacilityData(facilityinfotd.cooking_group);
+
+                    if(findcookfacility == null || !findcookfacility.IsOpen)
+                    {
+                        allFound = false;
+                        break;
+                    }
+                }
+                
             }
 
             // 모든 facilityidx가 조건을 만족했다면 patternlist에 추가
