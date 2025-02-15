@@ -156,7 +156,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Ingame_Food_013_0: 9038619615757603434
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

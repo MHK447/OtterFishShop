@@ -156,7 +156,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Ingame_Fish_002_0: -8375975259524540984
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -90,8 +90,6 @@ public class PopupUpgrade : UIBase
 
         ProductComponentGroup.Init();   
 
-        OnClickProduct();
-
         ProjectUtility.SetActiveCheck(ProductRoot.gameObject , CurrentTab == TabType.ProductTab);
         ProjectUtility.SetActiveCheck(FacilityRoot.gameObject , CurrentTab == TabType.FacilityTab);
 
@@ -176,10 +174,8 @@ public class PopupUpgrade : UIBase
 
     }
 
-        public void ChangeTab(TabType tab, bool on)
+    public void ChangeTab(TabType tab, bool on)
     {
-        if (CurrentTab == tab) return;
-
         CurrentTab = tab;
 
         if (on)
@@ -244,19 +240,29 @@ public class PopupUpgrade : UIBase
         yield return new WaitForEndOfFrame();
         yield return new WaitForEndOfFrame();
 
-        var viewTab = defualtOption;
-        if (!TabToggles[(int)defualtOption].isOn)
+
+
+        foreach(var toggle in TabToggles)
         {
-            TabToggles[(int)defualtOption].isOn = true;
+            var toggleani = toggle.gameObject.GetComponent<Animator>();
+
+            toggleani.SetTrigger("Normal");
+        }
+
+
+        var viewTab = CurrentTab;
+        if (!TabToggles[(int)viewTab].isOn)
+        {
+            TabToggles[(int)viewTab].isOn = true;
         }
         else
         {
-            var ani = TabToggles[(int)defualtOption].gameObject.GetComponent<Animator>();
+            var ani = TabToggles[(int)viewTab].gameObject.GetComponent<Animator>();
             if (ani != null)
             {
                 ani.SetTrigger("Selected");
             }
-            ChangeTab(defualtOption, true);
+            ChangeTab(viewTab, true);
         }
     }
 
@@ -267,11 +273,11 @@ public class PopupUpgrade : UIBase
         yield return new WaitForEndOfFrame();
       
 
-            var ani = TabToggles[(int)defualtOption].gameObject.GetComponent<Animator>();
-        if (ani != null)
-        {
-            ani.SetTrigger("Selected");
-        }
+        // var ani = TabToggles[(int)CurrentTab].gameObject.GetComponent<Animator>();
+        // if (ani != null)
+        // {
+        //     ani.SetTrigger("Selected");
+        // }
 
 
     }

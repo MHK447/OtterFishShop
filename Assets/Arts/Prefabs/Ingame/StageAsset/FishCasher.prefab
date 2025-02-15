@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9063122242514546740}
-  m_Layer: 7
+  m_Layer: 10
   m_Name: ProgressTr
   m_TagString: Untagged
   m_Icon: {fileID: -5442936267250999957, guid: 0000000000000000d000000000000000, type: 0}
@@ -47,7 +47,7 @@ GameObject:
   - component: {fileID: -6886305821548593228}
   - component: {fileID: 5681487665209996728}
   - component: {fileID: 6774307442929645942}
-  m_Layer: 7
+  m_Layer: 10
   m_Name: FishCasher
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -292,7 +292,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1667258497595048112}
-  m_Layer: 7
+  m_Layer: 10
   m_Name: ProductTr
   m_TagString: Untagged
   m_Icon: {fileID: -5442936267250999957, guid: 0000000000000000d000000000000000, type: 0}
@@ -323,7 +323,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3999100316851466616}
-  m_Layer: 7
+  m_Layer: 10
   m_Name: FishTr
   m_TagString: Untagged
   m_Icon: {fileID: -5442936267250999957, guid: 0000000000000000d000000000000000, type: 0}
@@ -354,7 +354,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8956759301778506394}
-  m_Layer: 7
+  m_Layer: 10
   m_Name: FishCarryTr
   m_TagString: Untagged
   m_Icon: {fileID: 7422848464349959988, guid: 0000000000000000d000000000000000, type: 0}
@@ -385,7 +385,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9044101349665869373}
-  m_Layer: 7
+  m_Layer: 10
   m_Name: OrderTr
   m_TagString: Untagged
   m_Icon: {fileID: 0}
