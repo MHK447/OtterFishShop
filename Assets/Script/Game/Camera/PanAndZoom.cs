@@ -116,8 +116,11 @@ public class PanAndZoom : MonoBehaviour
         canUseMouse = Application.platform != RuntimePlatform.Android && Application.platform != RuntimePlatform.IPhonePlayer && Input.mousePresent;
 
         PlayerTarget = Target = GameRoot.Instance.InGameSystem.GetInGame<InGameTycoon>().GetPlayer.transform;
-        cam.orthographicSize = 13;
         //zoomOutSize = cam.orthographicSize = Mathf.Min(cam.orthographicSize, (Screen.height * (boundMaxX - boundMinX) / (2 * Screen.width)) - 0.001f);
+
+        GameRoot.Instance.WaitTimeAndCallback(1f , ()=> {
+              cam.orthographicSize = 12;            
+        });
     }
 
     Vector3 velocity = Vector3.zero; // 클래스 변수로 선언
