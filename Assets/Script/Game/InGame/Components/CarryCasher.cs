@@ -532,9 +532,20 @@ public class CarryCasher : OtterBase
         
     }
 
+    void OnDisable()
+    {
+        WorkActionQueue.Clear();
+        disposables.Clear();
+        // 콜백 해제
+        if (skeletonAnimation != null)
+        {
+            skeletonAnimation.AnimationState.End -= HandleEvent;
+        }
+    }
 
     private void OnDestroy()
     {
+        WorkActionQueue.Clear();
         disposables.Clear();
         // 콜백 해제
         if (skeletonAnimation != null)

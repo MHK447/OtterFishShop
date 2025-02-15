@@ -118,7 +118,7 @@ public class FacilityComponent : MonoBehaviour
 
         var stageinfotd = Tables.Instance.GetTable<StageInfo>().GetData(stageidx);
 
-        if (stageinfotd != null)
+        if (stageinfotd != null) 
         {
             if (stageinfotd.consumerfirst_idx == FacilityIdx)
             {

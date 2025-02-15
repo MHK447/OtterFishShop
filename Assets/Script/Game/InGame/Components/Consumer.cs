@@ -100,8 +100,11 @@ public class Consumer : Chaser
         IsCounter = false;
         IsArrivedCounter = false;
         CurFishComponentList.Clear();
+        PatternOrderQueue.Clear();
 
         CarryStart(false);
+        gameObject.transform.rotation = Quaternion.identity;
+
         Stage = GameRoot.Instance.InGameSystem.GetInGame<InGameTycoon>().curInGameStage;
         CounterComponent = Stage.GetCounterComponent;
 
@@ -110,8 +113,6 @@ public class Consumer : Chaser
         var curstageidx = GameRoot.Instance.UserData.CurMode.StageData.StageIdx;
 
         CurMoveInfoData = GameRoot.Instance.FacilitySystem.CreatePattern(curstageidx);
-
-        PatternOrderQueue.Clear();
 
         for(int i = 0; i < CurMoveInfoData.facilityidx.Count; ++i)
         {

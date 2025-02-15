@@ -5,6 +5,7 @@ using System.Linq;
 using UnityEngine;
 using UniRx;
 using BanpoFri;
+using Unity.VisualScripting;
 public class GameNotificationSystem
 {
     public enum NotificationType
@@ -180,6 +181,8 @@ public class GameNotificationSystem
                     foreach(var fishupgrade in fishupgradedatas)
                     {
                         var td = Tables.Instance.GetTable<FacilityUpgrade>().GetData(new KeyValuePair<int, int>(stageidx , fishupgrade.FishIdx));
+
+                        if(td == null) continue;
 
                         if(td != null && td.max_ugprade_count <= fishupgrade.Level) continue;
 

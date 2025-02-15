@@ -28,6 +28,7 @@ public class HUDTotal : UIBase
         NextStageBtn.onClick.AddListener(OnClickNextStage);
         TopCurrencySync();
 
+        if(GameRoot.Instance.UserData.CurMode.StageData.StageIdx == 1)
         ProjectUtility.SetActiveCheck(UpgradeBtn.gameObject , false);
     }
 

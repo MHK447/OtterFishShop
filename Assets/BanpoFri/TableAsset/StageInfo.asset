@@ -33,11 +33,11 @@ MonoBehaviour:
     _seedmoney_value: 100
     _stage_name: name_test_2
     _start_consumer_count: 3
-    _consumerfirst_idx: 1
+    _consumerfirst_idx: 3
     _revenue_buff_profit: 150
     _nextstage_name: next_stage_name_2
     _nextstage_image: Ingame_Food_007
-    _next_stage_money: 10000
+    _next_stage_money: 100000
   - _stageidx: 3
     _seedmoney_value: 100
     _stage_name: name_test_3

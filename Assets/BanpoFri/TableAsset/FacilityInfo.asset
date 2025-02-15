@@ -19,6 +19,9 @@ MonoBehaviour:
   - 4
   - 5
   - 6
+  - 7
+  - 8
+  - 9
   - 1000
   - 101
   - 102
@@ -49,7 +52,7 @@ MonoBehaviour:
     _image: Ingame_Food_005
     _facility_type: 1
     _start_capacity: 15
-    _fish_idx: 1
+    _fish_idx: 5
     _value_1: -1
     _cooking_group: -1
   - _facilityidx: 4
@@ -73,6 +76,27 @@ MonoBehaviour:
     _fish_idx: 4
     _value_1: -1
     _cooking_group: 1002
+  - _facilityidx: 7
+    _image: Ingame_Food_007
+    _facility_type: 1
+    _start_capacity: 15
+    _fish_idx: 7
+    _value_1: -1
+    _cooking_group: 1003
+  - _facilityidx: 8
+    _image: Ingame_Food_008
+    _facility_type: 1
+    _start_capacity: 15
+    _fish_idx: 8
+    _value_1: -1
+    _cooking_group: 1004
+  - _facilityidx: 9
+    _image: Ingame_Food_009
+    _facility_type: 1
+    _start_capacity: 15
+    _fish_idx: 9
+    _value_1: -1
+    _cooking_group: 1005
   - _facilityidx: 1000
     _image: Icon_Counter
     _facility_type: 2

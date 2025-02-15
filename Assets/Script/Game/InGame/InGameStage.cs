@@ -124,12 +124,16 @@ public class InGameStage : MonoBehaviour
 
                 var upgradevalue = GameRoot.Instance.UpgradeSystem.GetUpgradeValue(UpgradeSystem.UpgradeType.AddCustomer); //기본 베이스가 호출됨 
 
+            if(GameRoot.Instance.UserData.CurMode.StageData.StageIdx == 1)
+            {
                 var getui = GameRoot.Instance.UISystem.GetUI<HUDTotal>();
 
                 if (getui != null)
                 {
                     ProjectUtility.SetActiveCheck(getui.GetUpgradeBtnTr.gameObject, true);
                 }
+            }
+            
                 for (int i = 0; i < upgradevalue; ++i)
                 {
                     CreateConsumer(1, StartWayPointTrList[i]);
@@ -180,10 +184,9 @@ public class InGameStage : MonoBehaviour
             activeConsumerObjs.Add(obj);
             obj.OnEnd += (complete) =>
             {
-
+                CreateConsumer(1, starttr);
                 ConsumerPool.Return(obj);
                 activeConsumerObjs.Remove(obj);
-                CreateConsumer(1, starttr);
             };
 
             obj.Init(consumeridx);
