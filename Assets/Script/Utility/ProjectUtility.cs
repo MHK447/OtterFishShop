@@ -324,7 +324,7 @@ public class ProjectUtility
 
     public static System.Numerics.BigInteger CalcOfflineReward(int _difftime)
     {
-        var curstageidx = GameRoot.Instance.UserData.CurMode.StageData.StageIdx;
+    var curstageidx = GameRoot.Instance.UserData.CurMode.StageData.StageIdx;
 
         System.Numerics.BigInteger stagevalue = 0;
 
@@ -338,6 +338,8 @@ public class ProjectUtility
 
         foreach(var faciliy in facilitydatas)
         {
+            if(!faciliy.IsOpen) continue;
+
             var td = Tables.Instance.GetTable<FacilityInfo>().GetData(faciliy.FacilityIdx);
 
             if(td != null)

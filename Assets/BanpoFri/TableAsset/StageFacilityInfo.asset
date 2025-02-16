@@ -97,41 +97,41 @@ MonoBehaviour:
     _open_cost: 30
   - _stageidx: 2
     _openorder: 11
-    _facilityidx: 3
-    _open_cost: 20
-  - _stageidx: 2
-    _openorder: 12
     _facilityidx: 103
     _open_cost: 15
   - _stageidx: 2
+    _openorder: 12
+    _facilityidx: 3
+    _open_cost: 20
+  - _stageidx: 2
     _openorder: 13
-    _facilityidx: 1003
-    _open_cost: 200
+    _facilityidx: 7
+    _open_cost: 10000
   - _stageidx: 2
     _openorder: 14
-    _facilityidx: 4
-    _open_cost: 100
+    _facilityidx: 1003
+    _open_cost: 50000
   - _stageidx: 2
     _openorder: 15
-    _facilityidx: 104
-    _open_cost: 500
+    _facilityidx: 4
+    _open_cost: 60000
   - _stageidx: 2
     _openorder: 16
-    _facilityidx: 1004
-    _open_cost: 900
+    _facilityidx: 104
+    _open_cost: 80000
   - _stageidx: 2
     _openorder: 17
-    _facilityidx: 1005
-    _open_cost: 1000
+    _facilityidx: 8
+    _open_cost: 60000
   - _stageidx: 2
     _openorder: 18
-    _facilityidx: 7
-    _open_cost: 200
+    _facilityidx: 1004
+    _open_cost: 100000
   - _stageidx: 2
     _openorder: 19
-    _facilityidx: 8
-    _open_cost: 100
+    _facilityidx: 9
+    _open_cost: 150000
   - _stageidx: 2
     _openorder: 20
-    _facilityidx: 9
-    _open_cost: 500
+    _facilityidx: 1005
+    _open_cost: 200000

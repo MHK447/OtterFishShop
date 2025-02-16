@@ -93,25 +93,25 @@ MonoBehaviour:
     _facilityidx: 3
   - _stageidx: 2
     _openorder: 3
-    _facilityidx: 4
-  - _stageidx: 2
-    _openorder: 4
-    _facilityidx: 104
-  - _stageidx: 2
-    _openorder: 5
-    _facilityidx: 1003
-  - _stageidx: 2
-    _openorder: 6
-    _facilityidx: 1004
-  - _stageidx: 2
-    _openorder: 7
-    _facilityidx: 1005
-  - _stageidx: 2
-    _openorder: 8
     _facilityidx: 7
   - _stageidx: 2
-    _openorder: 9
+    _openorder: 4
+    _facilityidx: 1003
+  - _stageidx: 2
+    _openorder: 5
+    _facilityidx: 4
+  - _stageidx: 2
+    _openorder: 6
+    _facilityidx: 104
+  - _stageidx: 2
+    _openorder: 7
     _facilityidx: 8
   - _stageidx: 2
-    _openorder: 10
+    _openorder: 8
+    _facilityidx: 1004
+  - _stageidx: 2
+    _openorder: 9
     _facilityidx: 9
+  - _stageidx: 2
+    _openorder: 10
+    _facilityidx: 1005

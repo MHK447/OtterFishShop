@@ -36,7 +36,7 @@ public class ContentsOpenComponent : MonoBehaviour
 
     private OtterBase Player = null;
 
-    public void Set(FacilityData facilitydata , System.Action openaction)
+    public void Set(FacilityData facilitydata, System.Action openaction)
     {
         int curstageidx = GameRoot.Instance.UserData.CurMode.StageData.StageIdx;
 
@@ -69,15 +69,18 @@ public class ContentsOpenComponent : MonoBehaviour
 
         FacilitySprite.sprite = Config.Instance.GetIngameImg(faccilitytd.image);
 
-        openorder.SkipLatestValueOnSubscribe().Subscribe(x => {
+        openorder.SkipLatestValueOnSubscribe().Subscribe(x =>
+        {
             if (NewFacilityUI != null)
             {
                 if (!FacilityData.IsOpen && FacilityOpenOrder == openorder.Value)
                 {
-                    GameRoot.Instance.WaitTimeAndCallback(1f, () => {
+                    GameRoot.Instance.WaitTimeAndCallback(1f, () =>
+                    {
                         GameRoot.Instance.InGameSystem.CurInGame.IngameCamera.FoucsPosition(NewFacilityUI.transform);
                     });
-                    GameRoot.Instance.WaitTimeAndCallback(3f, () => {
+                    GameRoot.Instance.WaitTimeAndCallback(3f, () =>
+                    {
                         GameRoot.Instance.InGameSystem.CurInGame.IngameCamera.FocusOff();
                     });
                 }
@@ -91,20 +94,20 @@ public class ContentsOpenComponent : MonoBehaviour
         }).AddTo(disposables);
 
 
-        
-                if (NewFacilityUI == null)
-                {
-                    GameRoot.Instance.UISystem.LoadFloatingUI<NewFacilityUI>((_newfacility) =>
-                    {
-                        NewFacilityUI = _newfacility;
 
-                        ProjectUtility.SetActiveCheck(NewFacilityUI.gameObject, !FacilityData.IsOpen
-                            && FacilityOpenOrder == openorder.Value);
+        if (NewFacilityUI == null)
+        {
+            GameRoot.Instance.UISystem.LoadFloatingUI<NewFacilityUI>((_newfacility) =>
+            {
+                NewFacilityUI = _newfacility;
 
-                        _newfacility.Init(NewRoot);
-                        _newfacility.SliderValue(FacilityData.MoneyCount, stagefacilitytd.open_cost);
-                    });
-                }
+                ProjectUtility.SetActiveCheck(NewFacilityUI.gameObject, !FacilityData.IsOpen
+                    && FacilityOpenOrder == openorder.Value);
+
+                _newfacility.Init(NewRoot);
+                _newfacility.SliderValue(FacilityData.MoneyCount, stagefacilitytd.open_cost);
+            });
+        }
     }
 
     public virtual void OnTriggerEnter2D(Collider2D collision)
@@ -153,12 +156,16 @@ public class ContentsOpenComponent : MonoBehaviour
 
                     MoneySpeedCount += 1;
 
+                    if (MoneySpeedCount >= 1000)
+                        MoneySpeedCount *= MoneySpeedCount;
+
                     FacilityOpenSpeed -= 0.02f;
 
                     GameRoot.Instance.EffectSystem.MultiPlay<MoneyEffect>(Player.transform.position, effect =>
                     {
                         effect.SetAutoRemove(true, 1f);
-                        effect.Init(MoneyRootTr, () => {
+                        effect.Init(MoneyRootTr, () =>
+                        {
                             ProjectUtility.SetActiveCheck(effect.gameObject, false);
 
                         });

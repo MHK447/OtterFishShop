@@ -155,6 +155,8 @@ public class SoundPlayer : SingletonScriptableObject<SoundPlayer>, ILoader
 
         foreach (var source in cachedSources)
         {
+            if(source == null) continue;
+
             if (!source.isPlaying)
             {
                 audio = source;

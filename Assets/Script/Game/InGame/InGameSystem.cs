@@ -92,7 +92,7 @@ public class InGameSystem
 
 
         GameRoot.Instance.UserData.CurMode.StageData.SetStageIdx(curidx + 1);
-
+    
         SoundPlayer.Instance.Load();
         GameRoot.Instance.FacilitySystem.Create();
         GameRoot.Instance.InGameSystem.Create();
@@ -167,6 +167,7 @@ public class InGameSystem
         if (diff.TotalSeconds > minRewardTime && time != DateTime.MinValue)
         {
             int rewardTime = (int)diff.TotalSeconds;
+            
             if ((int)diff.TotalSeconds >= maxRewardTime)
             {
                 rewardTime = maxRewardTime;

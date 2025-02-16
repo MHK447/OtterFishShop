@@ -285,7 +285,7 @@ public class GameRoot : Singleton<GameRoot>
 			if (dataState != DataState.None)
 			{
 				UserData.ChangeDataMode(dataState);
-                GameRoot.Instance.UserData.CurMode.LastLoginTime = TimeSystem.GetCurTime();
+				GameRoot.Instance.UserData.CurMode.LastLoginTime = TimeSystem.GetCurTime();
 			}
 		}
 	}
@@ -351,9 +351,9 @@ public class GameRoot : Singleton<GameRoot>
 		StartCoroutine(waitFrameAndCallback(frame, callback));
 	}
 
-	public Vector3 GetRewardEndPos(int rewardType, int rewardIdx , UIBase ui)
+	public Vector3 GetRewardEndPos(int rewardType, int rewardIdx, UIBase ui)
 	{
-		return ui.GetCurrencyImgTr(rewardType , rewardIdx).position;
+		return ui.GetCurrencyImgTr(rewardType, rewardIdx).position;
 	}
 
 
@@ -388,7 +388,7 @@ public class GameRoot : Singleton<GameRoot>
 
 
 
-			System.Action NextAction = () => 
+			System.Action NextAction = () =>
 			{
 				if (PauseActions.Count < 1)
 					return;
@@ -451,6 +451,7 @@ public class GameRoot : Singleton<GameRoot>
 
 					}
 				});
+
 			}
 			NextAction.Invoke();
 
