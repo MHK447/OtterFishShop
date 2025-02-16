@@ -16,23 +16,28 @@ public class UI_AmountBubble : InGameFloatingUI
     [SerializeField]
     private Image SliderValue;
 
-    public void Set(int facilityidx)
+    public void Set(int fishidx)
     {
-        var td = Tables.Instance.GetTable<FacilityInfo>().GetData(facilityidx);
+        var td = Tables.Instance.GetTable<FishInfo>().GetData(fishidx);
 
-        if(td != null)
+        if (td != null)
         {
-            var facilitydata = GameRoot.Instance.UserData.CurMode.StageData.FindFacilityData(facilityidx);
+            var facilitydata = GameRoot.Instance.UserData.CurMode.StageData.FindFacilityData(td.fish_facility_idx);
 
-            int capacitycount = facilitydata == null ? 0 : facilitydata.CapacityCountProperty.Value;
+            var facilitytd = Tables.Instance.GetTable<FacilityInfo>().GetData(td.fish_facility_idx);
 
-            FacilityIconImg.sprite = Config.Instance.GetIngameImg(td.image);
-            AmountCountText.text = $"{capacitycount}/{td.start_capacity}";
+            if (facilitytd != null)
+            {
+                int capacitycount = facilitydata == null ? 0 : facilitydata.CapacityCountProperty.Value;
+
+                FacilityIconImg.sprite = Config.Instance.GetIngameImg(td.icon);
+                AmountCountText.text = $"{capacitycount}/{facilitytd.start_capacity}";
+            }
         }
     }
 
 
-    public void SetValue(int count , int curmaxcapacity)
+    public void SetValue(int count, int curmaxcapacity)
     {
         AmountCountText.text = $"{count}/{curmaxcapacity}";
         //ProjectUtility.SetActiveCheck(this.gameObject, count > 0);

@@ -19899,6 +19899,10 @@ PrefabInstance:
       value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 6243461982723325587, guid: ef347e2cec179a84095225182ca827cc, type: 3}
+      propertyPath: FacilityTypeIdx
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6243461982723325587, guid: ef347e2cec179a84095225182ca827cc, type: 3}
       propertyPath: TargetCookedRack
       value: 
       objectReference: {fileID: 4785653887162207672}
@@ -20009,6 +20013,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8470211673211466888, guid: 01c7c292b82434d81a61383517486809, type: 3}
       propertyPath: FacilityIdx
+      value: 102
+      objectReference: {fileID: 0}
+    - target: {fileID: 8470211673211466888, guid: 01c7c292b82434d81a61383517486809, type: 3}
+      propertyPath: FacilityTypeIdx
       value: 102
       objectReference: {fileID: 0}
     - target: {fileID: 9125262459828048657, guid: 01c7c292b82434d81a61383517486809, type: 3}
@@ -20235,6 +20243,14 @@ PrefabInstance:
       objectReference: {fileID: 1763350704162981561}
     - target: {fileID: 7908702412931155243, guid: 383dd65f4e87ba4428e9f453bf97a7bf, type: 3}
       propertyPath: FacilityIdx
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7908702412931155243, guid: 383dd65f4e87ba4428e9f453bf97a7bf, type: 3}
+      propertyPath: FishTypeIdx
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7908702412931155243, guid: 383dd65f4e87ba4428e9f453bf97a7bf, type: 3}
+      propertyPath: FacilityTypeIdx
       value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 7908702412931155243, guid: 383dd65f4e87ba4428e9f453bf97a7bf, type: 3}
@@ -20594,6 +20610,14 @@ PrefabInstance:
     - target: {fileID: 5050118306871657271, guid: 383dd65f4e87ba4428e9f453bf97a7bf, type: 3}
       propertyPath: m_Name
       value: Rack_001
+      objectReference: {fileID: 0}
+    - target: {fileID: 7908702412931155243, guid: 383dd65f4e87ba4428e9f453bf97a7bf, type: 3}
+      propertyPath: FishTypeIdx
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7908702412931155243, guid: 383dd65f4e87ba4428e9f453bf97a7bf, type: 3}
+      propertyPath: FacilityTypeIdx
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -20984,6 +21008,10 @@ PrefabInstance:
       objectReference: {fileID: 2721208345203042146}
     - target: {fileID: 7908702412931155243, guid: 383dd65f4e87ba4428e9f453bf97a7bf, type: 3}
       propertyPath: FacilityIdx
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7908702412931155243, guid: 383dd65f4e87ba4428e9f453bf97a7bf, type: 3}
+      propertyPath: FacilityTypeIdx
       value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 7908702412931155243, guid: 383dd65f4e87ba4428e9f453bf97a7bf, type: 3}
@@ -21410,6 +21438,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8470211673211466888, guid: 01c7c292b82434d81a61383517486809, type: 3}
+      propertyPath: FacilityTypeIdx
+      value: 101
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -21792,6 +21824,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1907082219269528963, guid: bd58ca183e1584cf08acf75b4a815ee4, type: 3}
+      propertyPath: FacilityTypeIdx
+      value: 1002
+      objectReference: {fileID: 0}
+    - target: {fileID: 1907082219269528963, guid: bd58ca183e1584cf08acf75b4a815ee4, type: 3}
       propertyPath: TargetCookedRack
       value: 
       objectReference: {fileID: 9210156281521990755}
@@ -22053,6 +22089,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7908702412931155243, guid: 383dd65f4e87ba4428e9f453bf97a7bf, type: 3}
       propertyPath: FacilityIdx
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7908702412931155243, guid: 383dd65f4e87ba4428e9f453bf97a7bf, type: 3}
+      propertyPath: FishTypeIdx
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7908702412931155243, guid: 383dd65f4e87ba4428e9f453bf97a7bf, type: 3}
+      propertyPath: FacilityTypeIdx
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7908702412931155243, guid: 383dd65f4e87ba4428e9f453bf97a7bf, type: 3}

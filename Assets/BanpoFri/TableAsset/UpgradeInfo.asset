@@ -38,6 +38,7 @@ MonoBehaviour:
   - 2
   - 2
   - 2
+  - 2
   mSecondKey:
   - 1
   - 2
@@ -64,6 +65,7 @@ MonoBehaviour:
   - 9
   - 10
   - 11
+  - 12
   mDataList:
   - _stageidx: 1
     _upgrade_idx: 1
@@ -199,7 +201,7 @@ MonoBehaviour:
     _value2: 103
     _icon: Common_Icon_Upgrade_Casher_Add_03
     _desc: casher_add_02_desc
-    _name: casher_add_09_name
+    _name: casher_add_11_name
   - _stageidx: 2
     _upgrade_idx: 2
     _upgrade_type: 1
@@ -226,7 +228,7 @@ MonoBehaviour:
     _value2: 104
     _icon: Common_Icon_Upgrade_Casher_Add_02
     _desc: casher_add_02_desc
-    _name: casher_add_09_name
+    _name: casher_add_12_name
   - _stageidx: 2
     _upgrade_idx: 5
     _upgrade_type: 2
@@ -267,13 +269,22 @@ MonoBehaviour:
     _upgrade_idx: 9
     _upgrade_type: 6
     _cost: 100
-    _value: 1
+    _value: 3
     _value2: 1
-    _icon: Common_Icon_Upgrade_Food_Load_01
+    _icon: Common_Icon_Upgrade_Food_Load_05
     _desc: food_load_01_desc
-    _name: food_load_01_name
+    _name: food_load_03_name
   - _stageidx: 2
     _upgrade_idx: 10
+    _upgrade_type: 6
+    _cost: 100
+    _value: 4
+    _value2: 1
+    _icon: Common_Icon_Upgrade_Food_Load_06
+    _desc: food_load_01_desc
+    _name: food_load_04_name
+  - _stageidx: 2
+    _upgrade_idx: 11
     _upgrade_type: 7
     _cost: 100
     _value: 10
@@ -282,7 +293,7 @@ MonoBehaviour:
     _desc: cooktool_speedup_01_desc
     _name: cooktool_speedup_01_name
   - _stageidx: 2
-    _upgrade_idx: 11
+    _upgrade_idx: 12
     _upgrade_type: 8
     _cost: 100
     _value: 1

@@ -22,7 +22,7 @@ public class FacilityComponent : MonoBehaviour
 
     public int ConsumerOrder = 0;
 
-    public int FacilityIdx = 0;
+    public Config.FacilityTypeIdx FacilityTypeIdx = Config.FacilityTypeIdx.None;
 
     protected int CapacityMaxCount = 0;
 
@@ -45,20 +45,20 @@ public class FacilityComponent : MonoBehaviour
 
         Player = GameRoot.Instance.InGameSystem.GetInGame<InGameTycoon>().GetPlayer;
 
-        FacilityData = GameRoot.Instance.UserData.CurMode.StageData.FindFacilityData(FacilityIdx);
+        FacilityData = GameRoot.Instance.UserData.CurMode.StageData.FindFacilityData((int)FacilityTypeIdx);
 
         var stageidx = GameRoot.Instance.UserData.CurMode.StageData.StageIdx;
 
-        var facilitytd = Tables.Instance.GetTable<FacilityInfo>().GetData(FacilityIdx);
+        var facilitytd = Tables.Instance.GetTable<FacilityInfo>().GetData((int)FacilityTypeIdx);
 
         BaseCapacity = facilitytd.start_capacity;
 
-        var stagefacilitytd = Tables.Instance.GetTable<StageFacilityInfo>().DataList.Where(x => x.facilityidx == FacilityIdx
+        var stagefacilitytd = Tables.Instance.GetTable<StageFacilityInfo>().DataList.Where(x => x.facilityidx == (int)FacilityTypeIdx
         && x.stageidx == stageidx).FirstOrDefault();
 
         if (stagefacilitytd == null) return;
 
-        var buffvalue = GameRoot.Instance.UpgradeSystem.GetUpgradeValue(UpgradeSystem.UpgradeType.ShelfCapacityUp, FacilityIdx);
+        var buffvalue = GameRoot.Instance.UpgradeSystem.GetUpgradeValue(UpgradeSystem.UpgradeType.ShelfCapacityUp,(int)FacilityTypeIdx);
 
         CapacityMaxCount = BaseCapacity + (int)buffvalue;
 
@@ -120,7 +120,7 @@ public class FacilityComponent : MonoBehaviour
 
         if (stageinfotd != null) 
         {
-            if (stageinfotd.consumerfirst_idx == FacilityIdx)
+            if (stageinfotd.consumerfirst_idx == (int)FacilityTypeIdx)
             {
                 var upgradevalue = GameRoot.Instance.UpgradeSystem.GetUpgradeValue(UpgradeSystem.UpgradeType.AddCustomer);
 

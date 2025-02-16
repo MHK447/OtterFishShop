@@ -64,7 +64,7 @@ public class CookedMaterialComponent : MonoBehaviour
 
         MaterialTextCountUI.SetValue(FishComponentList.Count, MaxCount);
 
-        ProjectUtility.SetActiveCheck(MaterialTextCountUI.gameObject, FishComponentList.Count > 0);
+        //ProjectUtility.SetActiveCheck(MaterialTextCountUI.gameObject, FishComponentList.Count > 0);
 
         if (FishComponentList.Count > 0)
             MaterialTextCountUI.Init(FishTrList[FishComponentList.Count - 1]);
@@ -82,7 +82,7 @@ public class CookedMaterialComponent : MonoBehaviour
 
         MaterialTextCountUI.SetValue(FishComponentList.Count, MaxCount);
 
-        ProjectUtility.SetActiveCheck(MaterialTextCountUI.gameObject, FishComponentList.Count > 0);
+        // ProjectUtility.SetActiveCheck(MaterialTextCountUI.gameObject, FishComponentList.Count > 0);
 
         if (FishComponentList.Count > 0)
             MaterialTextCountUI.Init(FishTrList[FishComponentList.Count - 1]);

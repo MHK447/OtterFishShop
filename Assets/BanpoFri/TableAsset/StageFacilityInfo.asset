@@ -30,6 +30,9 @@ MonoBehaviour:
   - 2
   - 2
   - 2
+  - 2
+  - 2
+  - 2
   mSecondKey:
   - 1
   - 2
@@ -48,6 +51,9 @@ MonoBehaviour:
   - 15
   - 16
   - 17
+  - 18
+  - 19
+  - 20
   mDataList:
   - _stageidx: 1
     _openorder: 1
@@ -117,3 +123,15 @@ MonoBehaviour:
     _openorder: 17
     _facilityidx: 1005
     _open_cost: 1000
+  - _stageidx: 2
+    _openorder: 18
+    _facilityidx: 7
+    _open_cost: 200
+  - _stageidx: 2
+    _openorder: 19
+    _facilityidx: 8
+    _open_cost: 100
+  - _stageidx: 2
+    _openorder: 20
+    _facilityidx: 9
+    _open_cost: 500

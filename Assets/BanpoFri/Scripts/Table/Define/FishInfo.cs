@@ -27,6 +27,13 @@ namespace BanpoFri
 			get { return _base_revenue;}
 			set { _base_revenue = value;}
 		}
+		[SerializeField]
+		private int _fish_facility_idx;
+		public int fish_facility_idx
+		{
+			get { return _fish_facility_idx;}
+			set { _fish_facility_idx = value;}
+		}
 
     }
 

@@ -202,7 +202,7 @@ MonoBehaviour:
   ConsumerWaitTr: []
   ContentsOpenComponent: {fileID: 5085771311010997949}
   ConsumerOrder: 0
-  FacilityIdx: 1001
+  FacilityTypeIdx: 0
   ProgressTr: {fileID: 6113356584594750134}
   FixObj: {fileID: 2733633912937169432}
   FoodTrList:
@@ -870,7 +870,7 @@ SortingGroup:
   m_Enabled: 1
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 80
   m_SortAtRoot: 0
 --- !u!1 &2372311403671698869
 GameObject:
@@ -1827,7 +1827,7 @@ SortingGroup:
   m_Enabled: 1
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 10
+  m_SortingOrder: 80
   m_SortAtRoot: 0
 --- !u!1 &8715104662961478035
 GameObject:

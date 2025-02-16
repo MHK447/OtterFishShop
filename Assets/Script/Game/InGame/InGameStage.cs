@@ -307,7 +307,7 @@ public class InGameStage : MonoBehaviour
 
     public Transform GetFacilityConsumeTr(int facilityidx)
     {
-        var finddata = FacilityList.Find(x => x.FacilityIdx == facilityidx);
+        var finddata = FacilityList.Find(x => (int)x.FacilityTypeIdx == (int)facilityidx);
 
         if (finddata != null)
         {
@@ -319,7 +319,7 @@ public class InGameStage : MonoBehaviour
 
     public FacilityComponent GetOpenConsumerFacility()
     {
-        var finddatalist = FacilityList.FindAll(x => x.FacilityIdx > 0 && x.FacilityIdx < 100 && x.IsOpenFacility());
+        var finddatalist = FacilityList.FindAll(x => (int)x.FacilityTypeIdx > 0 && (int)x.FacilityTypeIdx < 100 && x.IsOpenFacility());
 
         if (finddatalist.Count == 0) return null;
 
@@ -332,7 +332,7 @@ public class InGameStage : MonoBehaviour
 
     public FacilityComponent FindFacility(int facilityidx)
     {
-        var finddata = FacilityList.Find(x => x.FacilityIdx == facilityidx);
+        var finddata = FacilityList.Find(x => (int)x.FacilityTypeIdx == facilityidx);
 
         if (finddata != null)
         {

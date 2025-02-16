@@ -23,12 +23,16 @@ MonoBehaviour:
   - casher_stack_01_desc
   - casher_add_08_name
   - casher_add_09_name
+  - casher_add_11_name
+  - casher_add_12_name
   - casher_speedup_01_name
   - consumer_add_01_name
   - player_speedup_01_name
   - player_stack_01_name
   - food_load_01_name
   - food_load_02_name
+  - food_load_03_name
+  - food_load_04_name
   - cooktool_speedup_01_name
   - cooktool_speedup_02_name
   - casher_stack_01_name
@@ -86,6 +90,14 @@ MonoBehaviour:
     _ko: "\uACE0\uB4F1\uC5B4 \uB09A\uC2DC \uC9C1\uC6D0"
     _en: 
     _ja: 
+  - _idx: casher_add_11_name
+    _ko: "\uC5F4\uB300\uC5B4 \uB09A\uC2DC \uC9C1\uC6D0"
+    _en: 
+    _ja: 
+  - _idx: casher_add_12_name
+    _ko: "\uAF43\uAC8C \uB09A\uC2DC \uC9C1\uC6D0"
+    _en: 
+    _ja: 
   - _idx: casher_speedup_01_name
     _ko: "\uC9C1\uC6D0 \uC774\uB3D9\uC18D\uB3C4"
     _en: 
@@ -108,6 +120,14 @@ MonoBehaviour:
     _ja: 
   - _idx: food_load_02_name
     _ko: "\uACE0\uB4F1\uC5B4 \uC9C4\uC5F4\uC218\uB7C9"
+    _en: 
+    _ja: 
+  - _idx: food_load_03_name
+    _ko: "\uC5F4\uB300\uC5B4 \uC9C4\uC5F4\uC218\uB7C9"
+    _en: 
+    _ja: 
+  - _idx: food_load_04_name
+    _ko: "\uD06C\uB7A9 \uC9C4\uC5F4\uC218\uB7C9 "
     _en: 
     _ja: 
   - _idx: cooktool_speedup_01_name

@@ -31,7 +31,7 @@ public class FishRoomComponent : FacilityComponent
         ProjectUtility.SetActiveCheck(CushionComponent.gameObject, false);
         ProjectUtility.SetActiveCheck(BucketComponent.gameObject, false);
 
-        var finddata = GameRoot.Instance.UserData.CurMode.StageData.FindFacilityData(FacilityIdx);
+        var finddata = GameRoot.Instance.UserData.CurMode.StageData.FindFacilityData((int)FacilityTypeIdx);
 
         if (finddata != null)
         {

@@ -76,12 +76,14 @@ public class PopupOfflineReward : UIBase
     {
         GameRoot.Instance.UserData.SetReward((int)Config.RewardType.Currency, (int)Config.CurrencyID.Money, RewardValue *
         GameRoot.Instance.InGameSystem.offline_reward_multiple);
+        GameRoot.Instance.UserData.CurMode.LastLoginTime = TimeSystem.GetCurTime();
         Hide();
     }
 
     public void OnClickReward()
     {
         GameRoot.Instance.UserData.SetReward((int)Config.RewardType.Currency, (int)Config.CurrencyID.Money, RewardValue);
+        GameRoot.Instance.UserData.CurMode.LastLoginTime = TimeSystem.GetCurTime();
         Hide();
     }
 }

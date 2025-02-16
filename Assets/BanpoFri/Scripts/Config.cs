@@ -80,6 +80,46 @@ public class Config : BanpoFri.SingletonScriptableObject<Config>, BanpoFri.ILoad
         Currency = 1,
     }
 
+  public enum FacilityTypeIdx
+{
+    None,
+    
+    RedSnapperDisplay = 1,      // 붉은열기 진열대 1
+    MackerelDisplay = 2,        // 고등어 진열대 2
+    TropicalFishDisplay = 3,    // 열대어 진열대 3
+    CrabDisplay = 4,            // 꽃게 진열대 4
+    GrilledRedSnapperDisplay = 5, // 붉은열기 구이 진열대 5
+    SnapperRamenDisplay = 6,    // 열기 라면 진열대 6
+    TropicalFishCurryDisplay = 7, // 열대어 카레 진열대 7
+    GrilledCrabDisplay = 8,     // 크랩 구이 진열대 8
+    CrabCurryDisplay = 9,       // 크랩 카레 진열대 9
+    CheckoutCounter = 1000,       // 계산대 10
+
+    RedSnapperFishing = 101,     // 붉은열기 낚시시설 11
+    MackerelFishing = 102,       // 고등어 낚시시설 12
+    TropicalFishFishing = 103,   // 열대어 낚시시설 13
+    CrabFishing = 104,           // 꽃게 낚시시설 14
+
+    RedSnapperCooking = 1001,     // 붉은열기 요리 시설 15
+    SnapperRamenCooking = 1002,   // 열기 라면 요리 시설 16
+    TropicalFishCurryCooking = 1003, // 열대어 카레 요리 시설 17
+    GrilledCrabCooking = 1004,    // 크랩 구이 요리 시설 18
+    CrabCurryCooking = 1005       // 크랩 카레 요리 시설 19
+}
+
+public enum FoodType
+{
+    None = -1,
+    RedSnapper = 1,            // 붉은열기 1
+    Mackerel = 2,              // 고등어 2
+    GrilledRedSnapper = 3,     // 붉은열기 구이 3
+    MackerelSnapperRamen = 4,  // 고등어 열기 라면 4
+    TropicalFish = 5,          // 열대어 5
+    Crab = 6,                  // 크랩 6
+    TropicalFishCurry = 7,     // 열대어 카레 7
+    GrilledCrab = 8,           // 크랩 구이 8
+    GrilledCrabCurry = 9       // 크랩 카레 구이 9
+}
 
     public enum ManagerGrade
     {
@@ -111,13 +151,17 @@ public class Config : BanpoFri.SingletonScriptableObject<Config>, BanpoFri.ILoad
     [SerializeField]
     private List<ColorDefine> _eventTextColorDefines = new List<ColorDefine>();
     private Dictionary<string, Color> _textColorDefinesDic = new Dictionary<string, Color>();
-    public List<ColorDefine> TextColorDefines {
-        get {
+    public List<ColorDefine> TextColorDefines
+    {
+        get
+        {
             return _textColorDefines;
         }
     }
-    public List<ColorDefine> EventTextColorDefines {
-        get {
+    public List<ColorDefine> EventTextColorDefines
+    {
+        get
+        {
             return _eventTextColorDefines;
         }
     }
@@ -129,13 +173,17 @@ public class Config : BanpoFri.SingletonScriptableObject<Config>, BanpoFri.ILoad
     [SerializeField]
     private List<ColorDefine> _eventImgaeColorDefines = new List<ColorDefine>();
     private Dictionary<string, Color> _imageColorDefinesDic = new Dictionary<string, Color>();
-    public List<ColorDefine> ImageColorDefines {
-        get {
+    public List<ColorDefine> ImageColorDefines
+    {
+        get
+        {
             return _imageColorDefines;
         }
     }
-    public List<ColorDefine> EventImageColorDefines {
-        get {
+    public List<ColorDefine> EventImageColorDefines
+    {
+        get
+        {
             return _eventImgaeColorDefines;
         }
     }
@@ -213,7 +261,7 @@ public class Config : BanpoFri.SingletonScriptableObject<Config>, BanpoFri.ILoad
 
     public Color GetUnitGradeColor(int grade)
     {
-        switch(grade)
+        switch (grade)
         {
             case 1:
                 return GetImageColor("Unit_Grade_1");
@@ -230,20 +278,20 @@ public class Config : BanpoFri.SingletonScriptableObject<Config>, BanpoFri.ILoad
     public void Load()
     {
         _textColorDefinesDic.Clear();
-        foreach(var cd in _textColorDefines)
+        foreach (var cd in _textColorDefines)
         {
             _textColorDefinesDic.Add(cd.key_string, cd.color);
         }
-        foreach(var cd in _eventTextColorDefines)
+        foreach (var cd in _eventTextColorDefines)
         {
             _textColorDefinesDic.Add(cd.key_string, cd.color);
         }
         _imageColorDefinesDic.Clear();
-        foreach(var cd in _imageColorDefines)
+        foreach (var cd in _imageColorDefines)
         {
             _imageColorDefinesDic.Add(cd.key_string, cd.color);
         }
-        foreach(var cd in _eventImgaeColorDefines)
+        foreach (var cd in _eventImgaeColorDefines)
         {
             _imageColorDefinesDic.Add(cd.key_string, cd.color);
         }

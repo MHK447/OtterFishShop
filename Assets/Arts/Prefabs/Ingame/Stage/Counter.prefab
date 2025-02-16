@@ -209,7 +209,7 @@ MonoBehaviour:
   - {fileID: 6617395132001321153}
   ContentsOpenComponent: {fileID: 655831314322586134}
   ConsumerOrder: 0
-  FacilityIdx: 1000
+  FacilityTypeIdx: 1000
 --- !u!1 &2019625828283310940
 GameObject:
   m_ObjectHideFlags: 0

@@ -89,7 +89,7 @@ public class CookedComponent : FacilityComponent
         ColAction.TriggerEnterEvent = OnTriggerEnter2D;
         ColAction.TriggerExitEvent = OnTriggerExit2D;
 
-        var td = Tables.Instance.GetTable<CookingInfo>().GetData(FacilityIdx);
+        var td = Tables.Instance.GetTable<CookingInfo>().GetData((int)FacilityTypeIdx);
 
         ProjectUtility.SetActiveCheck(FixObj, false);
 
@@ -157,11 +157,11 @@ public class CookedComponent : FacilityComponent
 
     public void SetCookedSpeed()
     {
-        var td = Tables.Instance.GetTable<CookingInfo>().GetData(FacilityIdx);
+        var td = Tables.Instance.GetTable<CookingInfo>().GetData((int)FacilityTypeIdx);
 
         if (td != null)
         {
-            var upgradevalue = GameRoot.Instance.UpgradeSystem.GetUpgradeValue(UpgradeSystem.UpgradeType.ShelfCapacityUp, FacilityIdx);
+            var upgradevalue = GameRoot.Instance.UpgradeSystem.GetUpgradeValue(UpgradeSystem.UpgradeType.ShelfCapacityUp, (int)FacilityTypeIdx);
             var basevalue = (float)td.cooking_cooltime / 100f;
             float buffvalue = 0f;
 

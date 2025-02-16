@@ -13,7 +13,7 @@ public class RackComponent : FacilityComponent
     public List<FishComponent> GetFishComponentList { get { return FishComponentList.ToList(); } }
 
     [SerializeField]
-    private int FishIdx = 0;
+    private Config.FoodType FishTypeIdx = Config.FoodType.None;
 
     [SerializeField]
     private List<Transform> FishTrList = new List<Transform>();
@@ -37,16 +37,18 @@ public class RackComponent : FacilityComponent
 
         TargetOtterList.Clear();
 
-        FacilityData = GameRoot.Instance.UserData.CurMode.StageData.FindFacilityData(FacilityIdx);
+        FacilityData = GameRoot.Instance.UserData.CurMode.StageData.FindFacilityData((int)FacilityTypeIdx);
 
         FacilityData.CapacityCountProperty.Value = 0;
+
+        var facilitytd = Tables.Instance.GetTable<FacilityInfo>().GetData(FacilityData.FacilityIdx);
 
         GameRoot.Instance.UISystem.LoadFloatingUI<UI_AmountBubble>((_progress) => {
             AmountUI = _progress;
             ProjectUtility.SetActiveCheck(AmountUI.gameObject, FacilityData.IsOpen);
             //ProjectUtility.SetActiveCheck(AmountUI.gameObject, FacilityData.CapacityCountProperty.Value > 0);
             AmountUI.Init(AmountUITr);
-            AmountUI.Set(FacilityData.FacilityIdx);
+            AmountUI.Set(facilitytd.fish_idx);
             AmountUI.SetValue(FacilityData.CapacityCountProperty.Value,CapacityMaxCount);
         });
 
@@ -78,9 +80,9 @@ public class RackComponent : FacilityComponent
 
                     var upgradetd = Tables.Instance.GetTable<UpgradeInfo>().GetData(new KeyValuePair<int, int>(stageidx, donebuy.UpgradeIdx));
 
-                    if (upgradetd != null && upgradetd.value2 == FacilityIdx)
+                    if (upgradetd != null && upgradetd.value2 == (int)FacilityTypeIdx)
                     {
-                        var buffvalue = GameRoot.Instance.UpgradeSystem.GetUpgradeValue(UpgradeSystem.UpgradeType.ShelfCapacityUp, FacilityIdx);
+                        var buffvalue = GameRoot.Instance.UpgradeSystem.GetUpgradeValue(UpgradeSystem.UpgradeType.ShelfCapacityUp, (int)FacilityTypeIdx);
 
                         CapacityMaxCount = BaseCapacity + (int)buffvalue;
 
@@ -211,7 +213,7 @@ public class RackComponent : FacilityComponent
 
                         var findfish = TargetOtterList[i].GetFishComponentList.Last();
 
-                        if (findfish != null && findfish.GetFishIdx == FishIdx)
+                        if (findfish != null && findfish.GetFishIdx == (int)FishTypeIdx)
                         {
                             TargetOtterList[i].RemoveFish(findfish);
 

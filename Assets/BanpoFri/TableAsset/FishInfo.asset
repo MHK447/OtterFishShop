@@ -27,27 +27,36 @@ MonoBehaviour:
   - _idx: 1
     _icon: Ingame_Food_001
     _base_revenue: 5
+    _fish_facility_idx: 1
   - _idx: 2
     _icon: Ingame_Food_002
     _base_revenue: 20
+    _fish_facility_idx: 2
   - _idx: 3
     _icon: Ingame_Food_003
     _base_revenue: 20
+    _fish_facility_idx: 1001
   - _idx: 4
     _icon: Ingame_Food_004
     _base_revenue: 20
+    _fish_facility_idx: 1002
   - _idx: 5
     _icon: Ingame_Food_005
     _base_revenue: 40
+    _fish_facility_idx: 3
   - _idx: 6
     _icon: Ingame_Food_006
     _base_revenue: 60
+    _fish_facility_idx: 4
   - _idx: 7
     _icon: Ingame_Food_007
     _base_revenue: 100
+    _fish_facility_idx: 1003
   - _idx: 8
     _icon: Ingame_Food_008
     _base_revenue: 150
+    _fish_facility_idx: 1004
   - _idx: 9
     _icon: Ingame_Food_009
     _base_revenue: 200
+    _fish_facility_idx: 1005

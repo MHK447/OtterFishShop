@@ -341,7 +341,7 @@ public class Consumer : Chaser
             }
             else
             {
-                if(TargetRack.GetFishComponentList.Count > 0 && CurFacilityIdxProperty.Value == TargetRack.FacilityIdx)
+                if(TargetRack.GetFishComponentList.Count > 0 && CurFacilityIdxProperty.Value == (int)TargetRack.FacilityTypeIdx)
                 {
                     var target = TargetRack.GetFishComponentList.Last();
 
