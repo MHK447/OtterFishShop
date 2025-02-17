@@ -64,7 +64,7 @@ public class OtterBase : MonoBehaviour
 
     public bool IsCarry = false;
 
-    public int sortingOrderBase = 100; // 기본 정렬 순서
+    public int sortingOrderBase = 200; // 기본 정렬 순서
     public int offset = 100;
 
     private CooltimeProgress Progress;
@@ -89,8 +89,6 @@ public class OtterBase : MonoBehaviour
 
     private void Awake()
     {
-        sortingOrderBase = 100;
-
         Renderer = skeletonAnimation.GetComponent<Renderer>();
 
         lastYPosition = transform.position.y;
@@ -274,15 +272,15 @@ public class OtterBase : MonoBehaviour
         if (Mathf.Abs(transform.position.y - lastYPosition) > Mathf.Epsilon)
         {
             lastYPosition = transform.position.y;
-            UpdateSortingOrder();
+            //UpdateSortingOrder();
         }
     }
 
-    private void UpdateSortingOrder()
-    {
-        // Y축 값을 기반으로 Sorting Order 설정
-        Renderer.sortingOrder = sortingOrderBase - Mathf.RoundToInt(transform.position.y * 1);
-    }
+    // private void UpdateSortingOrder()
+    // {
+    //     // Y축 값을 기반으로 Sorting Order 설정
+    //     Renderer.sortingOrder = sortingOrderBase - Mathf.RoundToInt(transform.position.y * 1);
+    // }
 
     public void CarryStart(bool iscarry)
     {

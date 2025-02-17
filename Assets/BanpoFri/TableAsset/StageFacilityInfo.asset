@@ -106,32 +106,32 @@ MonoBehaviour:
   - _stageidx: 2
     _openorder: 13
     _facilityidx: 7
-    _open_cost: 10000
+    _open_cost: 2500
   - _stageidx: 2
     _openorder: 14
     _facilityidx: 1003
-    _open_cost: 50000
+    _open_cost: 5000
   - _stageidx: 2
     _openorder: 15
     _facilityidx: 4
-    _open_cost: 60000
+    _open_cost: 10000
   - _stageidx: 2
     _openorder: 16
     _facilityidx: 104
-    _open_cost: 80000
+    _open_cost: 15000
   - _stageidx: 2
     _openorder: 17
     _facilityidx: 8
-    _open_cost: 60000
+    _open_cost: 50000
   - _stageidx: 2
     _openorder: 18
     _facilityidx: 1004
-    _open_cost: 100000
+    _open_cost: 50000
   - _stageidx: 2
     _openorder: 19
     _facilityidx: 9
-    _open_cost: 150000
+    _open_cost: 100000
   - _stageidx: 2
     _openorder: 20
     _facilityidx: 1005
-    _open_cost: 200000
+    _open_cost: 110000

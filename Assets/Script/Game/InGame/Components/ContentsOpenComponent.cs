@@ -142,54 +142,56 @@ public class ContentsOpenComponent : MonoBehaviour
 
     private float moneydeltime = 0f;
 
-    public virtual void Update()
+   public virtual void Update()
+{
+    if (FacilityData != null && !FacilityData.IsOpen && OnEnter)
     {
-        if (FacilityData != null && !FacilityData.IsOpen && OnEnter)
+        if (GameRoot.Instance.UserData.CurMode.Money.Value > 0)
         {
-            if (GameRoot.Instance.UserData.CurMode.Money.Value > 0)
+            moneydeltime += Time.deltaTime;
+
+            if (moneydeltime >= FacilityOpenSpeed)
             {
-                moneydeltime += Time.deltaTime;
+                System.Numerics.BigInteger addmoneycount = 0;
 
-                if (moneydeltime >= FacilityOpenSpeed)
+                // 가중치 추가: MoneySpeedCount 증가
+                MoneySpeedCount += (int)(MoneySpeedCount * 0.5f) + 1;  // 10% 증가 + 최소 1 보장
+
+                // FacilityOpenSpeed 감소 (최소 값 제한)
+                FacilityOpenSpeed = Mathf.Max(0.1f, FacilityOpenSpeed - 0.02f);
+
+                GameRoot.Instance.EffectSystem.MultiPlay<MoneyEffect>(Player.transform.position, effect =>
                 {
-                    System.Numerics.BigInteger addmoneycount = 0;
-
-                    MoneySpeedCount += 1;
-
-                    if (MoneySpeedCount >= 1000)
-                        MoneySpeedCount *= MoneySpeedCount;
-
-                    FacilityOpenSpeed -= 0.02f;
-
-                    GameRoot.Instance.EffectSystem.MultiPlay<MoneyEffect>(Player.transform.position, effect =>
+                    effect.SetAutoRemove(true, 1f);
+                    effect.Init(MoneyRootTr, () =>
                     {
-                        effect.SetAutoRemove(true, 1f);
-                        effect.Init(MoneyRootTr, () =>
-                        {
-                            ProjectUtility.SetActiveCheck(effect.gameObject, false);
-
-                        });
+                        ProjectUtility.SetActiveCheck(effect.gameObject, false);
                     });
+                });
 
-                    moneydeltime = 0f;
+                moneydeltime = 0f;
 
-                    var remaincount = GoalCount - FacilityData.MoneyCount;
+                var remaincount = GoalCount - FacilityData.MoneyCount;
 
-                    addmoneycount = (MoneySpeedCount < remaincount) ? MoneySpeedCount : remaincount;
-                    addmoneycount = (addmoneycount < GameRoot.Instance.UserData.CurMode.Money.Value) ? addmoneycount : GameRoot.Instance.UserData.CurMode.Money.Value;
+                // 가중치 적용하여 addmoneycount 계산
+                addmoneycount = (MoneySpeedCount < remaincount) ? MoneySpeedCount : remaincount;
+                addmoneycount = (addmoneycount < GameRoot.Instance.UserData.CurMode.Money.Value) ? addmoneycount : GameRoot.Instance.UserData.CurMode.Money.Value;
 
-                    GameRoot.Instance.UserData.SetReward((int)Config.RewardType.Currency, (int)Config.CurrencyID.Money, -addmoneycount);
+                // 재화 차감 및 시설 자금 증가
+                GameRoot.Instance.UserData.SetReward((int)Config.RewardType.Currency, (int)Config.CurrencyID.Money, -addmoneycount);
+                FacilityData.MoneyCount += addmoneycount;
 
-                    FacilityData.MoneyCount += addmoneycount;
+                // UI 업데이트
+                NewFacilityUI.SliderValue(FacilityData.MoneyCount, GoalCount);
 
-                    NewFacilityUI.SliderValue(FacilityData.MoneyCount, GoalCount);
-
-                    if (FacilityData.MoneyCount >= GoalCount)
-                    {
-                        OpenFacility();
-                    }
+                // 목표 금액 도달 시 시설 개방
+                if (FacilityData.MoneyCount >= GoalCount)
+                {
+                    OpenFacility();
                 }
             }
         }
     }
+}
+
 }

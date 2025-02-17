@@ -186,7 +186,7 @@ public class GameNotificationSystem
 
                         if(td != null && td.max_ugprade_count <= fishupgrade.Level) continue;
 
-                        var getfindfacility = GameRoot.Instance.UserData.CurMode.StageData.FindFacilityData(td.facilityidx);
+                        var getfindfacility = GameRoot.Instance.UserData.CurMode.StageData.FindFishFacilityData(td.facilityidx);
 
                         if(getfindfacility == null || !getfindfacility.IsOpen) continue;
 

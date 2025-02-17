@@ -669,7 +669,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 0}
+  - {fileID: 2100000, guid: 85c12af3235154b80918d777e5fd3f76, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -726,7 +726,7 @@ MonoBehaviour:
     - {fileID: 2100000, guid: 76a3a050e050e564b9d36709b2d91eef, type: 2}
     materialsInsideMask: []
     materialsOutsideMask:
-    - {fileID: 0}
+    - {fileID: 2100000, guid: 85c12af3235154b80918d777e5fd3f76, type: 2}
   disableRenderingOnOverride: 1
   physicsPositionInheritanceFactor: {x: 1, y: 1}
   physicsRotationInheritanceFactor: 1
@@ -782,7 +782,7 @@ MonoBehaviour:
   skeletonAnimation: {fileID: 6902744124365164405}
   FishCarryRoot: {fileID: 9048207631454145641}
   IsCarry: 0
-  sortingOrderBase: 100
+  sortingOrderBase: 250
   offset: 100
   CurAnimName: Idle
   loop: 1
