@@ -93,18 +93,28 @@ public class Config : BanpoFri.SingletonScriptableObject<Config>, BanpoFri.ILoad
     TropicalFishCurryDisplay = 7, // 열대어 카레 진열대 7
     GrilledCrabDisplay = 8,     // 크랩 구이 진열대 8
     CrabCurryDisplay = 9,       // 크랩 카레 진열대 9
+    AppleDisplay = 10,       // 사과 진열대
+    OrangeDisplay = 11,       // 오렌지 진열대
+    CuttingAppleDisplay = 12,       // 오렌지 진열대
+    CakeDisplay = 13,       // 오렌지 진열대
+    
     CheckoutCounter = 1000,       // 계산대 10
 
     RedSnapperFishing = 101,     // 붉은열기 낚시시설 11
     MackerelFishing = 102,       // 고등어 낚시시설 12
     TropicalFishFishing = 103,   // 열대어 낚시시설 13
     CrabFishing = 104,           // 꽃게 낚시시설 14
+    AppleFishing = 105,           // 꽃게 낚시시설 14
+    OrangeFishing = 106,           // 꽃게 낚시시설 14
 
     RedSnapperCooking = 1001,     // 붉은열기 요리 시설 15
     SnapperRamenCooking = 1002,   // 열기 라면 요리 시설 16
     TropicalFishCurryCooking = 1003, // 열대어 카레 요리 시설 17
     GrilledCrabCooking = 1004,    // 크랩 구이 요리 시설 18
-    CrabCurryCooking = 1005       // 크랩 카레 요리 시설 19
+    CrabCurryCooking = 1005,       // 크랩 카레 요리 시설 19
+    CuttingAppleCooking = 1006,       // 크랩 카레 요리 시설 19
+    FruitCakeCooking = 1007,      // 크랩 카레 요리 시설 19
+    
 }
 
 public enum FoodType
@@ -118,7 +128,11 @@ public enum FoodType
     Crab = 6,                  // 크랩 6
     TropicalFishCurry = 7,     // 열대어 카레 7
     GrilledCrab = 8,           // 크랩 구이 8
-    GrilledCrabCurry = 9       // 크랩 카레 구이 9
+    GrilledCrabCurry = 9,       // 크랩 카레 구이 9
+    Apple = 10,       // 크랩 카레 구이 9
+    Orange = 11,       // 크랩 카레 구이 9
+    CuttingApple = 12,       // 크랩 카레 구이 9
+    FruiteCake = 13,       // 크랩 카레 구이 9
 }
 
     public enum ManagerGrade

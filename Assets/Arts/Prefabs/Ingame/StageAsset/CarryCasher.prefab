@@ -774,6 +774,7 @@ GameObject:
   - component: {fileID: 1819074135286739224}
   - component: {fileID: 8095210707252685904}
   - component: {fileID: 1024928834081550424}
+  - component: {fileID: 7891393880307001510}
   m_Layer: 7
   m_Name: CarryCasher
   m_TagString: Untagged
@@ -828,7 +829,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: cc9200172ea9647b09e68f1dda0fd7b3, type: 2}
+  - {fileID: 2100000, guid: 008de9e22e827484e95427e35d0a4830, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -848,7 +849,7 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 100
+  m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!114 &6902744124365164405
 MonoBehaviour:
@@ -879,7 +880,7 @@ MonoBehaviour:
   fixDrawOrder: 0
   addNormals: 0
   calculateTangents: 0
-  maskInteraction: 2
+  maskInteraction: 0
   maskMaterials:
     materialsMaskDisabled:
     - {fileID: 2100000, guid: 008de9e22e827484e95427e35d0a4830, type: 2}
@@ -1023,6 +1024,18 @@ MonoBehaviour:
   flipBy180DegreeRotation: 0
   skeletonRenderer: {fileID: 6902744124365164405}
   skeletonGraphic: {fileID: 0}
+--- !u!210 &7891393880307001510
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2546276038175962709}
+  m_Enabled: 1
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 200
+  m_SortAtRoot: 0
 --- !u!1 &3430863756018816031
 GameObject:
   m_ObjectHideFlags: 0

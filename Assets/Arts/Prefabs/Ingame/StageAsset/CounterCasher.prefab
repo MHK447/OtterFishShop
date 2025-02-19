@@ -47,6 +47,7 @@ GameObject:
   - component: {fileID: 7305236676931360709}
   - component: {fileID: 894848234637008037}
   - component: {fileID: 3216186914382778657}
+  - component: {fileID: 6670002072780489822}
   m_Layer: 9
   m_Name: CounterCasher
   m_TagString: Untagged
@@ -104,7 +105,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: cc9200172ea9647b09e68f1dda0fd7b3, type: 2}
+  - {fileID: 2100000, guid: 008de9e22e827484e95427e35d0a4830, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -124,7 +125,7 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 100
+  m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!114 &6902744124365164405
 MonoBehaviour:
@@ -155,7 +156,7 @@ MonoBehaviour:
   fixDrawOrder: 0
   addNormals: 0
   calculateTangents: 0
-  maskInteraction: 2
+  maskInteraction: 0
   maskMaterials:
     materialsMaskDisabled:
     - {fileID: 2100000, guid: 008de9e22e827484e95427e35d0a4830, type: 2}
@@ -283,6 +284,18 @@ CircleCollider2D:
   m_CompositeOrder: 0
   m_Offset: {x: 0.009272337, y: 0.75}
   m_Radius: 0.62227213
+--- !u!210 &6670002072780489822
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2546276038175962709}
+  m_Enabled: 1
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 200
+  m_SortAtRoot: 0
 --- !u!1 &4854619043264745601
 GameObject:
   m_ObjectHideFlags: 0

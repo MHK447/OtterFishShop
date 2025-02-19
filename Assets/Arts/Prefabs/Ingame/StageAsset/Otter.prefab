@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5694780636007317751}
   - component: {fileID: 697826156465133431}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: stick
   m_TagString: Untagged
   m_Icon: {fileID: 2800000, guid: 97a43f11e00735147a9dc3dff6d68191, type: 3}
@@ -64,7 +64,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6359183827475816076}
   - component: {fileID: 2230187398443608932}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: string4
   m_TagString: Untagged
   m_Icon: {fileID: 2800000, guid: 97a43f11e00735147a9dc3dff6d68191, type: 3}
@@ -118,7 +118,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3590348149993856611}
   - component: {fileID: 807126736923974325}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: shadow
   m_TagString: Untagged
   m_Icon: {fileID: 2800000, guid: d1de1604dfe4cb64c9d31246a8e43c78, type: 3}
@@ -171,7 +171,7 @@ GameObject:
   m_Component:
   - component: {fileID: 186609533091374709}
   - component: {fileID: 2240127408803457586}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: stick3
   m_TagString: Untagged
   m_Icon: {fileID: 2800000, guid: 97a43f11e00735147a9dc3dff6d68191, type: 3}
@@ -287,7 +287,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6199042181346341454}
   - component: {fileID: 7238833014045894616}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: root
   m_TagString: Untagged
   m_Icon: {fileID: 2800000, guid: d1de1604dfe4cb64c9d31246a8e43c78, type: 3}
@@ -342,7 +342,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2684370837353708623}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: SkeletonUtility-SkeletonRoot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -375,7 +375,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7736204132890586816}
   - component: {fileID: 9022091658832923006}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: RLeg
   m_TagString: Untagged
   m_Icon: {fileID: 2800000, guid: 97a43f11e00735147a9dc3dff6d68191, type: 3}
@@ -428,7 +428,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3465544434804333105}
   - component: {fileID: 919535609366068505}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: body
   m_TagString: Untagged
   m_Icon: {fileID: 2800000, guid: d1de1604dfe4cb64c9d31246a8e43c78, type: 3}
@@ -554,7 +554,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5597165291116713877}
   - component: {fileID: 2953941254531949538}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: RArm
   m_TagString: Untagged
   m_Icon: {fileID: 2800000, guid: 97a43f11e00735147a9dc3dff6d68191, type: 3}
@@ -614,6 +614,7 @@ GameObject:
   - component: {fileID: 3974001230696907660}
   - component: {fileID: 6677950345699178018}
   - component: {fileID: 4012809979854591829}
+  - component: {fileID: 1061767416754574662}
   m_Layer: 3
   m_Name: Otter
   m_TagString: Untagged
@@ -669,7 +670,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 85c12af3235154b80918d777e5fd3f76, type: 2}
+  - {fileID: 2100000, guid: 76a3a050e050e564b9d36709b2d91eef, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -689,7 +690,7 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 300
+  m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!114 &6902744124365164405
 MonoBehaviour:
@@ -720,13 +721,11 @@ MonoBehaviour:
   fixDrawOrder: 0
   addNormals: 0
   calculateTangents: 0
-  maskInteraction: 2
+  maskInteraction: 0
   maskMaterials:
-    materialsMaskDisabled:
-    - {fileID: 2100000, guid: 76a3a050e050e564b9d36709b2d91eef, type: 2}
+    materialsMaskDisabled: []
     materialsInsideMask: []
-    materialsOutsideMask:
-    - {fileID: 2100000, guid: 85c12af3235154b80918d777e5fd3f76, type: 2}
+    materialsOutsideMask: []
   disableRenderingOnOverride: 1
   physicsPositionInheritanceFactor: {x: 1, y: 1}
   physicsRotationInheritanceFactor: 1
@@ -852,6 +851,18 @@ MonoBehaviour:
   flipBy180DegreeRotation: 0
   skeletonRenderer: {fileID: 6902744124365164405}
   skeletonGraphic: {fileID: 0}
+--- !u!210 &1061767416754574662
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2546276038175962709}
+  m_Enabled: 1
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 200
+  m_SortAtRoot: 0
 --- !u!1 &2714424444675837686
 GameObject:
   m_ObjectHideFlags: 0
@@ -906,7 +917,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6041375015410291716}
   - component: {fileID: 2373695497587567210}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: string5
   m_TagString: Untagged
   m_Icon: {fileID: 2800000, guid: 97a43f11e00735147a9dc3dff6d68191, type: 3}
@@ -960,7 +971,7 @@ GameObject:
   m_Component:
   - component: {fileID: 197475097255484506}
   - component: {fileID: 743189802325878140}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: head
   m_TagString: Untagged
   m_Icon: {fileID: 2800000, guid: d1de1604dfe4cb64c9d31246a8e43c78, type: 3}
@@ -1016,7 +1027,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1528449774967058710}
   - component: {fileID: 1822298578956328896}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: string2
   m_TagString: Untagged
   m_Icon: {fileID: 2800000, guid: 97a43f11e00735147a9dc3dff6d68191, type: 3}
@@ -1070,7 +1081,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7030085381280072125}
   - component: {fileID: 4435915604859770685}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: LEar
   m_TagString: Untagged
   m_Icon: {fileID: 2800000, guid: 97a43f11e00735147a9dc3dff6d68191, type: 3}
@@ -1123,7 +1134,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7419788401690536765}
   - component: {fileID: 7926229031464914525}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: string3
   m_TagString: Untagged
   m_Icon: {fileID: 2800000, guid: 97a43f11e00735147a9dc3dff6d68191, type: 3}
@@ -1177,7 +1188,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8360661706804575538}
   - component: {fileID: 7966452247927792681}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Water01
   m_TagString: Untagged
   m_Icon: {fileID: 2800000, guid: d1de1604dfe4cb64c9d31246a8e43c78, type: 3}
@@ -1230,7 +1241,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6624901286395430247}
   - component: {fileID: 8949778860725812362}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: stick6
   m_TagString: Untagged
   m_Icon: {fileID: 2800000, guid: d1de1604dfe4cb64c9d31246a8e43c78, type: 3}
@@ -1284,7 +1295,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4451452446342066238}
   - component: {fileID: 2004462123946148906}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: LArm
   m_TagString: Untagged
   m_Icon: {fileID: 2800000, guid: 97a43f11e00735147a9dc3dff6d68191, type: 3}
@@ -1372,7 +1383,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9192432024887232666}
   - component: {fileID: 2072165539318822968}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Hand1
   m_TagString: Untagged
   m_Icon: {fileID: 2800000, guid: d1de1604dfe4cb64c9d31246a8e43c78, type: 3}
@@ -1425,7 +1436,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4557119687552860377}
   - component: {fileID: 1096468594134264826}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: stick4
   m_TagString: Untagged
   m_Icon: {fileID: 2800000, guid: 97a43f11e00735147a9dc3dff6d68191, type: 3}
@@ -1479,7 +1490,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2571424283068401906}
   - component: {fileID: 6111195658723255965}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Water02
   m_TagString: Untagged
   m_Icon: {fileID: 2800000, guid: d1de1604dfe4cb64c9d31246a8e43c78, type: 3}
@@ -1532,7 +1543,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5321490286999320706}
   - component: {fileID: 834025801735744133}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: stick5
   m_TagString: Untagged
   m_Icon: {fileID: 2800000, guid: 97a43f11e00735147a9dc3dff6d68191, type: 3}
@@ -1586,7 +1597,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3698015146219764508}
   - component: {fileID: 5476029618333986163}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: stick2
   m_TagString: Untagged
   m_Icon: {fileID: 2800000, guid: 97a43f11e00735147a9dc3dff6d68191, type: 3}
@@ -1640,7 +1651,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3865068632806093397}
   - component: {fileID: 1004833742785578032}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: string8
   m_TagString: Untagged
   m_Icon: {fileID: 2800000, guid: d1de1604dfe4cb64c9d31246a8e43c78, type: 3}
@@ -1696,7 +1707,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2395519766871912855}
   - component: {fileID: 8194972919817511946}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: face
   m_TagString: Untagged
   m_Icon: {fileID: 2800000, guid: d1de1604dfe4cb64c9d31246a8e43c78, type: 3}
@@ -1749,7 +1760,7 @@ GameObject:
   m_Component:
   - component: {fileID: 693961416563765901}
   - component: {fileID: 5090076445684283640}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: LLeg
   m_TagString: Untagged
   m_Icon: {fileID: 2800000, guid: 97a43f11e00735147a9dc3dff6d68191, type: 3}
@@ -1802,7 +1813,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8144734040755324870}
   - component: {fileID: 2116763754561099420}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Water03
   m_TagString: Untagged
   m_Icon: {fileID: 2800000, guid: d1de1604dfe4cb64c9d31246a8e43c78, type: 3}
@@ -1855,7 +1866,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1599124850614463796}
   - component: {fileID: 3257603324003245606}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: string
   m_TagString: Untagged
   m_Icon: {fileID: 2800000, guid: 97a43f11e00735147a9dc3dff6d68191, type: 3}
@@ -1909,7 +1920,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8883698576220146910}
   - component: {fileID: 6286222391703493880}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: REar
   m_TagString: Untagged
   m_Icon: {fileID: 2800000, guid: 97a43f11e00735147a9dc3dff6d68191, type: 3}
@@ -1962,7 +1973,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4162611219667843999}
   - component: {fileID: 6898659360442273909}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Hand2
   m_TagString: Untagged
   m_Icon: {fileID: 2800000, guid: d1de1604dfe4cb64c9d31246a8e43c78, type: 3}

@@ -80,7 +80,6 @@ public class Consumer : Chaser
     private Renderer Renderer;
 
     private float lastYPosition;
-    public int sortingOrderBase = 100; // 기본 정렬 순서
 
     private void Awake()
     {
@@ -380,23 +379,7 @@ public class Consumer : Chaser
             }
         }
 
-        // Y축 위치가 변경되었을 때만 정렬 업데이트
-        if (Mathf.Abs(transform.position.y - lastYPosition) > Mathf.Epsilon)
-        {
-            lastYPosition = transform.position.y;
-            UpdateSortingOrder();
-        }
     }
-
-
-    private void UpdateSortingOrder()
-    {
-        // Y축 값을 기반으로 Sorting Order 설정
-        Renderer.sortingOrder = sortingOrderBase - Mathf.RoundToInt(transform.position.y * 1);
-    }
-
-
-
 
     public void CarryStart(bool iscarry)
     {
