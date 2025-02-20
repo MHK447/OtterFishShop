@@ -322,7 +322,7 @@ MonoBehaviour:
   - _stageidx: 3
     _order: 8
     _facilityidx: 0b000000e8030000
-    _count: ffffffff
+    _count: 02000000ffffffff
   - _stageidx: 3
     _order: 12
     _facilityidx: 0a0000000b000000e8030000

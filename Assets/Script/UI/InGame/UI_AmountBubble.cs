@@ -16,7 +16,7 @@ public class UI_AmountBubble : InGameFloatingUI
     [SerializeField]
     private Image SliderValue;
 
-    public void Set(int fishidx)
+        public void Set(int fishidx)
     {
         var td = Tables.Instance.GetTable<FishInfo>().GetData(fishidx);
 

@@ -28,6 +28,13 @@ namespace BanpoFri
 			set { _base_revenue = value;}
 		}
 		[SerializeField]
+		private int _living_type;
+		public int living_type
+		{
+			get { return _living_type;}
+			set { _living_type = value;}
+		}
+		[SerializeField]
 		private int _fish_facility_idx;
 		public int fish_facility_idx
 		{

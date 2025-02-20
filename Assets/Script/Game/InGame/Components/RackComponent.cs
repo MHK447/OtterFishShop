@@ -128,7 +128,7 @@ public class RackComponent : FacilityComponent
 
         return closestTransform;
     }
-
+        
     public void OnTriggerEnter2D(Collider2D collision)
     {
         // 충돌한 오브젝트의 레이어를 확인합니다.

@@ -22,6 +22,10 @@ MonoBehaviour:
   - 2
   - 2
   - 2
+  - 3
+  - 3
+  - 3
+  - 3
   mSecondKey:
   - 1
   - 2
@@ -32,6 +36,10 @@ MonoBehaviour:
   - 6
   - 8
   - 9
+  - 10
+  - 11
+  - 12
+  - 13
   mDataList:
   - _stageidx: 1
     _facilityidx: 1
@@ -88,8 +96,8 @@ MonoBehaviour:
     _value_count: 5
     _income_multiple_value_group: 60
     _income_multiple_value: 10
-    _max_ugprade_count: 30
-    _base_income_cost: 40
+    _max_ugprade_count: 20
+    _base_income_cost: 20
     _income_cost_multiple: 100
     _income_cost_level_multiple: 110
     _openfacilitycheck: 3
@@ -140,4 +148,52 @@ MonoBehaviour:
     _base_income_cost: 150
     _income_cost_multiple: 100
     _income_cost_level_multiple: 110
-    _openfacilitycheck: -1
+    _openfacilitycheck: 1005
+  - _stageidx: 3
+    _facilityidx: 10
+    _upgrade_reward_idx: 2
+    _upgrade_reward_count: 1
+    _value_count: 5
+    _income_multiple_value_group: 60
+    _income_multiple_value: 10
+    _max_ugprade_count: 20
+    _base_income_cost: 20
+    _income_cost_multiple: 100
+    _income_cost_level_multiple: 110
+    _openfacilitycheck: 10
+  - _stageidx: 3
+    _facilityidx: 11
+    _upgrade_reward_idx: 2
+    _upgrade_reward_count: 1
+    _value_count: 5
+    _income_multiple_value_group: 90
+    _income_multiple_value: 15
+    _max_ugprade_count: 30
+    _base_income_cost: 60
+    _income_cost_multiple: 100
+    _income_cost_level_multiple: 150
+    _openfacilitycheck: 11
+  - _stageidx: 3
+    _facilityidx: 12
+    _upgrade_reward_idx: 2
+    _upgrade_reward_count: 1
+    _value_count: 5
+    _income_multiple_value_group: 80
+    _income_multiple_value: 20
+    _max_ugprade_count: 30
+    _base_income_cost: 30
+    _income_cost_multiple: 100
+    _income_cost_level_multiple: 110
+    _openfacilitycheck: 1006
+  - _stageidx: 3
+    _facilityidx: 13
+    _upgrade_reward_idx: 2
+    _upgrade_reward_count: 1
+    _value_count: 5
+    _income_multiple_value_group: 120
+    _income_multiple_value: 100
+    _max_ugprade_count: 40
+    _base_income_cost: 100
+    _income_cost_multiple: 100
+    _income_cost_level_multiple: 150
+    _openfacilitycheck: 1007

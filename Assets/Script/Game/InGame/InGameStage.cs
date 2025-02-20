@@ -106,7 +106,7 @@ public class InGameStage : MonoBehaviour
         foreach (var cook in CookComponentList)
         {
             cook.Init();
-        }
+        }   
 
         var stageidx = GameRoot.Instance.UserData.CurMode.StageData.StageIdx;
 

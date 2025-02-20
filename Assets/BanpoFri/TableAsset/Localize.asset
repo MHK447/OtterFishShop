@@ -25,6 +25,8 @@ MonoBehaviour:
   - casher_add_09_name
   - casher_add_11_name
   - casher_add_12_name
+  - casher_add_13_name
+  - casher_add_14_name
   - casher_speedup_01_name
   - consumer_add_01_name
   - player_speedup_01_name
@@ -96,6 +98,14 @@ MonoBehaviour:
     _ja: 
   - _idx: casher_add_12_name
     _ko: "\uAF43\uAC8C \uB09A\uC2DC \uC9C1\uC6D0"
+    _en: 
+    _ja: 
+  - _idx: casher_add_13_name
+    _ko: "\uC0AC\uACFC \uC218\uD655 \uC9C1\uC6D0"
+    _en: 
+    _ja: 
+  - _idx: casher_add_14_name
+    _ko: "\uADE4 \uC218\uD655 \uC9C1\uC6D0"
     _en: 
     _ja: 
   - _idx: casher_speedup_01_name

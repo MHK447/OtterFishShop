@@ -12970,9 +12970,9 @@ Transform:
   - {fileID: 3032476446929499367}
   - {fileID: 6700304297768740817}
   - {fileID: 4839940528737769088}
-  - {fileID: 2035115375691296182}
-  - {fileID: 5391828047799348784}
   - {fileID: 7548648305043188420}
+  - {fileID: 5391828047799348784}
+  - {fileID: 2035115375691296182}
   - {fileID: 6582616105516944208}
   m_Father: {fileID: 8754972489758214775}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -20028,7 +20028,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4772769529073543831, guid: ef347e2cec179a84095225182ca827cc, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -7.63
+      value: 7.12
       objectReference: {fileID: 0}
     - target: {fileID: 4772769529073543831, guid: ef347e2cec179a84095225182ca827cc, type: 3}
       propertyPath: m_LocalPosition.y
@@ -20080,12 +20080,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6243461982723325587, guid: ef347e2cec179a84095225182ca827cc, type: 3}
       propertyPath: FacilityTypeIdx
-      value: 1007
+      value: 1006
       objectReference: {fileID: 0}
     - target: {fileID: 6243461982723325587, guid: ef347e2cec179a84095225182ca827cc, type: 3}
       propertyPath: TargetCookedRack
       value: 
-      objectReference: {fileID: 4785653887162207672}
+      objectReference: {fileID: 3933348777610611402}
     - target: {fileID: 7397843467848475143, guid: ef347e2cec179a84095225182ca827cc, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -21701,7 +21701,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1075834941865691527, guid: bd58ca183e1584cf08acf75b4a815ee4, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 6.34
+      value: -7.04
       objectReference: {fileID: 0}
     - target: {fileID: 1075834941865691527, guid: bd58ca183e1584cf08acf75b4a815ee4, type: 3}
       propertyPath: m_LocalPosition.y
@@ -21749,12 +21749,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1907082219269528963, guid: bd58ca183e1584cf08acf75b4a815ee4, type: 3}
       propertyPath: FacilityTypeIdx
-      value: 1006
+      value: 1007
       objectReference: {fileID: 0}
     - target: {fileID: 1907082219269528963, guid: bd58ca183e1584cf08acf75b4a815ee4, type: 3}
       propertyPath: TargetCookedRack
       value: 
-      objectReference: {fileID: 3933348777610611402}
+      objectReference: {fileID: 4785653887162207672}
     - target: {fileID: 2334795129669208507, guid: bd58ca183e1584cf08acf75b4a815ee4, type: 3}
       propertyPath: m_LocalPosition.y
       value: 1.1

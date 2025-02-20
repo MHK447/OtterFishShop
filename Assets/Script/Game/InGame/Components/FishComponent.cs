@@ -35,6 +35,8 @@ public class FishComponent : MonoBehaviour
 
     private float TargetYPos = 0f;
 
+    private int LivingType = 0;
+
     public void Set(int fishidx, State startstate)
     {
         this.transform.DOKill(); // 기존 Tween 제거
@@ -48,8 +50,9 @@ public class FishComponent : MonoBehaviour
         var td = Tables.Instance.GetTable<FishInfo>().GetData(FishIdx);
 
         if(td != null)
-        {
+        {   
             FishIcon.sprite = Config.Instance.GetIngameImg(td.icon);
+            LivingType = td.living_type;
         }
     }
 
@@ -66,7 +69,7 @@ public class FishComponent : MonoBehaviour
             {
                 IsTracking = true;
                 fishaction?.Invoke(this);
-                this.transform.SetParent(Target);
+                this.transform.SetParent(Target);   
                 this.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
                 this.transform.localScale = new Vector3(1f, 1f, 1f);
             });
@@ -74,6 +77,12 @@ public class FishComponent : MonoBehaviour
 
     public void LivingFishAnim(bool isactive)
     {
+        if(LivingType == 0)
+        {
+            Anim.enabled = false;
+            return;
+        }
+
         Anim.enabled = isactive;
     }
 
