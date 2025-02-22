@@ -75,21 +75,21 @@ MonoBehaviour:
     _fish_facility_idx: 1005
   - _idx: 10
     _icon: Ingame_Food_010
-    _base_revenue: 200
+    _base_revenue: 20
     _living_type: 0
     _fish_facility_idx: 10
   - _idx: 11
     _icon: Ingame_Food_011
-    _base_revenue: 200
+    _base_revenue: 40
     _living_type: 0
     _fish_facility_idx: 11
   - _idx: 12
     _icon: Ingame_Food_012
-    _base_revenue: 200
+    _base_revenue: 100
     _living_type: 0
     _fish_facility_idx: 1006
   - _idx: 13
     _icon: Ingame_Food_013
-    _base_revenue: 200
+    _base_revenue: 150
     _living_type: 0
     _fish_facility_idx: 1007

@@ -176,16 +176,16 @@ MonoBehaviour:
   - _stageidx: 3
     _openorder: 6
     _facilityidx: 12
-    _open_cost: 500000
+    _open_cost: 250000
   - _stageidx: 3
     _openorder: 7
     _facilityidx: 1006
-    _open_cost: 500000
+    _open_cost: 250000
   - _stageidx: 3
     _openorder: 8
     _facilityidx: 13
-    _open_cost: 1000000
+    _open_cost: 500000
   - _stageidx: 3
     _openorder: 9
     _facilityidx: 1007
-    _open_cost: 1200000
+    _open_cost: 500000

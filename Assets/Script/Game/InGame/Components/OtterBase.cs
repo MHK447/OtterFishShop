@@ -87,6 +87,9 @@ public class OtterBase : MonoBehaviour
 
     private float lastYPosition;
 
+    public int CarryCasherWorkFacilityIdx = 0;
+    
+
     private void Awake()
     {
         Renderer = skeletonAnimation.GetComponent<Renderer>();

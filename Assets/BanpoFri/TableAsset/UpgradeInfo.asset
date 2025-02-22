@@ -525,6 +525,15 @@ MonoBehaviour:
     _name: food_load_10_name
   - _stageidx: 3
     _upgrade_idx: 10
+    _upgrade_type: 9
+    _cost: 78000
+    _value: 1
+    _value2: 106
+    _icon: Common_Icon_Upgrade_Casher_Add_02
+    _desc: casher_add_02_desc
+    _name: casher_add_14_name
+  - _stageidx: 3
+    _upgrade_idx: 11
     _upgrade_type: 1
     _cost: 60000
     _value: 1
@@ -533,7 +542,7 @@ MonoBehaviour:
     _desc: casher_add_02_desc
     _name: casher_add_01_name
   - _stageidx: 3
-    _upgrade_idx: 11
+    _upgrade_idx: 12
     _upgrade_type: 8
     _cost: 62500
     _value: 1
@@ -542,7 +551,7 @@ MonoBehaviour:
     _desc: casher_stack_01_desc
     _name: casher_stack_01_name
   - _stageidx: 3
-    _upgrade_idx: 12
+    _upgrade_idx: 13
     _upgrade_type: 7
     _cost: 65000
     _value: 10
@@ -551,7 +560,7 @@ MonoBehaviour:
     _desc: cooktool_speedup_01_desc
     _name: cooktool_speedup_01_name
   - _stageidx: 3
-    _upgrade_idx: 13
+    _upgrade_idx: 14
     _upgrade_type: 2
     _cost: 68500
     _value: 10
@@ -560,7 +569,7 @@ MonoBehaviour:
     _desc: casher_speedup_01_desc
     _name: casher_speedup_01_name
   - _stageidx: 3
-    _upgrade_idx: 14
+    _upgrade_idx: 15
     _upgrade_type: 5
     _cost: 70000
     _value: 1
@@ -569,7 +578,7 @@ MonoBehaviour:
     _desc: player_stack_01_desc
     _name: player_stack_01_name
   - _stageidx: 3
-    _upgrade_idx: 15
+    _upgrade_idx: 16
     _upgrade_type: 4
     _cost: 75000
     _value: 10
@@ -577,15 +586,6 @@ MonoBehaviour:
     _icon: Common_Icon_Upgrade_Player_SpeedUp_01
     _desc: player_speedup_01_desc
     _name: player_speedup_01_name
-  - _stageidx: 3
-    _upgrade_idx: 16
-    _upgrade_type: 9
-    _cost: 78000
-    _value: 1
-    _value2: 106
-    _icon: Common_Icon_Upgrade_Casher_Add_02
-    _desc: casher_add_02_desc
-    _name: casher_add_14_name
   - _stageidx: 3
     _upgrade_idx: 17
     _upgrade_type: 3
@@ -646,7 +646,7 @@ MonoBehaviour:
     _cost: 100000
     _value: 1
     _value2: 11
-    _icon: Common_Icon_Upgrade_Food_Load_10
+    _icon: Common_Icon_Upgrade_Food_Load_11
     _desc: food_load_01_desc
     _name: food_load_11_name
   - _stageidx: 3
@@ -682,7 +682,7 @@ MonoBehaviour:
     _cost: 200000
     _value: 1
     _value2: 11
-    _icon: Common_Icon_Upgrade_Food_Load_10
+    _icon: Common_Icon_Upgrade_Food_Load_11
     _desc: food_load_01_desc
     _name: food_load_11_name
   - _stageidx: 3

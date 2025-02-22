@@ -71,6 +71,8 @@ public class CarryCasher : OtterBase
 
     public void StartWork()
     {
+        CarryCasherWorkFacilityIdx = -1;
+
         if (TargetWorkFacility())
         {
             ChangeState(OtterState.Work);
@@ -107,18 +109,23 @@ public class CarryCasher : OtterBase
             var mainFacility = CurStage.FindFacility(facilityInfo.facilityidx);
             if (mainFacility == null) continue;
 
+            if (CurStage.IsWorkCasherFacilityCheck(facility.FacilityIdx)) continue;
+
             if (HandleCookedToDisplay(facility.FacilityIdx))
             {
+                CarryCasherWorkFacilityIdx = facility.FacilityIdx;
                 return true;
             }
 
             if (HandleFishCookedDisplay(facility.FacilityIdx))
             {
+                CarryCasherWorkFacilityIdx = facility.FacilityIdx;
                 return true;
             }
 
             if (HandleFishDisplay(facility.FacilityIdx, mainFacility))
             {
+                CarryCasherWorkFacilityIdx = facility.FacilityIdx;
                 return true;
             }
         }

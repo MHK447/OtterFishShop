@@ -251,6 +251,12 @@ public class InGameStage : MonoBehaviour
         return null;
     }
 
+
+    public bool IsWorkCasherFacilityCheck(int facilityidx)
+    {
+        return activeCashers.Find(x=> x.CarryCasherWorkFacilityIdx == facilityidx) != null;
+    }
+
     public OtterBase FindCasher(CasherType type, int facilityidx)
     {
         OtterBase casher = null;
