@@ -49,6 +49,13 @@ namespace BanpoFri
 			set { _value_1 = value;}
 		}
 		[SerializeField]
+		private int _rack_group;
+		public int rack_group
+		{
+			get { return _rack_group;}
+			set { _rack_group = value;}
+		}
+		[SerializeField]
 		private int _cooking_group;
 		public int cooking_group
 		{

@@ -156,7 +156,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Common_Icon_Upgrade_Food_Load_14_0: 3820271761029514175
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

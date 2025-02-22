@@ -35,6 +35,8 @@ MonoBehaviour:
   - food_load_02_name
   - food_load_03_name
   - food_load_04_name
+  - food_load_10_name
+  - food_load_11_name
   - cooktool_speedup_01_name
   - cooktool_speedup_02_name
   - casher_stack_01_name
@@ -140,6 +142,14 @@ MonoBehaviour:
     _ko: "\uD06C\uB7A9 \uC9C4\uC5F4\uC218\uB7C9 "
     _en: 
     _ja: 
+  - _idx: food_load_10_name
+    _ko: "\uC0AC\uACFC \uC9C4\uC5F4\uC218\uB7C9"
+    _en: 
+    _ja: 
+  - _idx: food_load_11_name
+    _ko: "\uADE4 \uC9C4\uC5F4\uC218\uB7C9"
+    _en: 
+    _ja: 
   - _idx: cooktool_speedup_01_name
     _ko: "\uD504\uB77C\uC774\uD32C \uC870\uB9AC\uC18D\uB3C4"
     _en: 
@@ -165,19 +175,19 @@ MonoBehaviour:
     _en: 
     _ja: 
   - _idx: next_stage_name_2
-    _ko: "\uCE74\uB808 \uAC00\uAC8C"
+    _ko: "\uCE74\uB808 \uC804\uBB38\uC810"
     _en: 
     _ja: 
   - _idx: next_stage_name_3
-    _ko: "\uB514\uC800\uD2B8 \uAC00\uAC8C"
+    _ko: "\uB514\uC800\uD2B8\uC0F5"
     _en: 
     _ja: 
   - _idx: next_stage_name_4
-    _ko: "\uD280\uAE40 \uAC00\uAC8C"
+    _ko: "\uB530\uB048 \uC74C\uC2DD\uC810"
     _en: 
     _ja: 
   - _idx: next_stage_name_5
-    _ko: "\uC2A4\uD504 \uAC00\uAC8C"
+    _ko: "\uD280\uAE40 \uAC00\uAC8C"
     _en: 
     _ja: 
   - _idx: offline_time_value

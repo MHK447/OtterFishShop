@@ -129,17 +129,24 @@ public class CarryCasher : OtterBase
 
     private bool HandleFishDisplay(int facilityidx, FacilityComponent mainFacility)
     {
-        var rackfacility = CurStage.FindFacility(facilityidx - 100);
-        if (rackfacility == null) return false;
+        var facilitytd = Tables.Instance.GetTable<FacilityInfo>().GetData(facilityidx);
 
-        if (rackfacility.IsMaxCountCheck()) return false;
+        if (facilitytd != null)
+        {
+            var rackfacility = CurStage.FindFacility(facilitytd.rack_group);
+            if (rackfacility == null) return false;
 
-        var fishRoom = mainFacility.GetComponent<FishRoomComponent>();
-        if (fishRoom == null || mainFacility.GetFacilityData.CapacityCountProperty.Value <= 0) return false;
+            if (rackfacility.IsMaxCountCheck()) return false;
 
-        EnqueueFishDisplayActions(fishRoom, rackfacility);
+            var fishRoom = mainFacility.GetComponent<FishRoomComponent>();
+            if (fishRoom == null || mainFacility.GetFacilityData.CapacityCountProperty.Value <= 0) return false;
 
-        return true;
+            EnqueueFishDisplayActions(fishRoom, rackfacility);
+
+            return true;
+        }
+
+        return false;
     }
 
 
