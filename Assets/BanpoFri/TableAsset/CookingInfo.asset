@@ -20,6 +20,11 @@ MonoBehaviour:
   - 1005
   - 1006
   - 1007
+  - 1008
+  - 1009
+  - 1010
+  - 1011
+  - 1012
   mSecondKey: []
   mDataList:
   - _cookingidx: 1001
@@ -62,5 +67,35 @@ MonoBehaviour:
     _material_idxs: 0b0000000c000000
     _material_max_count: 5
     _food_idx: 13
+    _break_count: 30
+    _cooking_cooltime: 150
+  - _cookingidx: 1008
+    _material_idxs: 0e000000
+    _material_max_count: 5
+    _food_idx: 16
+    _break_count: 30
+    _cooking_cooltime: 150
+  - _cookingidx: 1009
+    _material_idxs: 0f000000
+    _material_max_count: 5
+    _food_idx: 17
+    _break_count: 30
+    _cooking_cooltime: 150
+  - _cookingidx: 1010
+    _material_idxs: 10000000
+    _material_max_count: 5
+    _food_idx: 18
+    _break_count: 30
+    _cooking_cooltime: 150
+  - _cookingidx: 1011
+    _material_idxs: 0e0000000f000000
+    _material_max_count: 5
+    _food_idx: 19
+    _break_count: 30
+    _cooking_cooltime: 150
+  - _cookingidx: 1012
+    _material_idxs: 1000000011000000
+    _material_max_count: 5
+    _food_idx: 20
     _break_count: 30
     _cooking_cooltime: 150

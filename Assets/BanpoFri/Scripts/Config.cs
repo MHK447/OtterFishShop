@@ -80,60 +80,80 @@ public class Config : BanpoFri.SingletonScriptableObject<Config>, BanpoFri.ILoad
         Currency = 1,
     }
 
-  public enum FacilityTypeIdx
-{
-    None,
-    
-    RedSnapperDisplay = 1,      // 붉은열기 진열대 1
-    MackerelDisplay = 2,        // 고등어 진열대 2
-    TropicalFishDisplay = 3,    // 열대어 진열대 3
-    CrabDisplay = 4,            // 꽃게 진열대 4
-    GrilledRedSnapperDisplay = 5, // 붉은열기 구이 진열대 5
-    SnapperRamenDisplay = 6,    // 열기 라면 진열대 6
-    TropicalFishCurryDisplay = 7, // 열대어 카레 진열대 7
-    GrilledCrabDisplay = 8,     // 크랩 구이 진열대 8
-    CrabCurryDisplay = 9,       // 크랩 카레 진열대 9
-    AppleDisplay = 10,       // 사과 진열대
-    OrangeDisplay = 11,       // 오렌지 진열대
-    CuttingAppleDisplay = 12,       // 오렌지 진열대
-    CakeDisplay = 13,       // 오렌지 진열대
-    
-    CheckoutCounter = 1000,       // 계산대 10
+    public enum FacilityTypeIdx
+    {
+        None,
 
-    RedSnapperFishing = 101,     // 붉은열기 낚시시설 11
-    MackerelFishing = 102,       // 고등어 낚시시설 12
-    TropicalFishFishing = 103,   // 열대어 낚시시설 13
-    CrabFishing = 104,           // 꽃게 낚시시설 14
-    AppleFishing = 105,           // 꽃게 낚시시설 14
-    OrangeFishing = 106,           // 꽃게 낚시시설 14
+        RedSnapperDisplay = 1,      // 붉은열기 진열대 1
+        MackerelDisplay = 2,        // 고등어 진열대 2
+        TropicalFishDisplay = 3,    // 열대어 진열대 3
+        CrabDisplay = 4,            // 꽃게 진열대 4
+        GrilledRedSnapperDisplay = 5, // 붉은열기 구이 진열대 5
+        SnapperRamenDisplay = 6,    // 열기 라면 진열대 6
+        TropicalFishCurryDisplay = 7, // 열대어 카레 진열대 7
+        GrilledCrabDisplay = 8,     // 크랩 구이 진열대 8
+        CrabCurryDisplay = 9,       // 크랩 카레 진열대 9
+        AppleDisplay = 10,       // 사과 진열대
+        OrangeDisplay = 11,       // 오렌지 진열대
+        CuttingAppleDisplay = 12,       // 오렌지 진열대
+        CakeDisplay = 13,       // 오렌지 진열대
+        SquidDisplay = 14, //오징어
+        CodDisplay = 15, //대구 
+        GrilledSquidDisplay = 16, //오징어 구이
+        SteamedCodDisplay = 17, //대구 찜
+        SquidRiceBowlDisplay = 18, // 오징어 덮밥
+        SeafoodStewDisplay = 19, // 해믈스튜
+        SeafoodRisottoDisplay = 20, //해물리조또 
 
-    RedSnapperCooking = 1001,     // 붉은열기 요리 시설 15
-    SnapperRamenCooking = 1002,   // 열기 라면 요리 시설 16
-    TropicalFishCurryCooking = 1003, // 열대어 카레 요리 시설 17
-    GrilledCrabCooking = 1004,    // 크랩 구이 요리 시설 18
-    CrabCurryCooking = 1005,       // 크랩 카레 요리 시설 19
-    CuttingAppleCooking = 1006,       // 크랩 카레 요리 시설 19
-    FruitCakeCooking = 1007,      // 크랩 카레 요리 시설 19
-    
-}
+        CheckoutCounter = 1000,       // 계산대 10
 
-public enum FoodType
-{
-    None = -1,
-    RedSnapper = 1,            // 붉은열기 1
-    Mackerel = 2,              // 고등어 2
-    GrilledRedSnapper = 3,     // 붉은열기 구이 3
-    MackerelSnapperRamen = 4,  // 고등어 열기 라면 4
-    TropicalFish = 5,          // 열대어 5
-    Crab = 6,                  // 크랩 6
-    TropicalFishCurry = 7,     // 열대어 카레 7
-    GrilledCrab = 8,           // 크랩 구이 8
-    GrilledCrabCurry = 9,       // 크랩 카레 구이 9
-    Apple = 10,       // 크랩 카레 구이 9
-    Orange = 11,       // 크랩 카레 구이 9
-    CuttingApple = 12,       // 크랩 카레 구이 9
-    FruiteCake = 13,       // 크랩 카레 구이 9
-}
+        RedSnapperFishing = 101,     // 붉은열기 낚시시설 11
+        MackerelFishing = 102,       // 고등어 낚시시설 12
+        TropicalFishFishing = 103,   // 열대어 낚시시설 13
+        CrabFishing = 104,           // 꽃게 낚시시설 14
+        AppleFishing = 105,           // 사과 낚시시설 15
+        OrangeFishing = 106,           // 오렌지 낚시시설 16
+        SquidFishing = 107, //오징어 낚시시설 17 
+        CodFishing = 108, //대구 낚시시설 18
+        RedSnapperCooking = 1001,     // 붉은열기 요리 시설 15
+        SnapperRamenCooking = 1002,   // 열기 라면 요리 시설 16
+        TropicalFishCurryCooking = 1003, // 열대어 카레 요리 시설 17
+        GrilledCrabCooking = 1004,    // 크랩 구이 요리 시설 18
+        CrabCurryCooking = 1005,       // 크랩 카레 요리 시설 19
+        CuttingAppleCooking = 1006,       // 썰은사과
+        FruitCakeCooking = 1007,      // 케이크
+        GrilledSquidCooking = 1008, //오징어 구이 요리시설
+        SteamedCodCooking = 1009, //대구 찜 요리시설
+        SquidRiceBowlCooking = 1010, // 오징어 덮밥 요리시설
+        SeafoodStewCooking = 1011, // 해믈스튜 요리시설
+        SeafoodRisottoCooking = 1012 //해물리조또 요리시설 
+
+    }
+
+    public enum FoodType
+    {
+        None = -1,
+        RedSnapper = 1,            // 붉은열기 1
+        Mackerel = 2,              // 고등어 2
+        GrilledRedSnapper = 3,     // 붉은열기 구이 3
+        MackerelSnapperRamen = 4,  // 고등어 열기 라면 4
+        TropicalFish = 5,          // 열대어 5
+        Crab = 6,                  // 크랩 6
+        TropicalFishCurry = 7,     // 열대어 카레 7
+        GrilledCrab = 8,           // 크랩 구이 8
+        GrilledCrabCurry = 9,       // 크랩 카레 구이 9
+        Apple = 10,       // 크랩 카레 구이 9
+        Orange = 11,       // 크랩 카레 구이 9
+        CuttingApple = 12,       // 크랩 카레 구이 9
+        FruiteCake = 13,       // 크랩 카레 구이 9
+        Squid = 14, //오징어
+        Cod = 15, //대구 
+        GrilledSquid = 16, //오징어 구이
+        SteamedCod = 17, //대구 찜
+        SquidRiceBowl = 18, // 오징어 덮밥
+        SeafoodStew = 19, // 해믈스튜
+        SeafoodRisotto = 20 //해물리조또 
+    }
 
     public enum ManagerGrade
     {

@@ -42,6 +42,21 @@ MonoBehaviour:
   - 3
   - 3
   - 3
+  - 4
+  - 4
+  - 4
+  - 4
+  - 4
+  - 4
+  - 4
+  - 4
+  - 4
+  - 4
+  - 4
+  - 4
+  - 4
+  - 4
+  - 4
   mSecondKey:
   - 1
   - 2
@@ -72,6 +87,21 @@ MonoBehaviour:
   - 7
   - 8
   - 9
+  - 1
+  - 2
+  - 3
+  - 4
+  - 5
+  - 6
+  - 7
+  - 8
+  - 9
+  - 10
+  - 11
+  - 12
+  - 13
+  - 14
+  - 15
   mDataList:
   - _stageidx: 1
     _openorder: 1
@@ -189,3 +219,63 @@ MonoBehaviour:
     _openorder: 9
     _facilityidx: 1007
     _open_cost: 500000
+  - _stageidx: 4
+    _openorder: 1
+    _facilityidx: 1000
+    _open_cost: 30
+  - _stageidx: 4
+    _openorder: 2
+    _facilityidx: 107
+    _open_cost: 15
+  - _stageidx: 4
+    _openorder: 3
+    _facilityidx: 14
+    _open_cost: 20
+  - _stageidx: 4
+    _openorder: 4
+    _facilityidx: 108
+    _open_cost: 15
+  - _stageidx: 4
+    _openorder: 5
+    _facilityidx: 15
+    _open_cost: 2500
+  - _stageidx: 4
+    _openorder: 6
+    _facilityidx: 1008
+    _open_cost: 10000
+  - _stageidx: 4
+    _openorder: 7
+    _facilityidx: 16
+    _open_cost: 250000
+  - _stageidx: 4
+    _openorder: 8
+    _facilityidx: 1009
+    _open_cost: 250000
+  - _stageidx: 4
+    _openorder: 9
+    _facilityidx: 17
+    _open_cost: 500000
+  - _stageidx: 4
+    _openorder: 10
+    _facilityidx: 1010
+    _open_cost: 500000
+  - _stageidx: 4
+    _openorder: 11
+    _facilityidx: 18
+    _open_cost: 1000000
+  - _stageidx: 4
+    _openorder: 12
+    _facilityidx: 1011
+    _open_cost: 1000000
+  - _stageidx: 4
+    _openorder: 13
+    _facilityidx: 19
+    _open_cost: 1500000
+  - _stageidx: 4
+    _openorder: 14
+    _facilityidx: 1012
+    _open_cost: 1500000
+  - _stageidx: 4
+    _openorder: 15
+    _facilityidx: 20
+    _open_cost: 1500000

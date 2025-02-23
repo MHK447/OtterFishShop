@@ -26,6 +26,13 @@ MonoBehaviour:
   - 11
   - 12
   - 13
+  - 14
+  - 15
+  - 16
+  - 17
+  - 18
+  - 19
+  - 20
   - 1000
   - 101
   - 102
@@ -33,6 +40,8 @@ MonoBehaviour:
   - 104
   - 105
   - 106
+  - 107
+  - 108
   - 1001
   - 1002
   - 1003
@@ -40,6 +49,11 @@ MonoBehaviour:
   - 1005
   - 1006
   - 1007
+  - 1008
+  - 1009
+  - 1010
+  - 1011
+  - 1012
   mSecondKey: []
   mDataList:
   - _facilityidx: 1
@@ -146,6 +160,62 @@ MonoBehaviour:
     _value_1: -1
     _rack_group: -1
     _cooking_group: 1007
+  - _facilityidx: 14
+    _image: Ingame_Food_014
+    _facility_type: 1
+    _start_capacity: 15
+    _fish_idx: 14
+    _value_1: -1
+    _rack_group: -1
+    _cooking_group: -1
+  - _facilityidx: 15
+    _image: Ingame_Food_015
+    _facility_type: 1
+    _start_capacity: 15
+    _fish_idx: 15
+    _value_1: -1
+    _rack_group: -1
+    _cooking_group: -1
+  - _facilityidx: 16
+    _image: Ingame_Food_016
+    _facility_type: 1
+    _start_capacity: 15
+    _fish_idx: 16
+    _value_1: -1
+    _rack_group: -1
+    _cooking_group: 1008
+  - _facilityidx: 17
+    _image: Ingame_Food_017
+    _facility_type: 1
+    _start_capacity: 15
+    _fish_idx: 17
+    _value_1: -1
+    _rack_group: -1
+    _cooking_group: 1009
+  - _facilityidx: 18
+    _image: Ingame_Food_018
+    _facility_type: 1
+    _start_capacity: 15
+    _fish_idx: 18
+    _value_1: -1
+    _rack_group: -1
+    _cooking_group: 1010
+  - _facilityidx: 19
+    _image: Ingame_Food_019
+    _facility_type: 1
+    _start_capacity: 15
+    _fish_idx: 19
+    _value_1: -1
+    _rack_group: -1
+    _cooking_group: 1011
+  - _facilityidx: 20
+    _image: Ingame_Food_020
+    _facility_type: 1
+    _start_capacity: 15
+    _fish_idx: 20
+    _value_1: -1
+    _rack_group: -1
+    _cooking_group: 1012
   - _facilityidx: 1000
     _image: Icon_Counter
     _facility_type: 2
@@ -202,6 +272,22 @@ MonoBehaviour:
     _value_1: 11
     _rack_group: 11
     _cooking_group: -1
+  - _facilityidx: 107
+    _image: Ingame_Food_014
+    _facility_type: 3
+    _start_capacity: 10
+    _fish_idx: 14
+    _value_1: 14
+    _rack_group: 14
+    _cooking_group: -1
+  - _facilityidx: 108
+    _image: Ingame_Food_015
+    _facility_type: 3
+    _start_capacity: 10
+    _fish_idx: 15
+    _value_1: 15
+    _rack_group: 15
+    _cooking_group: -1
   - _facilityidx: 1001
     _image: Ingame_Food_003
     _facility_type: 4
@@ -252,6 +338,46 @@ MonoBehaviour:
     _cooking_group: -1
   - _facilityidx: 1007
     _image: Ingame_Food_013
+    _facility_type: 4
+    _start_capacity: 4
+    _fish_idx: 13
+    _value_1: -1
+    _rack_group: -1
+    _cooking_group: -1
+  - _facilityidx: 1008
+    _image: Ingame_Food_016
+    _facility_type: 4
+    _start_capacity: 4
+    _fish_idx: 13
+    _value_1: -1
+    _rack_group: -1
+    _cooking_group: -1
+  - _facilityidx: 1009
+    _image: Ingame_Food_017
+    _facility_type: 4
+    _start_capacity: 4
+    _fish_idx: 13
+    _value_1: -1
+    _rack_group: -1
+    _cooking_group: -1
+  - _facilityidx: 1010
+    _image: Ingame_Food_018
+    _facility_type: 4
+    _start_capacity: 4
+    _fish_idx: 13
+    _value_1: -1
+    _rack_group: -1
+    _cooking_group: -1
+  - _facilityidx: 1011
+    _image: Ingame_Food_019
+    _facility_type: 4
+    _start_capacity: 4
+    _fish_idx: 13
+    _value_1: -1
+    _rack_group: -1
+    _cooking_group: -1
+  - _facilityidx: 1012
+    _image: Ingame_Food_020
     _facility_type: 4
     _start_capacity: 4
     _fish_idx: 13

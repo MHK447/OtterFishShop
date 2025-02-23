@@ -26,6 +26,13 @@ MonoBehaviour:
   - 11
   - 12
   - 13
+  - 14
+  - 15
+  - 16
+  - 17
+  - 18
+  - 19
+  - 20
   mSecondKey: []
   mDataList:
   - _idx: 1
@@ -93,3 +100,38 @@ MonoBehaviour:
     _base_revenue: 150
     _living_type: 0
     _fish_facility_idx: 1007
+  - _idx: 14
+    _icon: Ingame_Food_014
+    _base_revenue: 100
+    _living_type: 0
+    _fish_facility_idx: 14
+  - _idx: 15
+    _icon: Ingame_Food_015
+    _base_revenue: 150
+    _living_type: 0
+    _fish_facility_idx: 15
+  - _idx: 16
+    _icon: Ingame_Food_016
+    _base_revenue: 100
+    _living_type: 0
+    _fish_facility_idx: 16
+  - _idx: 17
+    _icon: Ingame_Food_017
+    _base_revenue: 150
+    _living_type: 0
+    _fish_facility_idx: 17
+  - _idx: 18
+    _icon: Ingame_Food_018
+    _base_revenue: 100
+    _living_type: 0
+    _fish_facility_idx: 18
+  - _idx: 19
+    _icon: Ingame_Food_019
+    _base_revenue: 150
+    _living_type: 0
+    _fish_facility_idx: 19
+  - _idx: 20
+    _icon: Ingame_Food_020
+    _base_revenue: 150
+    _living_type: 0
+    _fish_facility_idx: 20
