@@ -156,7 +156,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      UI_Tilte_Bg_003_0: 4616116907850170198
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
