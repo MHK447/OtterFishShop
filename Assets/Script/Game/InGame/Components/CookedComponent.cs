@@ -195,6 +195,8 @@ public class CookedComponent : FacilityComponent
     {
         if (CurState == state) return;
 
+        if(skeletonAnimation == null) return;
+
         CurState = state;
 
         switch (CurState)
@@ -391,7 +393,7 @@ public class CookedComponent : FacilityComponent
 
         CoolTimeActive(cooltimevalue);
 
-        if (cooltimevalue > 1)
+        if (cooltimevalue > 1 && MaxBreakCount > 0)
         {
             Cookeddeltime = 0f;
 

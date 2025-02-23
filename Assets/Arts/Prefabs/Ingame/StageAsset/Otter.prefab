@@ -781,10 +781,11 @@ MonoBehaviour:
   skeletonAnimation: {fileID: 6902744124365164405}
   FishCarryRoot: {fileID: 9048207631454145641}
   IsCarry: 0
-  sortingOrderBase: 250
+  sortingOrderBase: 60
   offset: 100
   CurAnimName: Idle
   loop: 1
+  CarryCasherWorkFacilityIdx: 0
   TargetTr: {fileID: 0}
   reachRadius: 0.6
   _navMeshAgent: {fileID: 0}
@@ -861,7 +862,7 @@ SortingGroup:
   m_Enabled: 1
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 200
+  m_SortingOrder: 50
   m_SortAtRoot: 0
 --- !u!1 &2714424444675837686
 GameObject:
