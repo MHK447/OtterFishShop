@@ -297,11 +297,9 @@ MonoBehaviour:
   calculateTangents: 0
   maskInteraction: 0
   maskMaterials:
-    materialsMaskDisabled:
-    - {fileID: 2100000, guid: 119b098289d5fe743888a10ac5a7e878, type: 2}
+    materialsMaskDisabled: []
     materialsInsideMask: []
-    materialsOutsideMask:
-    - {fileID: 2100000, guid: 43dbc6e51589ee545ae0d8b8696e7b5c, type: 2}
+    materialsOutsideMask: []
   disableRenderingOnOverride: 1
   physicsPositionInheritanceFactor: {x: 1, y: 1}
   physicsRotationInheritanceFactor: 1
@@ -448,7 +446,7 @@ SortingGroup:
   m_Enabled: 1
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 200
+  m_SortingOrder: 50
   m_SortAtRoot: 0
 --- !u!1 &2823317757445718116
 GameObject:

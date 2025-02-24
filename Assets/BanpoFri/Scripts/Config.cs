@@ -105,6 +105,15 @@ public class Config : BanpoFri.SingletonScriptableObject<Config>, BanpoFri.ILoad
         SeafoodStewDisplay = 19, // 해믈스튜
         SeafoodRisottoDisplay = 20, //해물리조또 
 
+        RedStarfishDisplay = 21, // 빨간 불가사리 진열대
+        ShrimpDisplay = 22, // 새우 진열대
+        OctopusDisplay = 23, // 문어 진열대
+        MushroomDisplay = 24, // 버섯 진열대
+        FriedStarfishDisplay = 25, // 불가사리 튀김 진열대
+        AssortedFriesDisplay = 26, // 모듬 튀김 진열대
+        SeafoodCutletDisplay = 27, // 해물까스 진열대
+        FriedRiceDisplay = 28, // 튀김 덮밥 진열대
+
         CheckoutCounter = 1000,       // 계산대 10
 
         RedSnapperFishing = 101,     // 붉은열기 낚시시설 11
@@ -115,6 +124,9 @@ public class Config : BanpoFri.SingletonScriptableObject<Config>, BanpoFri.ILoad
         OrangeFishing = 106,           // 오렌지 낚시시설 16
         SquidFishing = 107, //오징어 낚시시설 17 
         CodFishing = 108, //대구 낚시시설 18
+        RedStarfishFishing = 109, // 빨간 불가사리 낚시시설
+        ShrimpFishing = 110, // 새우 낚시시설
+        OctopusFishing = 111, // 문어 낚시시설
         RedSnapperCooking = 1001,     // 붉은열기 요리 시설 15
         SnapperRamenCooking = 1002,   // 열기 라면 요리 시설 16
         TropicalFishCurryCooking = 1003, // 열대어 카레 요리 시설 17
@@ -126,7 +138,12 @@ public class Config : BanpoFri.SingletonScriptableObject<Config>, BanpoFri.ILoad
         SteamedCodCooking = 1009, //대구 찜 요리시설
         SquidRiceBowlCooking = 1010, // 오징어 덮밥 요리시설
         SeafoodStewCooking = 1011, // 해믈스튜 요리시설
-        SeafoodRisottoCooking = 1012 //해물리조또 요리시설 
+        SeafoodRisottoCooking = 1012, //해물리조또 요리시설  
+        MushroomToStarfishExchangeCooking = 1013, // 버섯 => 빨간불가사리 교환 
+        FriedStarfishCooking = 1014, // 불가사리 튀김
+        AssortedFriesCooking = 1015, // 모둠 튀김
+        SeafoodCutletCooking = 1016, // 해물까스
+        FriedRiceCooking = 1017, // 튀김덮밥
 
     }
 
@@ -152,7 +169,16 @@ public class Config : BanpoFri.SingletonScriptableObject<Config>, BanpoFri.ILoad
         SteamedCod = 17, //대구 찜
         SquidRiceBowl = 18, // 오징어 덮밥
         SeafoodStew = 19, // 해믈스튜
-        SeafoodRisotto = 20 //해물리조또 
+        SeafoodRisotto = 20, //해물리조또 
+        RedStarFish = 21,       // 불가사리
+        Mushroom = 22,       // 버섯
+        Shrimp = 23,         // 새우
+        FriedStarfish = 24,  // 불가사리 튀김
+        AssortedFried = 25,  // 모듬 튀김
+        Octopus = 26,        // 문어
+        SeafoodCutlet = 27,  // 해물 까스
+        FriedRiceBowl = 28   // 튀김덮밥
+
     }
 
     public enum ManagerGrade

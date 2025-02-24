@@ -182,7 +182,7 @@ public class CarryCasher : OtterBase
 
                 if (findfacilitytd != null)
                 {
-                    var findfishroom = CurStage.FindFacility(findfacilitytd.fish_facility_idx + 100);
+                    var findfishroom = CurStage.FindFacility(findfacilitytd.fish_rack_idx);
 
                     if (findfishroom != null)
                     {

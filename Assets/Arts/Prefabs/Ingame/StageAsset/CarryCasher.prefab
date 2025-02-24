@@ -882,11 +882,9 @@ MonoBehaviour:
   calculateTangents: 0
   maskInteraction: 0
   maskMaterials:
-    materialsMaskDisabled:
-    - {fileID: 2100000, guid: 008de9e22e827484e95427e35d0a4830, type: 2}
+    materialsMaskDisabled: []
     materialsInsideMask: []
-    materialsOutsideMask:
-    - {fileID: 2100000, guid: cc9200172ea9647b09e68f1dda0fd7b3, type: 2}
+    materialsOutsideMask: []
   disableRenderingOnOverride: 1
   physicsPositionInheritanceFactor: {x: 1, y: 1}
   physicsRotationInheritanceFactor: 1
@@ -977,6 +975,7 @@ MonoBehaviour:
   offset: 100
   CurAnimName: 
   loop: 1
+  CarryCasherWorkFacilityIdx: 0
   TargetTr: {fileID: 0}
   reachRadius: 0.6
   _navMeshAgent: {fileID: 7305236676931360709}
@@ -1034,7 +1033,7 @@ SortingGroup:
   m_Enabled: 1
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 200
+  m_SortingOrder: 50
   m_SortAtRoot: 0
 --- !u!1 &3430863756018816031
 GameObject:
