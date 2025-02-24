@@ -15,6 +15,8 @@ public interface IUserDataMode
 	public UpgradeGroupData UpgradeGroupData { get; set; }
 	public List<StageFishUpgradeData> FishUpgradeDatas {get; set;}
 
+	public PlayerData VehicleData {get; set;}
+
 }
 
 public class UserDataMain : IUserDataMode
@@ -27,6 +29,7 @@ public class UserDataMain : IUserDataMode
 	public IReactiveProperty<BigInteger> EnergyMoney { get; set; } = new ReactiveProperty<BigInteger>(0);
 	public IReactiveProperty<int> GachaCoin { get; set; } = new ReactiveProperty<int>(0);
 	public List<StageFishUpgradeData> FishUpgradeDatas  {get; set;} = new List<StageFishUpgradeData>();
+	public PlayerData VehicleData {get; set;} = new PlayerData();
 }
 
 public class UserDataEvent : UserDataMain

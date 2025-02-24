@@ -21,6 +21,9 @@ MonoBehaviour:
   - offline_value_time
   - offline_reward_multiple
   - offline_min_time
+  - ad_ride_time
+  - ride_cash_value
+  - ad_retimer_time
   mSecondKey: []
   mDataList:
   - _index: casher_move_speed
@@ -39,3 +42,9 @@ MonoBehaviour:
     _value: 2
   - _index: offline_min_time
     _value: 600
+  - _index: ad_ride_time
+    _value: 300
+  - _index: ride_cash_value
+    _value: 5
+  - _index: ad_retimer_time
+    _value: 500

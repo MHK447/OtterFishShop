@@ -107,6 +107,13 @@ public class StageFishUpgradeData
 	}
 }
 
+public class PlayerData
+{
+	public IReactiveProperty<int> VehiclePropertyIdx = new ReactiveProperty<int>();
+	
+
+}
+
 public class StageData
 {
 	public List<FacilityData> StageFacilityDataList = new List<FacilityData>();

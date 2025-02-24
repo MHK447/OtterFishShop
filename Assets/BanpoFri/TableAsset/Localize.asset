@@ -37,6 +37,8 @@ MonoBehaviour:
   - food_load_04_name
   - food_load_10_name
   - food_load_11_name
+  - food_load_14_name
+  - food_load_15_name
   - cooktool_speedup_01_name
   - cooktool_speedup_02_name
   - casher_stack_01_name
@@ -52,6 +54,8 @@ MonoBehaviour:
   - str_level
   - str_lv_max
   - str_max
+  - ad_vehicle_value
+  - minute_time
   mSecondKey: []
   mDataList:
   - _idx: casher_add_02_desc
@@ -150,6 +154,14 @@ MonoBehaviour:
     _ko: "\uADE4 \uC9C4\uC5F4\uC218\uB7C9"
     _en: 
     _ja: 
+  - _idx: food_load_14_name
+    _ko: "\uC624\uC9D5\uC5B4 \uC9C4\uC5F4\uC218\uB7C9"
+    _en: 
+    _ja: 
+  - _idx: food_load_15_name
+    _ko: "\uB300\uAD6C \uC9C4\uC5F4\uC218\uB7C9"
+    _en: 
+    _ja: 
   - _idx: cooktool_speedup_01_name
     _ko: "\uD504\uB77C\uC774\uD32C \uC870\uB9AC\uC18D\uB3C4"
     _en: 
@@ -208,5 +220,13 @@ MonoBehaviour:
     _ja: 
   - _idx: str_max
     _ko: MAX
+    _en: 
+    _ja: 
+  - _idx: ad_vehicle_value
+    _ko: "<color=#00735B>{0}%</color=#00735B> \uC99D\uAC00"
+    _en: 
+    _ja: 
+  - _idx: minute_time
+    _ko: "{0}\uBD84"
     _en: 
     _ja: 

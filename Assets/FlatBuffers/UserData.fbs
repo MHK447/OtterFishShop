@@ -20,6 +20,11 @@ table StageData
   facilityopenorder:int = 0;
   stageidx:int = 1;
   facilitydatas:[facilityidata];
+}
+
+table PlayerData
+{
+   Vehicleidx:int =0;
 }	
 
 

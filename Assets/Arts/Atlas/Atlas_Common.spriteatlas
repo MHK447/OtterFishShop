@@ -119,6 +119,7 @@ SpriteAtlas:
     - 26b007a920f845b4292440ff3939fe56: 21300000
     - 36979c9ae251ad646a5ea034078876ed: 21300000
     - a794fa9bb238bd542b8475173c913737: 21300000
+    - 03ed6e8c21d1e184385e29299728f107: 21300000
     - ad9a519c1affded4490abe2a09321fdd: 21300000
     - 93df819cbbaf5ed41adf97c40b3315c9: 21300000
     - 1c7198fc40d40d247ab2e5010be0e832: 21300000
@@ -171,6 +172,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 26b007a920f845b4292440ff3939fe56, type: 3}
   - {fileID: 21300000, guid: 36979c9ae251ad646a5ea034078876ed, type: 3}
   - {fileID: 21300000, guid: a794fa9bb238bd542b8475173c913737, type: 3}
+  - {fileID: 21300000, guid: 03ed6e8c21d1e184385e29299728f107, type: 3}
   - {fileID: 21300000, guid: ad9a519c1affded4490abe2a09321fdd, type: 3}
   - {fileID: 21300000, guid: 93df819cbbaf5ed41adf97c40b3315c9, type: 3}
   - {fileID: 21300000, guid: 1c7198fc40d40d247ab2e5010be0e832, type: 3}
@@ -222,6 +224,7 @@ SpriteAtlas:
   - Common_Icon_Upgrade_Food_Load_14
   - Common_Icon_Upgrade_Food_Load_11
   - Common_Icon_Upgrade_Food_Load_04 1
+  - Icon_Vehicle
   - Icon_Table
   - Icon_Repair_Gray
   - Common_Icon_Upgrade_Food_Load_19

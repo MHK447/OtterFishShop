@@ -39,6 +39,8 @@ public class GameRoot : Singleton<GameRoot>
 	public UpgradeSystem UpgradeSystem { get; private set; } = new UpgradeSystem();
 	public GameNotificationSystem GameNotification { get; private set; } = new GameNotificationSystem();
 
+	public VehicleSystem VehicleSystem {get; private set;} = new VehicleSystem();
+
 
 
 	private Queue<System.Action> PauseActions = new Queue<System.Action>();
@@ -127,6 +129,7 @@ public class GameRoot : Singleton<GameRoot>
 
 			deltaTime -= 1f;
 
+			VehicleSystem.OneSecondUpdate();
 
 			InterTime += 1;
 
@@ -238,6 +241,7 @@ public class GameRoot : Singleton<GameRoot>
 
 		InGameSystem.Create();
 		GameNotification.Create();
+		VehicleSystem.Create();
 
 
 		GameRoot.instance.WaitTimeAndCallback(0.5f, () =>
