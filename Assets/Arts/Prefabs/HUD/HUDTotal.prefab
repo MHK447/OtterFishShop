@@ -138,6 +138,8 @@ MonoBehaviour:
   touchLockTime: 0.5
   UpgradeBtn: {fileID: 8983135478131882836}
   NextStageBtn: {fileID: 713099845145871911}
+  AdVehicleTimeText: {fileID: 3715747954605578041}
+  VehicleObj: {fileID: 3425758286423634255}
   FpsText: {fileID: 6804369668835271321}
 --- !u!1001 &3017203920630239252
 PrefabInstance:
@@ -435,6 +437,22 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bbd3a3338290442d59080760823bb91b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &3425758286423634255 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7256656950152548758, guid: b9a9e3d325b854d8da3b3167a7f95bd2, type: 3}
+  m_PrefabInstance: {fileID: 5421892010730053849}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &3715747954605578041 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8696049684389672928, guid: b9a9e3d325b854d8da3b3167a7f95bd2, type: 3}
+  m_PrefabInstance: {fileID: 5421892010730053849}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!224 &7304117317304492062 stripped

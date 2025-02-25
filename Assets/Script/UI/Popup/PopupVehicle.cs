@@ -58,7 +58,9 @@ public class PopupVehicle : UIBase
 
     public void OnClickAd()
     {
-
+        Hide();
+        GameRoot.Instance.VehicleSystem.AdVehicleActive(true);
+        GameRoot.Instance.InGameSystem.GetInGame<InGameTycoon>().curInGameStage.ActiveOffVehicle();
     }
 
 }

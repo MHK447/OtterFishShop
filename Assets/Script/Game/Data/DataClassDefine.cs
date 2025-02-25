@@ -112,6 +112,7 @@ public class PlayerData
 	public IReactiveProperty<int> VehiclePropertyIdx = new ReactiveProperty<int>();
 	
 
+
 }
 
 public class StageData

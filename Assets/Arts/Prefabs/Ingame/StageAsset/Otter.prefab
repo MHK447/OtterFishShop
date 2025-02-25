@@ -775,7 +775,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CurUnitType: 0
-  PlayerSpeed: 5
   ProgressTr: {fileID: 3162679206169593148}
   FishTr: {fileID: 1161581927408377593}
   skeletonAnimation: {fileID: 6902744124365164405}
@@ -862,7 +861,7 @@ SortingGroup:
   m_Enabled: 1
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 50
+  m_SortingOrder: 200
   m_SortAtRoot: 0
 --- !u!1 &2714424444675837686
 GameObject:

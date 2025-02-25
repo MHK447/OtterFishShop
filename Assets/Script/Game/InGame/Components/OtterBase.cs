@@ -38,7 +38,6 @@ public class OtterBase : MonoBehaviour
     [SerializeField]
     private OtterType CurUnitType;
 
-    [SerializeField]
     private float PlayerSpeed = 1f;
 
     [SerializeField]
@@ -88,13 +87,16 @@ public class OtterBase : MonoBehaviour
     private float lastYPosition;
 
     public int CarryCasherWorkFacilityIdx = 0;
-    
+
+    private int default_player_speed = 0;
 
     private void Awake()
     {
         Renderer = skeletonAnimation.GetComponent<Renderer>();
 
         lastYPosition = transform.position.y;
+
+        default_player_speed = Tables.Instance.GetTable<Define>().GetData("default_player_speed").value;
     }
 
     public virtual void Init()
@@ -153,6 +155,33 @@ public class OtterBase : MonoBehaviour
 
             ProjectUtility.SetActiveCheck(TextEffectMax.gameObject, false);
         });
+
+
+        if (CurUnitType == OtterType.Player)
+        {
+            GameRoot.Instance.UserData.CurMode.PlayerData.VehiclePropertyIdx.Subscribe(x =>
+            {
+                SetPlayerSpeed();
+                PlayAnimation(OtterState.Idle , "idle" , true);
+            }).AddTo(disposables);
+        }
+    }
+
+
+    public void SetPlayerSpeed()
+    {
+        var vehicleidx = GameRoot.Instance.UserData.CurMode.PlayerData.VehiclePropertyIdx.Value;
+
+        var td = Tables.Instance.GetTable<VehicleInfo>().GetData(vehicleidx);
+
+        if (td != null)
+        {
+            PlayerSpeed = default_player_speed + ProjectUtility.PercentCalc(default_player_speed, td.buff_value);
+        }
+        else
+        {
+            PlayerSpeed = default_player_speed;
+        }
     }
 
 
@@ -352,34 +381,15 @@ public class OtterBase : MonoBehaviour
     {
         if (CurState == state) return;
 
-        var animationname = newAnimationName;
-
-        if (IsCarry)
-        {
-            switch (animationname)
-            {
-                case "idle":
-                    {
-                        animationname = "carryIdle";
-                    }
-                    break;
-                case "move":
-                    {
-                        animationname = "carry";
-                    }
-                    break;
-
-            }
-        }
+        string aniname = GetVehicleAnim(state);
 
         ChangeState(state);
 
-
-        CurAnimName = newAnimationName;
+        CurAnimName = aniname;
 
         if (skeletonAnimation != null)
         {
-            skeletonAnimation.state.SetAnimation(0, animationname, isLooping);
+            skeletonAnimation.state.SetAnimation(0, aniname, isLooping);
         }
     }
 
@@ -473,7 +483,7 @@ public class OtterBase : MonoBehaviour
     }
 
 
-    IEnumerator MoveProcess(System.Action arrivedAction = null)
+    private IEnumerator MoveProcess(System.Action arrivedAction = null)
     {
         while (_wayPoints.Count > 0)
         {
@@ -577,6 +587,49 @@ public class OtterBase : MonoBehaviour
         }
     }
 
+    public string GetVehicleAnim(OtterState state)
+    {
+        var vehicleidx = GameRoot.Instance.UserData.CurMode.PlayerData.VehiclePropertyIdx.Value;
+
+        var td = Tables.Instance.GetTable<VehicleInfo>().GetData(vehicleidx);
+
+        if (td != null && CurUnitType == OtterType.Player)
+        {
+            switch (state)
+            {
+                case OtterState.Wait:
+                case OtterState.Idle:
+                    return IsCarry ? $"vehicle_{vehicleidx}_carryidle" : $"vehicle_{vehicleidx}_idle";
+                case OtterState.Fishing:
+                    return $"vehicle_{vehicleidx}_fishingidle";
+                case OtterState.Move:
+                    return IsCarry ? $"vehicle_{vehicleidx}_carry" : $"vehicle_{vehicleidx}_move";
+                case OtterState.Carry:
+                    return IsCarry ?  $"vehicle_{vehicleidx}_carryidle" :  $"vehicle_{vehicleidx}_idle";
+            }
+        }
+        else
+        {
+            switch (state)
+            {
+                case OtterState.Wait:
+                case OtterState.Idle:
+                    return IsCarry ? "carryidle" : "idle";
+                case OtterState.Fishing:
+                    return "fishingidle";
+                case OtterState.Move:
+                    return IsCarry ? "carry" : "move";
+                case OtterState.Sleep:
+                    return "napstart";
+                case OtterState.Carry:
+                    return IsCarry ? "carryidle" : "idle";
+
+            }
+        }
+
+        return string.Empty;
+    }
+
     private void OnDestroy()
     {
         if (Progress != null)
@@ -587,9 +640,9 @@ public class OtterBase : MonoBehaviour
         }
 
 
-        if(TextEffectMax != null)
+        if (TextEffectMax != null)
         {
-            ProjectUtility.SetActiveCheck(TextEffectMax.gameObject , false);
+            ProjectUtility.SetActiveCheck(TextEffectMax.gameObject, false);
             Destroy(TextEffectMax);
             TextEffectMax = null;
         }

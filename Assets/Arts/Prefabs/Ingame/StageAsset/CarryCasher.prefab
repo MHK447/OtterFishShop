@@ -964,8 +964,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db9b38453208f49d5a7874ede20e4342, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CurUnitType: 0
-  PlayerSpeed: 1
+  CurUnitType: 1
   ProgressTr: {fileID: 9063122242514546740}
   FishTr: {fileID: 3999100316851466616}
   skeletonAnimation: {fileID: 6902744124365164405}
@@ -1033,7 +1032,7 @@ SortingGroup:
   m_Enabled: 1
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 50
+  m_SortingOrder: 200
   m_SortAtRoot: 0
 --- !u!1 &3430863756018816031
 GameObject:

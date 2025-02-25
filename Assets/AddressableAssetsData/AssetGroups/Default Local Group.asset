@@ -458,7 +458,22 @@ MonoBehaviour:
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: fb0f88008c168f848b63ee03f899d55d
-    m_Address: PopupVehicle
+    m_Address: UI/Popup/PopupVehicle
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 64f4da1fdd5bb644dbcab51331aef244
+    m_Address: Ad_Vehicle
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8c880997932b7434c987bc8dd473a977
+    m_Address: UI/InGame/VehicleUI
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 071e0323c9a5d394ca58f1086e18e59c
+    m_Address: UI/InGame/VehicleBubbleUI
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0

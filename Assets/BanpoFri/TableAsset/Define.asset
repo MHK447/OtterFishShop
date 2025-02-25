@@ -24,6 +24,9 @@ MonoBehaviour:
   - ad_ride_time
   - ride_cash_value
   - ad_retimer_time
+  - default_player_speed
+  - ad_vehicle_time
+  - ad_vehicle_show_time
   mSecondKey: []
   mDataList:
   - _index: casher_move_speed
@@ -48,3 +51,9 @@ MonoBehaviour:
     _value: 5
   - _index: ad_retimer_time
     _value: 500
+  - _index: default_player_speed
+    _value: 5
+  - _index: ad_vehicle_time
+    _value: 60
+  - _index: ad_vehicle_show_time
+    _value: 30

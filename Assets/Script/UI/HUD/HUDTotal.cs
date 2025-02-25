@@ -4,6 +4,7 @@ using UnityEngine;
 using BanpoFri;
 using UnityEngine.UI;
 using UniRx;
+using TMPro;
 
 [UIPath("UI/Page/HUDTotal", true)]
 public class HUDTotal : UIBase
@@ -14,6 +15,12 @@ public class HUDTotal : UIBase
     [SerializeField]
     private Button NextStageBtn;
 
+    [SerializeField]
+    private TextMeshProUGUI AdVehicleTimeText;
+
+    [SerializeField]
+    private GameObject VehicleObj;
+    
     [SerializeField]
     private Text FpsText;
 
@@ -30,6 +37,18 @@ public class HUDTotal : UIBase
 
         if(GameRoot.Instance.UserData.CurMode.StageData.StageIdx == 1)
         ProjectUtility.SetActiveCheck(UpgradeBtn.gameObject , false);
+
+        GameRoot.Instance.VehicleSystem.AdVehiceTimeProperty.Subscribe(x=> {
+            AdVehicleTimeText.text = Utility.GetTimeStringFormattingShort(x);
+            if(x <= 0)
+            {
+                GameRoot.Instance.VehicleSystem.AdVehicleActive(false);
+            }
+        }).AddTo(this);
+
+          GameRoot.Instance.UserData.CurMode.PlayerData.VehiclePropertyIdx.Subscribe(x=> {
+            ProjectUtility.SetActiveCheck(VehicleObj , x > 0);
+        }).AddTo(this);
     }
 
     public void OnClickNextStage()

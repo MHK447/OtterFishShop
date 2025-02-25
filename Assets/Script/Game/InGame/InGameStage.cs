@@ -80,6 +80,9 @@ public class InGameStage : MonoBehaviour
 
     private List<Consumer> activeConsumerObjs = new List<Consumer>();
 
+
+    private AdVehicleComponent AdVehicleComponent;
+
     public void Init()
     {
         IsLoadComplete = false;
@@ -106,7 +109,7 @@ public class InGameStage : MonoBehaviour
         foreach (var cook in CookComponentList)
         {
             cook.Init();
-        }   
+        }
 
         var stageidx = GameRoot.Instance.UserData.CurMode.StageData.StageIdx;
 
@@ -124,16 +127,16 @@ public class InGameStage : MonoBehaviour
 
                 var upgradevalue = GameRoot.Instance.UpgradeSystem.GetUpgradeValue(UpgradeSystem.UpgradeType.AddCustomer); //기본 베이스가 호출됨 
 
-            if(GameRoot.Instance.UserData.CurMode.StageData.StageIdx == 1)
-            {
-                var getui = GameRoot.Instance.UISystem.GetUI<HUDTotal>();
-
-                if (getui != null)
+                if (GameRoot.Instance.UserData.CurMode.StageData.StageIdx == 1)
                 {
-                    ProjectUtility.SetActiveCheck(getui.GetUpgradeBtnTr.gameObject, true);
+                    var getui = GameRoot.Instance.UISystem.GetUI<HUDTotal>();
+
+                    if (getui != null)
+                    {
+                        ProjectUtility.SetActiveCheck(getui.GetUpgradeBtnTr.gameObject, true);
+                    }
                 }
-            }
-            
+
                 for (int i = 0; i < upgradevalue; ++i)
                 {
                     CreateConsumer(1, StartWayPointTrList[i]);
@@ -254,7 +257,7 @@ public class InGameStage : MonoBehaviour
 
     public bool IsWorkCasherFacilityCheck(int facilityidx)
     {
-        return activeCashers.Find(x=> x.CarryCasherWorkFacilityIdx == facilityidx) != null;
+        return activeCashers.Find(x => x.CarryCasherWorkFacilityIdx == facilityidx) != null;
     }
 
     public OtterBase FindCasher(CasherType type, int facilityidx)
@@ -346,5 +349,45 @@ public class InGameStage : MonoBehaviour
         }
 
         return null;
+    }
+
+    public void ActiveOffVehicle()
+    {
+        if(AdVehicleComponent != null)
+        {
+            ProjectUtility.SetActiveCheck(AdVehicleComponent.gameObject , false);
+        }
+    }
+
+
+    public void ActiveOnAdVehicle()
+    {
+        var ranvalue = UnityEngine.Random.Range(0, GameRoot.Instance.VehicleSystem.AdVehiclePoints.Length);
+        var randpos = GameRoot.Instance.VehicleSystem.AdVehiclePoints[ranvalue];
+
+        GameRoot.Instance.VehicleSystem.IsShowAdVehicle = true;
+
+        if (AdVehicleComponent == null)
+        {
+            Addressables.InstantiateAsync("Ad_Vehicle").Completed += (handle) =>
+              {
+                  var vehiclecomponent = handle.Result.GetComponent<AdVehicleComponent>();
+
+                  if (vehiclecomponent != null)
+                  {
+                      AdVehicleComponent = vehiclecomponent;
+                      AdVehicleComponent.transform.position = randpos;
+                      vehiclecomponent.Init();
+                      ProjectUtility.SetActiveCheck(AdVehicleComponent.gameObject, true);
+                  }
+
+              };
+        }
+        else
+        {
+            AdVehicleComponent.Init();
+            AdVehicleComponent.transform.position = GameRoot.Instance.VehicleSystem.AdVehiclePoints[ranvalue];
+            ProjectUtility.SetActiveCheck(AdVehicleComponent.gameObject, true);
+        }
     }
 }
