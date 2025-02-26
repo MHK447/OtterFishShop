@@ -177,13 +177,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: Text_One_01
       objectReference: {fileID: 0}
+    - target: {fileID: 1342212486000756448, guid: 855cbcf582cbfa5449e89d6943e90648, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2551621491029805484, guid: 855cbcf582cbfa5449e89d6943e90648, type: 3}
       propertyPath: m_text
       value: "\u2191 999%\x03"
       objectReference: {fileID: 0}
     - target: {fileID: 2551621491029805484, guid: 855cbcf582cbfa5449e89d6943e90648, type: 3}
       propertyPath: m_fontSize
-      value: 115.2
+      value: 90
       objectReference: {fileID: 0}
     - target: {fileID: 2551621491029805484, guid: 855cbcf582cbfa5449e89d6943e90648, type: 3}
       propertyPath: m_margin.x
@@ -199,12 +203,20 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2551621491029805484, guid: 855cbcf582cbfa5449e89d6943e90648, type: 3}
       propertyPath: m_fontSizeMax
-      value: 115.2
+      value: 90
       objectReference: {fileID: 0}
     - target: {fileID: 2551621491029805484, guid: 855cbcf582cbfa5449e89d6943e90648, type: 3}
       propertyPath: m_fontSizeMin
       value: 41.4
       objectReference: {fileID: 0}
+    - target: {fileID: 2551621491029805484, guid: 855cbcf582cbfa5449e89d6943e90648, type: 3}
+      propertyPath: m_wordSpacing
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2551621491029805484, guid: 855cbcf582cbfa5449e89d6943e90648, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: 69f7fda3518f3094db85912d80a744c3, type: 2}
     - target: {fileID: 8721088292722929649, guid: 855cbcf582cbfa5449e89d6943e90648, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -285,7 +297,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1342212486000756448, guid: 855cbcf582cbfa5449e89d6943e90648, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
