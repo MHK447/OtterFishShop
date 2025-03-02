@@ -20,11 +20,11 @@ public class HUDTotal : UIBase
 
     [SerializeField]
     private GameObject VehicleObj;
-    
+
     [SerializeField]
     private Text FpsText;
 
-    public Transform GetUpgradeBtnTr {get {return UpgradeBtn.transform; }}
+    public Transform GetUpgradeBtnTr { get { return UpgradeBtn.transform; } }
 
     private float deltaTime = 0.0f;
 
@@ -35,20 +35,28 @@ public class HUDTotal : UIBase
         NextStageBtn.onClick.AddListener(OnClickNextStage);
         TopCurrencySync();
 
-        if(GameRoot.Instance.UserData.CurMode.StageData.StageIdx == 1)
-        ProjectUtility.SetActiveCheck(UpgradeBtn.gameObject , false);
+        if (GameRoot.Instance.UserData.CurMode.StageData.StageIdx == 1)
+            ProjectUtility.SetActiveCheck(UpgradeBtn.gameObject, false);
 
-        GameRoot.Instance.VehicleSystem.AdVehiceTimeProperty.Subscribe(x=> {
+        GameRoot.Instance.VehicleSystem.AdVehiceTimeProperty.Subscribe(x =>
+        {
             AdVehicleTimeText.text = Utility.GetTimeStringFormattingShort(x);
-            if(x <= 0)
+            if (x <= 0)
             {
                 GameRoot.Instance.VehicleSystem.AdVehicleActive(false);
             }
         }).AddTo(this);
 
-          GameRoot.Instance.UserData.CurMode.PlayerData.VehiclePropertyIdx.Subscribe(x=> {
-            ProjectUtility.SetActiveCheck(VehicleObj , x > 0);
+        GameRoot.Instance.UserData.CurMode.PlayerData.VehiclePropertyIdx.Subscribe(x =>
+        {
+            ProjectUtility.SetActiveCheck(VehicleObj, x > 0);
         }).AddTo(this);
+
+#if BANPFRI_LOG
+        ProjectUtility.SetActive(FpsText.gameObject , true);
+#else
+        ProjectUtility.SetActiveCheck(FpsText.gameObject , false);
+#endif
     }
 
     public void OnClickNextStage()
@@ -66,7 +74,10 @@ public class HUDTotal : UIBase
     {
         deltaTime += (Time.deltaTime - deltaTime) * 0.1f;
         float fps = 1.0f / deltaTime;
-        FpsText.text = $"FPS: {Mathf.CeilToInt(fps)}";
+
+#if BANPFRI_LOG
+                FpsText.text = $"FPS: {Mathf.CeilToInt(fps)}";
+#endif
     }
 
 
@@ -77,13 +88,13 @@ public class HUDTotal : UIBase
         if (CurrencyTop.CashText != null)
         {
             CurrencyTop.CashText.text = GameRoot.Instance.UserData.Cash.Value.ToString();
-            GameRoot.Instance.UserData.HUDCash.Subscribe(x=>
+            GameRoot.Instance.UserData.HUDCash.Subscribe(x =>
             {
                 CurrencyTop.CashText.text = x.ToString();
             }).AddTo(this);
 
 
-                CurrencyTop.CashText.text = GameRoot.Instance.UserData.Cash.Value.ToString();
+            CurrencyTop.CashText.text = GameRoot.Instance.UserData.Cash.Value.ToString();
 
         }
 
@@ -94,7 +105,7 @@ public class HUDTotal : UIBase
 
             GameRoot.Instance.UserData.HUDMoney.Subscribe(x =>
             {
-                
+
                 CurrencyTop.MoneyText.text = ProjectUtility.CalculateMoneyToString(GameRoot.Instance.UserData.CurMode.Money.Value);
             }).AddTo(this);
         }
