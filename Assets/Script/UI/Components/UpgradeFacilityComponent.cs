@@ -59,6 +59,8 @@ public class UpgradeFacilityComponent : MonoBehaviour
     private void Awake()
     {
         UpgradeBtn.OnPressed = () => OnClickUpgrade();
+
+        transform.rotation = Quaternion.identity;
     }
 
 
@@ -86,14 +88,14 @@ public class UpgradeFacilityComponent : MonoBehaviour
             FishImg.sprite = Config.Instance.GetIngameImg(fishtd.icon);
         }
 
-        UpgradeBtn.Interactable =  GameRoot.Instance.UserData.CurMode.Money.Value >= CurPrice;
+        UpgradeBtn.Interactable = GameRoot.Instance.UserData.CurMode.Money.Value >= CurPrice;
 
         disposables.Clear();
 
 
-        GameRoot.Instance.UserData.CurMode.Money.Subscribe(x=> {
+        GameRoot.Instance.UserData.CurMode.Money.Subscribe(x =>
+        {
             SetInfo();
-            UpgradeBtn.Interactable = x >= CurPrice && !IsMaxLevel;
         }).AddTo(disposables);
     }
 
@@ -119,18 +121,20 @@ public class UpgradeFacilityComponent : MonoBehaviour
 
         IsMaxLevel = CurStageFacilityData.Level >= FacilityUpgradeData.max_ugprade_count;
 
-        ProjectUtility.SetActiveCheck(ButtonCurrencyObj , !IsMaxLevel);
-        if(IsMaxLevel)
+        ProjectUtility.SetActiveCheck(ButtonCurrencyObj, !IsMaxLevel);
+        if (IsMaxLevel)
         {
             MiddleSlider.value = 1f;
-            LevelText.text =  Tables.Instance.GetTable<Localize>().GetString("str_lv_max");
+            LevelText.text = Tables.Instance.GetTable<Localize>().GetString("str_lv_max");
             MiddleSliderValueText.text = CurCostValueText.text = Tables.Instance.GetTable<Localize>().GetString("str_max");
-            
+
         }
 
-        ProjectUtility.SetActiveCheck(CashImg.gameObject , !IsMaxLevel);
+        ProjectUtility.SetActiveCheck(CashImg.gameObject, !IsMaxLevel);
 
-        OpacityRoot.anchoredPosition = IsMaxLevel ? new Vector2(OpacityRoot.anchoredPosition.x , -20f) : Vector2.zero;
+        UpgradeBtn.Interactable = GameRoot.Instance.UserData.CurMode.Money.Value >= CurPrice && !IsMaxLevel;
+
+        OpacityRoot.anchoredPosition = IsMaxLevel ? new Vector2(OpacityRoot.anchoredPosition.x, -20f) : Vector2.zero;
     }
 
     public void OnClickUpgrade()
@@ -143,10 +147,10 @@ public class UpgradeFacilityComponent : MonoBehaviour
 
             SetInfo();
 
-            if(CurStageFacilityData.Level % FacilityUpgradeData.value_count == 0)
+            if (CurStageFacilityData.Level % FacilityUpgradeData.value_count == 0)
             {
                 var getui = GameRoot.Instance.UISystem.GetUI<PopupUpgrade>();
-                ProjectUtility.PlayGoodsEffect(Vector3.zero,(int)Config.RewardType.Currency , (int)Config.CurrencyID.Cash , 1 , 1 , true , null , 0 , "" , getui);
+                ProjectUtility.PlayGoodsEffect(Vector3.zero, (int)Config.RewardType.Currency, (int)Config.CurrencyID.Cash, 1, 1, true, null, 0, "", getui);
             }
         }
 

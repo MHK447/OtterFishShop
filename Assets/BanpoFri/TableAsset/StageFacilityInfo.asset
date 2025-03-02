@@ -195,11 +195,11 @@ MonoBehaviour:
     _open_cost: 5000
   - _stageidx: 2
     _openorder: 15
-    _facilityidx: 4
+    _facilityidx: 104
     _open_cost: 10000
   - _stageidx: 2
     _openorder: 16
-    _facilityidx: 104
+    _facilityidx: 4
     _open_cost: 15000
   - _stageidx: 2
     _openorder: 17
@@ -236,7 +236,7 @@ MonoBehaviour:
   - _stageidx: 3
     _openorder: 5
     _facilityidx: 11
-    _open_cost: 10000
+    _open_cost: 3000
   - _stageidx: 3
     _openorder: 6
     _facilityidx: 12

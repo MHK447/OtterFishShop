@@ -162,7 +162,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TrackingScale: 0
-  TrackingPos: 0
+  TrackingPos: 1
   OffsetVec: {x: 0, y: 0, z: 0}
   VehicleBuffText: {fileID: 5658534296937053679}
 --- !u!1001 &7921278468474123331

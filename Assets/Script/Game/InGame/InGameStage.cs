@@ -355,7 +355,7 @@ public class InGameStage : MonoBehaviour
     {
         if(AdVehicleComponent != null)
         {
-            ProjectUtility.SetActiveCheck(AdVehicleComponent.gameObject , false);
+            AdVehicleComponent.ActiveOff();
         }
     }
 

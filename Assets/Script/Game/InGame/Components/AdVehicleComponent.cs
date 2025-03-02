@@ -89,6 +89,21 @@ public class AdVehicleComponent : MonoBehaviour
         }
     }
 
+    public void ActiveOff()
+    {
+        if(BubbleUI != null)
+        {
+            ProjectUtility.SetActiveCheck(BubbleUI.gameObject , false);
+        }
+
+        if(VehicleTextUI != null)
+        {
+            ProjectUtility.SetActiveCheck(VehicleTextUI.gameObject, false);
+        }
+
+        ProjectUtility.SetActiveCheck(this.gameObject , false);
+    }
+
 
     void Update()
     {

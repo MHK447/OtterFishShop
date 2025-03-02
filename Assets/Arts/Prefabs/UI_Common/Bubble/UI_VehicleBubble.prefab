@@ -72,6 +72,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00c9ffba7a61f442a8910974d13807f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  TrackingScale: 0
+  TrackingPos: 1
+  OffsetVec: {x: 0, y: 0, z: 0}
 --- !u!1 &5244838378881752116
 GameObject:
   m_ObjectHideFlags: 0
