@@ -40,7 +40,7 @@ public class ContentsOpenComponent : MonoBehaviour
     {
         int curstageidx = GameRoot.Instance.UserData.CurMode.StageData.StageIdx;
 
-        FacilityOpenOrder = Tables.Instance.GetTable<FacilityOpenOrder>().DataList.ToList().Find(x => x.stageidx == curstageidx
+        FacilityOpenOrder = Tables.Instance.GetTable<StageFacilityInfo>().DataList.ToList().Find(x => x.stageidx == curstageidx
         && facilitydata.FacilityIdx == x.facilityidx).openorder;
 
         var openorder = GameRoot.Instance.UserData.CurMode.StageData.NextFacilityOpenOrderProperty;

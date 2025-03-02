@@ -196,12 +196,12 @@ MonoBehaviour:
     _upgrade_reward_idx: 2
     _upgrade_reward_count: 1
     _value_count: 5
-    _income_multiple_value_group: 150
-    _income_multiple_value: 15
+    _income_multiple_value_group: 30
+    _income_multiple_value: 5
     _max_ugprade_count: 100
     _base_income_cost: 20
     _income_cost_multiple: 100
-    _income_cost_level_multiple: 110
+    _income_cost_level_multiple: 30
     _openfacilitycheck: 11
   - _stageidx: 3
     _facilityidx: 12

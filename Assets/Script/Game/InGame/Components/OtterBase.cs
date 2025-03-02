@@ -585,6 +585,13 @@ public class OtterBase : MonoBehaviour
             Destroy(Progress.gameObject);
             Progress = null;
         }
+
+        if(TextEffectMax != null)
+        {
+            ProjectUtility.SetActiveCheck(TextEffectMax.gameObject , false);
+            Destroy(TextEffectMax.gameObject);
+            TextEffectMax = null;
+        }
     }
 
     public string GetVehicleAnim(OtterState state)

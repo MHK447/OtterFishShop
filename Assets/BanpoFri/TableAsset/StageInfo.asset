@@ -46,7 +46,7 @@ MonoBehaviour:
     _revenue_buff_profit: 200
     _nextstage_name: next_stage_name_3
     _nextstage_image: Ingame_Food_012
-    _next_stage_money: 1000000
+    _next_stage_money: 100000000
   - _stageidx: 4
     _seedmoney_value: 100
     _stage_name: name_test_4
