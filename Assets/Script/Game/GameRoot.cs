@@ -17,6 +17,11 @@ public class GameRoot : Singleton<GameRoot>
 	private Canvas WorldCanvas;
 	[SerializeField]
 	private GameObject CheatWindow;
+
+	[SerializeField]
+	private GameObject DebugConsoleObj;
+
+
 	[HideInInspector]
 	public LoadingBasic Loading;
 	[SerializeField]
@@ -39,7 +44,7 @@ public class GameRoot : Singleton<GameRoot>
 	public UpgradeSystem UpgradeSystem { get; private set; } = new UpgradeSystem();
 	public GameNotificationSystem GameNotification { get; private set; } = new GameNotificationSystem();
 
-	public VehicleSystem VehicleSystem {get; private set;} = new VehicleSystem();
+	public VehicleSystem VehicleSystem { get; private set; } = new VehicleSystem();
 
 
 
@@ -63,10 +68,14 @@ public class GameRoot : Singleton<GameRoot>
 
 	public static bool IsInit()
 	{
+
+
 		if (instance != null && !InitTry)
 			Load();
 
 		return instance != null;
+
+
 	}
 
 	public static void Load()
@@ -197,6 +206,13 @@ public class GameRoot : Singleton<GameRoot>
 			Destroy(this.gameObject);
 			yield break;
 		}
+
+		#if BANPOFRI_LOG
+			DebugConsoleObj.SetActive(true);
+		#else
+			DebugConsoleObj.SetActive(false);
+		#endif
+		
 		//TouchStartActions.Clear();
 		Screen.sleepTimeout = SleepTimeout.NeverSleep;
 		PluginSystem.Init();
