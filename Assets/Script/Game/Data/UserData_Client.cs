@@ -99,6 +99,7 @@ public partial class UserDataSystem
             mainData.FishUpgradeDatas.Add(newdata);
         }
 
+        SyncHUDCurrency();
     }
 
 

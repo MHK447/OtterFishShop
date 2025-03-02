@@ -50,13 +50,14 @@ public class VehicleSystem
         if (IsAdEquipVehicle && AdVehiceTimeProperty.Value > 0)
         {
             AdVehiceTimeProperty.Value -= 1;
+            IsShowAdVehicle = false;
         }
 
-        if(!IsAdEquipVehicle && AdVehicleShowTime < ad_vehicle_show_time && !IsShowAdVehicle)
+        if (!IsAdEquipVehicle && AdVehicleShowTime < ad_vehicle_show_time && !IsShowAdVehicle)
         {
-            AdVehicleShowTime += 1; 
-            
-            if(AdVehicleShowTime >= ad_vehicle_show_time)
+            AdVehicleShowTime += 1;
+
+            if (AdVehicleShowTime >= ad_vehicle_show_time)
             {
                 GameRoot.Instance.InGameSystem.GetInGame<InGameTycoon>().curInGameStage.ActiveOnAdVehicle();
                 AdVehicleShowTime = 0;
@@ -72,5 +73,5 @@ public class VehicleSystem
         GameRoot.Instance.UserData.CurMode.PlayerData.VehiclePropertyIdx.Value = isactive ? 1 : 0;
     }
 
-    
+
 }

@@ -181,10 +181,10 @@ MonoBehaviour:
     _facilityidx: 1003
   - _stageidx: 2
     _openorder: 5
-    _facilityidx: 4
+    _facilityidx: 104
   - _stageidx: 2
     _openorder: 6
-    _facilityidx: 104
+    _facilityidx: 4
   - _stageidx: 2
     _openorder: 7
     _facilityidx: 8

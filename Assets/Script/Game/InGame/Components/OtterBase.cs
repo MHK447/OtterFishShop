@@ -134,11 +134,7 @@ public class OtterBase : MonoBehaviour
             {
                 if (donebuy.UpgradeType == (int)UpgradeSystem.UpgradeType.PlayerSpeedUp)
                 {
-                    var buffvalue = GameRoot.Instance.UpgradeSystem.GetUpgradeValue(UpgradeSystem.UpgradeType.PlayerSpeedUp);
-
-                    var getcalcvalue = ProjectUtility.PercentCalc(GameRoot.Instance.InGameSystem.casher_move_speed, buffvalue);
-
-                    PlayerSpeed = GameRoot.Instance.InGameSystem.casher_move_speed + getcalcvalue;
+                    SetPlayerSpeed();
                 }
                 else if (donebuy.UpgradeType == (int)UpgradeSystem.UpgradeType.PlayerCapacityUp
                 || donebuy.UpgradeType == (int)UpgradeSystem.UpgradeType.TransportStaffCapacityUp)
@@ -162,7 +158,7 @@ public class OtterBase : MonoBehaviour
             GameRoot.Instance.UserData.CurMode.PlayerData.VehiclePropertyIdx.Subscribe(x =>
             {
                 SetPlayerSpeed();
-                PlayAnimation(OtterState.Idle , "idle" , true);
+                PlayAnimation(OtterState.Idle, "idle", true);
             }).AddTo(disposables);
         }
     }
@@ -174,13 +170,17 @@ public class OtterBase : MonoBehaviour
 
         var td = Tables.Instance.GetTable<VehicleInfo>().GetData(vehicleidx);
 
+        var buffvalue = GameRoot.Instance.UpgradeSystem.GetUpgradeValue(UpgradeSystem.UpgradeType.PlayerSpeedUp);
+
+        var getcalcvalue = ProjectUtility.PercentCalc(GameRoot.Instance.InGameSystem.casher_move_speed, buffvalue);
+
         if (td != null)
         {
-            PlayerSpeed = default_player_speed + ProjectUtility.PercentCalc(default_player_speed, td.buff_value);
+            PlayerSpeed = default_player_speed + ProjectUtility.PercentCalc(default_player_speed, td.buff_value) + getcalcvalue;
         }
         else
         {
-            PlayerSpeed = default_player_speed;
+            PlayerSpeed = default_player_speed + getcalcvalue;
         }
     }
 
@@ -605,7 +605,7 @@ public class OtterBase : MonoBehaviour
                 case OtterState.Move:
                     return IsCarry ? $"vehicle_{vehicleidx}_carry" : $"vehicle_{vehicleidx}_move";
                 case OtterState.Carry:
-                    return IsCarry ?  $"vehicle_{vehicleidx}_carryidle" :  $"vehicle_{vehicleidx}_idle";
+                    return IsCarry ? $"vehicle_{vehicleidx}_carryidle" : $"vehicle_{vehicleidx}_idle";
             }
         }
         else
