@@ -21,15 +21,22 @@ MonoBehaviour:
   - food_load_01_desc
   - cooktool_speedup_01_desc
   - casher_stack_01_desc
+  - fishcasher_speedup_desc
   - casher_add_08_name
   - casher_add_09_name
   - casher_add_11_name
   - casher_add_12_name
   - casher_add_13_name
   - casher_add_14_name
+  - casher_add_15_name
+  - casher_add_16_name
+  - casher_add_17_name
+  - casher_add_18_name
+  - casher_add_19_name
   - casher_speedup_01_name
   - consumer_add_01_name
   - player_speedup_01_name
+  - fishcasher_speedup_name
   - player_stack_01_name
   - food_load_01_name
   - food_load_02_name
@@ -56,6 +63,34 @@ MonoBehaviour:
   - str_max
   - ad_vehicle_value
   - minute_time
+  - food_name_01
+  - food_name_02
+  - food_name_03
+  - food_name_04
+  - food_name_05
+  - food_name_06
+  - food_name_07
+  - food_name_08
+  - food_name_09
+  - food_name_10
+  - food_name_11
+  - food_name_12
+  - food_name_13
+  - food_name_14
+  - food_name_15
+  - food_name_16
+  - food_name_17
+  - food_name_18
+  - food_name_19
+  - food_name_20
+  - food_name_21
+  - food_name_22
+  - food_name_23
+  - food_name_24
+  - food_name_25
+  - food_name_26
+  - food_name_27
+  - food_name_28
   mSecondKey: []
   mDataList:
   - _idx: casher_add_02_desc
@@ -90,6 +125,11 @@ MonoBehaviour:
     _ko: "<color=#3a8e62>+{0}\uAC1C</color> \uC99D\uAC00"
     _en: 
     _ja: 
+  - _idx: fishcasher_speedup_desc
+    _ko: "\uB09A\uC2DC \uC18D\uB3C4 <color=#3a8e62>+{0}</color>\uD37C\uC13C\uD2B8
+      \uC99D\uAC00"
+    _en: 
+    _ja: 
   - _idx: casher_add_08_name
     _ko: "\uC5F4\uAC31\uC774 \uB09A\uC2DC \uC9C1\uC6D0"
     _en: 
@@ -107,11 +147,31 @@ MonoBehaviour:
     _en: 
     _ja: 
   - _idx: casher_add_13_name
-    _ko: "\uC0AC\uACFC \uC218\uD655 \uC9C1\uC6D0"
+    _ko: "\uC0AC\uACFC \uB09A\uC2DC \uC9C1\uC6D0"
     _en: 
     _ja: 
   - _idx: casher_add_14_name
-    _ko: "\uADE4 \uC218\uD655 \uC9C1\uC6D0"
+    _ko: "\uADE4 \uB09A\uC2DC \uC9C1\uC6D0"
+    _en: 
+    _ja: 
+  - _idx: casher_add_15_name
+    _ko: "\uC624\uC9D5\uC5B4 \uB09A\uC2DC \uC9C1\uC6D0"
+    _en: 
+    _ja: 
+  - _idx: casher_add_16_name
+    _ko: "\uB300\uAD6C \uB09A\uC2DC \uC9C1\uC6D0"
+    _en: 
+    _ja: 
+  - _idx: casher_add_17_name
+    _ko: "\uBE68\uAC04 \uBD88\uAC00\uC0AC\uB9AC \uB09A\uC2DC \uC9C1\uC6D0"
+    _en: 
+    _ja: 
+  - _idx: casher_add_18_name
+    _ko: "\uC0C8\uC6B0 \uB09A\uC2DC \uC9C1\uC6D0"
+    _en: 
+    _ja: 
+  - _idx: casher_add_19_name
+    _ko: "\uBB38\uC5B4 \uB09A\uC2DC \uC9C1\uC6D0"
     _en: 
     _ja: 
   - _idx: casher_speedup_01_name
@@ -124,6 +184,10 @@ MonoBehaviour:
     _ja: 
   - _idx: player_speedup_01_name
     _ko: "\uC0AC\uC7A5 \uC774\uB3D9\uC18D\uB3C4"
+    _en: 
+    _ja: 
+  - _idx: fishcasher_speedup_name
+    _ko: "{0} \uB09A\uC2DC \uC9C1\uC6D0 \uC18D\uB3C4 \uC99D\uAC00 "
     _en: 
     _ja: 
   - _idx: player_stack_01_name
@@ -228,5 +292,117 @@ MonoBehaviour:
     _ja: 
   - _idx: minute_time
     _ko: "{0}\uBD84"
+    _en: 
+    _ja: 
+  - _idx: food_name_01
+    _ko: "\uBD89\uC740\uC5F4\uAE30"
+    _en: 
+    _ja: 
+  - _idx: food_name_02
+    _ko: "\uACE0\uB4F1\uC5B4"
+    _en: 
+    _ja: 
+  - _idx: food_name_03
+    _ko: "\uBD89\uC740\uC5F4\uAE30 \uAD6C\uC774"
+    _en: 
+    _ja: 
+  - _idx: food_name_04
+    _ko: "\uACE0\uB4F1\uC5B4 \uC5F4\uAE30 \uB77C\uBA74"
+    _en: 
+    _ja: 
+  - _idx: food_name_05
+    _ko: "\b\uC5F4\uB300\uC5B4"
+    _en: 
+    _ja: 
+  - _idx: food_name_06
+    _ko: "\uD06C\uB7A9"
+    _en: 
+    _ja: 
+  - _idx: food_name_07
+    _ko: "\uC5F4\uB300\uC5B4 \uCE74\uB808"
+    _en: 
+    _ja: 
+  - _idx: food_name_08
+    _ko: "\b\uD06C\uB7A9\uAD6C\uC774"
+    _en: 
+    _ja: 
+  - _idx: food_name_09
+    _ko: "\uD06C\uB7A9 \uCE74\uB808 \uAD6C\uC774"
+    _en: 
+    _ja: 
+  - _idx: food_name_10
+    _ko: "\uC0AC\uACFC"
+    _en: 
+    _ja: 
+  - _idx: food_name_11
+    _ko: "\uADE4"
+    _en: 
+    _ja: 
+  - _idx: food_name_12
+    _ko: "\uC370\uC740\uC0AC\uACFC"
+    _en: 
+    _ja: 
+  - _idx: food_name_13
+    _ko: "\uCF00\uC774\uD06C"
+    _en: 
+    _ja: 
+  - _idx: food_name_14
+    _ko: "\uC624\uC9D5\uC5B4"
+    _en: 
+    _ja: 
+  - _idx: food_name_15
+    _ko: "\uB300\uAD6C"
+    _en: 
+    _ja: 
+  - _idx: food_name_16
+    _ko: "\uAD6C\uC6B4 \uC624\uC9D5\uC5B4"
+    _en: 
+    _ja: 
+  - _idx: food_name_17
+    _ko: "\uB300\uAD6C\uCC1C"
+    _en: 
+    _ja: 
+  - _idx: food_name_18
+    _ko: "\uC624\uC9D5\uC5B4 \uB36E\uBC25"
+    _en: 
+    _ja: 
+  - _idx: food_name_19
+    _ko: "\uD574\uBB3C \uC2A4\uD29C"
+    _en: 
+    _ja: 
+  - _idx: food_name_20
+    _ko: "\uD574\uBB3C \uB9AC\uC870\uB610"
+    _en: 
+    _ja: 
+  - _idx: food_name_21
+    _ko: "\uBD88\uAC00\uC0AC\uB9AC"
+    _en: 
+    _ja: 
+  - _idx: food_name_22
+    _ko: "\uBC84\uC12F"
+    _en: 
+    _ja: 
+  - _idx: food_name_23
+    _ko: "\uC0C8\uC6B0"
+    _en: 
+    _ja: 
+  - _idx: food_name_24
+    _ko: "\uBD88\uAC00\uC0AC\uB9AC \uD280\uAE40"
+    _en: 
+    _ja: 
+  - _idx: food_name_25
+    _ko: "\uBAA8\uB4EC \uD280\uAE40"
+    _en: 
+    _ja: 
+  - _idx: food_name_26
+    _ko: "\uBB38\uC5B4"
+    _en: 
+    _ja: 
+  - _idx: food_name_27
+    _ko: "\uD574\uBB3C \uAE4C\uC2A4"
+    _en: 
+    _ja: 
+  - _idx: food_name_28
+    _ko: "\uD280\uAE40\uB36E\uBC25"
     _en: 
     _ja: 

@@ -405,7 +405,7 @@ public class CarryCasher : OtterBase
     {
         if (CurState == OtterState.Sleep || CurState == OtterState.SleepMove) return;
 
-        if (CurState == OtterState.Wait || (CurState == OtterState.Idle && FishComponentList.Count == 0 && WorkActionQueue.Count == 0))
+        if (CurState == OtterState.Wait || (CurState == OtterState.Idle && WorkActionQueue.Count == 0))
         {
             waitdeltime += Time.deltaTime;
 

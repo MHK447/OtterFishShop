@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.AI;
 using Spine.Unity;
 using UniRx;
-
+using BanpoFri;
 
 public class FishCasher : OtterBase
 {
@@ -107,6 +107,26 @@ public class FishCasher : OtterBase
         if (skeletonAnimation != null)
         {
             skeletonAnimation.AnimationState.End -= HandleEvent;
+        }
+    }
+
+    public override void SetPlayerSpeed()
+    {
+        var vehicleidx = GameRoot.Instance.UserData.CurMode.PlayerData.VehiclePropertyIdx.Value;
+
+        var td = Tables.Instance.GetTable<VehicleInfo>().GetData(vehicleidx);
+
+        var buffvalue = GameRoot.Instance.UpgradeSystem.GetUpgradeValue(UpgradeSystem.UpgradeType.PlayerSpeedUp , FacilityIdx);
+
+        var getcalcvalue = ProjectUtility.PercentCalc(GameRoot.Instance.InGameSystem.casher_move_speed, buffvalue);
+
+        if (td != null)
+        {
+            PlayerSpeed = default_player_speed + ProjectUtility.PercentCalc(default_player_speed, td.buff_value) + getcalcvalue;
+        }
+        else
+        {
+            PlayerSpeed = default_player_speed + getcalcvalue;
         }
     }
 

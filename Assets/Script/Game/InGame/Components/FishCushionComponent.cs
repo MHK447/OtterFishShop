@@ -12,13 +12,13 @@ public class FishCushionComponent : MonoBehaviour
     [SerializeField]
     private Transform FishCasherTr;
 
-    public Transform GetFishCasherTr{get {return FishCasherTr; }}
+    public Transform GetFishCasherTr { get { return FishCasherTr; } }
 
     private bool IsOnEnter = false;
 
     public float CurMoneyTime = 0f;
 
-    public float TestTime = 2f;
+    public float FisgingTime = 2f;
 
     private float FishPos_Y = 0.15f;
 
@@ -32,6 +32,9 @@ public class FishCushionComponent : MonoBehaviour
 
     private int FishIdx = 0;
 
+
+    private CompositeDisposable disposables = new CompositeDisposable();
+
     public void Init(FacilityData facility)
     {
         FacilityData = facility;
@@ -40,13 +43,25 @@ public class FishCushionComponent : MonoBehaviour
 
         var td = Tables.Instance.GetTable<FacilityInfo>().GetData(FacilityData.FacilityIdx);
 
-        if(td != null)
+        if (td != null)
         {
             FishIdx = td.value_1;
             CapacityMaxCount = td.start_capacity;
         }
 
         ProjectUtility.SetActiveCheck(this.gameObject, FacilityData.IsOpen);
+
+        SetFishingTime();
+
+        disposables.Clear();
+
+        GameRoot.Instance.UserData.CurMode.UpgradeGroupData.StageUpgradeCollectionList.ObserveAdd().Subscribe(x =>
+        {
+            if (x.Value.UpgradeType == (int)UpgradeSystem.UpgradeType.CookingSpeedUp)
+            {
+                SetFishingTime();
+            }
+        }).AddTo(disposables);
     }
 
 
@@ -58,13 +73,13 @@ public class FishCushionComponent : MonoBehaviour
         var fishcasher = InGameStage.FindCasher(CasherType.FishingCasher, FacilityData.FacilityIdx);
         if (fishcasher != null)
         {
-            if(other.gameObject == fishcasher.gameObject)
+            if (other.gameObject == fishcasher.gameObject)
             {
-                if(Target != null && LayerMask.NameToLayer("Player") == Target.gameObject.layer)
+                if (Target != null && LayerMask.NameToLayer("Player") == Target.gameObject.layer)
                 {
                     var getvalue = Target.GetComponent<OtterBase>();
 
-                    if(getvalue != null)
+                    if (getvalue != null)
                     {
                         Target = null;
                         getvalue.IdleChange();
@@ -76,7 +91,7 @@ public class FishCushionComponent : MonoBehaviour
             }
 
             return;
-        } 
+        }
 
         if (other.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
@@ -93,6 +108,7 @@ public class FishCushionComponent : MonoBehaviour
             }
 
         }
+
     }
 
 
@@ -121,17 +137,26 @@ public class FishCushionComponent : MonoBehaviour
         Target = otter;
     }
 
+    public void SetFishingTime()
+    {
+        var buffvalue = GameRoot.Instance.UpgradeSystem.GetUpgradeValue(UpgradeSystem.UpgradeType.FishCasherSpeedUp, FacilityData.FacilityIdx);
+
+        var percentvalue = ProjectUtility.PercentCalc(GameRoot.Instance.InGameSystem.default_fishing_time, buffvalue);
+
+        FisgingTime = GameRoot.Instance.InGameSystem.default_fishing_time - percentvalue;
+    }
+
 
     private void Update()
     {
         if (FacilityData == null) return;
 
-        
+
         if (Target == null)
         {
             var findcasher = InGameStage.FindCasher(CasherType.FishingCasher, FacilityData.FacilityIdx);
 
-            if(findcasher != null)
+            if (findcasher != null)
             {
                 IsOnEnter = true;
                 Target = findcasher;
@@ -154,7 +179,7 @@ public class FishCushionComponent : MonoBehaviour
             Target.PlayAnimation(OtterBase.OtterState.Fishing, "fishingidle", true);
         }
 
-        if(Target.IsMove)
+        if (Target.IsMove)
         {
             CurMoneyTime = 0f;
         }
@@ -163,11 +188,11 @@ public class FishCushionComponent : MonoBehaviour
         {
             CurMoneyTime += Time.deltaTime;
 
-            var cooltimevalue = (float)CurMoneyTime / (float)TestTime;
+            var cooltimevalue = (float)CurMoneyTime / (float)FisgingTime;
 
             Target.CoolTimeActive(cooltimevalue);
 
-            if (CurMoneyTime >= TestTime)
+            if (CurMoneyTime >= FisgingTime)
             {
                 CurMoneyTime = 0f;
 
@@ -187,10 +212,22 @@ public class FishCushionComponent : MonoBehaviour
 
         BucketComponent.AddFishQueue(fish);
 
-        fish.FishInBucketAction(BucketComponent.transform, (fish)=> {
+        fish.FishInBucketAction(BucketComponent.transform, (fish) =>
+        {
+            BucketComponent.CountUICheck(fish.transform.position);
             fish.transform.position = BucketComponent.transform.position;
             Target.CoolTimeActive(FacilityData.CapacityCountProperty.Value < CapacityMaxCount);
-            BucketComponent.CountUICheck();
-        },1f , posy);
+        }, 1f, posy);
+    }
+
+
+    void OnDisable()
+    {
+        disposables.Clear();
+    }
+
+    void OnDestroy()
+    {
+        disposables.Clear();
     }
 }
