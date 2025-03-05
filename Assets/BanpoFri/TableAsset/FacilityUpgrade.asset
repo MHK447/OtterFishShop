@@ -124,7 +124,7 @@ MonoBehaviour:
     _upgrade_reward_idx: 2
     _upgrade_reward_count: 1
     _value_count: 5
-    _income_multiple_value_group: 60
+    _income_multiple_value_group: 0
     _income_multiple_value: 10
     _max_ugprade_count: 20
     _base_income_cost: 20
@@ -318,46 +318,46 @@ MonoBehaviour:
     _value_count: 5
     _income_multiple_value_group: 0
     _income_multiple_value: 10
-    _max_ugprade_count: 100
-    _base_income_cost: 10
+    _max_ugprade_count: 60
+    _base_income_cost: 20
     _income_cost_multiple: 100
-    _income_cost_level_multiple: 200
+    _income_cost_level_multiple: 100
     _openfacilitycheck: 21
   - _stageidx: 5
     _facilityidx: 22
     _upgrade_reward_idx: 2
     _upgrade_reward_count: 1
     _value_count: 5
-    _income_multiple_value_group: 150
-    _income_multiple_value: 15
+    _income_multiple_value_group: 50
+    _income_multiple_value: 10
     _max_ugprade_count: 100
-    _base_income_cost: 20
+    _base_income_cost: 40
     _income_cost_multiple: 100
-    _income_cost_level_multiple: 300
+    _income_cost_level_multiple: 200
     _openfacilitycheck: 22
   - _stageidx: 5
     _facilityidx: 23
     _upgrade_reward_idx: 2
     _upgrade_reward_count: 1
     _value_count: 5
-    _income_multiple_value_group: 150
-    _income_multiple_value: 20
-    _max_ugprade_count: 40
-    _base_income_cost: 40
+    _income_multiple_value_group: 0
+    _income_multiple_value: 40
+    _max_ugprade_count: 60
+    _base_income_cost: 20
     _income_cost_multiple: 100
-    _income_cost_level_multiple: 400
+    _income_cost_level_multiple: 150
     _openfacilitycheck: 23
   - _stageidx: 5
     _facilityidx: 24
     _upgrade_reward_idx: 2
     _upgrade_reward_count: 1
     _value_count: 5
-    _income_multiple_value_group: 150
-    _income_multiple_value: 100
+    _income_multiple_value_group: 0
+    _income_multiple_value: 80
     _max_ugprade_count: 60
     _base_income_cost: 80
     _income_cost_multiple: 100
-    _income_cost_level_multiple: 500
+    _income_cost_level_multiple: 200
     _openfacilitycheck: 24
   - _stageidx: 5
     _facilityidx: 25
@@ -365,33 +365,33 @@ MonoBehaviour:
     _upgrade_reward_count: 1
     _value_count: 5
     _income_multiple_value_group: 150
-    _income_multiple_value: 15
+    _income_multiple_value: 50
     _max_ugprade_count: 100
-    _base_income_cost: 20
+    _base_income_cost: 120
     _income_cost_multiple: 100
-    _income_cost_level_multiple: 600
+    _income_cost_level_multiple: 500
     _openfacilitycheck: 25
   - _stageidx: 5
     _facilityidx: 26
     _upgrade_reward_idx: 2
     _upgrade_reward_count: 1
     _value_count: 5
-    _income_multiple_value_group: 150
-    _income_multiple_value: 20
-    _max_ugprade_count: 40
-    _base_income_cost: 40
+    _income_multiple_value_group: 0
+    _income_multiple_value: 50
+    _max_ugprade_count: 100
+    _base_income_cost: 120
     _income_cost_multiple: 100
-    _income_cost_level_multiple: 700
+    _income_cost_level_multiple: 200
     _openfacilitycheck: 26
   - _stageidx: 5
     _facilityidx: 27
     _upgrade_reward_idx: 2
     _upgrade_reward_count: 1
     _value_count: 5
-    _income_multiple_value_group: 150
-    _income_multiple_value: 100
-    _max_ugprade_count: 60
-    _base_income_cost: 80
+    _income_multiple_value_group: 250
+    _income_multiple_value: 80
+    _max_ugprade_count: 120
+    _base_income_cost: 150
     _income_cost_multiple: 100
     _income_cost_level_multiple: 800
     _openfacilitycheck: 27
@@ -400,10 +400,10 @@ MonoBehaviour:
     _upgrade_reward_idx: 2
     _upgrade_reward_count: 1
     _value_count: 5
-    _income_multiple_value_group: 150
+    _income_multiple_value_group: 300
     _income_multiple_value: 100
-    _max_ugprade_count: 60
-    _base_income_cost: 80
+    _max_ugprade_count: 250
+    _base_income_cost: 200
     _income_cost_multiple: 100
-    _income_cost_level_multiple: 900
+    _income_cost_level_multiple: 1100
     _openfacilitycheck: 28

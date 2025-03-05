@@ -870,7 +870,7 @@ SortingGroup:
   m_Enabled: 1
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 80
+  m_SortingOrder: 110
   m_SortAtRoot: 0
 --- !u!1 &2372311403671698869
 GameObject:
@@ -1827,7 +1827,7 @@ SortingGroup:
   m_Enabled: 1
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 80
+  m_SortingOrder: 110
   m_SortAtRoot: 0
 --- !u!1 &8715104662961478035
 GameObject:

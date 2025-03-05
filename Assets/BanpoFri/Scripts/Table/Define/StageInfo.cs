@@ -63,11 +63,11 @@ namespace BanpoFri
 			set { _nextstage_image = value;}
 		}
 		[SerializeField]
-		private int _next_stage_money;
-		public int next_stage_money
+		private byte[] _next_stage_money;
+		public System.Numerics.BigInteger next_stage_money
 		{
-			get { return _next_stage_money;}
-			set { _next_stage_money = value;}
+			get { return new System.Numerics.BigInteger(_next_stage_money);}
+			set { _next_stage_money = value.ToByteArray();}
 		}
 
     }

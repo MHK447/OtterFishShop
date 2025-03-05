@@ -46,6 +46,10 @@ MonoBehaviour:
   - food_load_11_name
   - food_load_14_name
   - food_load_15_name
+  - food_load_16_name
+  - food_load_17_name
+  - food_load_18_name
+  - food_load_19_name
   - cooktool_speedup_01_name
   - cooktool_speedup_02_name
   - casher_stack_01_name
@@ -63,15 +67,15 @@ MonoBehaviour:
   - str_max
   - ad_vehicle_value
   - minute_time
-  - food_name_01
-  - food_name_02
-  - food_name_03
-  - food_name_04
-  - food_name_05
-  - food_name_06
-  - food_name_07
-  - food_name_08
-  - food_name_09
+  - food_name_1
+  - food_name_2
+  - food_name_3
+  - food_name_4
+  - food_name_5
+  - food_name_6
+  - food_name_7
+  - food_name_8
+  - food_name_9
   - food_name_10
   - food_name_11
   - food_name_12
@@ -226,6 +230,22 @@ MonoBehaviour:
     _ko: "\uB300\uAD6C \uC9C4\uC5F4\uC218\uB7C9"
     _en: 
     _ja: 
+  - _idx: food_load_16_name
+    _ko: "\uBD88\uAC00\uC0AC\uB9AC \uC9C4\uC5F4\uC218\uB7C9"
+    _en: 
+    _ja: 
+  - _idx: food_load_17_name
+    _ko: "\uC0C8\uC6B0 \uC9C4\uC5F4\uC218\uB7C9"
+    _en: 
+    _ja: 
+  - _idx: food_load_18_name
+    _ko: "\uBB38\uC5B4 \uC9C4\uC5F4\uC218\uB7C9"
+    _en: 
+    _ja: 
+  - _idx: food_load_19_name
+    _ko: "\uD45C\uACE0\uBC84\uC12F \uC9C4\uC5F4\uC218\uB7C9"
+    _en: 
+    _ja: 
   - _idx: cooktool_speedup_01_name
     _ko: "\uD504\uB77C\uC774\uD32C \uC870\uB9AC\uC18D\uB3C4"
     _en: 
@@ -294,39 +314,39 @@ MonoBehaviour:
     _ko: "{0}\uBD84"
     _en: 
     _ja: 
-  - _idx: food_name_01
+  - _idx: food_name_1
     _ko: "\uBD89\uC740\uC5F4\uAE30"
     _en: 
     _ja: 
-  - _idx: food_name_02
+  - _idx: food_name_2
     _ko: "\uACE0\uB4F1\uC5B4"
     _en: 
     _ja: 
-  - _idx: food_name_03
+  - _idx: food_name_3
     _ko: "\uBD89\uC740\uC5F4\uAE30 \uAD6C\uC774"
     _en: 
     _ja: 
-  - _idx: food_name_04
+  - _idx: food_name_4
     _ko: "\uACE0\uB4F1\uC5B4 \uC5F4\uAE30 \uB77C\uBA74"
     _en: 
     _ja: 
-  - _idx: food_name_05
+  - _idx: food_name_5
     _ko: "\b\uC5F4\uB300\uC5B4"
     _en: 
     _ja: 
-  - _idx: food_name_06
+  - _idx: food_name_6
     _ko: "\uD06C\uB7A9"
     _en: 
     _ja: 
-  - _idx: food_name_07
+  - _idx: food_name_7
     _ko: "\uC5F4\uB300\uC5B4 \uCE74\uB808"
     _en: 
     _ja: 
-  - _idx: food_name_08
+  - _idx: food_name_8
     _ko: "\b\uD06C\uB7A9\uAD6C\uC774"
     _en: 
     _ja: 
-  - _idx: food_name_09
+  - _idx: food_name_9
     _ko: "\uD06C\uB7A9 \uCE74\uB808 \uAD6C\uC774"
     _en: 
     _ja: 

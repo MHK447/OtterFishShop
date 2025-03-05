@@ -57,11 +57,17 @@ public class FishCushionComponent : MonoBehaviour
 
         GameRoot.Instance.UserData.CurMode.UpgradeGroupData.StageUpgradeCollectionList.ObserveAdd().Subscribe(x =>
         {
-            if (x.Value.UpgradeType == (int)UpgradeSystem.UpgradeType.CookingSpeedUp)
+            if (x.Value.UpgradeType == (int)UpgradeSystem.UpgradeType.FishCasherSpeedUp)
             {
                 SetFishingTime();
             }
         }).AddTo(disposables);
+
+        foreach (var stageupgrade in GameRoot.Instance.UserData.CurMode.UpgradeGroupData.StageUpgradeCollectionList)
+        {
+            if (stageupgrade.UpgradeType == (int)UpgradeSystem.UpgradeType.FishCasherSpeedUp)
+                stageupgrade.IsBuyCheckProperty.Subscribe(x => { SetFishingTime(); }).AddTo(disposables);
+        }
     }
 
 

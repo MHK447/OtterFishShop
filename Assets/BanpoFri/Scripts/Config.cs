@@ -171,9 +171,9 @@ public class Config : BanpoFri.SingletonScriptableObject<Config>, BanpoFri.ILoad
         SeafoodStew = 19, // 해믈스튜
         SeafoodRisotto = 20, //해물리조또 
         RedStarFish = 21,       // 불가사리
-        Mushroom = 22,       // 버섯
+        Mushroom = 24,       // 버섯
         Shrimp = 23,         // 새우
-        FriedStarfish = 24,  // 불가사리 튀김
+        FriedStarfish = 22,  // 불가사리 튀김
         AssortedFried = 25,  // 모듬 튀김
         Octopus = 26,        // 문어
         SeafoodCutlet = 27,  // 해물 까스
