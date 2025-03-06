@@ -23,6 +23,9 @@ public class HUDTotal : UIBase
 
     [SerializeField]
     private Text FpsText;
+    
+    [SerializeField]
+    private Button BoostBtn;
 
     public Transform GetUpgradeBtnTr { get { return UpgradeBtn.transform; } }
 
@@ -33,6 +36,7 @@ public class HUDTotal : UIBase
         base.Awake();
         UpgradeBtn.onClick.AddListener(OnClickUpgrade);
         NextStageBtn.onClick.AddListener(OnClickNextStage);
+        BoostBtn.onClick.AddListener(OnClickBoost);
         TopCurrencySync();
 
         if (GameRoot.Instance.UserData.CurMode.StageData.StageIdx == 1)
@@ -64,6 +68,10 @@ public class HUDTotal : UIBase
         GameRoot.Instance.UISystem.OpenUI<PopupNextStage>(popup => popup.Init());
     }
 
+    public void OnClickBoost()
+    {
+
+    }
 
     public void OnClickUpgrade()
     {

@@ -130,7 +130,9 @@ public partial class UserDataSystem
 		VectorOffset recordCountVec = default(VectorOffset);
 		if (recordCount != null)
 			recordCountVec = BanpoFri.Data.UserData.CreateRecordcountVector(builder, recordCount);
+		
 
+		
 
 		//facilitydata
 		Offset<BanpoFri.Data.facilityidata>[] facilitydatas = null;
@@ -194,6 +196,7 @@ public partial class UserDataSystem
 		BanpoFri.Data.UserData.AddCash(builder, Cash.Value);
 		BanpoFri.Data.UserData.AddUpgradedatas(builder, upgradedata);
 		BanpoFri.Data.UserData.AddRecordcount(builder, recordCountVec);
+		BanpoFri.Data.UserData.AddBoosttime(builder , mainData.BoostTime.Value);
 		BanpoFri.Data.UserData.AddFacilityupgradedatas(builder , faciltyupgradedata);
 
 		//end 

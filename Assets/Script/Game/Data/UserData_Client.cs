@@ -76,6 +76,10 @@ public partial class UserDataSystem
         }
 
 
+            
+        mainData.BoostTime.Value = flatBufferUserData.Boosttime;
+
+
         mainData.UpgradeGroupData.StageUpgradeCollectionList.Clear();
 
         for (int i = 0; i < flatBufferUserData.UpgradedatasLength; ++i)

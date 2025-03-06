@@ -95,6 +95,10 @@ MonoBehaviour:
   - food_name_26
   - food_name_27
   - food_name_28
+  - str_time_hour
+  - str_time_minute
+  - str_time_second
+  - str_time_day
   mSecondKey: []
   mDataList:
   - _idx: casher_add_02_desc
@@ -424,5 +428,21 @@ MonoBehaviour:
     _ja: 
   - _idx: food_name_28
     _ko: "\uD280\uAE40\uB36E\uBC25"
+    _en: 
+    _ja: 
+  - _idx: str_time_hour
+    _ko: "\uC2DC\uAC04"
+    _en: 
+    _ja: 
+  - _idx: str_time_minute
+    _ko: "\uBD84"
+    _en: 
+    _ja: 
+  - _idx: str_time_second
+    _ko: "\uCD08"
+    _en: 
+    _ja: 
+  - _idx: str_time_day
+    _ko: "\uC77C"
     _en: 
     _ja: 
