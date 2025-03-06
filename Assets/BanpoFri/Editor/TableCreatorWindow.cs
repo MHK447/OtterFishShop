@@ -3,6 +3,7 @@ using System.IO;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
+using System.Numerics;
 
 namespace BanpoFri
 {
@@ -171,6 +172,8 @@ namespace BanpoFri
 					var value = row[index];
 					if (!string.IsNullOrEmpty(value))
 					{
+						
+
 						int intValue = 0;
 						if (int.TryParse(value, out intValue))
 						{
@@ -192,9 +195,16 @@ namespace BanpoFri
 							else
 								return "int";
 						}
+						
+						System.Numerics.BigInteger bigvalue = 0;
+						if(BigInteger.TryParse(value , out bigvalue))
+						{
+							return "System.Numerics.BigInteger";
+						}
 
+			
 						float floatValue = 0f;
-						if (float.TryParse(value, out floatValue))
+						if (value.Contains("."))
 						{
 							return "float";
 						}

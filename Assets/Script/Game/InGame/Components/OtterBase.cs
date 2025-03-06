@@ -38,7 +38,7 @@ public class OtterBase : MonoBehaviour
     [SerializeField]
     private OtterType CurUnitType;
 
-    private float PlayerSpeed = 1f;
+    protected float PlayerSpeed = 1f;
 
     [SerializeField]
     private Transform ProgressTr;
@@ -88,7 +88,7 @@ public class OtterBase : MonoBehaviour
 
     public int CarryCasherWorkFacilityIdx = 0;
 
-    private int default_player_speed = 0;
+    protected int default_player_speed = 0;
 
     private void Awake()
     {
@@ -97,6 +97,8 @@ public class OtterBase : MonoBehaviour
         lastYPosition = transform.position.y;
 
         default_player_speed = Tables.Instance.GetTable<Define>().GetData("default_player_speed").value;
+
+        PlayerSpeed = default_player_speed;
     }
 
     public virtual void Init()
@@ -164,8 +166,9 @@ public class OtterBase : MonoBehaviour
     }
 
 
-    public void SetPlayerSpeed()
+    public virtual void SetPlayerSpeed()
     {
+        
         var vehicleidx = GameRoot.Instance.UserData.CurMode.PlayerData.VehiclePropertyIdx.Value;
 
         var td = Tables.Instance.GetTable<VehicleInfo>().GetData(vehicleidx);
@@ -584,6 +587,13 @@ public class OtterBase : MonoBehaviour
             ProjectUtility.SetActiveCheck(Progress.gameObject, false);
             Destroy(Progress.gameObject);
             Progress = null;
+        }
+
+        if(TextEffectMax != null)
+        {
+            ProjectUtility.SetActiveCheck(TextEffectMax.gameObject , false);
+            Destroy(TextEffectMax.gameObject);
+            TextEffectMax = null;
         }
     }
 

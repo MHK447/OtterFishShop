@@ -110,7 +110,8 @@ public class BucketComponent : MonoBehaviour
 
         yield return new WaitForSeconds(1f);
 
-        CountUICheck();
+        if(FishStackComponent.Count > 0)
+        CountUICheck(FishStackComponent.First().transform.position);
 
     }
 
@@ -189,15 +190,9 @@ public class BucketComponent : MonoBehaviour
 
     }
 
-    public void CountUICheck()
+    public void CountUICheck(Vector3 pos)
     {
-        GameRoot.Instance.WaitTimeAndCallback(0.1f, () =>
-        {
-
-            if (FishStackComponent.Count > 0)
-                CountUI.SetUpdatePos(FishStackComponent.First().transform.position);
-
-        });
+        CountUI.SetUpdatePos(pos);
     }
 
 

@@ -27,6 +27,7 @@ MonoBehaviour:
   - default_player_speed
   - ad_vehicle_time
   - ad_vehicle_show_time
+  - default_fishing_time
   mSecondKey: []
   mDataList:
   - _index: casher_move_speed
@@ -57,3 +58,5 @@ MonoBehaviour:
     _value: 60
   - _index: ad_vehicle_show_time
     _value: 30
+  - _index: default_fishing_time
+    _value: 200

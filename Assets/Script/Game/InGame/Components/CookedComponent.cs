@@ -393,15 +393,17 @@ public class CookedComponent : FacilityComponent
 
         CoolTimeActive(cooltimevalue);
 
-        if (cooltimevalue > 1 && MaxBreakCount > 0)
+        if (cooltimevalue > 1 && (MaxBreakCount > 0 || MaxBreakCount == -1))
         {
             Cookeddeltime = 0f;
 
             CoolTimeActive(0f);
 
+
+            if(MaxBreakCount > -1)
             CurBreakCount += 1;
 
-            if (CurBreakCount >= MaxBreakCount)
+            if (CurBreakCount >= MaxBreakCount && MaxBreakCount != -1)
             {
                 GameRoot.Instance.WaitTimeAndCallback(2f, () =>
                 {

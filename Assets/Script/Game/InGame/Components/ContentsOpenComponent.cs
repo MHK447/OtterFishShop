@@ -40,7 +40,7 @@ public class ContentsOpenComponent : MonoBehaviour
     {
         int curstageidx = GameRoot.Instance.UserData.CurMode.StageData.StageIdx;
 
-        FacilityOpenOrder = Tables.Instance.GetTable<FacilityOpenOrder>().DataList.ToList().Find(x => x.stageidx == curstageidx
+        FacilityOpenOrder = Tables.Instance.GetTable<StageFacilityInfo>().DataList.ToList().Find(x => x.stageidx == curstageidx
         && facilitydata.FacilityIdx == x.facilityidx).openorder;
 
         var openorder = GameRoot.Instance.UserData.CurMode.StageData.NextFacilityOpenOrderProperty;
@@ -156,7 +156,7 @@ public class ContentsOpenComponent : MonoBehaviour
                     System.Numerics.BigInteger addmoneycount = 0;
 
                     // 가중치 추가: MoneySpeedCount 증가
-                    MoneySpeedCount += (int)(MoneySpeedCount * 0.5f) + 1;  // 10% 증가 + 최소 1 보장
+                    MoneySpeedCount += (int)(MoneySpeedCount * 5f) + 1;  // 10% 증가 + 최소 1 보장
 
                     // FacilityOpenSpeed 감소 (최소 값 제한)
                     FacilityOpenSpeed = Mathf.Max(0.1f, FacilityOpenSpeed - 0.02f);

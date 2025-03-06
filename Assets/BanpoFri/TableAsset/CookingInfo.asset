@@ -107,13 +107,13 @@ MonoBehaviour:
   - _cookingidx: 1013
     _material_idxs: 15000000
     _material_max_count: 5
-    _food_idx: 22
+    _food_idx: 24
     _break_count: -1
     _cooking_cooltime: 150
   - _cookingidx: 1014
     _material_idxs: 15000000
     _material_max_count: 5
-    _food_idx: 24
+    _food_idx: 22
     _break_count: 30
     _cooking_cooltime: 150
   - _cookingidx: 1015

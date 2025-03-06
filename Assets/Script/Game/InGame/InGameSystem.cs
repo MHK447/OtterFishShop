@@ -46,6 +46,8 @@ public class InGameSystem
 
     public int offline_reward_multiple = 0;
 
+    public float default_fishing_time = 0;
+
 
     public void Create()
     {
@@ -56,6 +58,7 @@ public class InGameSystem
         max_offline_time = Tables.Instance.GetTable<Define>().GetData("max_offline_time").value;
         offline_value_time = Tables.Instance.GetTable<Define>().GetData("offline_value_time").value;
         offline_reward_multiple = Tables.Instance.GetTable<Define>().GetData("offline_reward_multiple").value;
+        default_fishing_time = Tables.Instance.GetTable<Define>().GetData("default_fishing_time").value / 100f;
     }
 
     public T GetInGame<T>() where T : InGameMode

@@ -173,8 +173,8 @@ MonoBehaviour:
     _icon: Ingame_Food_022
     _base_revenue: 150
     _living_type: 0
-    _fish_rack_idx: 1013
-    _fish_facility_idx: 1013
+    _fish_rack_idx: 1014
+    _fish_facility_idx: 1014
   - _idx: 23
     _icon: Ingame_Food_023
     _base_revenue: 150
@@ -185,8 +185,8 @@ MonoBehaviour:
     _icon: Ingame_Food_024
     _base_revenue: 150
     _living_type: 0
-    _fish_rack_idx: 1014
-    _fish_facility_idx: 1014
+    _fish_rack_idx: 1013
+    _fish_facility_idx: 1013
   - _idx: 25
     _icon: Ingame_Food_025
     _base_revenue: 150

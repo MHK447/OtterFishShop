@@ -18,7 +18,8 @@ public class UpgradeSystem
         CookingSpeedUp = 7,           // 음식 조리 속도 업
         TransportStaffCapacityUp = 8, // 운반 직원 용량 추가
         AddFishingStaff = 9,          // 낚시 직원 추가
-        AddCounterCashierStaff = 10          // 계산대 직원 추가
+        AddCounterCashierStaff = 10,          // 계산대 직원 추가
+        FishCasherSpeedUp = 11, //낚시 직원 속도 증가 
     }
 
 

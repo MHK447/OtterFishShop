@@ -66,6 +66,8 @@ public class UpgradeFacilityComponent : MonoBehaviour
 
     public void Set(int fishidx)
     {
+        transform.rotation = Quaternion.identity;
+        
         FishIdx = fishidx;
 
         var stageidx = GameRoot.Instance.UserData.CurMode.StageData.StageIdx;
