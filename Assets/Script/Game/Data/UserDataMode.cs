@@ -17,6 +17,8 @@ public interface IUserDataMode
 
 	public PlayerData PlayerData {get; set;}
 
+	public IReactiveProperty<int> BoostTime {get; set;}
+
 }
 
 public class UserDataMain : IUserDataMode
@@ -30,6 +32,7 @@ public class UserDataMain : IUserDataMode
 	public IReactiveProperty<int> GachaCoin { get; set; } = new ReactiveProperty<int>(0);
 	public List<StageFishUpgradeData> FishUpgradeDatas  {get; set;} = new List<StageFishUpgradeData>();
 	public PlayerData PlayerData {get; set;} = new PlayerData();
+	public IReactiveProperty<int>  BoostTime {get; set;} = new ReactiveProperty<int>();
 }
 
 public class UserDataEvent : UserDataMain

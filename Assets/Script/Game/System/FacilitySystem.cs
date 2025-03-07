@@ -193,7 +193,9 @@ public class FacilitySystem
 
             int percentage = levelgroupbuffvalue == 1 ? 1 : 100;
 
-            return lastvalue / percentage;
+            var boostbuffvalue = GameRoot.Instance.BoostSystem.IsBoostOnProperty.Value ? 2 : 1;
+
+            return (lastvalue / percentage) * boostbuffvalue;
         }
 
         return 0;

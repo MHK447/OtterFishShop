@@ -39,6 +39,8 @@ public struct UserData : IFlatbufferObject
   public int UpgradedatasLength { get { int o = __p.__offset(16); return o != 0 ? __p.__vector_len(o) : 0; } }
   public BanpoFri.Data.FacilityUpgradeData? Facilityupgradedatas(int j) { int o = __p.__offset(18); return o != 0 ? (BanpoFri.Data.FacilityUpgradeData?)(new BanpoFri.Data.FacilityUpgradeData()).__assign(__p.__indirect(__p.__vector(o) + j * 4), __p.bb) : null; }
   public int FacilityupgradedatasLength { get { int o = __p.__offset(18); return o != 0 ? __p.__vector_len(o) : 0; } }
+  public int Boosttime { get { int o = __p.__offset(20); return o != 0 ? __p.bb.GetInt(o + __p.bb_pos) : (int)0; } }
+  public bool MutateBoosttime(int boosttime) { int o = __p.__offset(20); if (o != 0) { __p.bb.PutInt(o + __p.bb_pos, boosttime); return true; } else { return false; } }
 
   public static Offset<BanpoFri.Data.UserData> CreateUserData(FlatBufferBuilder builder,
       StringOffset moneyOffset = default(StringOffset),
@@ -48,10 +50,12 @@ public struct UserData : IFlatbufferObject
       Offset<BanpoFri.Data.StageData> stagedataOffset = default(Offset<BanpoFri.Data.StageData>),
       VectorOffset recordcountOffset = default(VectorOffset),
       VectorOffset upgradedatasOffset = default(VectorOffset),
-      VectorOffset facilityupgradedatasOffset = default(VectorOffset)) {
-    builder.StartTable(8);
+      VectorOffset facilityupgradedatasOffset = default(VectorOffset),
+      int boosttime = 0) {
+    builder.StartTable(9);
     UserData.AddCurplaydatetime(builder, curplaydatetime);
     UserData.AddLastlogintime(builder, lastlogintime);
+    UserData.AddBoosttime(builder, boosttime);
     UserData.AddFacilityupgradedatas(builder, facilityupgradedatasOffset);
     UserData.AddUpgradedatas(builder, upgradedatasOffset);
     UserData.AddRecordcount(builder, recordcountOffset);
@@ -61,7 +65,7 @@ public struct UserData : IFlatbufferObject
     return UserData.EndUserData(builder);
   }
 
-  public static void StartUserData(FlatBufferBuilder builder) { builder.StartTable(8); }
+  public static void StartUserData(FlatBufferBuilder builder) { builder.StartTable(9); }
   public static void AddMoney(FlatBufferBuilder builder, StringOffset moneyOffset) { builder.AddOffset(0, moneyOffset.Value, 0); }
   public static void AddCash(FlatBufferBuilder builder, int cash) { builder.AddInt(1, cash, 0); }
   public static void AddLastlogintime(FlatBufferBuilder builder, long lastlogintime) { builder.AddLong(2, lastlogintime, 0); }
@@ -79,6 +83,7 @@ public struct UserData : IFlatbufferObject
   public static VectorOffset CreateFacilityupgradedatasVector(FlatBufferBuilder builder, Offset<BanpoFri.Data.FacilityUpgradeData>[] data) { builder.StartVector(4, data.Length, 4); for (int i = data.Length - 1; i >= 0; i--) builder.AddOffset(data[i].Value); return builder.EndVector(); }
   public static VectorOffset CreateFacilityupgradedatasVectorBlock(FlatBufferBuilder builder, Offset<BanpoFri.Data.FacilityUpgradeData>[] data) { builder.StartVector(4, data.Length, 4); builder.Add(data); return builder.EndVector(); }
   public static void StartFacilityupgradedatasVector(FlatBufferBuilder builder, int numElems) { builder.StartVector(4, numElems, 4); }
+  public static void AddBoosttime(FlatBufferBuilder builder, int boosttime) { builder.AddInt(8, boosttime, 0); }
   public static Offset<BanpoFri.Data.UserData> EndUserData(FlatBufferBuilder builder) {
     int o = builder.EndTable();
     return new Offset<BanpoFri.Data.UserData>(o);

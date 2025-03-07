@@ -11,6 +11,7 @@ table UserData {
   recordcount:[RecordCount];
   upgradedatas:[UpgradeData];
   facilityupgradedatas:[FacilityUpgradeData];
+  boosttime:int = 0; 
 }
 
 
@@ -24,7 +25,7 @@ table StageData
 
 table PlayerData
 {
-   Vehicleidx:int =0;
+   vehicleidx:int =0;
 }	
 
 
