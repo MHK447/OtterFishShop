@@ -27,6 +27,9 @@ public class HUDTotal : UIBase
     [SerializeField]
     private Button BoostBtn;
 
+
+    public GameObject ArrowObj;
+
     public Transform GetUpgradeBtnTr { get { return UpgradeBtn.transform; } }
 
     private float deltaTime = 0.0f;
