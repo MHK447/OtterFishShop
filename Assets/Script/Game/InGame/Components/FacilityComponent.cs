@@ -20,6 +20,8 @@ public class FacilityComponent : MonoBehaviour
     [SerializeField]
     private ContentsOpenComponent ContentsOpenComponent;
 
+    public Transform GetContentsOpenComponentTr { get {return ContentsOpenComponent.transform;}}
+
     public int ConsumerOrder = 0;
 
     public Config.FacilityTypeIdx FacilityTypeIdx = Config.FacilityTypeIdx.None;

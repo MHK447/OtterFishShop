@@ -42,6 +42,7 @@ public class GameRoot : Singleton<GameRoot>
 	public TutorialSystem TutorialSystem { get; private set; } = new TutorialSystem();
 	public FacilitySystem FacilitySystem { get; private set; } = new FacilitySystem();
 	public UpgradeSystem UpgradeSystem { get; private set; } = new UpgradeSystem();
+	public NaviSystem NaviSystem { get; private set; } = new NaviSystem();
 	public GameNotificationSystem GameNotification { get; private set; } = new GameNotificationSystem();
 
 	public VehicleSystem VehicleSystem { get; private set; } = new VehicleSystem();
