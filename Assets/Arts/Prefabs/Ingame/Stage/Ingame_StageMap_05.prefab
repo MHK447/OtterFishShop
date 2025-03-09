@@ -18772,10 +18772,18 @@ PrefabInstance:
       propertyPath: skeletonAnimation
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 531447733035421048, guid: da32f3d1980603149bf85ccbd256e61c, type: 3}
+      propertyPath: m_SortingOrder
+      value: 350
+      objectReference: {fileID: 0}
     - target: {fileID: 745045868686561964, guid: da32f3d1980603149bf85ccbd256e61c, type: 3}
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: b52bed21f8b510f42a4350d063413b49, type: 3}
+    - target: {fileID: 745045868686561964, guid: da32f3d1980603149bf85ccbd256e61c, type: 3}
+      propertyPath: m_SortingOrder
+      value: 350
+      objectReference: {fileID: 0}
     - target: {fileID: 1406050165742732381, guid: da32f3d1980603149bf85ccbd256e61c, type: 3}
       propertyPath: m_LocalPosition.x
       value: 15.51
@@ -18840,6 +18848,10 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: 84c5f55356054a946aa8563fec78009a, type: 3}
+    - target: {fileID: 5576445716367519984, guid: da32f3d1980603149bf85ccbd256e61c, type: 3}
+      propertyPath: m_SortingOrder
+      value: 350
+      objectReference: {fileID: 0}
     - target: {fileID: 5932428349538317599, guid: da32f3d1980603149bf85ccbd256e61c, type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -18863,6 +18875,10 @@ PrefabInstance:
     - target: {fileID: 8728708662148209795, guid: da32f3d1980603149bf85ccbd256e61c, type: 3}
       propertyPath: m_Color.r
       value: 0.9137255
+      objectReference: {fileID: 0}
+    - target: {fileID: 9147966883993538965, guid: da32f3d1980603149bf85ccbd256e61c, type: 3}
+      propertyPath: m_SortingOrder
+      value: 300
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
