@@ -20,7 +20,7 @@ public class FacilityComponent : MonoBehaviour
     [SerializeField]
     private ContentsOpenComponent ContentsOpenComponent;
 
-    public Transform GetContentsOpenComponentTr { get {return ContentsOpenComponent.transform;}}
+    public Transform GetContentsOpenComponentTr { get { return ContentsOpenComponent.transform; } }
 
     public int ConsumerOrder = 0;
 
@@ -60,7 +60,7 @@ public class FacilityComponent : MonoBehaviour
 
         if (stagefacilitytd == null) return;
 
-        var buffvalue = GameRoot.Instance.UpgradeSystem.GetUpgradeValue(UpgradeSystem.UpgradeType.ShelfCapacityUp,(int)FacilityTypeIdx);
+        var buffvalue = GameRoot.Instance.UpgradeSystem.GetUpgradeValue(UpgradeSystem.UpgradeType.ShelfCapacityUp, (int)FacilityTypeIdx);
 
         CapacityMaxCount = BaseCapacity + (int)buffvalue;
 
@@ -120,8 +120,21 @@ public class FacilityComponent : MonoBehaviour
 
         var stageinfotd = Tables.Instance.GetTable<StageInfo>().GetData(stageidx);
 
-        if (stageinfotd != null) 
+        if (stageinfotd != null)
         {
+            switch (FacilityTypeIdx)
+            {
+                case Config.FacilityTypeIdx.RedSnapperDisplay:
+                    GameRoot.Instance.NaviSystem.NextNavi(NaviSystem.NaviType.Rack_01);
+                    break;
+                case Config.FacilityTypeIdx.CheckoutCounter:
+                    GameRoot.Instance.NaviSystem.NextNavi(NaviSystem.NaviType.Counter);
+                    break;
+                case Config.FacilityTypeIdx.RedSnapperFishing:
+                    GameRoot.Instance.NaviSystem.NaviOff(NaviSystem.NaviType.Fish_01);
+                    break;
+            }
+           
             if (stageinfotd.consumerfirst_idx == (int)FacilityTypeIdx)
             {
                 var upgradevalue = GameRoot.Instance.UpgradeSystem.GetUpgradeValue(UpgradeSystem.UpgradeType.AddCustomer);

@@ -300,7 +300,14 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      UI_Shop_Slot_002_0: 3183373465904743335
+      UI_Shop_Slot_002_1: -3302593796091239784
+      UI_Shop_Slot_002_2: -2419830530625258278
+      UI_Shop_Slot_002_3: -6614069327917966089
+      UI_Shop_Slot_002_4: -3814220269271394447
+      UI_Shop_Slot_002_5: 5256662845641734058
+      UI_Shop_Slot_002_6: -6922154881538558209
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

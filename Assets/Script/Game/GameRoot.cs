@@ -262,6 +262,7 @@ public class GameRoot : Singleton<GameRoot>
 		GameNotification.Create();
 		VehicleSystem.Create();
 		BoostSystem.Create();
+		NaviSystem.Create();
 
 
 

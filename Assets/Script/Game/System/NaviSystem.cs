@@ -10,9 +10,8 @@ public class NaviSystem
         Rack_01,
         Fish_01,
         CalcCounter,
-        UpgradeStart,
         UpgradeBtn,
-
+        UpgradeStart,
         End,
 
     }
@@ -21,9 +20,14 @@ public class NaviSystem
 
     public ArrowNaviUI NaviUI;
 
+    public Dictionary<NaviType, GameObject> NaviArrowList = new Dictionary<NaviType, GameObject>();
 
-    public Dictionary<NaviType ,GameObject> NaviArrowList = new Dictionary<NaviType, GameObject>();
-    
+
+    public List<NaviType> ClearNaviArrowList = new List<NaviType>();
+
+
+    public NaviType CurNaviOnType = NaviType.End;
+
     public void Create()
     {
         GameRoot.Instance.UISystem.LoadFloatingUI<ArrowNaviUI>((_naviui) =>
@@ -31,9 +35,6 @@ public class NaviSystem
              NaviUI = _naviui;
              ProjectUtility.SetActiveCheck(_naviui.gameObject, false);
          });
-
-
-
     }
 
 
@@ -49,7 +50,6 @@ public class NaviSystem
                 NaviQueue.Enqueue((NaviType)i);
             }
         }
-
     }
 
 
@@ -63,9 +63,56 @@ public class NaviSystem
         }
     }
 
+    public void NextNavi(NaviType type)
+    {
+
+        if (type == CurNaviOnType && !ClearNaviArrowList.Contains(type))
+        {
+            ClearNaviArrowList.Add(type);
+            if (NaviUI != null)
+            {
+                ProjectUtility.SetActiveCheck(NaviUI.gameObject, false);
+            }
+
+            foreach (var navi in NaviArrowList)
+            {
+                ProjectUtility.SetActiveCheck(navi.Value.gameObject, false);
+            }
+            StarNexttNavi();
+        }
+    }
+
+    public void NaviOff(NaviType naviontype)
+    {
+        if (naviontype == CurNaviOnType)
+        {
+            if (NaviUI != null)
+            {
+                ProjectUtility.SetActiveCheck(NaviUI.gameObject, false);
+            }
+
+            foreach (var navi in NaviArrowList)
+            {
+                ProjectUtility.SetActiveCheck(navi.Value.gameObject, false);
+            }
+        }
+    }
+
 
     public void NaviOn(NaviType type)
     {
+        if (NaviUI != null)
+        {
+            ProjectUtility.SetActiveCheck(NaviUI.gameObject, false);
+        }
+
+        foreach (var navi in NaviArrowList)
+        {
+            ProjectUtility.SetActiveCheck(navi.Value.gameObject, false);
+        }
+
+        CurNaviOnType = type;
+
         var stage = GameRoot.Instance.InGameSystem.GetInGame<InGameTycoon>().curInGameStage;
         switch (type)
         {
@@ -75,7 +122,9 @@ public class NaviSystem
 
                     if (findfacility != null)
                     {
+                        NaviUI.SetOffset(new Vector3(0, 3.5f, 0));
                         NaviUI.Init(findfacility.GetContentsOpenComponentTr);
+                        ProjectUtility.SetActiveCheck(NaviUI.gameObject, true);
                     }
                 }
                 break;
@@ -86,6 +135,7 @@ public class NaviSystem
                     if (findfacility != null)
                     {
                         NaviUI.Init(findfacility.transform);
+                        ProjectUtility.SetActiveCheck(NaviUI.gameObject, true);
                     }
                 }
                 break;
@@ -95,7 +145,8 @@ public class NaviSystem
 
                     if (findfacility != null)
                     {
-                        NaviUI.Init(findfacility.transform);
+                        NaviUI.Init(findfacility.GetContentsOpenComponentTr);
+                        ProjectUtility.SetActiveCheck(NaviUI.gameObject, true);
                     }
                 }
                 break;
@@ -105,23 +156,28 @@ public class NaviSystem
 
                     if (findfacility != null)
                     {
+                        NaviUI.SetOffset(new Vector3(-0.9f, 2f, 0));
                         NaviUI.Init(findfacility.transform);
+                        ProjectUtility.SetActiveCheck(NaviUI.gameObject, true);
                     }
                 }
                 break;
             case NaviType.UpgradeStart:
                 {
-                    var getui = GameRoot.Instance.UISystem.GetUI<HUDTotal>();
-
-
+                    if (NaviArrowList.ContainsKey((NaviType.UpgradeStart)))
+                    {
+                        ProjectUtility.SetActiveCheck(NaviArrowList[NaviType.UpgradeStart], true);
+                    }
                 }
                 break;
             case NaviType.UpgradeBtn:
                 {
-
+                    if (NaviArrowList.ContainsKey((NaviType.UpgradeBtn)))
+                    {
+                        ProjectUtility.SetActiveCheck(NaviArrowList[NaviType.UpgradeBtn], true);
+                    }
                 }
                 break;
         }
-
     }
 }

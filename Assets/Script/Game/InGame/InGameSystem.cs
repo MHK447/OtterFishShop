@@ -106,8 +106,6 @@ public class InGameSystem
         if (!Init)
         {
             StartGame(GameRoot.Instance.CurInGameType, LoadCallBack);
-
-
         }
     }
 

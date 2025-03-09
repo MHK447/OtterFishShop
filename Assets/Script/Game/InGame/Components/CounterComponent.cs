@@ -41,6 +41,8 @@ public class CounterComponent : FacilityComponent
             checkoutdeltime = 0f;
 
             IsPlayer = true;
+
+            GameRoot.Instance.NaviSystem.NaviOff(NaviSystem.NaviType.CalcCounter);
         }
     }
 
@@ -74,8 +76,8 @@ public class CounterComponent : FacilityComponent
         {
             CasherCounter = InGameStage.FindCasher(CasherType.CounterCasher, FacilityData.FacilityIdx);
 
-            if(CasherCounter != null)
-            IsPlayer = true;
+            if (CasherCounter != null)
+                IsPlayer = true;
         }
 
         if ((IsPlayer && CounterConsumerList.Count > 0))
@@ -99,7 +101,7 @@ public class CounterComponent : FacilityComponent
                 {
                     checkoutdeltime = 0f;
 
-                    if(CasherCounter != null)
+                    if (CasherCounter != null)
                         CasherCounter.CoolTimeActive(0f);
                     else
                         Player.CoolTimeActive(0f);
@@ -112,6 +114,10 @@ public class CounterComponent : FacilityComponent
                         effect.SetText(reward);
                         GameRoot.Instance.UserData.SetReward((int)Config.RewardType.Currency, (int)Config.CurrencyID.Money, reward);
                     });
+
+
+                    GameRoot.Instance.NaviSystem.CurNaviOnType = NaviSystem.NaviType.UpgradeBtn;
+                    GameRoot.Instance.NaviSystem.NextNavi(NaviSystem.NaviType.UpgradeBtn);
 
 
                     if (findconsumer != null)
@@ -128,7 +134,7 @@ public class CounterComponent : FacilityComponent
     {
         var finddata = CounterConsumerList.Find(x => x.CurCounterOrder == order);
 
-        if(finddata != null)
+        if (finddata != null)
         {
             return finddata;
         }
@@ -142,7 +148,7 @@ public class CounterComponent : FacilityComponent
     {
         return ConsumerWaitTr[CounterConsumerList.Count];
     }
-    
+
     public void AddConsumer(Consumer consumer)
     {
         consumer.CurCounterOrder = CounterConsumerList.Count;

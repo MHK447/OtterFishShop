@@ -105,6 +105,7 @@ GameObject:
   m_Component:
   - component: {fileID: 21857040525777067}
   - component: {fileID: 1882557703047716464}
+  - component: {fileID: 696550991747837369}
   m_Layer: 0
   m_Name: ArrowNavi
   m_TagString: Untagged
@@ -140,3 +141,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8475667551775471768}
   m_CullTransparentMesh: 0
+--- !u!114 &696550991747837369
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8475667551775471768}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 638e0d1e33ba84e5892c01b234b2b0f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TrackingScale: 0
+  TrackingPos: 1
+  OffsetVec: {x: 0, y: 0, z: 0}

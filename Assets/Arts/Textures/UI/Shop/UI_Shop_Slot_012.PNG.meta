@@ -156,7 +156,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      UI_Shop_Slot_012_0: 1902317115505398315
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

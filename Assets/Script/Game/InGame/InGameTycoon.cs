@@ -39,7 +39,7 @@ public class InGameTycoon : InGameMode
 
         var td = Tables.Instance.GetTable<StageInfo>().GetData(stageidx);
 
-        if(td != null)
+        if (td != null)
         {
             Addressables.InstantiateAsync($"InGame1_{stageidx}").Completed += (handle) =>
             {
@@ -51,6 +51,17 @@ public class InGameTycoon : InGameMode
                 }
 
                 Player.Init();
+
+                GameRoot.Instance.WaitTimeAndCallback(1f, () =>
+                {
+                    var recordcount = GameRoot.Instance.UserData.GetRecordCount(Config.RecordCountKeys.Navi_Start);
+
+                    if (GameRoot.Instance.UserData.CurMode.StageData.StageIdx == 1 && recordcount == 0)
+                    {
+                        GameRoot.Instance.NaviSystem.FirstStartNavi();
+                        GameRoot.Instance.NaviSystem.StarNexttNavi();
+                    }
+                });
             };
         }
 

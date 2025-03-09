@@ -11,5 +11,6 @@ public class NaviRegister : MonoBehaviour
     void Awake()
     {
         GameRoot.Instance.NaviSystem.NaviArrowList.Add(NaviType,this.gameObject);
+        ProjectUtility.SetActiveCheck(this.gameObject , false);
     }
 }

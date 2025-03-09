@@ -67,7 +67,7 @@ public class UpgradeFacilityComponent : MonoBehaviour
     public void Set(int fishidx)
     {
         transform.rotation = Quaternion.identity;
-        
+
         FishIdx = fishidx;
 
         var stageidx = GameRoot.Instance.UserData.CurMode.StageData.StageIdx;
@@ -154,6 +154,10 @@ public class UpgradeFacilityComponent : MonoBehaviour
                 var getui = GameRoot.Instance.UISystem.GetUI<PopupUpgrade>();
                 ProjectUtility.PlayGoodsEffect(Vector3.zero, (int)Config.RewardType.Currency, (int)Config.CurrencyID.Cash, 1, 1, true, null, 0, "", getui);
             }
+
+
+
+            GameRoot.Instance.NaviSystem.NaviOff(NaviSystem.NaviType.UpgradeBtn);
         }
 
     }

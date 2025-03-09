@@ -180,7 +180,9 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      UI_Shop_Gem_002_0: 7334728611965332024
+      UI_Shop_Gem_002_1: -2319147966056795655
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

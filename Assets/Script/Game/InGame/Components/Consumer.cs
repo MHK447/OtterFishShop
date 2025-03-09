@@ -26,7 +26,7 @@ public class Consumer : Chaser
         public int Count = 0;
 
 
-        public PatternOrderData(int facilityidx , int count)
+        public PatternOrderData(int facilityidx, int count)
         {
             FacilityIdx = facilityidx;
             Count = count;
@@ -113,7 +113,7 @@ public class Consumer : Chaser
 
         CurMoveInfoData = GameRoot.Instance.FacilitySystem.CreatePattern(curstageidx);
 
-        for(int i = 0; i < CurMoveInfoData.facilityidx.Count; ++i)
+        for (int i = 0; i < CurMoveInfoData.facilityidx.Count; ++i)
         {
             var newpatterndata = new PatternOrderData(CurMoveInfoData.facilityidx[i], CurMoveInfoData.count[i]);
 
@@ -142,8 +142,9 @@ public class Consumer : Chaser
 
         disposables.Clear();
 
-        CurCountProperty.Subscribe(x => {
-            if(ConsumerOrderUI != null)
+        CurCountProperty.Subscribe(x =>
+        {
+            if (ConsumerOrderUI != null)
             {
                 ConsumerOrderUI.SetCountText(x);
             }
@@ -171,7 +172,8 @@ public class Consumer : Chaser
                 ConsumerOrderUI.Set(this, CurMoveInfoData.facilityidx[CurMissionCount], 0, CurGoalValue);
             }
 
-            GoToFacility(newdata.FacilityIdx, ()=> {
+            GoToFacility(newdata.FacilityIdx, () =>
+            {
                 NextMoveAction(CurFacilityIdxProperty.Value);
             });
         }
@@ -189,20 +191,24 @@ public class Consumer : Chaser
         skeletonAnimation.Skeleton.SetSkin(skinname);
     }
 
+
     public void NextMoveAction(int facilityidx)
     {
-        if(facilityidx > 0 && facilityidx < 100) //기본 물품대 
+        if (facilityidx > 0 && facilityidx < 100) //기본 물품대 
         {
             ChangeState(CurState.WaitProduct, facilityidx);
         }
-        else if(facilityidx > 1000) // 조리대 
+        else if (facilityidx > 1000) // 조리대 
         {
 
             ChangeState(CurState.WaitProduct, facilityidx);
         }
-        else if(facilityidx == 1000) //계산대
+        else if (facilityidx == 1000) //계산대
         {
             IsArrivedCounter = true;
+            GameRoot.Instance.NaviSystem.CurNaviOnType = NaviSystem.NaviType.CalcCounter;
+            GameRoot.Instance.NaviSystem.NextNavi(NaviSystem.NaviType.CalcCounter);
+
         }
     }
 
@@ -224,9 +230,9 @@ public class Consumer : Chaser
                 if (td != null)
                 {
                     var finddata = GameRoot.Instance.FacilitySystem.GetFacilityUpgradeData(fish.GetFishIdx);
-                    
-                    if(finddata != null)
-                    rewardvalue += GameRoot.Instance.FacilitySystem.GetFishCurSellProductValue(fish.GetFishIdx , finddata.Level);
+
+                    if (finddata != null)
+                        rewardvalue += GameRoot.Instance.FacilitySystem.GetFishCurSellProductValue(fish.GetFishIdx, finddata.Level);
                 }
             }
 
@@ -248,18 +254,18 @@ public class Consumer : Chaser
     {
         disposables.Clear();
 
-        if(ConsumerOrderUI != null)
+        if (ConsumerOrderUI != null)
         {
             Destroy(ConsumerOrderUI.gameObject);
             ConsumerOrderUI = null;
         }
     }
 
-    public void ChangeState(CurState state , int facilityidx = -1)
+    public void ChangeState(CurState state, int facilityidx = -1)
     {
         State = state;
 
-        switch(State)
+        switch (State)
         {
             case CurState.Idle:
                 break;
@@ -324,23 +330,23 @@ public class Consumer : Chaser
             //wait
         }
 
-        if(ConsumerOrderUI != null)
+        if (ConsumerOrderUI != null)
             ConsumerOrderUI.SetFacilityImg(facilityidx);
     }
 
 
     private void Update()
     {
-        if(TargetRack != null && State == CurState.WaitProduct)
+        if (TargetRack != null && State == CurState.WaitProduct)
         {
 
-            if(CurCountProperty.Value >= CurGoalValue)
+            if (CurCountProperty.Value >= CurGoalValue)
             {
                 MoveFacility();
             }
             else
             {
-                if(TargetRack.GetFishComponentList.Count > 0 && CurFacilityIdxProperty.Value == (int)TargetRack.FacilityTypeIdx)
+                if (TargetRack.GetFishComponentList.Count > 0 && CurFacilityIdxProperty.Value == (int)TargetRack.FacilityTypeIdx)
                 {
                     var target = TargetRack.GetFishComponentList.Last();
 
@@ -368,14 +374,14 @@ public class Consumer : Chaser
         //    }
         //}
 
-        if(IsCounter && CurCounterOrder > 0)
+        if (IsCounter && CurCounterOrder > 0)
         {
             var finddata = CounterComponent.FindOrderConsumer(CurCounterOrder - 1);
 
-            if(finddata == null)
+            if (finddata == null)
             {
                 CurCounterOrder -= 1;
-                MovementCounterConsumer(CurCounterOrder , null);
+                MovementCounterConsumer(CurCounterOrder, null);
             }
         }
 
@@ -403,7 +409,7 @@ public class Consumer : Chaser
         fish.FishInBucketAction(ProductRoot, (fish) =>
         {
             fish.transform.SetParent(ProductRoot);
-        }, 0.25f , floory);
+        }, 0.25f, floory);
     }
 
 
@@ -411,8 +417,10 @@ public class Consumer : Chaser
     public void OutCounterConsumer()
     {
         ConsumerOrderUI.SetImage(ConsumerOrderUI.ConsumerState.Pay);
-        SetDestination(Stage.GetMiddleEndTr , ()=> {
-            SetDestination(Stage.GetEndTr , () => {
+        SetDestination(Stage.GetMiddleEndTr, () =>
+        {
+            SetDestination(Stage.GetEndTr, () =>
+            {
                 DataClear();
                 ProjectUtility.SetActiveCheck(this.gameObject, false);
                 OnEnd?.Invoke(true);
@@ -434,7 +442,7 @@ public class Consumer : Chaser
         CurFacilityIdxProperty.Value = 0;
         CurCountProperty.Value = 0;
         PatternOrderQueue.Clear();
-        CurFishComponentList.Clear();   
+        CurFishComponentList.Clear();
         IsCarry = false;
         CurCounterOrder = 0;
         FacilityTarget = null;
@@ -444,9 +452,9 @@ public class Consumer : Chaser
 
     }
 
-    public void MovementCounterConsumer(int order , System.Action moveendaction)
+    public void MovementCounterConsumer(int order, System.Action moveendaction)
     {
-        if(CounterComponent != null)
+        if (CounterComponent != null)
         {
             var consumertr = CounterComponent.GetConsumerTr(order);
 
