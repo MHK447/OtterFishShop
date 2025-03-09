@@ -38,7 +38,7 @@ public class PopupVehicle : UIBase
 
     public void Init()
     {
-        MinuteText.text = Tables.Instance.GetTable<Localize>().GetFormat("minute_time", GameRoot.Instance.VehicleSystem.ad_ride_time);
+        MinuteText.text = ProjectUtility.GetTimeStringFormattingShort(GameRoot.Instance.VehicleSystem.ad_ride_time);
         CostText.text = GameRoot.Instance.VehicleSystem.ride_cash_value.ToString();
 
         var td = Tables.Instance.GetTable<VehicleInfo>().GetData(1);

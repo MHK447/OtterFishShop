@@ -203,7 +203,9 @@ public class FishCushionComponent : MonoBehaviour
                 CurMoneyTime = 0f;
 
                 InGameStage.CreateFish(Target.GetFishTr, FishIdx, FishComponent.State.Bucket, StartFishAction);
+    
 
+                SoundPlayer.Instance.PlaySound("fishing");
             }
         }
     }

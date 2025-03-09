@@ -122,6 +122,9 @@ public class FacilityComponent : MonoBehaviour
 
         if (stageinfotd != null)
         {
+
+            SoundPlayer.Instance.PlaySound("newcontents");
+
             switch (FacilityTypeIdx)
             {
                 case Config.FacilityTypeIdx.RedSnapperDisplay:

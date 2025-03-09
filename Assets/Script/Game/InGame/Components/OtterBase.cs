@@ -168,7 +168,7 @@ public class OtterBase : MonoBehaviour
 
     public virtual void SetPlayerSpeed()
     {
-        
+
         var vehicleidx = GameRoot.Instance.UserData.CurMode.PlayerData.VehiclePropertyIdx.Value;
 
         var td = Tables.Instance.GetTable<VehicleInfo>().GetData(vehicleidx);
@@ -214,6 +214,15 @@ public class OtterBase : MonoBehaviour
         if (cooltimevalue > 0f && !Progress.gameObject.activeSelf)
         {
             ProjectUtility.SetActiveCheck(Progress.gameObject, true);
+
+            if (GameRoot.Instance.VehicleSystem.IsAdEquipVehicle)
+            {
+                Progress.SetOffset(new Vector3(0, 0.5f, 0));
+            }
+            else
+            {
+                Progress.SetOffset(Vector3.zero);
+            }
         }
 
         if (cooltimevalue <= 0f && Progress.gameObject.activeSelf)
@@ -336,6 +345,7 @@ public class OtterBase : MonoBehaviour
     {
         FishComponentList.Add(fish);
         CarryStart(FishComponentList.Count > 0);
+        SoundPlayer.Instance.PlaySound("pickup");
 
 
         if (FishComponentList.Count >= StartCarryCount)
@@ -364,6 +374,7 @@ public class OtterBase : MonoBehaviour
     public void RemoveFish(FishComponent fish)
     {
         FishComponentList.Remove(fish);
+        SoundPlayer.Instance.PlaySound("putdown");
         TextEffectMaxCheck();
     }
 
@@ -589,9 +600,9 @@ public class OtterBase : MonoBehaviour
             Progress = null;
         }
 
-        if(TextEffectMax != null)
+        if (TextEffectMax != null)
         {
-            ProjectUtility.SetActiveCheck(TextEffectMax.gameObject , false);
+            ProjectUtility.SetActiveCheck(TextEffectMax.gameObject, false);
             Destroy(TextEffectMax.gameObject);
             TextEffectMax = null;
         }

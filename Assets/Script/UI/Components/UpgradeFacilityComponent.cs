@@ -157,7 +157,7 @@ public class UpgradeFacilityComponent : MonoBehaviour
 
 
 
-            GameRoot.Instance.NaviSystem.NaviOff(NaviSystem.NaviType.UpgradeBtn);
+            GameRoot.Instance.NaviSystem.NaviOff(NaviSystem.NaviType.UpgradeStart);
         }
 
     }

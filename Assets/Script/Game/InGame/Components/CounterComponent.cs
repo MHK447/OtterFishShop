@@ -115,7 +115,7 @@ public class CounterComponent : FacilityComponent
                         GameRoot.Instance.UserData.SetReward((int)Config.RewardType.Currency, (int)Config.CurrencyID.Money, reward);
                     });
 
-
+                    SoundPlayer.Instance.PlaySound("counter");
                     GameRoot.Instance.NaviSystem.CurNaviOnType = NaviSystem.NaviType.UpgradeBtn;
                     GameRoot.Instance.NaviSystem.NextNavi(NaviSystem.NaviType.UpgradeBtn);
 

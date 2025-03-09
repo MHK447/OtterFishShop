@@ -113,7 +113,7 @@ public class ButtonPressed : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
             if (animator != null)
                 animator.Play(PressedTrigger, 0, 0f);
             OnPressed?.Invoke();
-            //SoundPlayer.Instance.PlaySound("btn");
+            SoundPlayer.Instance.PlaySound("btn");
         }
         pressedCnt = 0;
         deltaTime = 0f;
@@ -153,7 +153,7 @@ public class ButtonPressed : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
             {
                 if (animator != null)
                     animator.Play(NormalTrigger, 0, 0f);
-                //SoundPlayer.Instance.PlaySound("btn");
+                SoundPlayer.Instance.PlaySound("btn");
                 OnPressed?.Invoke();
                 ++pressedCnt;
                 deltaTime = 0f;
