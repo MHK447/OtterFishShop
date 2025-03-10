@@ -389,6 +389,30 @@ public class OtterBase : MonoBehaviour
         return FishComponentList.Count >= StartCarryCount;
     }
 
+    public FishComponent GetFacilityFish(int fishidx)
+    {
+        var findfish = FishComponentList.Find(x => x.GetFishIdx == fishidx);
+
+        if (findfish != null)
+        {
+            return findfish;
+        }
+
+        return null;
+    }
+
+
+    public void SortFish()
+    {
+        for (int i = 0; i < FishComponentList.Count; ++i)
+        {
+            var floory = (0.15f * i);
+            FishComponentList[i].FishInBucketAction(GetFishCarryRoot.transform, (fish) =>
+            {
+            }, 0f, floory);
+        }
+    }
+
 
 
     public void PlayAnimation(OtterState state, string newAnimationName, bool isLooping)

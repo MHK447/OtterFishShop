@@ -14,6 +14,9 @@ public class BoostTimeComponent : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI BoostTimeText;
 
+    [SerializeField]
+    private GameObject AdObj;
+
 
     void Awake()
     {
@@ -30,6 +33,8 @@ public class BoostTimeComponent : MonoBehaviour
         {
             BoostTimeText.text = ProjectUtility.GetTimeStringFormattingShort(GameRoot.Instance.BoostSystem.boost_time);
         }
+
+        ProjectUtility.SetActiveCheck(AdObj , !isboost);
     }
 
     public void SetTimeText(int time)

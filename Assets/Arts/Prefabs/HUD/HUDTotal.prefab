@@ -689,6 +689,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BoostBtn: {fileID: 1424873184901074867}
   BoostTimeText: {fileID: 4024030931089195045}
+  AdObj: {fileID: 1484578867655045090}
 --- !u!114 &4024030931089195045 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4515016092096588861, guid: 2cebb932501413341bfd8907370360dc, type: 3}

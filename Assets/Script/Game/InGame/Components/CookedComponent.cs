@@ -195,7 +195,7 @@ public class CookedComponent : FacilityComponent
     {
         if (CurState == state) return;
 
-        if(skeletonAnimation == null) return;
+        if (skeletonAnimation == null) return;
 
         CurState = state;
 
@@ -265,7 +265,7 @@ public class CookedComponent : FacilityComponent
 
             if (getvalue != null)
             {
-                if (CurState == State.Break)
+                if (CurState == State.Break && collision.gameObject.layer == LayerMask.NameToLayer("Player") )
                 {
                     ProjectUtility.SetActiveCheck(FixObj, true);
 
@@ -319,39 +319,46 @@ public class CookedComponent : FacilityComponent
     {
         for (int i = CasherOtterList.Count - 1; i >= 0; i--)
         {
+            if (CasherOtterList[i].IsMove) continue;
+
+
             if (CasherOtterList[i].GetFishComponentList.Count > 0)
             {
-                var findfish = CasherOtterList[i].GetFishComponentList.Last();
 
-                if (findfish != null)
+                for (int j = CasherOtterList[i].GetFishComponentList.Count - 1; j >= 0; j--)
                 {
-                    var finddata = CookedMaterialList.Find(x => x.GetFishIdx == findfish.GetFishIdx);
+                    var findfish = CasherOtterList[i].GetFishComponentList[j];
 
-                    if (finddata != null && !finddata.IsMaxCheck())
+                    if (findfish != null)
                     {
-                        movematerialdeltime += Time.deltaTime;
+                        var finddata = CookedMaterialList.Find(x => x.GetFishIdx == findfish.GetFishIdx);
 
-                        if (movematerialdeltime > 0.4f)
+                        if (finddata != null && !finddata.IsMaxCheck())
                         {
-                            movematerialdeltime = 0f;
+                            movematerialdeltime += Time.deltaTime;
 
-                            CasherOtterList[i].RemoveFish(findfish);
-
-                            findfish.FishInBucketAction(finddata.GetCurFishTr(), (fish) =>
+                            if (movematerialdeltime > 0.2f)
                             {
-                                fish.transform.SetParent(this.transform);
-                                fish.transform.position = finddata.GetCurFishTr().position;
-                            }, 0.2f);
+                                movematerialdeltime = 0f;
 
-                            finddata.AddMaterial(findfish);
+                                CasherOtterList[i].RemoveFish(findfish);
 
-                            if (CasherOtterList[i].GetFishComponentList.Count == 0)
-                            {
-                                CasherOtterList[i].CarryEnd();
+                                findfish.FishInBucketAction(finddata.GetCurFishTr(), (fish) =>
+                                {
+                                    fish.transform.SetParent(this.transform);
+                                    fish.transform.position = finddata.GetCurFishTr().position;
+                                }, 0.2f);
+
+                                finddata.AddMaterial(findfish);
                             }
                         }
                     }
+                }
+                CasherOtterList[i].ChangeState(OtterBase.OtterState.Wait);
 
+                if (CasherOtterList[i].GetFishComponentList.Count == 0)
+                {
+                    CasherOtterList[i].CarryEnd();
                 }
             }
         }
@@ -400,8 +407,8 @@ public class CookedComponent : FacilityComponent
             CoolTimeActive(0f);
 
 
-            if(MaxBreakCount > -1)
-            CurBreakCount += 1;
+            if (MaxBreakCount > -1)
+                CurBreakCount += 1;
 
             if (CurBreakCount >= MaxBreakCount && MaxBreakCount != -1)
             {

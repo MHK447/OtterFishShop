@@ -58,7 +58,6 @@ public class PopupVehicle : UIBase
             GameRoot.Instance.UserData.SetReward((int)Config.RewardType.Currency, (int)Config.CurrencyID.Cash, -GameRoot.Instance.VehicleSystem.ride_cash_value);
             Hide();
             GameRoot.Instance.VehicleSystem.AdVehicleActive(true);
-            GameRoot.Instance.InGameSystem.GetInGame<InGameTycoon>().curInGameStage.ActiveOffVehicle();
         }
 
     }
@@ -67,6 +66,18 @@ public class PopupVehicle : UIBase
     {
         Hide();
         GameRoot.Instance.VehicleSystem.AdVehicleActive(true);
+    }
+
+    public override void Hide()
+    {
+        base.Hide();
+
+        if (!GameRoot.Instance.VehicleSystem.IsAdEquipVehicle)
+        {
+            GameRoot.Instance.VehicleSystem.AdVehicleShowTime = 0;
+            GameRoot.Instance.VehicleSystem.IsShowAdVehicle = false;
+        }
+        
         GameRoot.Instance.InGameSystem.GetInGame<InGameTycoon>().curInGameStage.ActiveOffVehicle();
     }
 

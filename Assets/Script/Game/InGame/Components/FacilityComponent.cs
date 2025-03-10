@@ -22,7 +22,6 @@ public class FacilityComponent : MonoBehaviour
 
     public Transform GetContentsOpenComponentTr { get { return ContentsOpenComponent.transform; } }
 
-    public int ConsumerOrder = 0;
 
     public Config.FacilityTypeIdx FacilityTypeIdx = Config.FacilityTypeIdx.None;
 
@@ -39,9 +38,12 @@ public class FacilityComponent : MonoBehaviour
     protected OtterBase Player;
 
     protected int BaseCapacity = 0;
+
+    private int consumerOrder = 0;
+
     public virtual void Init()
     {
-        ConsumerOrder = 0;
+        consumerOrder = 0;
 
         InGameStage = GameRoot.Instance.InGameSystem.GetInGame<InGameTycoon>().curInGameStage;
 
@@ -74,15 +76,17 @@ public class FacilityComponent : MonoBehaviour
         ContentsOpenComponent.Set(FacilityData, OpenFacility);
     }
 
+
     public virtual Transform GetConsumerTr()
     {
         if (ConsumerWaitTr.Count == 0) return null;
 
-        var randvalue = Random.Range(0, ConsumerWaitTr.Count);
-        return ConsumerWaitTr[randvalue];
+        consumerOrder %= ConsumerWaitTr.Count; // consumerOrder가 범위를 넘지 않도록 보장
+        Transform selectedTransform = ConsumerWaitTr[consumerOrder]; // 현재 consumerOrder 위치 선택
+        consumerOrder++; // 다음 차례로 증가
 
+        return selectedTransform;
     }
-
 
 
 
@@ -137,7 +141,7 @@ public class FacilityComponent : MonoBehaviour
                     GameRoot.Instance.NaviSystem.NaviOff(NaviSystem.NaviType.Fish_01);
                     break;
             }
-           
+
             if (stageinfotd.consumerfirst_idx == (int)FacilityTypeIdx)
             {
                 var upgradevalue = GameRoot.Instance.UpgradeSystem.GetUpgradeValue(UpgradeSystem.UpgradeType.AddCustomer);

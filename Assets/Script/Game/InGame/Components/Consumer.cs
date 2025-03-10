@@ -300,13 +300,6 @@ public class Consumer : Chaser
 
     public void GoToFacility(int facilityidx, System.Action nextaction)
     {
-        if (FacilityTarget != null)
-        {
-            var findfacility = FacilityTarget.GetComponent<FacilityComponent>();
-
-            if (findfacility != null)
-                findfacility.ConsumerOrder -= 1;
-        }
 
         if (GameRoot.Instance.InGameSystem.CounterIdx == facilityidx)
         {

@@ -36,73 +36,73 @@ MonoBehaviour:
     _material_idxs: 01000000
     _material_max_count: 5
     _food_idx: 3
-    _break_count: 30
+    _break_count: 20
     _cooking_cooltime: 200
   - _cookingidx: 1002
     _material_idxs: 0100000002000000
     _material_max_count: 5
     _food_idx: 4
-    _break_count: 30
+    _break_count: 20
     _cooking_cooltime: 150
   - _cookingidx: 1003
     _material_idxs: 05000000
     _material_max_count: 5
     _food_idx: 7
-    _break_count: 30
+    _break_count: 20
     _cooking_cooltime: 150
   - _cookingidx: 1004
     _material_idxs: 06000000
     _material_max_count: 5
     _food_idx: 8
-    _break_count: 30
+    _break_count: 20
     _cooking_cooltime: 150
   - _cookingidx: 1005
     _material_idxs: 08000000
     _material_max_count: 5
     _food_idx: 9
-    _break_count: 30
+    _break_count: 20
     _cooking_cooltime: 150
   - _cookingidx: 1006
     _material_idxs: 0a000000
     _material_max_count: 5
     _food_idx: 12
-    _break_count: 30
+    _break_count: 20
     _cooking_cooltime: 150
   - _cookingidx: 1007
     _material_idxs: 0b0000000c000000
     _material_max_count: 5
     _food_idx: 13
-    _break_count: 30
+    _break_count: 20
     _cooking_cooltime: 150
   - _cookingidx: 1008
     _material_idxs: 0e000000
     _material_max_count: 5
     _food_idx: 16
-    _break_count: 30
+    _break_count: 20
     _cooking_cooltime: 150
   - _cookingidx: 1009
     _material_idxs: 0f000000
     _material_max_count: 5
     _food_idx: 17
-    _break_count: 30
+    _break_count: 20
     _cooking_cooltime: 150
   - _cookingidx: 1010
     _material_idxs: 10000000
     _material_max_count: 5
     _food_idx: 18
-    _break_count: 30
+    _break_count: 20
     _cooking_cooltime: 150
   - _cookingidx: 1011
     _material_idxs: 0e0000000f000000
     _material_max_count: 5
     _food_idx: 19
-    _break_count: 30
+    _break_count: 20
     _cooking_cooltime: 150
   - _cookingidx: 1012
     _material_idxs: 1000000011000000
     _material_max_count: 5
     _food_idx: 20
-    _break_count: 30
+    _break_count: 20
     _cooking_cooltime: 150
   - _cookingidx: 1013
     _material_idxs: 15000000
@@ -114,23 +114,23 @@ MonoBehaviour:
     _material_idxs: 15000000
     _material_max_count: 5
     _food_idx: 22
-    _break_count: 30
+    _break_count: 20
     _cooking_cooltime: 150
   - _cookingidx: 1015
     _material_idxs: 1500000018000000
     _material_max_count: 5
     _food_idx: 25
-    _break_count: 30
+    _break_count: 20
     _cooking_cooltime: 150
   - _cookingidx: 1016
     _material_idxs: 1a00000017000000
     _material_max_count: 5
     _food_idx: 27
-    _break_count: 30
+    _break_count: 20
     _cooking_cooltime: 150
   - _cookingidx: 1017
     _material_idxs: 190000001b000000
     _material_max_count: 5
     _food_idx: 28
-    _break_count: 30
+    _break_count: 20
     _cooking_cooltime: 150

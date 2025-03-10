@@ -211,7 +211,7 @@ public class RackComponent : FacilityComponent
                     {
                         FishCarrydeltime = 0f;
 
-                        var findfish = TargetOtterList[i].GetFishComponentList.Last();
+                        var findfish = TargetOtterList[i].GetFacilityFish((int)FishTypeIdx);
 
                         if (findfish != null && findfish.GetFishIdx == (int)FishTypeIdx)
                         {
@@ -220,6 +220,8 @@ public class RackComponent : FacilityComponent
                             FacilityData.CapacityCountProperty.Value += 1;
 
                             FishComponentList.Add(findfish);
+
+                            TargetOtterList[i].SortFish();
 
                             findfish.FishInBucketAction(FishTrList[FishComponentList.Count - 1], (fish) => {
                                 fish.transform.position = FishTrList[FishComponentList.Count - 1].position;
