@@ -281,7 +281,8 @@ public class CookedComponent : FacilityComponent
                         }
                     });
 
-                    ChangeState(State.Idle);
+                    IsCookStart = false;
+                    ChangeState(State.None);
                 }
             }
 
@@ -405,6 +406,10 @@ public class CookedComponent : FacilityComponent
             Cookeddeltime = 0f;
 
             CoolTimeActive(0f);
+
+            IsCookStart = false;
+
+            ChangeState(State.Idle);
 
 
             if (MaxBreakCount > -1)

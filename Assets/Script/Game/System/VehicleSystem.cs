@@ -47,6 +47,8 @@ public class VehicleSystem
 
     public void OneSecondUpdate()
     {
+        if(!GameRoot.Instance.ContentsOpenSystem.ContentsOpenCheck(ContentsOpenSystem.ContentsOpenType.AdVehicle)) return;
+
         if (IsAdEquipVehicle && AdVehiceTimeProperty.Value > 0)
         {
             AdVehiceTimeProperty.Value -= 1;

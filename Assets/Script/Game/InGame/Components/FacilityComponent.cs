@@ -117,6 +117,9 @@ public class FacilityComponent : MonoBehaviour
     public void OpenFacility()
     {
         FacilityData.IsOpen = true;
+
+        GameRoot.Instance.UISystem.GetUI<HUDTotal>().ContentsOpenCheck();
+
         GameRoot.Instance.UserData.CurMode.StageData.NextFacilityOpenOrderProperty.Value += 1;
         Init();
 

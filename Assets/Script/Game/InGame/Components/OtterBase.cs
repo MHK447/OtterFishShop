@@ -146,6 +146,8 @@ public class OtterBase : MonoBehaviour
             }).AddTo(disposables);
         }
 
+    if(TextEffectMax == null)
+    {
         GameRoot.Instance.EffectSystem.MultiPlay<TextEffectMax>(ProgressTr.transform.position, (effect) =>
         {
             effect.Init(ProgressTr);
@@ -153,7 +155,12 @@ public class OtterBase : MonoBehaviour
 
             ProjectUtility.SetActiveCheck(TextEffectMax.gameObject, false);
         });
-
+    }
+    else
+    {
+        TextEffectMax.Init(ProgressTr);
+        ProjectUtility.SetActiveCheck(TextEffectMax.gameObject,  true);
+    }
 
         if (CurUnitType == OtterType.Player)
         {

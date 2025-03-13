@@ -43,6 +43,9 @@ public class InGameStage : MonoBehaviour
     private AssetReference ConsumerRef;
 
     [SerializeField]
+    private List<Transform> AdVehicleTrList = new List<Transform>();
+
+    [SerializeField]
     private List<FishRoomComponent> FishRoomList = new List<FishRoomComponent>();
 
     [SerializeField]
@@ -362,7 +365,7 @@ public class InGameStage : MonoBehaviour
 
     public void ActiveOnAdVehicle()
     {
-        var ranvalue = UnityEngine.Random.Range(0, GameRoot.Instance.VehicleSystem.AdVehiclePoints.Length);
+        var ranvalue = UnityEngine.Random.Range(0, AdVehicleTrList.Count);
         var randpos = GameRoot.Instance.VehicleSystem.AdVehiclePoints[ranvalue];
 
         GameRoot.Instance.VehicleSystem.IsShowAdVehicle = true;
@@ -376,7 +379,7 @@ public class InGameStage : MonoBehaviour
                   if (vehiclecomponent != null)
                   {
                       AdVehicleComponent = vehiclecomponent;
-                      AdVehicleComponent.transform.position = randpos;
+                      AdVehicleComponent.transform.position = AdVehicleTrList[ranvalue].position;
                       vehiclecomponent.Init();
                       ProjectUtility.SetActiveCheck(AdVehicleComponent.gameObject, true);
                   }
@@ -386,7 +389,7 @@ public class InGameStage : MonoBehaviour
         else
         {
             AdVehicleComponent.Init();
-            AdVehicleComponent.transform.position = GameRoot.Instance.VehicleSystem.AdVehiclePoints[ranvalue];
+            AdVehicleComponent.transform.position = AdVehicleTrList[ranvalue].position;
             ProjectUtility.SetActiveCheck(AdVehicleComponent.gameObject, true);
         }
     }

@@ -47,6 +47,7 @@ public class GameRoot : Singleton<GameRoot>
 
 	public VehicleSystem VehicleSystem { get; private set; } = new VehicleSystem();
 	public BoostSystem BoostSystem { get; private set; } = new BoostSystem();
+	public ContentsOpenSystem ContentsOpenSystem { get; private set; } = new ContentsOpenSystem();
 
 
 

@@ -123,6 +123,8 @@ public class InGameSystem
             GameRoot.Instance.UpgradeSystem.StageSetUpgradeData(curstageidx);
             GameRoot.Instance.UserData.CurMode.Money.Value = GameRoot.Instance.UserData.HUDMoney.Value = 0;
             GameRoot.Instance.UserData.SetReward((int)Config.RewardType.Currency, (int)Config.CurrencyID.Money, stagetd.seedmoney_value);
+
+			SoundPlayer.Instance.PlayBGM("bgm", true);
         }
     }
 

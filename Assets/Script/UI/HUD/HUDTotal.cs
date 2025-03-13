@@ -23,7 +23,7 @@ public class HUDTotal : UIBase
 
     [SerializeField]
     private Text FpsText;
-    
+
     [SerializeField]
     private Button BoostBtn;
 
@@ -59,10 +59,13 @@ public class HUDTotal : UIBase
             ProjectUtility.SetActiveCheck(VehicleObj, x > 0);
         }).AddTo(this);
 
+        ContentsOpenCheck();
+
+
 #if BANPFRI_LOG
         ProjectUtility.SetActive(FpsText.gameObject , true);
 #else
-        ProjectUtility.SetActiveCheck(FpsText.gameObject , false);
+        ProjectUtility.SetActiveCheck(FpsText.gameObject, false);
 #endif
     }
 
@@ -123,5 +126,11 @@ public class HUDTotal : UIBase
 
         CurrencyTop.MoneyText.text = ProjectUtility.CalculateMoneyToString(GameRoot.Instance.UserData.CurMode.Money.Value);
 
+    }
+
+    public void ContentsOpenCheck()
+    {
+        ProjectUtility.SetActiveCheck(BoostBtn.gameObject, GameRoot.Instance.ContentsOpenSystem.ContentsOpenCheck(ContentsOpenSystem.ContentsOpenType.BoostBuff));
+        ProjectUtility.SetActiveCheck(NextStageBtn.gameObject , GameRoot.Instance.ContentsOpenSystem.ContentsOpenCheck(ContentsOpenSystem.ContentsOpenType.NextStageBtn));
     }
 }
