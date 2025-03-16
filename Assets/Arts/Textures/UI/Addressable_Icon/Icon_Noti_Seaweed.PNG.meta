@@ -156,7 +156,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Icon_Noti_Seaweed_0: 3169037587664310333
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

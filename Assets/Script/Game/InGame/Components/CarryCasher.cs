@@ -83,6 +83,8 @@ public class CarryCasher : OtterBase
             waitdeltime = 0f;
             ChangeState(OtterState.Wait);
         }
+
+        Debug.Log($"[CarryCasher] StartWork called. FoundTarget: {CarryCasherWorkFacilityIdx}");
     }
 
     public override void AddFish(FishComponent fish)
@@ -396,14 +398,23 @@ public class CarryCasher : OtterBase
         if (WorkActionQueue.Count > 0)
         {
             var nextaction = WorkActionQueue.Dequeue();
-
             nextaction?.Invoke();
         }
+        else
+        {
+            // 액션 다 끝났는데 상태가 Idle이라면, 바로 다음 일거리 찾기 시도
+            if (CurState == OtterState.Idle || CurState == OtterState.Wait)
+            {
+                StartWork();
+            }
+        }
+        Debug.Log($"[CarryCasher] NextWorkAction dequeued. QueueCount: {WorkActionQueue.Count}");
     }
 
     public void StartWorkCheck()
     {
         if (CurState == OtterState.Sleep || CurState == OtterState.SleepMove) return;
+        if (IsSleepStart) return; // napend 진행 중이면 아예 무시
 
         if (CurState == OtterState.Wait || (CurState == OtterState.Idle && WorkActionQueue.Count == 0))
         {
@@ -412,26 +423,30 @@ public class CarryCasher : OtterBase
             if (waitdeltime >= 1f)
             {
                 waitdeltime = 0f;
-
                 StartWork();
             }
         }
     }
-
+    private bool IsGoingTrashCan = false;
     public override void Update()
     {
         base.Update();
 
         StartWorkCheck();
 
-
         sleepdeltime += Time.deltaTime;
-
 
         if (sleepdeltime >= GameRoot.Instance.InGameSystem.carry_sleep_time)
         {
-            if (CurState != OtterState.Sleep && CurState != OtterState.SleepMove && FishComponentList.Count == 0)
+            if ((CurState == OtterState.Idle || CurState == OtterState.Wait)
+          && WorkActionQueue.Count == 0
+          && FishComponentList.Count == 0
+          && !IsSleepStart
+          && !IsGoingTrashCan)
             {
+                Debug.Log("[CarryCasher] Sleep 진입!");
+
+                StopAllCoroutines();
                 WorkActionQueue.Clear();
                 sleepdeltime = 0f;
                 ChangeState(OtterState.SleepMove);
@@ -445,12 +460,17 @@ public class CarryCasher : OtterBase
 
     public void GoToTrashCan(System.Action endaction)
     {
+        IsGoingTrashCan = true;
         SetDestination(CurStage.GetTrashCanComponent.GetConsumerTr, () =>
         {
+            IsGoingTrashCan = false;
+            WorkActionQueue.Clear();
+            // ⭐ 쓰레기통 도착 시 Fish 비우기
+            FishComponentList.Clear();
+
             endaction?.Invoke();
         });
     }
-
     private float CheckDuration = 5f;
 
     private IEnumerator CheckWaitProductMax(System.Action nextaction)
@@ -474,15 +494,22 @@ public class CarryCasher : OtterBase
 
     private IEnumerator CheckWaitProductNone(System.Action nextaction, RackComponent rackComponent)
     {
-        if (FishComponentList.Count == 0 || rackComponent.IsMaxCountCheck())
-        {
-            nextaction?.Invoke();
-            yield break;
-        }
-        yield return new WaitUntil(() => FishComponentList.Count == 0 || rackComponent.IsMaxCountCheck());
-        nextaction?.Invoke();
-    }
+        float elapsedTime = 0f;
+        float timeout = 5f;
 
+        while (elapsedTime < timeout)
+        {
+            if (FishComponentList.Count == 0 || rackComponent.IsMaxCountCheck())
+            {
+                break;
+            }
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+
+        nextaction?.Invoke();
+        Debug.Log($"[CarryCasher] CheckWaitProductNone running, FishCount: {FishComponentList.Count}");
+    }
 
 
     private IEnumerator CheckWaitProductNone(System.Action nextaction, CookedComponent cookedcomponent)
@@ -503,6 +530,7 @@ public class CarryCasher : OtterBase
 
         yield return new WaitUntil(() => cookedcomponent.IsMaterialMaxCheck(fishidx) || FishComponentList.Count <= 0);
         nextaction?.Invoke();
+        Debug.Log($"[CarryCasher] CheckWaitProductNone running, FishCount: {FishComponentList.Count}");
     }
 
     private IEnumerator CheckWaitTrashCan(System.Action nextaction)
@@ -518,6 +546,7 @@ public class CarryCasher : OtterBase
         yield return new WaitUntil(() => FishComponentList.Count == 0 || Time.time >= timeout);
 
         nextaction?.Invoke();
+        Debug.Log($"[CarryCasher] CheckWaitProductNone running, FishCount: {FishComponentList.Count}");
     }
 
 
@@ -539,8 +568,23 @@ public class CarryCasher : OtterBase
                 break;
             case "napend":
                 {
-                    IsSleepStart = false;
+                    Debug.Log("[CarryCasher] napend - 깨어나는 중!");
+
+                    sleepdeltime = 0f; // ⭐ Sleep 시간 초기화
+
+                    WorkActionQueue.Clear(); // 혹시 남아있던 일 초기화
+
+                    ChangeState(OtterState.Idle); // ⭐ 명확하게 Idle로 전환
                     PlayAnimation(OtterState.Idle, "idle", true);
+
+                    // 바로 일 시작
+                    GameRoot.Instance.WaitTimeAndCallback(0.5f, () =>
+                    {
+                        IsSleepStart = false;
+                        Debug.Log("[CarryCasher] napend 끝, StartWork 호출");
+                        StartWork();
+
+                    });
                 }
                 break;
         }
@@ -574,7 +618,7 @@ public class CarryCasher : OtterBase
         // 콜백 해제
         if (skeletonAnimation != null)
         {
-            skeletonAnimation.AnimationState.End -= HandleEvent;
+            skeletonAnimation.AnimationState.Complete -= HandleEvent;
         }
     }
 
@@ -585,7 +629,7 @@ public class CarryCasher : OtterBase
         // 콜백 해제
         if (skeletonAnimation != null)
         {
-            skeletonAnimation.AnimationState.End -= HandleEvent;
+            skeletonAnimation.AnimationState.Complete -= HandleEvent;
         }
     }
 }

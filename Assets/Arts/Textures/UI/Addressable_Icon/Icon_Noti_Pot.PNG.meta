@@ -156,7 +156,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Icon_Noti_Pot_0: 4554289634961436632
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

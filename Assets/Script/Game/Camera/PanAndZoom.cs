@@ -1,4 +1,4 @@
-    using UnityEngine;
+using UnityEngine;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -55,6 +55,11 @@ public class PanAndZoom : MonoBehaviour
     public float zoomOutSizeDefault = 20f;
 
     [SerializeField] float smoothSpeed = 4f;
+
+
+    [HideInInspector]
+    public float maxZoomOutSize = 25f;
+    public event Action<float, float> onPinch;
 
     bool follow = false;
     Transform followTrans;
@@ -118,8 +123,9 @@ public class PanAndZoom : MonoBehaviour
         PlayerTarget = Target = GameRoot.Instance.InGameSystem.GetInGame<InGameTycoon>().GetPlayer.transform;
         //zoomOutSize = cam.orthographicSize = Mathf.Min(cam.orthographicSize, (Screen.height * (boundMaxX - boundMinX) / (2 * Screen.width)) - 0.001f);
 
-        GameRoot.Instance.WaitTimeAndCallback(1f , ()=> {
-              cam.orthographicSize = 12;            
+        GameRoot.Instance.WaitTimeAndCallback(1f, () =>
+        {
+            cam.orthographicSize = 12;
         });
     }
 
@@ -134,6 +140,23 @@ public class PanAndZoom : MonoBehaviour
 
         cam.transform.position = Vector3.SmoothDamp(cam.transform.position, targetPosition, ref velocity, 0.15f);
 
+        if (useMouse && canUseMouse)
+        {
+            UpdateWithMouse();
+        }
+        else
+        {
+            UpdateWithTouch();
+        }
+    }
+
+    void UpdateWithMouse()
+    {
+        if (Input.mouseScrollDelta.y != 0)
+        {
+            //if(!IsPointerOverUIObject())
+            OnPinch(Input.mousePosition, 1, Input.mouseScrollDelta.y < 0 ? (1 / mouseScrollSpeed) : mouseScrollSpeed, Vector2.right);
+        }
     }
 
 
@@ -147,6 +170,109 @@ public class PanAndZoom : MonoBehaviour
     {
         Target = PlayerTarget;
         IsFocusing = false;
+    }
+
+    void UpdateWithTouch()
+    {
+        int touchCount = Input.touches.Length;
+
+        /*if (touchCount > 1)
+        {
+            for (var i = 0; i < touchCount; ++i)
+            {
+                Touch touch = Input.touches[i];
+
+                if (touch.phase == TouchPhase.Ended)
+                {
+                    if (!IsPointerOverUIObject(touch.position))
+                    {
+                        IsClickInGameObject(touch.position);
+                    }
+                }
+                //TpLog.Log($"touch idx:{i} / touch.phase:{touch.phase}");
+            }
+            multiTouch = true;
+        }
+        else*/
+        if (touchCount == 1)
+        {
+            Touch touch = Input.touches[0];
+
+            switch (touch.phase)
+            {
+                case TouchPhase.Began:
+                    {
+                        if (ignoreUI || (!focusing && !IsPointerOverUIObject(touch.position)))
+                        {
+                            touch0StartPosition = touch.position;
+                            touch0StartTime = Time.time;
+                            touch0LastPosition = touch0StartPosition;
+                            moving = false;
+                            isTouching = true;
+
+                            //if (onStartTouch != null) onStartTouch(touch0StartPosition);
+                        }
+
+                        break;
+                    }
+                case TouchPhase.Moved:
+                    {
+                        // touch0LastPosition = touch.position;
+
+                        // if (touch.deltaPosition != Vector2.zero && isTouching)
+                        // {
+                        //     OnSwipe(touch.deltaPosition);
+                        // }
+                        break;
+                    }
+                case TouchPhase.Ended:
+                    {
+                        if (multiTouch)
+                        {
+                            if (!IsPointerOverUIObject(touch.position))
+                            {
+                                IsClickInGameObject(touch.position);
+                            }
+                        }
+                        else
+                        if (Time.time - touch0StartTime <= maxDurationForTap
+                            && Vector2.Distance(touch.position, touch0StartPosition) <= maxDistanceForTap
+                            && isTouching)
+                        {
+                            //OnClick(touch.position);
+                        }
+
+                        if (onEndTouch != null) onEndTouch(touch.position);
+                        isTouching = false;
+                        cameraControlEnabled = true;
+                        multiTouch = false;
+
+                        //CheckMoveTarget(touch.position, true);
+                        break;
+                    }
+                case TouchPhase.Stationary:
+                case TouchPhase.Canceled:
+                    break;
+            }
+        }
+        else if (touchCount == 2)
+        {
+            Touch touch0 = Input.touches[0];
+            Touch touch1 = Input.touches[1];
+
+            if (touch0.phase == TouchPhase.Ended || touch1.phase == TouchPhase.Ended) return;
+
+            isTouching = true;
+
+            float previousDistance = Vector2.Distance(touch0.position - touch0.deltaPosition, touch1.position - touch1.deltaPosition);
+
+            float currentDistance = Vector2.Distance(touch0.position, touch1.position);
+
+            if (previousDistance != currentDistance)
+            {
+                OnPinch((touch0.position + touch1.position) / 2, previousDistance, currentDistance, (touch1.position - touch0.position).normalized);
+            }
+        }
     }
 
     private float EvaluateAutoScrollDampCurve(float t)
@@ -182,23 +308,7 @@ public class PanAndZoom : MonoBehaviour
         );
     }
 
-    //private bool IsClickDust()
-    //{
-    //	var point = cam.ScreenToWorldPoint(Input.mousePosition);
-    //	var ray = new Ray2D(point, Vector2.zero);
-    //	RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction);
 
-    //	if (hit.collider != null)
-    //	{
-    //		var dust = hit.collider.gameObject.GetComponent<Dust>();
-    //		if (dust != null)
-    //		{
-    //			dust.Pressd();
-    //			return true;
-    //		}
-    //	}
-    //	return false;
-    //}
 
     public bool IsClickInGameObject(Vector2 touchPosition)
     {
@@ -215,6 +325,83 @@ public class PanAndZoom : MonoBehaviour
             }
         }
         return false;
+    }
+
+    public void CameraZoom(Vector3 worldCenter, float zoomSize)
+    {
+        if (controlCamera && cameraControlEnabled)
+        {
+            if (cam == null) cam = Camera.main;
+
+            if (cam.orthographic)
+            {
+                var currentPinchPosition = worldCenter;
+
+                var size = Mathf.Max(5f, zoomSize);
+
+                if (size < maxZoomOutSize)
+                {
+                    cam.orthographicSize = size;
+
+                    var newPinchPosition = worldCenter;
+
+                    cam.transform.position -= newPinchPosition - currentPinchPosition;
+                }
+            }
+            else
+            {
+                cam.fieldOfView = Mathf.Clamp(zoomSize, 0.1f, 179.9f);
+            }
+
+        }
+    }
+
+
+
+    void OnPinch(Vector2 center, float oldDistance, float newDistance, Vector2 touchDelta)
+    {
+
+        // if (!allowMove)
+        // {
+        //     return;
+        // }
+
+        //if (GameRoot.Instance.UISystem.GetOpenPopupCount() > 0) return;
+
+        if (GameRoot.Instance.TutorialSystem.IsActive()) return;
+
+
+        moving = false;
+        if (onPinch != null)
+        {
+            onPinch(oldDistance, newDistance);
+        }
+
+        if (controlCamera && cameraControlEnabled)
+        {
+            if (cam == null) cam = Camera.main;
+
+            if (cam.orthographic)
+            {
+                var currentPinchPosition = cam.ScreenToWorldPoint(center);
+
+                var size = Mathf.Max(5f, cam.orthographicSize * oldDistance / newDistance);
+
+                if (size < maxZoomOutSize)
+                {
+                    cam.orthographicSize = size;
+
+                    //var newPinchPosition = cam.ScreenToWorldPoint(center);
+
+                    //cam.transform.position -= newPinchPosition - currentPinchPosition;
+                }
+            }
+            else
+            {
+                cam.fieldOfView = Mathf.Clamp(cam.fieldOfView * oldDistance / newDistance, 0.1f, 179.9f);
+            }
+
+        }
     }
 
     public void FocusPosition(Vector3 worldPos, float _focusSize = 15f)

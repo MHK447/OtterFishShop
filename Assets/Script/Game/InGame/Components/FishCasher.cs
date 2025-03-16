@@ -19,6 +19,7 @@ public class FishCasher : OtterBase
     Coroutine _currentMoveProcess;
 
     WaitForSeconds _waitTick;
+    private bool isFishing = false;
 
     private int FacilityIdx = 0;
 
@@ -59,19 +60,22 @@ public class FishCasher : OtterBase
 
         var findfacility = CurStage.FindFacility(facilityidx);
 
-        if(findfacility != null)
+        if (findfacility != null)
         {
             FishRoomComponent = findfacility.GetComponent<FishRoomComponent>();
 
             disposables.Clear();
 
-            FishRoomComponent.GetFacilityData.CapacityCountProperty.SkipLatestValueOnSubscribe().Subscribe(x => {
-                if(FishRoomComponent.IsMaxCountCheck())
+            FishRoomComponent.GetFacilityData.CapacityCountProperty.SkipLatestValueOnSubscribe().Subscribe(x =>
+            {
+                if (FishRoomComponent.IsMaxCountCheck())
                 {
+                    isFishing = false;
                     PlayAnimation(OtterState.Sleep, "napstart", false);
                 }
-                else
+                else if (!isFishing)
                 {
+                    isFishing = true;
                     PlayAnimation(OtterState.Idle, "fishingidle", false);
                 }
 
@@ -86,29 +90,34 @@ public class FishCasher : OtterBase
 
     public void StartWork()
     {
-        SetDestination(FishRoomComponent.GetCushionComponent.GetFishCasherTr, () => {
+        SetDestination(FishRoomComponent.GetCushionComponent.GetFishCasherTr, () =>
+        {
             FishRoomComponent.GetCushionComponent.ChangeTarget(this);
             if (FishRoomComponent.IsMaxCountCheck())
             {
                 PlayAnimation(OtterState.Sleep, "napstart", false);
+                isFishing = false; // 낚시 끝
             }
-            else
+            else if (!isFishing)
             {
                 PlayAnimation(OtterState.Idle, "fishingidle", false);
+                isFishing = true; // 낚시 시작
             }
         });
     }
-        
+
+
+
     private void OnDestroy()
     {
         disposables.Clear();
-
-        // 콜백 해제
         if (skeletonAnimation != null)
         {
             skeletonAnimation.AnimationState.End -= HandleEvent;
         }
+        isFishing = false; // Destroy 시 초기화
     }
+
 
     public override void SetPlayerSpeed()
     {
@@ -116,7 +125,7 @@ public class FishCasher : OtterBase
 
         var td = Tables.Instance.GetTable<VehicleInfo>().GetData(vehicleidx);
 
-        var buffvalue = GameRoot.Instance.UpgradeSystem.GetUpgradeValue(UpgradeSystem.UpgradeType.PlayerSpeedUp , FacilityIdx);
+        var buffvalue = GameRoot.Instance.UpgradeSystem.GetUpgradeValue(UpgradeSystem.UpgradeType.PlayerSpeedUp, FacilityIdx);
 
         var getcalcvalue = ProjectUtility.PercentCalc(GameRoot.Instance.InGameSystem.casher_move_speed, buffvalue);
 
@@ -130,11 +139,12 @@ public class FishCasher : OtterBase
         }
     }
 
+
     private void OnDisable()
     {
         disposables.Clear();
+        isFishing = false; // Disable 시 초기화
     }
-
     public override void AddFish(FishComponent fish)
     {
     }
@@ -146,22 +156,37 @@ public class FishCasher : OtterBase
         {
             case "fishingstart":
                 {
-                    PlayAnimation(OtterState.Fishing, "fishingidle", true);
+                    if (!isFishing)
+                    {
+                        PlayAnimation(OtterState.Fishing, "fishingidle", true);
+                        isFishing = true;
+                    }
                 }
                 break;
             case "napstart":
                 {
-                    PlayAnimation(OtterState.Fishing, "napidle", true);
+                    //PlayAnimation(OtterState.Sleep, "napidle", true);
+                    skeletonAnimation.state.SetAnimation(0, "napidle", true);
+                    isFishing = false;
                 }
                 break;
             case "napend":
                 {
-                    PlayAnimation(OtterState.Fishing, "fishingstart", true);
+                    // fishingstart 실행 전에 이미 isFishing false로 초기화되어서 다시 루프 탈 가능성
+                    if (!isFishing)
+                    {
+                        PlayAnimation(OtterState.Fishing, "fishingstart", false); // 여기서 false 루프 X
+                    }
+                }
+                break;
+            case "fishingidle":
+                {
+                    // fishingidle 자체에서는 아무것도 하지 않도록!
+                    // 이 부분이 중요 (루프마다 Complete 이벤트 호출되니까)
                 }
                 break;
         }
         AnimAction?.Invoke();
-
         AnimAction = null;
     }
 

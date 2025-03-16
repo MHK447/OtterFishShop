@@ -79,7 +79,9 @@ SpriteAtlas:
     packedSpriteRenderDataKeys:
     - 315a0d10c2cd91046a1a2f290e0a9436: 21300000
     - e66092306b41f02499d2db5c2be2d6eb: 21300000
+    - 44c75350bc189fe46b52f10147e8cb29: 21300000
     - 53ff9550bc6500045b7ff8e9f2e2780c: 21300000
+    - acc16750a84048c4691848d071dd75ad: 21300000
     - 4efdf1709ec60e84ab13971c82c42dc9: 21300000
     - 467dbe70010708340af3974a67654261: 21300000
     - b52bed21f8b510f42a4350d063413b49: 21300000
@@ -96,6 +98,8 @@ SpriteAtlas:
     - bce54cc3e5477964ab4c432c90877fdb: 21300000
     - e15447e3ba35a53499eeb464dfc11b6d: 21300000
     - 732a6124cc850ab4e9bb59f322476a41: 21300000
+    - 34b597e41c74ba7439f42939bc220bb8: 21300000
+    - 9440f1352663fa54692880e2ee52ef98: 21300000
     - bdf0da751646e3144bba7e69b0cdcb1c: 21300000
     - a77aaaa584c56c14eb8a2556bb2d1d32: 21300000
     - 5dd990360fc9b2540906ea03809337bc: 21300000
@@ -103,9 +107,12 @@ SpriteAtlas:
     - e239e76710278a74db0de20135b38005: 21300000
     - b05fbfa72414cd54280e5fa25e79981e: 21300000
     - d192b798f8936fa4ea96115363b8345a: 21300000
+    - de443589e8036af4ab9b242b5f8dd81a: 21300000
+    - e6195f6a8b325ed4ba6e12075730001c: 21300000
     - c6608e0b06a3dd346980bce283993990: 21300000
     - 3578cf8bbb852f7409e991f63d6d760a: 21300000
     - d3488fbbf55520b48afc9c2f01d55af3: 21300000
+    - 5bc47edb65e365f49bb00ddbaec5313a: 21300000
     - 6e52d23cec6adf94b946ec7cf846bbdf: 21300000
     - 03ed6e8c21d1e184385e29299728f107: 21300000
     - ad9a519c1affded4490abe2a09321fdd: 21300000
@@ -119,7 +126,9 @@ SpriteAtlas:
   m_PackedSprites:
   - {fileID: 21300000, guid: 315a0d10c2cd91046a1a2f290e0a9436, type: 3}
   - {fileID: 21300000, guid: e66092306b41f02499d2db5c2be2d6eb, type: 3}
+  - {fileID: 21300000, guid: 44c75350bc189fe46b52f10147e8cb29, type: 3}
   - {fileID: 21300000, guid: 53ff9550bc6500045b7ff8e9f2e2780c, type: 3}
+  - {fileID: 21300000, guid: acc16750a84048c4691848d071dd75ad, type: 3}
   - {fileID: 21300000, guid: 4efdf1709ec60e84ab13971c82c42dc9, type: 3}
   - {fileID: 21300000, guid: 467dbe70010708340af3974a67654261, type: 3}
   - {fileID: 21300000, guid: b52bed21f8b510f42a4350d063413b49, type: 3}
@@ -136,6 +145,8 @@ SpriteAtlas:
   - {fileID: 21300000, guid: bce54cc3e5477964ab4c432c90877fdb, type: 3}
   - {fileID: 21300000, guid: e15447e3ba35a53499eeb464dfc11b6d, type: 3}
   - {fileID: 21300000, guid: 732a6124cc850ab4e9bb59f322476a41, type: 3}
+  - {fileID: 21300000, guid: 34b597e41c74ba7439f42939bc220bb8, type: 3}
+  - {fileID: 21300000, guid: 9440f1352663fa54692880e2ee52ef98, type: 3}
   - {fileID: 21300000, guid: bdf0da751646e3144bba7e69b0cdcb1c, type: 3}
   - {fileID: 21300000, guid: a77aaaa584c56c14eb8a2556bb2d1d32, type: 3}
   - {fileID: 21300000, guid: 5dd990360fc9b2540906ea03809337bc, type: 3}
@@ -143,9 +154,12 @@ SpriteAtlas:
   - {fileID: 21300000, guid: e239e76710278a74db0de20135b38005, type: 3}
   - {fileID: 21300000, guid: b05fbfa72414cd54280e5fa25e79981e, type: 3}
   - {fileID: 21300000, guid: d192b798f8936fa4ea96115363b8345a, type: 3}
+  - {fileID: 21300000, guid: de443589e8036af4ab9b242b5f8dd81a, type: 3}
+  - {fileID: 21300000, guid: e6195f6a8b325ed4ba6e12075730001c, type: 3}
   - {fileID: 21300000, guid: c6608e0b06a3dd346980bce283993990, type: 3}
   - {fileID: 21300000, guid: 3578cf8bbb852f7409e991f63d6d760a, type: 3}
   - {fileID: 21300000, guid: d3488fbbf55520b48afc9c2f01d55af3, type: 3}
+  - {fileID: 21300000, guid: 5bc47edb65e365f49bb00ddbaec5313a, type: 3}
   - {fileID: 21300000, guid: 6e52d23cec6adf94b946ec7cf846bbdf, type: 3}
   - {fileID: 21300000, guid: 03ed6e8c21d1e184385e29299728f107, type: 3}
   - {fileID: 21300000, guid: ad9a519c1affded4490abe2a09321fdd, type: 3}
@@ -156,12 +170,14 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 296f7a4d98a09e244b2fbb77b56af44e, type: 3}
   - {fileID: 21300000, guid: e650941f55415e14f9de9378252f6b55, type: 3}
   m_PackedSpriteNamesToIndex:
-  - Ingame_Food_024
+  - Ingame_Food_022
   - Ingame_Food_001
+  - Icon_Noti_CoinPig
   - Icon_PayHeart
+  - Icon_Noti_Nap
   - Ingame_Food_027
   - Ingame_Food_023
-  - Ingame_Food_022
+  - Ingame_Food_024
   - Ingame_Food_011
   - Icon_Counter
   - Coin
@@ -175,6 +191,8 @@ SpriteAtlas:
   - Ingame_Food_012
   - Gem
   - Ingame_Food_020
+  - Icon_AdRemove
+  - Icon_Noti_Pan
   - Ingame_Food_003
   - Ingame_Food_017
   - Icon_Trouble
@@ -182,9 +200,12 @@ SpriteAtlas:
   - Ingame_Food_013
   - Ingame_Food_018
   - Ingame_Food_008
+  - Icon_Noti_Pot
+  - Icon_Noti_Seaweed
   - Ingame_Food_026
   - Ingame_Food_028
   - Ingame_Food_005
+  - Icon_Noti_Oven
   - Ingame_Food_002
   - Icon_Vehicle
   - Icon_Table

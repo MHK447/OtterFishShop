@@ -156,7 +156,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      CoinPig_05_0: 6068788215368180720
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

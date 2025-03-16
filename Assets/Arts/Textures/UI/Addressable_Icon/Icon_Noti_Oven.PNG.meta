@@ -156,7 +156,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Icon_Noti_Oven_0: 5733667143160048111
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
