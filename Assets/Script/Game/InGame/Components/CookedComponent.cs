@@ -265,7 +265,7 @@ public class CookedComponent : FacilityComponent
 
             if (getvalue != null)
             {
-                if (CurState == State.Break && collision.gameObject.layer == LayerMask.NameToLayer("Player") )
+                if (CurState == State.Break && collision.gameObject.layer == LayerMask.NameToLayer("Player"))
                 {
                     ProjectUtility.SetActiveCheck(FixObj, true);
 

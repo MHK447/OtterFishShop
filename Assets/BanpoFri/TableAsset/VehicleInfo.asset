@@ -17,4 +17,4 @@ MonoBehaviour:
   mSecondKey: []
   mDataList:
   - _vehicle_idx: 1
-    _buff_value: 180
+    _buff_value: 120

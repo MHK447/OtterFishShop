@@ -88,6 +88,8 @@ public class OtterBase : MonoBehaviour
 
     public int CarryCasherWorkFacilityIdx = 0;
 
+    public float CurMoneyTime = 0f;
+
     protected int default_player_speed = 0;
 
     private void Awake()

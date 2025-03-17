@@ -14,15 +14,11 @@ public class FishCushionComponent : MonoBehaviour
 
     public Transform GetFishCasherTr { get { return FishCasherTr; } }
 
-    private bool IsOnEnter = false;
-
-    public float CurMoneyTime = 0f;
-
     public float FisgingTime = 2f;
 
     private float FishPos_Y = 0.15f;
 
-    private OtterBase Target;
+    private List<OtterBase> TargetOtterList = new List<OtterBase>();
 
     private InGameStage InGameStage;
 
@@ -73,47 +69,17 @@ public class FishCushionComponent : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (FacilityData.CapacityCountProperty.Value >= CapacityMaxCount) return;
+        var getvalue = other.GetComponent<OtterBase>();
 
-
-        var fishcasher = InGameStage.FindCasher(CasherType.FishingCasher, FacilityData.FacilityIdx);
-        if (fishcasher != null)
+        if (getvalue != null)
         {
-            if (other.gameObject == fishcasher.gameObject)
+            if (!TargetOtterList.Contains(getvalue))
             {
-                if (Target != null && LayerMask.NameToLayer("Player") == Target.gameObject.layer)
-                {
-                    var getvalue = Target.GetComponent<OtterBase>();
-
-                    if (getvalue != null)
-                    {
-                        Target = null;
-                        getvalue.IdleChange();
-                    }
-                }
-
-
-                IsOnEnter = true;
+                getvalue.CoolTimeActive(0f);
+                TargetOtterList.Add(getvalue);
             }
-
-            return;
         }
 
-        if (other.gameObject.layer == LayerMask.NameToLayer("Player"))
-        {
-            CurMoneyTime = 0f;
-            IsOnEnter = true;
-
-            var getvalue = other.GetComponent<OtterBase>();
-
-            if (getvalue != null)
-            {
-
-                if (getvalue != null && !getvalue.IsCarry)
-                    Target = getvalue;
-            }
-
-        }
 
     }
 
@@ -123,24 +89,21 @@ public class FishCushionComponent : MonoBehaviour
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (InGameStage == null) return;
-        if (InGameStage.FindCasher(CasherType.FishingCasher, FacilityData.FacilityIdx) != null) return;
 
 
-        if (collision.gameObject.layer == LayerMask.NameToLayer("Player"))
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Player") || collision.gameObject.layer == LayerMask.NameToLayer("CarryCasher"))
         {
-            if (Target != null)
+            var getvalue = collision.gameObject.GetComponent<OtterBase>();
+
+            if (getvalue != null)
             {
-                Target.CoolTimeActive(0f);
+                if (TargetOtterList.Contains(getvalue))
+                {
+                    getvalue.CoolTimeActive(0f);
+                    TargetOtterList.Remove(getvalue);
+                }
             }
-
-            Target = null;
-            IsOnEnter = false;
         }
-    }
-
-    public void ChangeTarget(OtterBase otter)
-    {
-        Target = otter;
     }
 
     public void SetFishingTime()
@@ -157,62 +120,50 @@ public class FishCushionComponent : MonoBehaviour
     {
         if (FacilityData == null) return;
 
-
-        if (Target == null)
-        {
-            var findcasher = InGameStage.FindCasher(CasherType.FishingCasher, FacilityData.FacilityIdx);
-
-            if (findcasher != null)
-            {
-                IsOnEnter = true;
-                Target = findcasher;
-            }
-            else
-            {
-                return;
-            }
-        }
-
-
-        if (FacilityData == null) return;
-
         if (FacilityData.IsOpen == false) return;
 
-        if (FacilityData.CapacityCountProperty.Value >= CapacityMaxCount) return;
-
-        if (Target.IsIdle && !Target.IsFishing && !Target.IsCarry)
+        if (FacilityData.CapacityCountProperty.Value >= CapacityMaxCount)
         {
-            Target.PlayAnimation(OtterBase.OtterState.Fishing, "fishingidle", true);
-        }
-
-        if (Target.IsMove)
-        {
-            CurMoneyTime = 0f;
-        }
-
-        if (IsOnEnter && Target.IsFishing && FacilityData.CapacityCountProperty.Value < CapacityMaxCount)
-        {
-            CurMoneyTime += Time.deltaTime;
-
-            var cooltimevalue = (float)CurMoneyTime / (float)FisgingTime;
-
-            Target.CoolTimeActive(cooltimevalue);
-
-            if (CurMoneyTime >= FisgingTime)
+            for (int i = TargetOtterList.Count - 1; i >= 0; i--)
             {
-                CurMoneyTime = 0f;
+                TargetOtterList[i].CoolTimeActive(0f);
+            }
+            return;
+        }
+        for (int i = TargetOtterList.Count - 1; i >= 0; i--)
+        {
+            if (TargetOtterList[i].IsIdle && !TargetOtterList[i].IsFishing && !TargetOtterList[i].IsCarry)
+            {
+                TargetOtterList[i].PlayAnimation(OtterBase.OtterState.Fishing, "fishingidle", true);
+            }
 
-                InGameStage.CreateFish(Target.GetFishTr, FishIdx, FishComponent.State.Bucket, StartFishAction);
-    
+            if (TargetOtterList[i].IsMove)
+            {
+                TargetOtterList[i].CurMoneyTime = 0f;
+            }
 
-                SoundPlayer.Instance.PlaySound("fishing");
+            if (TargetOtterList[i].IsFishing && FacilityData.CapacityCountProperty.Value < CapacityMaxCount)
+            {
+                TargetOtterList[i].CurMoneyTime += Time.deltaTime;
+
+                var cooltimevalue = (float)TargetOtterList[i].CurMoneyTime / (float)FisgingTime;
+
+                TargetOtterList[i].CoolTimeActive(cooltimevalue);
+
+                if (TargetOtterList[i].CurMoneyTime >= FisgingTime)
+                {
+                    TargetOtterList[i].CurMoneyTime = 0f;
+
+                    InGameStage.CreateFish(TargetOtterList[i].GetFishTr, FishIdx, FishComponent.State.Bucket, (fish) => { StartFishAction(fish, TargetOtterList[i]); });
+                    SoundPlayer.Instance.PlaySound("fishing");
+                }
             }
         }
     }
 
 
 
-    public void StartFishAction(FishComponent fish)
+    public void StartFishAction(FishComponent fish, OtterBase otter)
     {
         var fishcount = BucketComponent.GetFishCount;
         var posy = FishPos_Y * fishcount;
@@ -224,7 +175,7 @@ public class FishCushionComponent : MonoBehaviour
         {
             BucketComponent.CountUICheck(fish.transform.position);
             fish.transform.position = BucketComponent.transform.position;
-            Target.CoolTimeActive(FacilityData.CapacityCountProperty.Value < CapacityMaxCount);
+            //otter.CoolTimeActive(FacilityData.CapacityCountProperty.Value < CapacityMaxCount);
         }, 1f, posy);
     }
 

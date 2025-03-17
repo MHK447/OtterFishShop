@@ -543,7 +543,7 @@ CircleCollider2D:
   m_CompositeOperation: 0
   m_CompositeOrder: 0
   m_Offset: {x: 0.009272337, y: 0.75}
-  m_Radius: 0.62227213
+  m_Radius: 0.41
 --- !u!1 &2326897862142123347
 GameObject:
   m_ObjectHideFlags: 0
@@ -785,6 +785,7 @@ MonoBehaviour:
   CurAnimName: Idle
   loop: 1
   CarryCasherWorkFacilityIdx: 0
+  CurMoneyTime: 0
   TargetTr: {fileID: 0}
   reachRadius: 0.6
   _navMeshAgent: {fileID: 0}

@@ -27,6 +27,9 @@ MonoBehaviour:
   - 1
   - 1
   - 1
+  - 1
+  - 1
+  - 1
   - 2
   - 2
   - 2
@@ -161,8 +164,11 @@ MonoBehaviour:
   - 10
   - 11
   - 12
+  - 15
   - 13
   - 14
+  - 16
+  - 17
   - 1
   - 2
   - 3
@@ -378,7 +384,7 @@ MonoBehaviour:
   - _stageidx: 1
     _upgrade_idx: 11
     _upgrade_type: 6
-    _cost: 1200
+    _cost: 1500
     _value: 1
     _value2: 1
     _icon: Common_Icon_Upgrade_Food_Load_02
@@ -387,16 +393,25 @@ MonoBehaviour:
   - _stageidx: 1
     _upgrade_idx: 12
     _upgrade_type: 7
-    _cost: 1000
+    _cost: 2000
     _value: 10
     _value2: 0
     _icon: Common_Icon_Upgrade_CookTools_SpeedUp_01
     _desc: cooktool_speedup_01_desc
     _name: cooktool_speedup_01_name
   - _stageidx: 1
+    _upgrade_idx: 15
+    _upgrade_type: 3
+    _cost: 2500
+    _value: 1
+    _value2: 0
+    _icon: Common_Icon_Upgrade_Consumer_Add_01
+    _desc: consumer_add_01_desc
+    _name: consumer_add_01_name
+  - _stageidx: 1
     _upgrade_idx: 13
     _upgrade_type: 7
-    _cost: 1000
+    _cost: 3000
     _value: 10
     _value2: 0
     _icon: Common_Icon_Upgrade_CookTools_SpeedUp_02
@@ -405,7 +420,25 @@ MonoBehaviour:
   - _stageidx: 1
     _upgrade_idx: 14
     _upgrade_type: 8
-    _cost: 1500
+    _cost: 3500
+    _value: 1
+    _value2: 0
+    _icon: Common_Icon_Upgrade_Casher_Stack_01
+    _desc: casher_stack_01_desc
+    _name: casher_stack_01_name
+  - _stageidx: 1
+    _upgrade_idx: 16
+    _upgrade_type: 1
+    _cost: 4000
+    _value: 1
+    _value2: 0
+    _icon: Common_Icon_Upgrade_Casher_Add_02
+    _desc: casher_add_02_desc
+    _name: casher_add_01_name
+  - _stageidx: 1
+    _upgrade_idx: 17
+    _upgrade_type: 8
+    _cost: 5000
     _value: 1
     _value2: 0
     _icon: Common_Icon_Upgrade_Casher_Stack_01

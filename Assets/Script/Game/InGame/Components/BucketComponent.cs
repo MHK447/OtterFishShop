@@ -61,7 +61,7 @@ public class BucketComponent : MonoBehaviour
         GameRoot.Instance.UISystem.LoadFloatingUI<TextCount_UI>((_progress) =>
         {
             CountUI = _progress;
-            ProjectUtility.SetActiveCheck(CountUI.gameObject, true);
+            ProjectUtility.SetActiveCheck(CountUI.gameObject, FacilityData.IsOpen);
             CountUI.Init(AmountUITr);
             CountUI.SetText(FacilityData.CapacityCountProperty.Value, CapacityMaxCount);
         });
