@@ -135,14 +135,14 @@ public class FacilityComponent : MonoBehaviour
             switch (FacilityTypeIdx)
             {
                 case Config.FacilityTypeIdx.RedSnapperDisplay:
-                    GameRoot.Instance.NaviSystem.NextNavi(NaviSystem.NaviType.Rack_01);
+                    GameRoot.Instance.NaviSystem.NextNavi(NaviSystem.NaviType.Fish_01);
                     break;
                 case Config.FacilityTypeIdx.CheckoutCounter:
-                    GameRoot.Instance.NaviSystem.NextNavi(NaviSystem.NaviType.Counter);
+                    GameRoot.Instance.NaviSystem.NextNavi(NaviSystem.NaviType.Rack_01);
                     break;
-                case Config.FacilityTypeIdx.RedSnapperFishing:
-                    GameRoot.Instance.NaviSystem.NaviOff(NaviSystem.NaviType.Fish_01);
-                    break;
+                // case Config.FacilityTypeIdx.RedSnapperFishing:
+                //     GameRoot.Instance.NaviSystem.NaviOff(NaviSystem.NaviType.Fish_01);
+                //     break;
             }
 
             if (stageinfotd.consumerfirst_idx == (int)FacilityTypeIdx)
