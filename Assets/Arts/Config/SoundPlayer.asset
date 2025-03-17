@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: SoundPlayer
   m_EditorClassIdentifier: 
   soundDatas:
-  - soundKey: bgm
+  - soundKey: bgm00
     audioData: {fileID: 8300000, guid: f9a5b1b5d68f0444e91c9be777185a6c, type: 3}
     Volume: 0.3
   - soundKey: btn
@@ -37,8 +37,38 @@ MonoBehaviour:
   - soundKey: pickup
     audioData: {fileID: 8300000, guid: 1e2616acedf37024f83bed413595d63e, type: 3}
     Volume: 1
-  - soundKey: newcontents
-    audioData: {fileID: 8300000, guid: 97cc4d9d46617eb42a67d8d605e33105, type: 3}
+  - soundKey: bgm01
+    audioData: {fileID: 8300000, guid: 1ad0982fea8911f4f8d5f0059ce3aa8e, type: 3}
+    Volume: 1
+  - soundKey: bgm02
+    audioData: {fileID: 8300000, guid: 37f39b2da0000204bb15fb8e082db34b, type: 3}
+    Volume: 1
+  - soundKey: repair
+    audioData: {fileID: 8300000, guid: 71ddf37c26b621145938a191a1398280, type: 3}
+    Volume: 1
+  - soundKey: cook_oven
+    audioData: {fileID: 8300000, guid: c0e6f104405a95a4e948330f73b7708a, type: 3}
+    Volume: 1
+  - soundKey: cook_pan
+    audioData: {fileID: 8300000, guid: 90a54afa9d68bf64ba175b4b0f5ebdb5, type: 3}
+    Volume: 1
+  - soundKey: cook_pot
+    audioData: {fileID: 8300000, guid: 889a441229cfdf54a8e92bcd012b2e8d, type: 3}
+    Volume: 1
+  - soundKey: otter00
+    audioData: {fileID: 8300000, guid: c61ec4f6f618aec4cbd24d0f5dea2000, type: 3}
+    Volume: 1
+  - soundKey: otter01
+    audioData: {fileID: 8300000, guid: b8d5656f003a39c479fa6edf7faa155a, type: 3}
+    Volume: 1
+  - soundKey: otter02
+    audioData: {fileID: 8300000, guid: fb2c2074e7bc0ce4990ed66b24014527, type: 3}
+    Volume: 1
+  - soundKey: shock_employee
+    audioData: {fileID: 8300000, guid: 3ac135a9fc0fa0b4dba7c1269bac7605, type: 3}
+    Volume: 1
+  - soundKey: angry_,anager
+    audioData: {fileID: 8300000, guid: 3ac135a9fc0fa0b4dba7c1269bac7605, type: 3}
     Volume: 1
   TestAudioClip: {fileID: 0}
   TestEditorVolume: 1
