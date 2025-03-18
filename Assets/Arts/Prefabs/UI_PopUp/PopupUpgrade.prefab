@@ -3131,7 +3131,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6534019882923510184, guid: 6006994eeeacbbe4d94111a4d4f40890, type: 3}
       propertyPath: m_fontSize
-      value: 28
+      value: 27.4
       objectReference: {fileID: 0}
     - target: {fileID: 7326890893909432432, guid: 6006994eeeacbbe4d94111a4d4f40890, type: 3}
       propertyPath: m_AnchorMax.y
@@ -3774,7 +3774,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6534019882923510184, guid: 6006994eeeacbbe4d94111a4d4f40890, type: 3}
       propertyPath: m_fontSize
-      value: 28
+      value: 27.4
       objectReference: {fileID: 0}
     - target: {fileID: 7326890893909432432, guid: 6006994eeeacbbe4d94111a4d4f40890, type: 3}
       propertyPath: m_AnchorMax.y
@@ -5898,7 +5898,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a386e0dbd66584972bbd07cf1acd6b06, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  NaviType: 5
+  NaviType: 10
 --- !u!224 &4952585949112883103 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 21857040525777067, guid: 4577aef9b5adbfb4a863145c3c114607, type: 3}
@@ -6949,7 +6949,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6534019882923510184, guid: 6006994eeeacbbe4d94111a4d4f40890, type: 3}
       propertyPath: m_fontSize
-      value: 28
+      value: 27.4
       objectReference: {fileID: 0}
     - target: {fileID: 7326890893909432432, guid: 6006994eeeacbbe4d94111a4d4f40890, type: 3}
       propertyPath: m_AnchorMax.y
@@ -8661,7 +8661,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6534019882923510184, guid: 6006994eeeacbbe4d94111a4d4f40890, type: 3}
       propertyPath: m_fontSize
-      value: 28
+      value: 27.4
       objectReference: {fileID: 0}
     - target: {fileID: 7326890893909432432, guid: 6006994eeeacbbe4d94111a4d4f40890, type: 3}
       propertyPath: m_AnchorMax.y

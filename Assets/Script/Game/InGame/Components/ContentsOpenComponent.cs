@@ -36,12 +36,18 @@ public class ContentsOpenComponent : MonoBehaviour
 
     private OtterBase Player = null;
 
+    private bool IsNoneFocusTargetFacility = false;
+
     public void Set(FacilityData facilitydata, System.Action openaction)
     {
+
         int curstageidx = GameRoot.Instance.UserData.CurMode.StageData.StageIdx;
 
         FacilityOpenOrder = Tables.Instance.GetTable<StageFacilityInfo>().DataList.ToList().Find(x => x.stageidx == curstageidx
         && facilitydata.FacilityIdx == x.facilityidx).openorder;
+
+
+        IsNoneFocusTargetFacility =  curstageidx == 1 && FacilityOpenOrder == 3;
 
         var openorder = GameRoot.Instance.UserData.CurMode.StageData.NextFacilityOpenOrderProperty;
 
@@ -74,7 +80,7 @@ public class ContentsOpenComponent : MonoBehaviour
         {
             if (NewFacilityUI != null)
             {
-                if (!FacilityData.IsOpen && FacilityOpenOrder == openorder.Value)
+                if (!FacilityData.IsOpen && FacilityOpenOrder == openorder.Value && !IsNoneFocusTargetFacility)
                 {
                     GameRoot.Instance.WaitTimeAndCallback(1f, () =>
                     {

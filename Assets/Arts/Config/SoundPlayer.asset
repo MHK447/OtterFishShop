@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: SoundPlayer
   m_EditorClassIdentifier: 
   soundDatas:
-  - soundKey: bgm00
+  - soundKey: bgm
     audioData: {fileID: 8300000, guid: f9a5b1b5d68f0444e91c9be777185a6c, type: 3}
     Volume: 0.3
   - soundKey: btn
@@ -69,6 +69,9 @@ MonoBehaviour:
     Volume: 1
   - soundKey: angry_,anager
     audioData: {fileID: 8300000, guid: 3ac135a9fc0fa0b4dba7c1269bac7605, type: 3}
+    Volume: 1
+  - soundKey: newcontents
+    audioData: {fileID: 8300000, guid: 97cc4d9d46617eb42a67d8d605e33105, type: 3}
     Volume: 1
   TestAudioClip: {fileID: 0}
   TestEditorVolume: 1

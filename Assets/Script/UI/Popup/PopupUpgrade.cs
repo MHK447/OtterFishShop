@@ -157,7 +157,6 @@ public class PopupUpgrade : UIBase
 
 
             CurrencyTop.CashText.text = GameRoot.Instance.UserData.Cash.Value.ToString();
-
         }
 
 
@@ -291,12 +290,7 @@ public class PopupUpgrade : UIBase
 
         StartCoroutine(OnShowWaitOneFrame());
 
-
-        if (GameRoot.Instance.NaviSystem.CurNaviOnType == NaviSystem.NaviType.UpgradeBtn)
-        {
-            GameRoot.Instance.NaviSystem.CurNaviOnType = NaviSystem.NaviType.UpgradeStart;
-            GameRoot.Instance.NaviSystem.NextNavi(NaviSystem.NaviType.UpgradeStart);
-        }
+        GameRoot.Instance.NaviSystem.NextNavi(NaviSystem.NaviType.UpgradeBtn);
     }
 
 

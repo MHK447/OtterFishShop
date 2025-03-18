@@ -79,7 +79,6 @@ SpriteAtlas:
     packedSpriteRenderDataKeys:
     - 315a0d10c2cd91046a1a2f290e0a9436: 21300000
     - e66092306b41f02499d2db5c2be2d6eb: 21300000
-    - 44c75350bc189fe46b52f10147e8cb29: 21300000
     - 53ff9550bc6500045b7ff8e9f2e2780c: 21300000
     - acc16750a84048c4691848d071dd75ad: 21300000
     - 4efdf1709ec60e84ab13971c82c42dc9: 21300000
@@ -126,7 +125,6 @@ SpriteAtlas:
   m_PackedSprites:
   - {fileID: 21300000, guid: 315a0d10c2cd91046a1a2f290e0a9436, type: 3}
   - {fileID: 21300000, guid: e66092306b41f02499d2db5c2be2d6eb, type: 3}
-  - {fileID: 21300000, guid: 44c75350bc189fe46b52f10147e8cb29, type: 3}
   - {fileID: 21300000, guid: 53ff9550bc6500045b7ff8e9f2e2780c, type: 3}
   - {fileID: 21300000, guid: acc16750a84048c4691848d071dd75ad, type: 3}
   - {fileID: 21300000, guid: 4efdf1709ec60e84ab13971c82c42dc9, type: 3}
@@ -172,7 +170,6 @@ SpriteAtlas:
   m_PackedSpriteNamesToIndex:
   - Ingame_Food_022
   - Ingame_Food_001
-  - Icon_Noti_CoinPig
   - Icon_PayHeart
   - Icon_Noti_Nap
   - Ingame_Food_027

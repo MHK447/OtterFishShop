@@ -140,9 +140,9 @@ public class FacilityComponent : MonoBehaviour
                 case Config.FacilityTypeIdx.CheckoutCounter:
                     GameRoot.Instance.NaviSystem.NextNavi(NaviSystem.NaviType.Rack_01);
                     break;
-                // case Config.FacilityTypeIdx.RedSnapperFishing:
-                //     GameRoot.Instance.NaviSystem.NaviOff(NaviSystem.NaviType.Fish_01);
-                //     break;
+                case Config.FacilityTypeIdx.RedSnapperFishing:
+                    GameRoot.Instance.NaviSystem.NextNavi(NaviSystem.NaviType.Fishing);
+                    break;
             }
 
             if (stageinfotd.consumerfirst_idx == (int)FacilityTypeIdx)

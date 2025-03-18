@@ -109,8 +109,8 @@ public class BucketComponent : MonoBehaviour
 
         yield return new WaitForSeconds(1f);
 
-        if(FishStackComponent.Count > 0)
-        CountUICheck(FishStackComponent.First().transform.position);
+        if (FishStackComponent.Count > 0)
+            CountUICheck(FishStackComponent.First().transform.position);
 
     }
 
@@ -173,6 +173,8 @@ public class BucketComponent : MonoBehaviour
                         CountUI.Init(FishStackComponent.First().transform);
 
                     TargetOtterList[i].AddFish(fishcomponent);
+                    
+                    GameRoot.Instance.NaviSystem.NextNavi(NaviSystem.NaviType.RackFishAdd);
 
                     FacilityData.CapacityCountProperty.Value -= 1;
 
@@ -186,6 +188,11 @@ public class BucketComponent : MonoBehaviour
     {
         FishStackComponent.Push(fish);
         FacilityData.CapacityCountProperty.Value += 1;
+
+        if (GameRoot.Instance.NaviSystem.IsNaviOn)
+        {
+            GameRoot.Instance.NaviSystem.NextNavi(NaviSystem.NaviType.GoToBucket);
+        }
 
     }
 

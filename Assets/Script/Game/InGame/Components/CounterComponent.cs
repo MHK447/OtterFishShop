@@ -42,7 +42,7 @@ public class CounterComponent : FacilityComponent
 
             IsPlayer = true;
 
-            GameRoot.Instance.NaviSystem.NaviOff(NaviSystem.NaviType.CalcCounter);
+            GameRoot.Instance.NaviSystem.NextNavi(NaviSystem.NaviType.WaitCalc);
         }
     }
 
@@ -116,8 +116,7 @@ public class CounterComponent : FacilityComponent
                     });
 
                     SoundPlayer.Instance.PlaySound("counter");
-                    GameRoot.Instance.NaviSystem.CurNaviOnType = NaviSystem.NaviType.UpgradeBtn;
-                    GameRoot.Instance.NaviSystem.NextNavi(NaviSystem.NaviType.UpgradeBtn);
+                    GameRoot.Instance.NaviSystem.NextNavi(NaviSystem.NaviType.UpgradeStart);
 
 
                     if (findconsumer != null)
