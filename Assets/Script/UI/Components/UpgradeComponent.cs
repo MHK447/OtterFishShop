@@ -98,6 +98,9 @@ public class UpgradeComponent : MonoBehaviour
             GameRoot.Instance.UpgradeSystem.AddUpgradeData(UpgradeIdx, UpgradeData.UpgradeType);
 
             GameRoot.Instance.UserData.SetReward((int)Config.RewardType.Currency, (int)Config.CurrencyID.Money, -UpgradeCost);
+
+            GameRoot.Instance.NaviSystem.CurNaviOnType = NaviSystem.NaviType.CloseUpgradeBtn;
+            GameRoot.Instance.NaviSystem.NaviOff(NaviSystem.NaviType.UpgradeStart);
         }
 
     }

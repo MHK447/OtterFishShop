@@ -12,6 +12,7 @@ table UserData {
   upgradedatas:[UpgradeData];
   facilityupgradedatas:[FacilityUpgradeData];
   boosttime:int = 0; 
+  tutorial:string;
 }
 
 

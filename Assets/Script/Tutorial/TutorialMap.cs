@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -18,12 +18,12 @@ public class TutorialMap : MonoBehaviour
 
     private void Awake()
     {
-        //        skipBtn.onClick.AddListener(OnClickSkip);
-        //#if !TREEPLLA_LOG
-        //		skipBtn.gameObject.SetActive(false);
-        //#else
-        //        skipBtn.gameObject.SetActive(true);
-        //#endif
+//        skipBtn.onClick.AddListener(OnClickSkip);
+//#if !TREEPLLA_LOG
+//		skipBtn.gameObject.SetActive(false);
+//#else
+//        skipBtn.gameObject.SetActive(true);
+//#endif
     }
 
     public void StartMap()
@@ -44,13 +44,7 @@ public class TutorialMap : MonoBehaviour
             {
                 --scenarioCurSize;
                 //logs
-                //List<TpParameter> parameters = new List<TpParameter>();
-                //parameters.Add(new TpParameter("stage", GameRoot.Instance.UserData.CurMode.StageData.StageIdx));
-                //parameters.Add(new TpParameter("idx", tutoNum));
-                // parameters.Add(new TpParameter("sequence", scenarioSize - scenarioCurSize));
-                //GameRoot.Instance.PluginSystem.AnalyticsProp.AllEvent(IngameEventType.None,
-                //        "m_tutorial", parameters);
-
+            
                 if (scenario.Count > 0)
                 {
                     Destroy(curEntity.gameObject);
@@ -101,7 +95,6 @@ public class TutorialMap : MonoBehaviour
         //        UnityEngine.Object.Destroy(bc);
         //}
 
-        
         GameRoot.Instance.UISystem.SetFloatingUIActiveAll(true);
     }
 }

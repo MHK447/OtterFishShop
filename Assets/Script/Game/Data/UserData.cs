@@ -115,6 +115,7 @@ public partial class UserDataSystem
 		var builder = new FlatBufferBuilder(1);
 		int dataIdx = 0;
 		var money = builder.CreateString(mainData.Money.Value.ToString());
+        var tutorial = builder.CreateString(string.Join(";", Tutorial));
 
 
 		Offset<BanpoFri.Data.RecordCount>[] recordCount = null;
@@ -198,6 +199,7 @@ public partial class UserDataSystem
 		BanpoFri.Data.UserData.AddRecordcount(builder, recordCountVec);
 		BanpoFri.Data.UserData.AddBoosttime(builder , mainData.BoostTime.Value);
 		BanpoFri.Data.UserData.AddFacilityupgradedatas(builder , faciltyupgradedata);
+        BanpoFri.Data.UserData.AddTutorial(builder, tutorial);
 
 		//end 
 		var orc = BanpoFri.Data.UserData.EndUserData(builder);

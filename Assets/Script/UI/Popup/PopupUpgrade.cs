@@ -86,7 +86,7 @@ public class PopupUpgrade : UIBase
 
     public void Init()
     {
-        CurrentTab = TabType.ProductTab;
+        CurrentTab = GameRoot.Instance.NaviSystem.IsNaviOn ? TabType.FacilityTab : TabType.ProductTab;
 
         ProductComponentGroup.Init();
 
@@ -308,6 +308,10 @@ public class PopupUpgrade : UIBase
         {
             getui.UpgradeSliderCheck();
         }
+
+
+        if (GameRoot.Instance.NaviSystem.CurNaviOnType == NaviSystem.NaviType.CloseUpgradeBtn)
+            GameRoot.Instance.NaviSystem.NextNavi(NaviSystem.NaviType.CloseUpgradeBtn);
     }
 
 

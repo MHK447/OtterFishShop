@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using BanpoFri;
@@ -25,7 +25,7 @@ public class TutorialEntity : MonoBehaviour
     {
         foreach (var active in activeList)
         {
-            if (!IgnoreDeactiveList.Contains(active))
+            if(!IgnoreDeactiveList.Contains(active))
                 ProjectUtility.SetActiveCheck(active, false);
         }
         Complete = true;

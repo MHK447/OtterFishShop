@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UniRx;
@@ -8,10 +8,7 @@ using System.Linq;
 public enum TutorialIdent
 {
     None,
-    HudLabUpgradeBtn,
-    WeleComeGiftBtn,
-    LabDefenseBtn,
-    LabBlockDefenseBtn,
+    NextStageBtn,
 }
 
 public class TutorialSystem
@@ -26,11 +23,17 @@ public class TutorialSystem
     private List<Map> scenarioMap = new List<Map>();
     private Dictionary<string, string> LoadMapData = new Dictionary<string, string> {
         { Tuto_1 , "Tutorial_1" },
-        { Tuto_2 , "Tutorial_2" }
+        { Tuto_2 , "Tutorial_2" },
+        { Tuto_3 , "Tutorial_3" },
+        { Tuto_4 , "Tutorial_4" },
+        { Tuto_5 , "Tutorial_5" },
     };
 
     public const string Tuto_1 = "1";
     public const string Tuto_2 = "2";
+    public const string Tuto_3 = "3";
+    public const string Tuto_4 = "4";
+    public const string Tuto_5 = "5";
 
 
     List<GameObject> Active_ScenarioMap = new List<GameObject>();
@@ -39,6 +42,8 @@ public class TutorialSystem
     public ReactiveProperty<bool> TruckSleepCheckProperty = new ReactiveProperty<bool>(false);
     public ReactiveProperty<bool> GetVipTicket = new ReactiveProperty<bool>(false);
     public ReactiveProperty<int> UnlockContents = new ReactiveProperty<int>(0);
+
+    public bool IsStartArtifactEqipTutorial = false;
 
     public void Init()
     {
@@ -212,30 +217,15 @@ public class TutorialSystem
     {
         switch (id)
         {
-            case TutorialIdent.LabBlockDefenseBtn:
-                {
-                    //var getui = GameRoot.Instance.UISystem.GetUI<PageLobbyLAB>();
+            //case TutorialIdent.WorkplaceBuildStartBtn:
+            //    {
+            //        return GameRoot.Instance.InGameSystem.GetInGame<InGameLumber>().Stage.WorkSpace.GetTutoBuildStartBtn();
+            //    }
 
-                    //if (getui != null)
-                    //{
-                    //    return getui.GetTutorialBlockDamageTr();
-                    //}
-                }
-                break;
-            case TutorialIdent.HudLabUpgradeBtn:
-                {
-                    //var getui = GameRoot.Instance.UISystem.GetUI<HUDTotal>();
-
-                    //if (getui != null)
-                    //{
-                    //    return getui.GetLabToggles();
-                    //}
-                }
-                break;
-                //case TutorialIdent.WorkplaceBuildCompBtn:
-                //    {
-                //        return GameRoot.Instance.InGameSystem.GetInGame<InGameLumber>().Stage.WorkSpace.GetTutoBuildCompBtn();
-                //    }
+            //case TutorialIdent.WorkplaceBuildCompBtn:
+            //    {
+            //        return GameRoot.Instance.InGameSystem.GetInGame<InGameLumber>().Stage.WorkSpace.GetTutoBuildCompBtn();
+            //    }
                 // case TutorialIdent.HUD_ShopBtn:
                 //     {
                 //         // var getui = GameRoot.Instance.UISystem.GetUI<HUDTotal>();
@@ -294,7 +284,7 @@ public class TutorialSystem
                 //     break;
                 // case TutorialIdent.ChapterPass_NextBtn:
                 //     {
-                //         if (GameRoot.Instance.UserData.CurMode.StageData.StageIdx % 7 != 0)
+                //         if (GameRoot.Instance.UserData.CurMode.StageData.StageIdx.Value % 7 != 0)
                 //         {
                 //             var register = GameRoot.Instance.TutorialSystem.GetRegister(TutorialIdent.HUD_NextStageBtn);
                 //             return register.gameObject;
@@ -323,15 +313,16 @@ public class TutorialSystem
 
     public bool IsDynamaicTarget(TutorialIdent id)
     {
-        switch (id)
-        {
-            case TutorialIdent.HudLabUpgradeBtn:
-            case TutorialIdent.LabBlockDefenseBtn:
-                return true;
+        //switch (id)
+        //{
+        //    case TutorialIdent.WorkplaceBuildStartBtn:
+        //    case TutorialIdent.WorkplaceBuildCompBtn:
+        //        return true;
 
-            default:
-                return false;
-        }
+        //    default:
+        //        return false;
+        //}
+        return false;
     }
-
+    
 }

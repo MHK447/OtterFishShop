@@ -37,6 +37,8 @@ public class Joystick : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, I
     float targetZoom;
     float zoomVelocity;
 
+    public bool IsLock  = false;
+
     private void Start()
     {
         targetZoom = Camera.main.orthographicSize;
@@ -84,7 +86,7 @@ public class Joystick : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, I
             targetZoom = Mathf.Clamp(targetZoom, _minCamera, _maxCamera);
         }
 
-        if (_isTouch)
+        if (_isTouch && !IsLock)
         {
             //Debug.Log("$ _vectorMove1 = " + _vectorMove);
             _vectorMove.Normalize();
@@ -151,6 +153,8 @@ public class Joystick : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, I
 
     public void OnPointerDown(PointerEventData eventData)
     {
+        if(IsLock) return;
+
         ProjectUtility.SetActiveCheck(_joystickBack.gameObject, true);
 
 #if !UNITY_EDITOR

@@ -7,31 +7,31 @@ using BanpoFri;
 using BanpoFri.Data;
 public enum DataState
 {
-	None,
-	Main,
-	Event
+    None,
+    Main,
+    Event
 }
 public partial class UserDataSystem
 {
-	public bool Bgm = true;
-	public bool Effect = true;
-	public bool SlowGraphic = false;
-	public Config.Language Language = Config.Language.ko;
-	public IReactiveProperty<int> Cash { get; private set; } = new ReactiveProperty<int>(0);
-	public IReactiveCollection<string> BuyInappIds {get; private set;} = new ReactiveCollection<string>();
-	public IReactiveCollection<string> Tutorial {get; private set;} = new ReactiveCollection<string>();
-	public IReactiveCollection<string> GameNotifications { get; private set; } = new ReactiveCollection<string>();
-	public Dictionary<string, int> RecordCount {get; private set;} = new Dictionary<string, int>();
-	public IUserDataMode CurMode {get; private set;}
-	private UserDataMain mainData = new UserDataMain();
-	private UserDataEvent eventData = new UserDataEvent();
-	public DataState DataState {get; private set;} = DataState.None;
-	public bool IsMainState { get { return DataState == DataState.Main; } }
-	public IReactiveCollection<int> OneLink { get; private set; } = new ReactiveCollection<int>();
+    public bool Bgm = true;
+    public bool Effect = true;
+    public bool SlowGraphic = false;
+    public Config.Language Language = Config.Language.ko;
+    public IReactiveProperty<int> Cash { get; private set; } = new ReactiveProperty<int>(0);
+    public IReactiveCollection<string> BuyInappIds { get; private set; } = new ReactiveCollection<string>();
+    public IReactiveCollection<string> Tutorial { get; private set; } = new ReactiveCollection<string>();
+    public IReactiveCollection<string> GameNotifications { get; private set; } = new ReactiveCollection<string>();
+    public Dictionary<string, int> RecordCount { get; private set; } = new Dictionary<string, int>();
+    public IUserDataMode CurMode { get; private set; }
+    private UserDataMain mainData = new UserDataMain();
+    private UserDataEvent eventData = new UserDataEvent();
+    public DataState DataState { get; private set; } = DataState.None;
+    public bool IsMainState { get { return DataState == DataState.Main; } }
+    public IReactiveCollection<int> OneLink { get; private set; } = new ReactiveCollection<int>();
 
-	public IReactiveProperty<BigInteger> HUDMoney = new ReactiveProperty<BigInteger>(0);
-	public IReactiveProperty<BigInteger> HudEnergyMoney = new ReactiveProperty<BigInteger>(0);
-	public IReactiveProperty<int> HUDCash = new ReactiveProperty<int>(0);
+    public IReactiveProperty<BigInteger> HUDMoney = new ReactiveProperty<BigInteger>(0);
+    public IReactiveProperty<BigInteger> HudEnergyMoney = new ReactiveProperty<BigInteger>(0);
+    public IReactiveProperty<int> HUDCash = new ReactiveProperty<int>(0);
 
 
     void ConnectReadOnlyDatas()
@@ -55,6 +55,18 @@ public partial class UserDataSystem
         }
 
 
+        Tutorial.Clear();
+        if (!string.IsNullOrEmpty(flatBufferUserData.Tutorial))
+        {
+            var splitArr = flatBufferUserData.Tutorial.Split(';');
+            foreach (var split in splitArr)
+            {
+                Tutorial.Add(split);
+            }
+        }
+
+
+
         if (flatBufferUserData.Stagedata != null)
         {
             mainData.StageData.StageFacilityDataList.Clear();
@@ -63,20 +75,20 @@ public partial class UserDataSystem
 
             mainData.StageData.NextFacilityOpenOrderProperty.Value = flatBufferUserData.Stagedata.Value.Facilityopenorder;
 
-            for (int i = 0; i <  flatBufferUserData.Stagedata.Value.FacilitydatasLength; ++i)
+            for (int i = 0; i < flatBufferUserData.Stagedata.Value.FacilitydatasLength; ++i)
             {
                 var data = flatBufferUserData.Stagedata.Value.Facilitydatas(i);
 
                 var moneyvalue = System.Numerics.BigInteger.Parse(data.Value.Moneycount);
 
-                var newdata = new FacilityData(data.Value.Facilityidx, moneyvalue, data.Value.Isopen , data.Value.Capacitycount);
+                var newdata = new FacilityData(data.Value.Facilityidx, moneyvalue, data.Value.Isopen, data.Value.Capacitycount);
 
                 mainData.StageData.StageFacilityDataList.Add(newdata);
             }
         }
 
 
-            
+
         mainData.BoostTime.Value = flatBufferUserData.Boosttime;
 
 
@@ -93,12 +105,12 @@ public partial class UserDataSystem
 
 
         mainData.FishUpgradeDatas.Clear();
-    
-        for(int i = 0 ; i < flatBufferUserData.FacilityupgradedatasLength; ++i)
+
+        for (int i = 0; i < flatBufferUserData.FacilityupgradedatasLength; ++i)
         {
             var data = flatBufferUserData.Facilityupgradedatas(i);
 
-            var newdata = new StageFishUpgradeData(data.Value.Faciltiyidx , data.Value.Level);
+            var newdata = new StageFishUpgradeData(data.Value.Faciltiyidx, data.Value.Level);
 
             mainData.FishUpgradeDatas.Add(newdata);
         }
@@ -236,7 +248,7 @@ public partial class UserDataSystem
                             }
                             break;
                         case (int)Config.CurrencyID.EnergyMoney:
-                            {   
+                            {
                                 CurMode.EnergyMoney.Value += (int)rewardCnt;
                             }
                             break;
@@ -258,12 +270,12 @@ public partial class UserDataSystem
     }
 
     public void RefreshUICurrency()
-	{
-		
-	}
+    {
+
+    }
 
 
-	private void TutoDataCheck()
+    private void TutoDataCheck()
     {
 
     }
