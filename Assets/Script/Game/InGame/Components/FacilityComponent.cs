@@ -118,7 +118,8 @@ public class FacilityComponent : MonoBehaviour
     {
         FacilityData.IsOpen = true;
 
-        GameRoot.Instance.UISystem.GetUI<HUDTotal>().ContentsOpenCheck();
+        //GameRoot.Instance.UISystem.GetUI<HUDTotal>().ContentsOpenCheck();
+
 
         GameRoot.Instance.UserData.CurMode.StageData.NextFacilityOpenOrderProperty.Value += 1;
         Init();
@@ -129,6 +130,14 @@ public class FacilityComponent : MonoBehaviour
 
         if (stageinfotd != null)
         {
+
+            if (GameRoot.Instance.UserData.CurMode.StageData.StageIdx == 1 && FacilityTypeIdx == Config.FacilityTypeIdx.GrilledRedSnapperDisplay)
+            {
+                if(!GameRoot.Instance.TutorialSystem.IsClearTuto("1"))
+                {
+                    GameRoot.Instance.TutorialSystem.StartTutorial("1");
+                }
+            }
 
             SoundPlayer.Instance.PlaySound("newcontents");
 
@@ -149,12 +158,12 @@ public class FacilityComponent : MonoBehaviour
             {
                 var upgradevalue = GameRoot.Instance.UpgradeSystem.GetUpgradeValue(UpgradeSystem.UpgradeType.AddCustomer);
 
-                var getui = GameRoot.Instance.UISystem.GetUI<HUDTotal>();
+                // var getui = GameRoot.Instance.UISystem.GetUI<HUDTotal>();
 
-                if (getui != null)
-                {
-                    ProjectUtility.SetActiveCheck(getui.GetUpgradeBtnTr.gameObject, true);
-                }
+                // if (getui != null)z
+                // {
+                //     ProjectUtility.SetActiveCheck(getui.GetUpgradeBtnTr.gameObject, true);
+                // }
 
                 for (int i = 0; i < upgradevalue; ++i)
                 {

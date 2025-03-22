@@ -208,7 +208,6 @@ MonoBehaviour:
   - {fileID: 3249068879743728503}
   - {fileID: 6617395132001321153}
   ContentsOpenComponent: {fileID: 655831314322586134}
-  ConsumerOrder: 0
   FacilityTypeIdx: 1000
 --- !u!1 &2019625828283310940
 GameObject:
@@ -1269,7 +1268,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 110
+  m_SortingOrder: 250
   m_Sprite: {fileID: 21300000, guid: 0deabfd59d27bc643a7336b2853429cb, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0

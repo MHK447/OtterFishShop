@@ -117,7 +117,7 @@ public class TutorialEntityClickWait : TutorialEntity
                     }
                     clickobj.GetComponent<RectTransform>().anchorMin = viewportPointMin;
                     clickobj.GetComponent<RectTransform>().anchorMax = viewportPointMax;
-                    //clickobj.SetActive(true);
+                    clickobj.SetActive(true);
 
                     if (mask)
                     {

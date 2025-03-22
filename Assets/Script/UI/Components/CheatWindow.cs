@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-using BanpoFri;     
+using BanpoFri;
 using System;
 
 public class CheatWindow : MonoBehaviour
@@ -78,6 +78,26 @@ public class CheatWindow : MonoBehaviour
         }
     }
 
+    public void SetStartTutorial()
+    {
+        if (string.IsNullOrEmpty(inputField.text))
+        {
+            TpLog.LogError("input field empty!");
+            return;
+        }
+
+        BigInteger convert;
+        if (!BigInteger.TryParse(inputField.text, out convert))
+        {
+            TpLog.LogError("input field string don't convert number!");
+            return;
+        }
+
+        inputField.text = "";
+
+        GameRoot.Instance.TutorialSystem.StartTutorial(convert.ToString());
+    }
+
     public void OnClick_Hide()
     {
         GameRoot.Instance.SetCheatWindow(false);
@@ -120,7 +140,7 @@ public class CheatWindow : MonoBehaviour
         inputField.text = "";
         GameRoot.Instance.UserData.CurMode.GachaCoin.Value += (int)convert;
     }
-                                                                                             
+
 
 #if UNITY_EDITOR
     [UnityEditor.MenuItem("BanpoFri/ShowCheat _F3")]

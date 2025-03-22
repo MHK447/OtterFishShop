@@ -11,9 +11,12 @@ public class HUDTotal : UIBase
 {
     [SerializeField]
     private Button UpgradeBtn;
+    public Transform GetUpgradeBtn { get { return UpgradeBtn.transform; } }
 
     [SerializeField]
     private Button NextStageBtn;
+
+    public Transform GetNextStageBtn { get { return NextStageBtn.transform; } }
 
     [SerializeField]
     private TextMeshProUGUI AdVehicleTimeText;
@@ -42,8 +45,12 @@ public class HUDTotal : UIBase
         BoostBtn.onClick.AddListener(OnClickBoost);
         TopCurrencySync();
 
-        if (GameRoot.Instance.UserData.CurMode.StageData.StageIdx == 1)
-            ProjectUtility.SetActiveCheck(UpgradeBtn.gameObject, false);
+        GameRoot.Instance.WaitTimeAndCallback(1f, () =>
+        {
+
+            if (GameRoot.Instance.UserData.CurMode.StageData.StageIdx == 1 && GameRoot.Instance.NaviSystem.IsNaviOn)
+                ProjectUtility.SetActiveCheck(UpgradeBtn.gameObject, false);
+        });
 
         GameRoot.Instance.VehicleSystem.AdVehiceTimeProperty.Subscribe(x =>
         {
@@ -131,6 +138,6 @@ public class HUDTotal : UIBase
     public void ContentsOpenCheck()
     {
         ProjectUtility.SetActiveCheck(BoostBtn.gameObject, GameRoot.Instance.ContentsOpenSystem.ContentsOpenCheck(ContentsOpenSystem.ContentsOpenType.BoostBuff));
-        ProjectUtility.SetActiveCheck(NextStageBtn.gameObject , GameRoot.Instance.ContentsOpenSystem.ContentsOpenCheck(ContentsOpenSystem.ContentsOpenType.NextStageBtn));
+        ProjectUtility.SetActiveCheck(NextStageBtn.gameObject, GameRoot.Instance.ContentsOpenSystem.ContentsOpenCheck(ContentsOpenSystem.ContentsOpenType.NextStageBtn));
     }
 }

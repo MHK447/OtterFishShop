@@ -187,7 +187,7 @@ public class NaviSystem
 
                     if (findfacility != null)
                     {
-                        NaviUI.SetOffset(new Vector3(0, 0, 0));
+                        NaviUI.SetOffset(new Vector3(0, 1f, 0));
                         NaviUI.Init(findfacility.GetContentsOpenComponentTr);
                         ProjectUtility.SetActiveCheck(NaviUI.gameObject, true);
                     }
@@ -249,7 +249,7 @@ public class NaviSystem
 
                     if (findfacility != null)
                     {
-                        NaviUI.SetOffset(new Vector3(0, 3.5f, 0));
+                        NaviUI.SetOffset(new Vector3(0, 1f, 0));
                         NaviUI.Init(findfacility.GetContentsOpenComponentTr);
                         ProjectUtility.SetActiveCheck(NaviUI.gameObject, true);
                     }
@@ -260,10 +260,10 @@ public class NaviSystem
                     GameRoot.Instance.GetJoyStick.IsLock = true;
                     GameRoot.Instance.UISystem.OpenUI<PopupConversation>(popup => popup.Set("좋아!! 벌은 돈으로 시설을 업그레이드 할 수 있어!!", PopupConversation.OtterType.Happy), () =>
                     {
+                        ProjectUtility.SetActiveCheck(GameRoot.Instance.UISystem.GetUI<HUDTotal>()?.GetUpgradeBtn.gameObject, true);
                         GameRoot.Instance.GetJoyStick.IsLock = false;
+                        ProjectUtility.SetActiveCheck(NaviArrowList[NaviType.UpgradeStart], true);
                     });
-
-                    ProjectUtility.SetActiveCheck(NaviArrowList[NaviType.UpgradeStart], true);
 
                 }
                 break;

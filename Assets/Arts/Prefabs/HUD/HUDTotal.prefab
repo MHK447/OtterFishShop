@@ -1329,6 +1329,7 @@ GameObject:
   - component: {fileID: 6446772598200279288}
   - component: {fileID: 6214404345003431384}
   - component: {fileID: 1437161693597745339}
+  - component: {fileID: 6108291859496777398}
   m_Layer: 5
   m_Name: HUDTotal
   m_TagString: Untagged
@@ -1478,6 +1479,20 @@ MonoBehaviour:
   reddotCount: {fileID: 0}
   reverse: 0
   anyCheckInCategory: 0
+--- !u!114 &6108291859496777398
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9040764865858936208}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4573c76313bdd6946a5da4956bd290dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  index: 1
+  Target: {fileID: 1673040032637548967}
 --- !u!1001 &680243625058593816
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2384,12 +2399,17 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6158040157549669184, guid: 357f5fe8e5576ba419aa39b72d4c1712, type: 3}
   m_PrefabInstance: {fileID: 6670024984835452263}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1673040032637548967}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1673040032637548967 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5451437378827097280, guid: 357f5fe8e5576ba419aa39b72d4c1712, type: 3}
+  m_PrefabInstance: {fileID: 6670024984835452263}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &1934689606978256793 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5064814070919385854, guid: 357f5fe8e5576ba419aa39b72d4c1712, type: 3}

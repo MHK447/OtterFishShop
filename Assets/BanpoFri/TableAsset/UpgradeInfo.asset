@@ -294,7 +294,7 @@ MonoBehaviour:
   - _stageidx: 1
     _upgrade_idx: 1
     _upgrade_type: 10
-    _cost: 110
+    _cost: 10
     _value: 1
     _value2: 0
     _icon: Common_Icon_Upgrade_Casher_Add_01

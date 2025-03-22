@@ -39,13 +39,12 @@ public class TutorialEntityObjActive : TutorialEntity
 
         ProjectUtility.SetActiveCheck(target, active);
 
-        // switch (id)
-        // {
-        //     case TutorialIdent.HUD_ShopBtn:
-        //         // GameRoot.Instance.UISystem.GetUI<HUDTotal>()?.CheckCurrencyShopBtn();
-        //         // GameRoot.Instance.UISystem.GetUI<HUDTotal>()?.BoostBar.CheckCurrencyShopBtn();
-        //         break;
-        // }
+        switch (id)
+        {
+            case TutorialIdent.NextStageBtn:
+                ProjectUtility.SetActiveCheck(GameRoot.Instance.UISystem.GetUI<HUDTotal>()?.GetNextStageBtn.gameObject, true);
+                break;
+        }
         Done();
     }
 

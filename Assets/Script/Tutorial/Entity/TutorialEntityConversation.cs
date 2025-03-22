@@ -27,6 +27,8 @@ public class TutorialEntityConversation : TutorialEntity
         contextOriginal = Tables.Instance.GetTable<Localize>().GetString(descKey);
 
         Anim.Play(AnimKey , 0 ,0f);
+        
+        TextAllPrint();
     }
 
     protected virtual void Update()
