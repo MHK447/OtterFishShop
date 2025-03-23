@@ -356,7 +356,7 @@ public class InGameStage : MonoBehaviour
 
     public void ActiveOffVehicle()
     {
-        if(AdVehicleComponent != null)
+        if (AdVehicleComponent != null)
         {
             AdVehicleComponent.ActiveOff();
         }
@@ -382,6 +382,8 @@ public class InGameStage : MonoBehaviour
                       AdVehicleComponent.transform.position = AdVehicleTrList[ranvalue].position;
                       vehiclecomponent.Init();
                       ProjectUtility.SetActiveCheck(AdVehicleComponent.gameObject, true);
+
+                      GameRoot.Instance.GameNotification.AddNoti(NoticeComponent.NoticeType.Seaweed, AdVehicleComponent.transform);
                   }
 
               };
@@ -391,6 +393,7 @@ public class InGameStage : MonoBehaviour
             AdVehicleComponent.Init();
             AdVehicleComponent.transform.position = AdVehicleTrList[ranvalue].position;
             ProjectUtility.SetActiveCheck(AdVehicleComponent.gameObject, true);
+            GameRoot.Instance.GameNotification.AddNoti(NoticeComponent.NoticeType.Seaweed, AdVehicleComponent.transform);
         }
     }
 }

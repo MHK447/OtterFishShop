@@ -208,6 +208,7 @@ public class CookedComponent : FacilityComponent
                 break;
             case State.Break:
                 {
+                    GameRoot.Instance.GameNotification.AddNoti(NoticeComponent.NoticeType.Break, this.transform);
                     skeletonAnimation.state.SetAnimation(0, "break", true);
                 }
                 break;
@@ -243,21 +244,6 @@ public class CookedComponent : FacilityComponent
     {
         if (!IsOpenFacility()) return;
 
-        //// 충돌한 오브젝트의 레이어를 확인합니다.
-        //if ((collision.gameObject.layer == LayerMask.NameToLayer("Consumer")))
-        //{
-        //    FishCarrydeltime = 0f;
-        //    var getvalue = collision.gameObject.GetComponent<Consumer>();
-
-        //    if (getvalue != null && getvalue.GetState == Consumer.CurState.Idle)
-        //    {
-        //        if (!ConsumerOtterList.Contains(getvalue))
-        //        {
-        //            ConsumerOtterList.Add(getvalue);
-        //        }
-        //    }
-        //}
-
         if (collision.gameObject.layer == LayerMask.NameToLayer("Player") || collision.gameObject.layer == LayerMask.NameToLayer("CarryCasher"))
         {
             movematerialdeltime = 0f;
@@ -272,9 +258,12 @@ public class CookedComponent : FacilityComponent
                     if (TroubleBubble != null)
                         ProjectUtility.SetActiveCheck(TroubleBubble.gameObject, false);
 
+                    GameRoot.Instance.GameNotification.RemoveNoti(NoticeComponent.NoticeType.Break, this.transform);
+
+                    skeletonAnimation.state.SetAnimation(0, "idle", true);
+
                     GameRoot.Instance.WaitTimeAndCallback(1f, () =>
                     {
-
                         if (this != null)
                         {
                             ProjectUtility.SetActiveCheck(FixObj, false);

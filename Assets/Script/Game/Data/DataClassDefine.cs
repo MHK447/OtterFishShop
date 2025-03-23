@@ -107,6 +107,19 @@ public class StageFishUpgradeData
 	}
 }
 
+public class NoticeData
+{
+	public int NotiIdx = 0;
+	public Transform Target;
+
+	public NoticeData(int notiidx , Transform target)
+	{
+		NotiIdx = notiidx;
+		Target = target;
+	}
+
+}
+
 public class PlayerData
 {
 	public IReactiveProperty<int> VehiclePropertyIdx = new ReactiveProperty<int>();

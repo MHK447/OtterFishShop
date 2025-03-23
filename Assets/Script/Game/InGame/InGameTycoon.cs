@@ -58,8 +58,11 @@ public class InGameTycoon : InGameMode
 
                     if (GameRoot.Instance.UserData.CurMode.StageData.StageIdx == 1 && recordcount == 0)
                     {
-                        GameRoot.Instance.NaviSystem.FirstStartNavi();
-                        GameRoot.Instance.NaviSystem.StarNexttNavi();
+                        GameRoot.Instance.UISystem.OpenUI<PopupDragTuto>(null, () =>
+                        {
+                            GameRoot.Instance.NaviSystem.FirstStartNavi();
+                            GameRoot.Instance.NaviSystem.StarNexttNavi();
+                        });
                     }
                 });
             };

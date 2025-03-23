@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &524961919786085738
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8558964475042583984}
+  m_Layer: 3
+  m_Name: SpeedUpBuffTr
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8558964475042583984
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 524961919786085738}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 23055049564648939}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &578195213428039737
 GameObject:
   m_ObjectHideFlags: 0
@@ -966,6 +997,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CurUnitType: 1
   ProgressTr: {fileID: 9063122242514546740}
+  SpeedUpTr: {fileID: 8558964475042583984}
   FishTr: {fileID: 3999100316851466616}
   skeletonAnimation: {fileID: 6902744124365164405}
   FishCarryRoot: {fileID: 7537672123692797759}
@@ -975,6 +1007,7 @@ MonoBehaviour:
   CurAnimName: 
   loop: 1
   CarryCasherWorkFacilityIdx: 0
+  CurMoneyTime: 0
   TargetTr: {fileID: 0}
   reachRadius: 0.6
   _navMeshAgent: {fileID: 7305236676931360709}
@@ -1574,6 +1607,7 @@ Transform:
   - {fileID: 9044101349665869373}
   - {fileID: 1667258497595048112}
   - {fileID: 9063122242514546740}
+  - {fileID: 8558964475042583984}
   m_Father: {fileID: 2632944431668787682}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6414271310904610403

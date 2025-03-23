@@ -69,6 +69,8 @@ public class AdVehicleComponent : MonoBehaviour
             VehicleTextUI.SetText(buffvalue);
         }
 
+        
+
     }
 
     void OnTriggerEnter2D(Collider2D collision)

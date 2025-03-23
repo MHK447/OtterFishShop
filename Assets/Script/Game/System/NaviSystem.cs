@@ -130,7 +130,7 @@ public class NaviSystem
             case NaviType.Conversation_1:
                 {
                     GameRoot.Instance.GetJoyStick.IsLock = true;
-                    GameRoot.Instance.UISystem.OpenUI<PopupConversation>(popup => popup.Set("해달이의 물고기 왕국! 아니, 가게! 드디어 오픈~! 어… 근데 나 장사하는 법 모르는데? 일단 카운터를 가까이 가서 구매해보자~", PopupConversation.OtterType.Happy), () =>
+                    GameRoot.Instance.UISystem.OpenUI<PopupConversation>(popup => popup.Set(Tables.Instance.GetTable<Localize>().GetString("food_01"), PopupConversation.OtterType.Happy), () =>
                     {
                         CurNaviOnType = NaviType.Counter;
                         NextNavi(CurNaviOnType);
@@ -155,7 +155,7 @@ public class NaviSystem
                     GameRoot.Instance.GetJoyStick.IsLock = true;
                     GameRoot.Instance.WaitTimeAndCallback(3.5f, () =>
                    {
-                       GameRoot.Instance.UISystem.OpenUI<PopupConversation>(popup => popup.Set("가까이 가서 판매를 할려면 물고기 진열대가 필요해!! 물고기 진열대도 열어보자", PopupConversation.OtterType.Happy), () =>
+                       GameRoot.Instance.UISystem.OpenUI<PopupConversation>(popup => popup.Set(Tables.Instance.GetTable<Localize>().GetString("food_09"), PopupConversation.OtterType.Idle), () =>
                        {
 
                            GameRoot.Instance.GetJoyStick.IsLock = false;
@@ -177,7 +177,7 @@ public class NaviSystem
                     GameRoot.Instance.GetJoyStick.IsLock = true;
                     GameRoot.Instance.WaitTimeAndCallback(3.5f, () =>
                    {
-                       GameRoot.Instance.UISystem.OpenUI<PopupConversation>(popup => popup.Set("손님이 몰려왓어!! 언능 낚시하는곳을 오픈해서 손님에게 물고기를 주자!!", PopupConversation.OtterType.Happy), () =>
+                       GameRoot.Instance.UISystem.OpenUI<PopupConversation>(popup => popup.Set(Tables.Instance.GetTable<Localize>().GetString("food_02"), PopupConversation.OtterType.Idle), () =>
                        {
                            GameRoot.Instance.GetJoyStick.IsLock = false;
                        });
@@ -211,7 +211,7 @@ public class NaviSystem
             case NaviType.GoToBucket:
                 {
                     GameRoot.Instance.GetJoyStick.IsLock = true;
-                    GameRoot.Instance.UISystem.OpenUI<PopupConversation>(popup => popup.Set("좋아!! 양동이 물고기를 손님이 기다리고 있는 진열대로 옮겨보자!!", PopupConversation.OtterType.Happy),
+                    GameRoot.Instance.UISystem.OpenUI<PopupConversation>(popup => popup.Set(Tables.Instance.GetTable<Localize>().GetString("food_03"), PopupConversation.OtterType.Idle),
                     () =>
                     {
                         GameRoot.Instance.GetJoyStick.IsLock = false;
@@ -240,7 +240,7 @@ public class NaviSystem
             case NaviType.CalcCounter:
                 {
                     GameRoot.Instance.GetJoyStick.IsLock = true;
-                    GameRoot.Instance.UISystem.OpenUI<PopupConversation>(popup => popup.Set("좋아!! 손님이 가구 있어!! 계산해보자", PopupConversation.OtterType.Happy), () =>
+                    GameRoot.Instance.UISystem.OpenUI<PopupConversation>(popup => popup.Set(Tables.Instance.GetTable<Localize>().GetString("food_04"), PopupConversation.OtterType.Idle), () =>
                     {
                         GameRoot.Instance.GetJoyStick.IsLock = false;
                     });
@@ -258,7 +258,7 @@ public class NaviSystem
             case NaviType.UpgradeStart:
                 {
                     GameRoot.Instance.GetJoyStick.IsLock = true;
-                    GameRoot.Instance.UISystem.OpenUI<PopupConversation>(popup => popup.Set("좋아!! 벌은 돈으로 시설을 업그레이드 할 수 있어!!", PopupConversation.OtterType.Happy), () =>
+                    GameRoot.Instance.UISystem.OpenUI<PopupConversation>(popup => popup.Set(Tables.Instance.GetTable<Localize>().GetString("food_05"), PopupConversation.OtterType.Happy), () =>
                     {
                         ProjectUtility.SetActiveCheck(GameRoot.Instance.UISystem.GetUI<HUDTotal>()?.GetUpgradeBtn.gameObject, true);
                         GameRoot.Instance.GetJoyStick.IsLock = false;
@@ -275,7 +275,7 @@ public class NaviSystem
             case NaviType.CloseUpgradeBtn:
                 {
                     GameRoot.Instance.GetJoyStick.IsLock = true;
-                    GameRoot.Instance.UISystem.OpenUI<PopupConversation>(popup => popup.Set("좋아 직원을 고용했어!! 돈을 벌면서 최고의 가게를 꾸려보자!! 화이팅!", PopupConversation.OtterType.Happy), () =>
+                    GameRoot.Instance.UISystem.OpenUI<PopupConversation>(popup => popup.Set(Tables.Instance.GetTable<Localize>().GetString("food_06"), PopupConversation.OtterType.Happy), () =>
                     {
                         GameRoot.Instance.GetJoyStick.IsLock = false;
                     });

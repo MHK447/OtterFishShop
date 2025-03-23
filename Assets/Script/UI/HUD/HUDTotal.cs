@@ -30,9 +30,8 @@ public class HUDTotal : UIBase
     [SerializeField]
     private Button BoostBtn;
 
-
-    public GameObject ArrowObj;
-
+    [SerializeField]
+    private HudNoticeComponents HudNoticeComponent;
     public Transform GetUpgradeBtnTr { get { return UpgradeBtn.transform; } }
 
     private float deltaTime = 0.0f;
@@ -68,12 +67,13 @@ public class HUDTotal : UIBase
 
         ContentsOpenCheck();
 
-
 #if BANPFRI_LOG
         ProjectUtility.SetActive(FpsText.gameObject , true);
 #else
         ProjectUtility.SetActiveCheck(FpsText.gameObject, false);
 #endif
+
+        HudNoticeComponent.Init();
     }
 
     public void OnClickNextStage()

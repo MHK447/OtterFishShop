@@ -98,7 +98,6 @@ SpriteAtlas:
     - e15447e3ba35a53499eeb464dfc11b6d: 21300000
     - 732a6124cc850ab4e9bb59f322476a41: 21300000
     - 34b597e41c74ba7439f42939bc220bb8: 21300000
-    - 9440f1352663fa54692880e2ee52ef98: 21300000
     - bdf0da751646e3144bba7e69b0cdcb1c: 21300000
     - a77aaaa584c56c14eb8a2556bb2d1d32: 21300000
     - 5dd990360fc9b2540906ea03809337bc: 21300000
@@ -106,7 +105,6 @@ SpriteAtlas:
     - e239e76710278a74db0de20135b38005: 21300000
     - b05fbfa72414cd54280e5fa25e79981e: 21300000
     - d192b798f8936fa4ea96115363b8345a: 21300000
-    - de443589e8036af4ab9b242b5f8dd81a: 21300000
     - e6195f6a8b325ed4ba6e12075730001c: 21300000
     - c6608e0b06a3dd346980bce283993990: 21300000
     - 3578cf8bbb852f7409e991f63d6d760a: 21300000
@@ -144,7 +142,6 @@ SpriteAtlas:
   - {fileID: 21300000, guid: e15447e3ba35a53499eeb464dfc11b6d, type: 3}
   - {fileID: 21300000, guid: 732a6124cc850ab4e9bb59f322476a41, type: 3}
   - {fileID: 21300000, guid: 34b597e41c74ba7439f42939bc220bb8, type: 3}
-  - {fileID: 21300000, guid: 9440f1352663fa54692880e2ee52ef98, type: 3}
   - {fileID: 21300000, guid: bdf0da751646e3144bba7e69b0cdcb1c, type: 3}
   - {fileID: 21300000, guid: a77aaaa584c56c14eb8a2556bb2d1d32, type: 3}
   - {fileID: 21300000, guid: 5dd990360fc9b2540906ea03809337bc, type: 3}
@@ -152,7 +149,6 @@ SpriteAtlas:
   - {fileID: 21300000, guid: e239e76710278a74db0de20135b38005, type: 3}
   - {fileID: 21300000, guid: b05fbfa72414cd54280e5fa25e79981e, type: 3}
   - {fileID: 21300000, guid: d192b798f8936fa4ea96115363b8345a, type: 3}
-  - {fileID: 21300000, guid: de443589e8036af4ab9b242b5f8dd81a, type: 3}
   - {fileID: 21300000, guid: e6195f6a8b325ed4ba6e12075730001c, type: 3}
   - {fileID: 21300000, guid: c6608e0b06a3dd346980bce283993990, type: 3}
   - {fileID: 21300000, guid: 3578cf8bbb852f7409e991f63d6d760a, type: 3}
@@ -189,7 +185,6 @@ SpriteAtlas:
   - Gem
   - Ingame_Food_020
   - Icon_AdRemove
-  - Icon_Noti_Pan
   - Ingame_Food_003
   - Ingame_Food_017
   - Icon_Trouble
@@ -197,12 +192,11 @@ SpriteAtlas:
   - Ingame_Food_013
   - Ingame_Food_018
   - Ingame_Food_008
-  - Icon_Noti_Pot
   - Icon_Noti_Seaweed
   - Ingame_Food_026
   - Ingame_Food_028
   - Ingame_Food_005
-  - Icon_Noti_Oven
+  - Icon_Noti_Break
   - Ingame_Food_002
   - Icon_Vehicle
   - Icon_Table

@@ -153,8 +153,17 @@ public class FishCushionComponent : MonoBehaviour
                 if (TargetOtterList[i].CurMoneyTime >= FisgingTime)
                 {
                     TargetOtterList[i].CurMoneyTime = 0f;
+                    Debug.Log($"[DEBUG] TargetOtterList[{i}] = {TargetOtterList[i]}");
+                    Debug.Log($"[DEBUG] TargetOtterList[{i}].GetFishTr = {TargetOtterList[i]?.GetFishTr}");
+                    Debug.Log($"[DEBUG] FishIdx = {FishIdx}");
+                    
+                    var targetotter = TargetOtterList[i];
 
-                    InGameStage.CreateFish(TargetOtterList[i].GetFishTr, FishIdx, FishComponent.State.Bucket, (fish) => { StartFishAction(fish, TargetOtterList[i]); });
+                    InGameStage.CreateFish(TargetOtterList[i].GetFishTr, FishIdx, FishComponent.State.Bucket, (fish) =>
+                    {
+                        Debug.Log($"[DEBUG] Created fish: {fish}");
+                        StartFishAction(fish, targetotter);
+                    });
                     SoundPlayer.Instance.PlaySound("fishing");
                 }
             }

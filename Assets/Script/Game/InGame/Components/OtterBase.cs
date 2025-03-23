@@ -44,6 +44,9 @@ public class OtterBase : MonoBehaviour
     private Transform ProgressTr;
 
     [SerializeField]
+    private Transform SpeedUpTr;
+
+    [SerializeField]
     private Transform FishTr;
 
     [SerializeField]
@@ -65,6 +68,8 @@ public class OtterBase : MonoBehaviour
 
     public int sortingOrderBase = 200; // 기본 정렬 순서
     public int offset = 100;
+
+    protected UI_Speed SpeedUpObj;
 
     private CooltimeProgress Progress;
 
@@ -105,6 +110,17 @@ public class OtterBase : MonoBehaviour
 
     public virtual void Init()
     {
+        if (SpeedUpObj == null && SpeedUpTr != null)
+        {
+            GameRoot.Instance.UISystem.LoadFloatingUI<UI_Speed>((_speed) =>
+            {
+                SpeedUpObj = _speed;
+                ProjectUtility.SetActiveCheck(SpeedUpObj.gameObject, false);
+                SpeedUpObj.Init(SpeedUpTr);
+            });
+        }
+
+
         CasherMoveSpeed = GameRoot.Instance.InGameSystem.casher_move_speed;
 
         CurStage = GameRoot.Instance.InGameSystem.GetInGame<InGameTycoon>().curInGameStage;
@@ -148,21 +164,21 @@ public class OtterBase : MonoBehaviour
             }).AddTo(disposables);
         }
 
-    if(TextEffectMax == null)
-    {
-        GameRoot.Instance.EffectSystem.MultiPlay<TextEffectMax>(ProgressTr.transform.position, (effect) =>
+        if (TextEffectMax == null)
         {
-            effect.Init(ProgressTr);
-            TextEffectMax = effect;
+            GameRoot.Instance.EffectSystem.MultiPlay<TextEffectMax>(ProgressTr.transform.position, (effect) =>
+            {
+                effect.Init(ProgressTr);
+                TextEffectMax = effect;
 
-            ProjectUtility.SetActiveCheck(TextEffectMax.gameObject, false);
-        });
-    }
-    else
-    {
-        TextEffectMax.Init(ProgressTr);
-        ProjectUtility.SetActiveCheck(TextEffectMax.gameObject,  true);
-    }
+                ProjectUtility.SetActiveCheck(TextEffectMax.gameObject, false);
+            });
+        }
+        else
+        {
+            TextEffectMax.Init(ProgressTr);
+            ProjectUtility.SetActiveCheck(TextEffectMax.gameObject, true);
+        }
 
         if (CurUnitType == OtterType.Player)
         {
@@ -194,7 +210,13 @@ public class OtterBase : MonoBehaviour
         {
             PlayerSpeed = default_player_speed + getcalcvalue;
         }
+
+        if(SpeedUpObj != null)
+        {
+            ProjectUtility.SetActiveCheck(SpeedUpObj.gameObject , buffvalue > 0);
+        }
     }
+
 
 
     public void SetCapacity()

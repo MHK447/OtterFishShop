@@ -102,7 +102,6 @@ SpriteAtlas:
     - c779cb6420ed13340bcae7accba1ca28: 21300000
     - 096bb37440fc48840ae4fb972abc055c: 21300000
     - 34b597e41c74ba7439f42939bc220bb8: 21300000
-    - 9440f1352663fa54692880e2ee52ef98: 21300000
     - 95dd5a650d759ee4388be07e109a2d7f: 21300000
     - e38680e5a736e844682dacd56a26b6be: 21300000
     - 6dbc7206a533b8a4e997257b206543fe: 21300000
@@ -119,7 +118,6 @@ SpriteAtlas:
     - 93cb0778be5d51740ad3b5b87b84fcf6: 21300000
     - b0ac42790f4c47442ac23e20b51f3c9d: 21300000
     - 8bbf7f79aae7da24e89d90843c680b0d: 21300000
-    - de443589e8036af4ab9b242b5f8dd81a: 21300000
     - 26b007a920f845b4292440ff3939fe56: 21300000
     - e6195f6a8b325ed4ba6e12075730001c: 21300000
     - 36979c9ae251ad646a5ea034078876ed: 21300000
@@ -161,7 +159,6 @@ SpriteAtlas:
   - {fileID: 21300000, guid: c779cb6420ed13340bcae7accba1ca28, type: 3}
   - {fileID: 21300000, guid: 096bb37440fc48840ae4fb972abc055c, type: 3}
   - {fileID: 21300000, guid: 34b597e41c74ba7439f42939bc220bb8, type: 3}
-  - {fileID: 21300000, guid: 9440f1352663fa54692880e2ee52ef98, type: 3}
   - {fileID: 21300000, guid: 95dd5a650d759ee4388be07e109a2d7f, type: 3}
   - {fileID: 21300000, guid: e38680e5a736e844682dacd56a26b6be, type: 3}
   - {fileID: 21300000, guid: 6dbc7206a533b8a4e997257b206543fe, type: 3}
@@ -178,7 +175,6 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 93cb0778be5d51740ad3b5b87b84fcf6, type: 3}
   - {fileID: 21300000, guid: b0ac42790f4c47442ac23e20b51f3c9d, type: 3}
   - {fileID: 21300000, guid: 8bbf7f79aae7da24e89d90843c680b0d, type: 3}
-  - {fileID: 21300000, guid: de443589e8036af4ab9b242b5f8dd81a, type: 3}
   - {fileID: 21300000, guid: 26b007a920f845b4292440ff3939fe56, type: 3}
   - {fileID: 21300000, guid: e6195f6a8b325ed4ba6e12075730001c, type: 3}
   - {fileID: 21300000, guid: 36979c9ae251ad646a5ea034078876ed, type: 3}
@@ -219,7 +215,6 @@ SpriteAtlas:
   - Common_Icon_Upgrade_Casher_Add_02
   - Common_Icon_Upgrade_Food_Load_23
   - Icon_AdRemove
-  - Icon_Noti_Pan
   - Common_Icon_Upgrade_Food_Load_01
   - Common_Icon_Upgrade_CookTools_SpeedUp_02
   - Common_Icon_Upgrade_Casher_SpeedUp_01
@@ -236,12 +231,11 @@ SpriteAtlas:
   - Common_Icon_Upgrade_Food_Load_04
   - Common_Icon_Upgrade_CookTools_SpeedUp_01
   - Common_Icon_Upgrade_Food_Load_17
-  - Icon_Noti_Pot
   - Common_Icon_Upgrade_Food_Load_14
   - Icon_Noti_Seaweed
   - Common_Icon_Upgrade_Food_Load_11
   - Common_Icon_Upgrade_Food_Load_04 1
-  - Icon_Noti_Oven
+  - Icon_Noti_Break
   - Icon_Vehicle
   - Icon_Table
   - Icon_Repair_Gray

@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using BanpoFri;
 using TMPro;
+using System.Linq;
 
 [UIPath("UI/Popup/PopupVehicle")]
 public class PopupVehicle : UIBase
@@ -77,9 +78,9 @@ public class PopupVehicle : UIBase
             GameRoot.Instance.VehicleSystem.AdVehicleShowTime = 0;
             GameRoot.Instance.VehicleSystem.IsShowAdVehicle = false;
         }
-        
+
         GameRoot.Instance.InGameSystem.GetInGame<InGameTycoon>().curInGameStage.ActiveOffVehicle();
+        
+        GameRoot.Instance.GameNotification.RemoveNoti(NoticeComponent.NoticeType.Seaweed);
     }
-
-
 }

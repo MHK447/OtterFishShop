@@ -22,11 +22,14 @@ public class PopupConversation : UIBase
     private Animator OtterAnim;
 
 
-    public void Set(string text,  OtterType type)
+    public void Set(string text, OtterType type)
     {
-        ConversationText.text = text;   
-
-        OtterAnim.Play(type.ToString() , 0 , 0f);
+        ConversationText.text = text;
+    
+        GameRoot.Instance.WaitTimeAndCallback(0.2f, () =>
+        {
+            OtterAnim.Play(type.ToString(), 0, 0f);
+        });
     }
 
 

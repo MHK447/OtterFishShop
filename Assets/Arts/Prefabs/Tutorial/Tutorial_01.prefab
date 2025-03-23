@@ -982,7 +982,7 @@ MonoBehaviour:
   Anim: {fileID: 8006226381819153602}
   AnimKey: Happy
   context: {fileID: 3903425378593533740}
-  descKey: test
+  descKey: food_08
 --- !u!1 &5040783907403216932
 GameObject:
   m_ObjectHideFlags: 0
@@ -1347,9 +1347,9 @@ MonoBehaviour:
   - {fileID: 8636692858370972683}
   IgnoreDeactiveList: []
   Anim: {fileID: 8006226381819153602}
-  AnimKey: Happy
+  AnimKey: Idle
   context: {fileID: 3903425378593533740}
-  descKey: test
+  descKey: food_07
 --- !u!1 &7167984500436243550
 GameObject:
   m_ObjectHideFlags: 0

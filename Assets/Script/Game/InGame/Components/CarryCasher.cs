@@ -64,10 +64,16 @@ public class CarryCasher : OtterBase
                     var getcalcvalue = ProjectUtility.PercentCalc(GameRoot.Instance.InGameSystem.casher_move_speed, buffvalue);
 
                     CasherMoveSpeed = GameRoot.Instance.InGameSystem.casher_move_speed + getcalcvalue;
+
+                    if (SpeedUpObj != null)
+                    {
+                        ProjectUtility.SetActiveCheck(SpeedUpObj.gameObject, buffvalue > 0);
+                    }
                 }
             }).AddTo(disposables);
         }
     }
+
 
     public void StartWork()
     {
@@ -452,6 +458,7 @@ public class CarryCasher : OtterBase
                 ChangeState(OtterState.SleepMove);
                 SetDestination(CurStage.CarrySleepTr, () =>
                 {
+                    GameRoot.Instance.GameNotification.AddNoti(NoticeComponent.NoticeType.Nap, this.transform);
                     PlayAnimation(OtterState.Sleep, "napstart", false);
                 });
             }
@@ -606,6 +613,8 @@ public class CarryCasher : OtterBase
                 IsSleepStart = true;
 
                 skeletonAnimation.state.SetAnimation(0, "napend", false);
+
+                GameRoot.Instance.GameNotification.RemoveNoti(NoticeComponent.NoticeType.Nap, this.transform);
             }
         }
 
