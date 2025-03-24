@@ -14,6 +14,7 @@ public class HudNoticeComponents : MonoBehaviour
 
     public void Init()
     {
+        GameRoot.Instance.UserData.CurMode.NoticeCollections.Clear();
         disposables.Clear();
         GameRoot.Instance.UserData.CurMode.NoticeCollections.ObserveAdd().Subscribe(x =>
         {

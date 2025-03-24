@@ -278,6 +278,7 @@ public class NaviSystem
                     GameRoot.Instance.UISystem.OpenUI<PopupConversation>(popup => popup.Set(Tables.Instance.GetTable<Localize>().GetString("food_06"), PopupConversation.OtterType.Happy), () =>
                     {
                         GameRoot.Instance.GetJoyStick.IsLock = false;
+                        IsNaviOn = false;
                     });
                 }
                 break;
