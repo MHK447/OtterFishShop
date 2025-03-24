@@ -187,7 +187,7 @@ public class NaviSystem
 
                     if (findfacility != null)
                     {
-                        NaviUI.SetOffset(new Vector3(0, 1f, 0));
+                        NaviUI.SetOffset(new Vector3(0, 3.5f, 0));
                         NaviUI.Init(findfacility.GetContentsOpenComponentTr);
                         ProjectUtility.SetActiveCheck(NaviUI.gameObject, true);
                     }

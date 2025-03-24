@@ -44,13 +44,6 @@ public class HUDTotal : UIBase
         BoostBtn.onClick.AddListener(OnClickBoost);
         TopCurrencySync();
 
-        GameRoot.Instance.WaitTimeAndCallback(1f, () =>
-        {
-
-            if (GameRoot.Instance.UserData.CurMode.StageData.StageIdx == 1 && GameRoot.Instance.NaviSystem.IsNaviOn)
-                ProjectUtility.SetActiveCheck(UpgradeBtn.gameObject, false);
-        });
-
         GameRoot.Instance.VehicleSystem.AdVehiceTimeProperty.Subscribe(x =>
         {
             AdVehicleTimeText.text = Utility.GetTimeStringFormattingShort(x);

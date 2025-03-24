@@ -57,6 +57,8 @@ public class Joystick : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, I
         Camera.main.orthographicSize = _defaultCamera;
 
         ProjectUtility.SetActiveCheck(this.gameObject, true);
+        ProjectUtility.SetActiveCheck(_joystickBack.gameObject, false);
+
     }
 
     public void ActiveJoystice(bool active)

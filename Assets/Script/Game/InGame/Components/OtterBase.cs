@@ -44,9 +44,6 @@ public class OtterBase : MonoBehaviour
     private Transform ProgressTr;
 
     [SerializeField]
-    private Transform SpeedUpTr;
-
-    [SerializeField]
     private Transform FishTr;
 
     [SerializeField]
@@ -69,7 +66,8 @@ public class OtterBase : MonoBehaviour
     public int sortingOrderBase = 200; // 기본 정렬 순서
     public int offset = 100;
 
-    protected UI_Speed SpeedUpObj;
+    [SerializeField]
+    public GameObject SpeedUpObj;
 
     private CooltimeProgress Progress;
 
@@ -110,15 +108,8 @@ public class OtterBase : MonoBehaviour
 
     public virtual void Init()
     {
-        if (SpeedUpObj == null && SpeedUpTr != null)
-        {
-            GameRoot.Instance.UISystem.LoadFloatingUI<UI_Speed>((_speed) =>
-            {
-                SpeedUpObj = _speed;
-                ProjectUtility.SetActiveCheck(SpeedUpObj.gameObject, false);
-                SpeedUpObj.Init(SpeedUpTr);
-            });
-        }
+        if(SpeedUpObj != null)
+        ProjectUtility.SetActiveCheck(SpeedUpObj.gameObject, false);
 
 
         CasherMoveSpeed = GameRoot.Instance.InGameSystem.casher_move_speed;

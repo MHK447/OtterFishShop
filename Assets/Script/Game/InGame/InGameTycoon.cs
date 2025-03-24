@@ -58,6 +58,7 @@ public class InGameTycoon : InGameMode
 
                     if (GameRoot.Instance.UserData.CurMode.StageData.StageIdx == 1 && recordcount == 0)
                     {
+                        GameRoot.Instance.UISystem.GetUI<HUDTotal>()?.GetUpgradeBtn.gameObject.SetActive(false);
                         GameRoot.Instance.UISystem.OpenUI<PopupDragTuto>(null, () =>
                         {
                             GameRoot.Instance.NaviSystem.FirstStartNavi();

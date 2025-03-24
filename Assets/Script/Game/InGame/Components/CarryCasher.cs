@@ -46,6 +46,7 @@ public class CarryCasher : OtterBase
 
         var getcalcvalue = ProjectUtility.PercentCalc(GameRoot.Instance.InGameSystem.casher_move_speed, buffvalue);
 
+        ProjectUtility.SetActiveCheck(SpeedUpObj.gameObject, getcalcvalue > 0);
 
         CasherMoveSpeed = GameRoot.Instance.InGameSystem.casher_move_speed + getcalcvalue;
 
@@ -101,7 +102,10 @@ public class CarryCasher : OtterBase
     public bool TargetWorkFacility()
     {
         var facilitydatas = GameRoot.Instance.UserData.CurMode.StageData.StageFacilityDataList
-       .Where(x => x.IsOpen && (x.FacilityIdx > 100)).ToList();
+            .Where(x => x.IsOpen && (x.FacilityIdx > 100)).ToList();
+
+        // 가능한 작업들 리스트
+        var availableWorks = new List<System.Action>();
 
         for (int i = facilitydatas.Count - 1; i >= 0; i--)
         {
@@ -119,23 +123,40 @@ public class CarryCasher : OtterBase
 
             if (CurStage.IsWorkCasherFacilityCheck(facility.FacilityIdx)) continue;
 
-            if (HandleCookedToDisplay(facility.FacilityIdx))
+            if (HandleCookedToDisplayCheck(facility.FacilityIdx))
             {
-                CarryCasherWorkFacilityIdx = facility.FacilityIdx;
-                return true;
+                availableWorks.Add(() =>
+                {
+                    CarryCasherWorkFacilityIdx = facility.FacilityIdx;
+                    CookedToDisplayStart(facility.FacilityIdx);
+                });
             }
 
             if (HandleFishCookedDisplay(facility.FacilityIdx))
             {
-                CarryCasherWorkFacilityIdx = facility.FacilityIdx;
-                return true;
+                availableWorks.Add(() =>
+                {
+                    CarryCasherWorkFacilityIdx = facility.FacilityIdx;
+                    StartFishCookedDisplay(facility.FacilityIdx);
+                });
             }
 
             if (HandleFishDisplay(facility.FacilityIdx, mainFacility))
             {
-                CarryCasherWorkFacilityIdx = facility.FacilityIdx;
-                return true;
+                availableWorks.Add(() =>
+                {
+                    CarryCasherWorkFacilityIdx = facility.FacilityIdx;
+                    StartFishDisplay(facility.FacilityIdx, mainFacility);
+                });
             }
+
+            // 가능한 작업이 있으면 랜덤하게 하나 선택
+        }
+        if (availableWorks.Count > 0)
+        {
+            var randomIdx = UnityEngine.Random.Range(0, availableWorks.Count);
+            availableWorks[randomIdx].Invoke();
+            return true;
         }
 
         return false;
@@ -156,12 +177,28 @@ public class CarryCasher : OtterBase
             var fishRoom = mainFacility.GetComponent<FishRoomComponent>();
             if (fishRoom == null || mainFacility.GetFacilityData.CapacityCountProperty.Value <= 0) return false;
 
-            EnqueueFishDisplayActions(fishRoom, rackfacility);
-
             return true;
         }
 
         return false;
+    }
+
+    public void StartFishDisplay(int facilityidx, FacilityComponent mainFacility)
+    {
+        var facilitytd = Tables.Instance.GetTable<FacilityInfo>().GetData(facilityidx);
+
+        if (facilitytd != null)
+        {
+            var rackfacility = CurStage.FindFacility(facilitytd.rack_group);
+
+            if (rackfacility == null) return;
+
+            var fishRoom = mainFacility.GetComponent<FishRoomComponent>();
+
+            if (fishRoom == null || mainFacility.GetFacilityData.CapacityCountProperty.Value <= 0) return;
+
+            EnqueueFishDisplayActions(fishRoom, rackfacility);
+        }
     }
 
 
@@ -198,7 +235,6 @@ public class CarryCasher : OtterBase
 
                         if (fishRoom != null && fishRoom.GetBucketComponent.GetFishCount > 0 && !cookcomponent.GetTargetCookedRack.IsMaxCountCheck())
                         {
-                            EnqueueFishDisplayActions(fishRoom, cookcomponent);
                             return true;
                         }
                     }
@@ -209,9 +245,42 @@ public class CarryCasher : OtterBase
         return false;
     }
 
+    public void StartFishCookedDisplay(int facilityidx)
+    {
+        var cookedfacility = CurStage.FindFacility(facilityidx);
+        var cookcomponent = cookedfacility.GetComponent<CookedComponent>();
+
+        var facilitytd = Tables.Instance.GetTable<FacilityInfo>().GetData(facilityidx);
+        var cookedtd = Tables.Instance.GetTable<CookingInfo>().GetData((int)cookcomponent.FacilityTypeIdx);
 
 
-    private bool HandleCookedToDisplay(int facilityidx)
+        foreach (var materialidx in cookedtd.material_idxs)
+        {
+            if (!cookcomponent.IsMaterialMaxCheck(materialidx))
+            {
+                var findfacilitytd = Tables.Instance.GetTable<FishInfo>().GetData(materialidx);
+
+                if (findfacilitytd != null)
+                {
+                    var findfishroom = CurStage.FindFacility(findfacilitytd.fish_rack_idx);
+
+                    if (findfishroom != null)
+                    {
+                        var fishRoom = findfishroom.GetComponent<FishRoomComponent>();
+
+                        if (fishRoom != null && fishRoom.GetBucketComponent.GetFishCount > 0 && !cookcomponent.GetTargetCookedRack.IsMaxCountCheck())
+                        {
+                            EnqueueFishDisplayActions(fishRoom, cookcomponent);
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+
+
+    private bool HandleCookedToDisplayCheck(int facilityidx)
     {
         var cookedfacility = CurStage.FindFacility(facilityidx);
         if (cookedfacility == null) return false;
@@ -229,14 +298,26 @@ public class CarryCasher : OtterBase
 
         if (cookcomponent.GetCookTableComponent.FoodCompleteGetCount.Count > 0 && !cookcomponent.GetTargetCookedRack.IsMaxCountCheck())
         {
-            EnqueueCookDiplayActions(cookcomponent, cookcomponent.GetTargetCookedRack);
-
             return true;
         }
 
 
         return false;
     }
+
+    public void CookedToDisplayStart(int facilityidx)
+    {
+        var cookedfacility = CurStage.FindFacility(facilityidx);
+
+        var cookcomponent = cookedfacility.GetComponent<CookedComponent>();
+
+        if (cookcomponent.GetCookTableComponent.FoodCompleteGetCount.Count > 0 && !cookcomponent.GetTargetCookedRack.IsMaxCountCheck())
+        {
+            EnqueueCookDiplayActions(cookcomponent, cookcomponent.GetTargetCookedRack);
+        }
+    }
+
+
 
 
     private void EnqueueCookDiplayActions(CookedComponent cookcomponent, RackComponent rackcomponent)
