@@ -559,7 +559,7 @@ public class CarryCasher : OtterBase
             endaction?.Invoke();
         });
     }
-    private float CheckDuration = 5f;
+    private float CheckDuration = 1f;
 
     private IEnumerator CheckWaitProductMax(System.Action nextaction)
     {
@@ -583,7 +583,7 @@ public class CarryCasher : OtterBase
     private IEnumerator CheckWaitProductNone(System.Action nextaction, RackComponent rackComponent)
     {
         float elapsedTime = 0f;
-        float timeout = 5f;
+        float timeout = 1f;
 
         while (elapsedTime < timeout)
         {
@@ -629,7 +629,7 @@ public class CarryCasher : OtterBase
             yield break;
         }
 
-        float timeout = Time.time + 15f;
+        float timeout = Time.time + 3f;
 
         yield return new WaitUntil(() => FishComponentList.Count == 0 || Time.time >= timeout);
 
