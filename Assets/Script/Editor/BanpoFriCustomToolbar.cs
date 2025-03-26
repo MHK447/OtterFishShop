@@ -10,10 +10,10 @@ using UnityEditor;
 using UnityEditor.UIElements;
 using UnityEditor.SceneManagement;
 using System.Linq;
-
+using System.Collections.Generic;
 
 [InitializeOnLoad]
-public class BanpoFriCustomToolbar
+public class TreepllaCustomToolbar
 {
     [InitializeOnLoadMethod]
     private static void InitializeOnLoad() { EditorApplication.update -= OnUpdate; EditorApplication.update += OnUpdate; }
@@ -23,6 +23,7 @@ public class BanpoFriCustomToolbar
     static VisualElement playZone;
     static Slider timeSlider;
     static TextElement textSliderValue;
+    static ToolbarMenu toolbar_Lang;
 
     private static void OnUpdate()
     {
@@ -40,10 +41,16 @@ public class BanpoFriCustomToolbar
         var field = fieldInfo.GetValue(toolbar);
         var rootVisualElement = field as VisualElement;
 
+
+        if (toolbar_Lang != null)
+        {
+            toolbar_Lang.text = PlayerPrefs.GetString("UNITY_EDITOR_LANGS", "en");
+        }
+
         if (rootVisualElement != null)
         {
             if (leftZone == null) { leftZone = rootVisualElement.Q("ToolbarZoneLeftAlign"); }
-            if (rightZone == null) { rightZone = rootVisualElement.Q("ToolbarZoneRightAlign"); }
+            if (rightZone == null){ rightZone = rootVisualElement.Q("ToolbarZoneRightAlign"); }
             if (playZone == null) { playZone = rootVisualElement.Q("ToolbarZonePlayMode"); }
 
             if (timeSlider == null)
@@ -81,6 +88,49 @@ public class BanpoFriCustomToolbar
                 timeSlider.value = Time.timeScale;
 
 
+                // 언어 변경 툴바 
+                toolbar_Lang = new ToolbarMenu() { style = { width = btnInitSliderValue.style.width, marginLeft = 350 } };
+                toolbar_Lang.text = PlayerPrefs.GetString("UNITY_EDITOR_LANGS", "en");
+                toolbar_Lang.tooltip = "Change Language";
+                toolbar_Lang.style.marginLeft = 20;
+                toolbar_Lang.style.paddingLeft = 6;
+
+
+                List<string> langsList = new List<string>(Enum.GetNames(typeof(Config.Language)));
+                for (int i = 0; i < langsList.Count; i++)
+                {
+                    toolbar_Lang.menu.AppendAction(langsList[i], (drop) => {
+                        toolbar_Lang.text = drop.name;
+                        PlayerPrefs.SetString("UNITY_EDITOR_LANGS", drop.name);
+
+
+                        if (Application.isPlaying)
+                        {
+
+                            var editor_LangCode = drop.name;
+                            Config.Language curLang;
+
+                            System.Enum.TryParse<Config.Language>(editor_LangCode, out curLang);
+                            GameRoot.Instance.UserData.Language = curLang;
+
+                            foreach (var ls in LocalizeString.Localizelist)
+                            {
+                                if (ls != null) { ls.RefreshText(); }
+                            }
+
+                            var list = GameRoot.Instance.UISystem.RefreshComponentList;
+                            foreach (var ls in list) ls.RefreshText();
+                        }
+
+
+
+
+
+                    });
+                }
+
+                playZone.Add(toolbar_Lang);
+
 
                 // Left Zone
 
@@ -88,6 +138,7 @@ public class BanpoFriCustomToolbar
                 var sceneMenu = new ToolbarMenu() { style = { width = 120, marginLeft = 350 } };
                 sceneMenu.text = EditorSceneManager.GetActiveScene().name;
                 sceneMenu.tooltip = "Change Select Scene";
+                sceneMenu.style.marginLeft = 150;
 
                 // Assets/Scenes 하위에 있는 씬 검색 (GUID 반환)
                 var findScenesGUID = AssetDatabase.FindAssets("t:Scene", new string[] { "Assets/Scenes" });
@@ -97,8 +148,7 @@ public class BanpoFriCustomToolbar
                     var convertPath = AssetDatabase.GUIDToAssetPath(findScenesGUID[i]);
                     var sceneName = convertPath.Replace("Assets/Scenes/", "").Replace(".unity", "");
 
-                    sceneMenu.menu.AppendAction(sceneName, (drop) =>
-                    {
+                    sceneMenu.menu.AppendAction(sceneName, (drop) => {
                         EditorSceneManager.OpenScene(convertPath);
                         sceneMenu.text = drop.name;
                     });
@@ -108,8 +158,7 @@ public class BanpoFriCustomToolbar
 
 
                 // PlayerPrefs 삭제 버튼
-                var btnPrefabsClear = new ToolbarButton(() =>
-                {
+                var btnPrefabsClear = new ToolbarButton(() => {
                     Debug.Log("DeleteAll PlayerPrefs!");
                     PlayerPrefs.DeleteAll();
                 });
@@ -124,9 +173,10 @@ public class BanpoFriCustomToolbar
                 leftZone.Add(btnPrefabsClear);
 
 
+
+
                 // Master 파일 삭제 버튼 (스낵바용)
-                var btnMasterClear = new ToolbarButton(() =>
-                {
+                var btnMasterClear = new ToolbarButton(() => {
                     string filePath = "Assets/Master.dat";
                     if (File.Exists(filePath))
                     {
@@ -157,7 +207,6 @@ public class BanpoFriCustomToolbar
                 leftZone.Add(btnMasterClear);
 
 
-
                 // Right Zone
                 var savedataMenu = new ToolbarMenu() { style = { width = 150 } };
 
@@ -165,8 +214,7 @@ public class BanpoFriCustomToolbar
                 var btnRefreshSaveData = new ToolbarButton(() =>
                 {
                     RefreshSaveDataList(savedataMenu);
-                })
-                { style = { marginRight = 200 } };
+                }) { style = { marginRight = 200 } };
                 btnRefreshSaveData.style.marginLeft = 10;
                 btnRefreshSaveData.tooltip = "Refresh .dat List";
 
@@ -185,14 +233,8 @@ public class BanpoFriCustomToolbar
 
                 rightZone.Add(savedataMenu);
             }
-
         }
-
-
-
-
     }
-
     private static void RefreshSaveDataList(ToolbarMenu savedataMenu)
     {
         //세이브 데이터 리스트 갱신
@@ -223,12 +265,6 @@ public class BanpoFriCustomToolbar
             }
         }
     }
-
-
-
-
-
-
 }
 
 #endif

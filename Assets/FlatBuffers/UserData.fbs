@@ -13,6 +13,7 @@ table UserData {
   facilityupgradedatas:[FacilityUpgradeData];
   boosttime:int = 0; 
   tutorial:string;
+  optiondata:OptionData;
 }
 
 
@@ -42,6 +43,16 @@ table FacilityUpgradeData
 {
   level:int = 0;
   faciltiyidx:int = 0; 
+}
+
+table OptionData {
+  language:string;
+  bgm:bool = false;
+  effect:bool = false;
+  slowgraphic:bool = false;
+  vibration:bool = true;
+  subscribeorder:bool = false;
+  autofelling:bool = false;
 }
 
 

@@ -64,7 +64,14 @@ public partial class UserDataSystem
                 Tutorial.Add(split);
             }
         }
-
+        
+        Language = (Config.Language)System.Enum.Parse(typeof(Config.Language), flatBufferUserData.Optiondata.Value.Language);
+        Bgm = flatBufferUserData.Optiondata.Value.Bgm;
+        Effect = flatBufferUserData.Optiondata.Value.Effect;
+        SlowGraphic = flatBufferUserData.Optiondata.Value.Slowgraphic;
+        Vib = flatBufferUserData.Optiondata.Value.Vibration;
+        AutoFelling = flatBufferUserData.Optiondata.Value.Autofelling;
+        SubscribeOrder = flatBufferUserData.Optiondata.Value.Subscribeorder;
 
 
         if (flatBufferUserData.Stagedata != null)

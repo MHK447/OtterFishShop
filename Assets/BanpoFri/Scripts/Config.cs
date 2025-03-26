@@ -314,7 +314,6 @@ public class Config : BanpoFri.SingletonScriptableObject<Config>, BanpoFri.ILoad
         return InGameAtlas.GetSprite(key);
     }
 
-
     public Sprite GetCommonImg(string key)
     {
         return CommonAtlas.GetSprite(key);

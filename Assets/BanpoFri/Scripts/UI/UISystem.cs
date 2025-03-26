@@ -5,6 +5,11 @@ using UnityEngine;
 using UnityEngine.AddressableAssets;
 namespace BanpoFri
 {
+    public interface ILocalizeRefresh
+    {
+        void RefreshText();
+    }
+    
     [Serializable]
     public class UISystem
     {
@@ -15,35 +20,36 @@ namespace BanpoFri
         public const int START_PAGE_SORTING_NUMBER = 100;
         public const int START_POPUP_SORTING_NUMBER = 10000;
         public const int START_TOP_SORTING_NUMBER = 20000;
-        
 
-		public bool CheatHide = false;
-        public Transform UIRootT {get; private set;}
-        public Transform HUDUIRootT {get; private set;}
-        public Canvas WorldCanvas {get; private set;}
-		public GameObject LockScreen;
+
+        public bool CheatHide = false;
+        public Transform UIRootT { get; private set; }
+        public Transform HUDUIRootT { get; private set; }
+        public Canvas WorldCanvas { get; private set; }
+        public GameObject LockScreen;
         private Dictionary<Type, UIBase> cachedUIs = new Dictionary<Type, UIBase>();
         private Dictionary<Type, GameObject> cachedIngameUITrans = new Dictionary<Type, GameObject>();
         private List<UIBase> openPopupList = new List<UIBase>();
         private List<IScreenAction> screenActionList = new List<IScreenAction>();
         private bool cacheMode = true;
-		private Type LoadWaitUI = null;
-		private Action<UIBase> OnLoadWait = null;
+        private Type LoadWaitUI = null;
+        private Action<UIBase> OnLoadWait = null;
         private bool backButtonEnable = true;
 
         public Action ImmediatePackageAction = null;
         public Action EndEventRewardAction = null;
 
+        public List<ILocalizeRefresh> RefreshComponentList { get; private set; } = new List<ILocalizeRefresh>();
 
 
 
 
         public void OpenUI<T>(Action<T> OnLoad = null, Action OnClose = null, bool caching = true, int targetEventStage = -1) where T : UIBase
         {
-            Action LoadComplete = () => 
+            Action LoadComplete = () =>
             {
                 var targetUI = cachedUIs[typeof(T)] as T;
-                if(targetUI)
+                if (targetUI)
                 {
                     var baseCanvas = targetUI.GetComponent<Canvas>();
                     //if (!targetUI.gameObject.activeSelf)
@@ -53,20 +59,20 @@ namespace BanpoFri
                     //    LockScreen.SetActive(false);
                     //};
                     targetUI.Show();
-					targetUI.gameObject.SetActive(true);
-                    switch(targetUI.UIType)
+                    targetUI.gameObject.SetActive(true);
+                    switch (targetUI.UIType)
                     {
-                        case UIBaseType.Popup:                            
+                        case UIBaseType.Popup:
                             {
                                 baseCanvas.overrideSorting = true;
                                 baseCanvas.sortingLayerName = STR_SORTINGLAYER_POPUP;
-                                if(!openPopupList.Contains(targetUI))
+                                if (!openPopupList.Contains(targetUI))
                                     openPopupList.Add(targetUI);
 
-                                calculatePopupSortingOrder();   
+                                calculatePopupSortingOrder();
                                 var uiBase = targetUI.GetComponent<UIBase>();
                                 uiBase.ReOderParticleInUIBase();
-                                if((!cacheMode) || caching == false)
+                                if ((!cacheMode) || caching == false)
                                 {
                                     targetUI.OnUIHideAfter += () =>
                                     {
@@ -76,12 +82,14 @@ namespace BanpoFri
                                     };
                                 }
                                 backButtonEnable = false;
-                                targetUI.OnUIShowAfter = () => { 
+                                targetUI.OnUIShowAfter = () =>
+                                {
                                     backButtonEnable = true;
                                 };
 
-                                targetUI.OnUIHide = () => {
-                                    if((!cacheMode)||caching == false) cachedUIs.Remove(typeof(T));
+                                targetUI.OnUIHide = () =>
+                                {
+                                    if ((!cacheMode) || caching == false) cachedUIs.Remove(typeof(T));
                                     //baseCanvas.sortingOrder = 0;
                                     openPopupList.Remove(targetUI);
                                     calculatePopupSortingOrder();
@@ -91,45 +99,46 @@ namespace BanpoFri
                                     OnClose?.Invoke();
                                 };
                             }
-                        break;
+                            break;
                         case UIBaseType.Page:
                             {
                                 var uiBase = targetUI.GetComponent<UIBase>();
-                                if(uiBase is IScreenAction)
+                                if (uiBase is IScreenAction)
                                 {
                                     screenActionList.Add(uiBase as IScreenAction);
                                 }
-                                
+
                                 baseCanvas.sortingLayerName = STR_SORTINGLAYER_PAGE;
                                 baseCanvas.sortingOrder = START_PAGE_SORTING_NUMBER;
-                                targetUI.OnUIHide = () => {
+                                targetUI.OnUIHide = () =>
+                                {
                                     OnClose?.Invoke();
                                     screenActionList.Remove(uiBase as IScreenAction);
                                 };
                             }
-                        break;
+                            break;
                         case UIBaseType.Top:
                             baseCanvas.sortingLayerName = STR_SORTINGLAYER_TOP;
                             baseCanvas.sortingOrder = START_TOP_SORTING_NUMBER;
                             targetUI.OnUIHide = OnClose;
-                        break;
+                            break;
                         default:
                             targetUI.OnUIHide = OnClose;
-                        break;
+                            break;
                     }
                     targetUI.CustomSortingOrder();
-					if(LoadWaitUI != null && LoadWaitUI.Equals(targetUI.GetType()))
-					{
-						OnLoadWait?.Invoke(targetUI);
-						OnLoadWait = null;
-					}
+                    if (LoadWaitUI != null && LoadWaitUI.Equals(targetUI.GetType()))
+                    {
+                        OnLoadWait?.Invoke(targetUI);
+                        OnLoadWait = null;
+                    }
                     OnLoad?.Invoke(targetUI);
                 }
                 else
                     Debug.LogError($"UIBase::OpenUI don't load uiBase type: {typeof(T).Name}");
             };
 
-            if(!cachedUIs.ContainsKey(typeof(T)))
+            if (!cachedUIs.ContainsKey(typeof(T)))
             {
                 bool findAtt = false;
                 var attrs = Attribute.GetCustomAttributes(typeof(T));
@@ -140,17 +149,18 @@ namespace BanpoFri
                 if (isExistEvent && targetEventStage > 10000) useEventPopup = true;
 
                 System.Action<string> createUI = (string path) => { };
-                foreach ( var attr in attrs)
+                foreach (var attr in attrs)
                 {
-                    if(useEventPopup && attr is UIEventPathAttribute)
+                    if (useEventPopup && attr is UIEventPathAttribute)
                     {
-                        var uiPath = (UIEventPathAttribute) attr;
+                        var uiPath = (UIEventPathAttribute)attr;
 
                         var addrPath = string.Format(uiPath.Path, targetEventStage);
 
                         cachedUIs.Add(typeof(T), null);
 
-                        Addressables.InstantiateAsync(addrPath).Completed += (obj) => {
+                        Addressables.InstantiateAsync(addrPath).Completed += (obj) =>
+                        {
                             //var inst = GameObject.Instantiate( obj.Result );
                             var inst = obj.Result;
 
@@ -164,22 +174,23 @@ namespace BanpoFri
                         findAtt = true;
                         break;
                     }
-                    else if(attr is UIPathAttribute)
+                    else if (attr is UIPathAttribute)
                     {
-                        var uiPath = (UIPathAttribute) attr;
+                        var uiPath = (UIPathAttribute)attr;
 
                         cachedUIs.Add(typeof(T), null);
-						//Addressables.LoadAssetAsync<GameObject>(uiPath.Path).Completed += (obj) => {
-						Addressables.InstantiateAsync(uiPath.Path).Completed += (obj) => {
-							//var inst = GameObject.Instantiate( obj.Result );
-							var inst = obj.Result;
+                        //Addressables.LoadAssetAsync<GameObject>(uiPath.Path).Completed += (obj) => {
+                        Addressables.InstantiateAsync(uiPath.Path).Completed += (obj) =>
+                        {
+                            //var inst = GameObject.Instantiate( obj.Result );
+                            var inst = obj.Result;
                             if (uiPath.Hud)
                                 inst.transform.SetParent(HUDUIRootT, false);
                             else if (uiPath.World)
                                 inst.transform.SetParent(WorldCanvas.transform, false);
                             else
                                 inst.transform.SetParent(UIRootT, false);
-                            
+
                             var uiBase = inst.GetComponent<T>();
                             cachedUIs[typeof(T)] = uiBase;
                             inst.gameObject.SetActive(false);
@@ -190,14 +201,15 @@ namespace BanpoFri
                     }
                 }
 
-                if(!findAtt){
+                if (!findAtt)
+                {
                     Debug.LogError("UIBase::OpenUI don't find UIPathAttribute. plz attach them");
                     return;
                 }
             }
             else
             {
-                if(cachedUIs[typeof(T)] != null)
+                if (cachedUIs[typeof(T)] != null)
                 {
                     LoadComplete.Invoke();
                     //var targetUI = cachedUIs[typeof(T)];
@@ -207,16 +219,30 @@ namespace BanpoFri
             }
         }
 
+
+        public void AddLocalizeRefresh(ILocalizeRefresh refresher)
+        {
+            if (!RefreshComponentList.Contains(refresher))
+                RefreshComponentList.Add(refresher);
+        }
+
+        public void RemoveLocalizeRefresh(ILocalizeRefresh refresher)
+        {
+            if (RefreshComponentList.Contains(refresher))
+                RefreshComponentList.Remove(refresher);
+        }
+
         public void PreLoadUI(Type type)
         {
             var attrs = Attribute.GetCustomAttributes(type);
-            foreach( var attr in attrs)
+            foreach (var attr in attrs)
             {
-                if(attr is UIPathAttribute)
+                if (attr is UIPathAttribute)
                 {
-                    var uiPath = (UIPathAttribute) attr;
+                    var uiPath = (UIPathAttribute)attr;
                     cachedUIs.Add(type, null);
-                    Addressables.InstantiateAsync(uiPath.Path).Completed += (obj) => {
+                    Addressables.InstantiateAsync(uiPath.Path).Completed += (obj) =>
+                    {
                         var inst = obj.Result;
                         if (uiPath.Hud)
                             inst.transform.SetParent(HUDUIRootT, false);
@@ -224,7 +250,7 @@ namespace BanpoFri
                             inst.transform.SetParent(WorldCanvas.transform, false);
                         else
                             inst.transform.SetParent(UIRootT, false);
-                        
+
                         var uiBase = inst.GetComponent(type) as UIBase;
                         cachedUIs[type] = uiBase;
                         inst.SetActive(false);
@@ -236,14 +262,14 @@ namespace BanpoFri
 
         public void SetFloatingUIActiveAll(bool value)
         {
-            foreach(var uiTrans in cachedIngameUITrans)
+            foreach (var uiTrans in cachedIngameUITrans)
                 Utility.SetActiveCheck(uiTrans.Value, value);
         }
 
         public void SetFloatingUIActive<T>(bool value) where T : IFloatingUI
         {
             var TType = typeof(T);
-            if(cachedIngameUITrans.ContainsKey(TType))
+            if (cachedIngameUITrans.ContainsKey(TType))
             {
                 Utility.SetActiveCheck(cachedIngameUITrans[TType], value);
             }
@@ -252,9 +278,9 @@ namespace BanpoFri
         public GameObject GetFloatingUI<T>() where T : IFloatingUI
         {
             var TType = typeof(T);
-            if(cachedIngameUITrans.ContainsKey(TType))
+            if (cachedIngameUITrans.ContainsKey(TType))
             {
-                if(cachedIngameUITrans[TType].transform.childCount > 0)
+                if (cachedIngameUITrans[TType].transform.childCount > 0)
                     return cachedIngameUITrans[TType].transform.GetChild(0).gameObject;
             }
 
@@ -264,11 +290,11 @@ namespace BanpoFri
         public void LoadFloatingUI<T>(Action<T> onSuccess, bool caching = false) where T : IFloatingUI
         {
             var TType = typeof(T);
-            if(caching)
+            if (caching)
             {
-                if(cachedIngameUITrans.ContainsKey(TType))
+                if (cachedIngameUITrans.ContainsKey(TType))
                 {
-                    if(cachedIngameUITrans[TType].transform.childCount > 0)
+                    if (cachedIngameUITrans[TType].transform.childCount > 0)
                     {
                         cachedIngameUITrans[TType].transform.SetAsLastSibling();
                         onSuccess?.Invoke(cachedIngameUITrans[TType].transform.GetChild(0).GetComponent<T>());
@@ -283,10 +309,11 @@ namespace BanpoFri
                 {
                     var uiPath = (UIPathAttribute)attr;
                     var handle = Addressables.InstantiateAsync(uiPath.Path);
-                    handle.Completed += (obj) => {
+                    handle.Completed += (obj) =>
+                    {
                         var inst = obj.Result;
                         GameObject parent;
-                        if(cachedIngameUITrans.ContainsKey(TType))
+                        if (cachedIngameUITrans.ContainsKey(TType))
                             parent = cachedIngameUITrans[TType];
                         else
                         {
@@ -307,7 +334,7 @@ namespace BanpoFri
         public void FloatingUIFirstDepth<T>() where T : IFloatingUI
         {
             var TType = typeof(T);
-            if(cachedIngameUITrans.ContainsKey(TType))
+            if (cachedIngameUITrans.ContainsKey(TType))
             {
                 cachedIngameUITrans[TType].transform.SetAsFirstSibling();
             }
@@ -316,21 +343,21 @@ namespace BanpoFri
         public void CloseUI<T>() where T : UIBase
         {
             var target = GetUI<T>();
-            if(target)
+            if (target)
                 target.Hide();
         }
 
         public void ClosePopupAll()
-        { 
+        {
             var closeList = new List<UIBase>();
-            foreach( var uibase in openPopupList)
+            foreach (var uibase in openPopupList)
             {
-                if(uibase && !uibase.DontCloseInteraction)
+                if (uibase && !uibase.DontCloseInteraction)
                 {
                     closeList.Add(uibase);
-                }    
+                }
             }
-            foreach( var uibase in closeList)
+            foreach (var uibase in closeList)
             {
                 openPopupList.Remove(uibase);
                 uibase.Hide();
@@ -339,16 +366,16 @@ namespace BanpoFri
 
         public void ClosePopupBackBtn()
         {
-            if(!backButtonEnable)
+            if (!backButtonEnable)
                 return;
-                
-            if(openPopupList.Count < 1)
+
+            if (openPopupList.Count < 1)
                 return;
-            
+
             var ui = openPopupList.LastOrDefault();
-            if(ui != null)
+            if (ui != null)
             {
-                if(!ui.DontCloseInteraction)
+                if (!ui.DontCloseInteraction)
                     ui.Hide();
             }
         }
@@ -372,7 +399,7 @@ namespace BanpoFri
 
         public UIBase GetOpenPopupLastUI()
         {
-            if(openPopupList.Count < 1)
+            if (openPopupList.Count < 1)
                 return null;
 
             return openPopupList.LastOrDefault();
@@ -385,34 +412,34 @@ namespace BanpoFri
 
         public T GetUI<T>(Action<UIBase> onLoadWait = null) where T : UIBase
         {
-            if(cachedUIs.ContainsKey(typeof(T)))
-			{
-				var returnValue = cachedUIs[typeof(T)] as T;
-				if (onLoadWait != null && returnValue == null)
-				{
-					LoadWaitUI = typeof(T);
-					OnLoadWait = onLoadWait;
-				}
-				return returnValue;
-			}                
+            if (cachedUIs.ContainsKey(typeof(T)))
+            {
+                var returnValue = cachedUIs[typeof(T)] as T;
+                if (onLoadWait != null && returnValue == null)
+                {
+                    LoadWaitUI = typeof(T);
+                    OnLoadWait = onLoadWait;
+                }
+                return returnValue;
+            }
             else
-			{
-				if (onLoadWait != null)
-				{
-					LoadWaitUI = typeof(T);
-					OnLoadWait = onLoadWait;
-				}
-				return null;
-			}
-				
-		}
+            {
+                if (onLoadWait != null)
+                {
+                    LoadWaitUI = typeof(T);
+                    OnLoadWait = onLoadWait;
+                }
+                return null;
+            }
 
-        public void FrontUIbyUI<T,U>() where T : UIBase where U : UIBase
+        }
+
+        public void FrontUIbyUI<T, U>() where T : UIBase where U : UIBase
         {
             var frontUI = GetUI<T>();
             var backUI = GetUI<U>();
 
-            if(frontUI == null || backUI == null)
+            if (frontUI == null || backUI == null)
                 return;
 
             frontUI.SaveOringSortingData();
@@ -424,38 +451,38 @@ namespace BanpoFri
         public void RecoveryUIOrder<T>() where T : UIBase
         {
             var target = GetUI<T>();
-            if(target != null)
+            if (target != null)
             {
                 target.RecoverySortingData();
             }
         }
 
-		public void AllUIHide()
-		{
-			CheatHide = true;
-			foreach (var ui in cachedUIs)
-				ui.Value.gameObject.SetActive(false);
-		}
-		public void AllUIShow()
-		{
-			CheatHide = false;
-			foreach (var ui in cachedUIs)
-			{
-				if (ui.Value.UIType == UIBaseType.Ingame || ui.Value.UIType == UIBaseType.Page)
-				{
-					if(!ui.Value.name.Contains("Loading"))
-						ui.Value.gameObject.SetActive(true);
-				}
-			}
-		}
+        public void AllUIHide()
+        {
+            CheatHide = true;
+            foreach (var ui in cachedUIs)
+                ui.Value.gameObject.SetActive(false);
+        }
+        public void AllUIShow()
+        {
+            CheatHide = false;
+            foreach (var ui in cachedUIs)
+            {
+                if (ui.Value.UIType == UIBaseType.Ingame || ui.Value.UIType == UIBaseType.Page)
+                {
+                    if (!ui.Value.name.Contains("Loading"))
+                        ui.Value.gameObject.SetActive(true);
+                }
+            }
+        }
 
         private void calculatePopupSortingOrder()
         {
             var idx = START_POPUP_SORTING_NUMBER;
-            foreach(var uibase in openPopupList)
+            foreach (var uibase in openPopupList)
             {
-                 var baseCanvas = uibase.GetComponent<Canvas>();
-                if(baseCanvas != null)
+                var baseCanvas = uibase.GetComponent<Canvas>();
+                if (baseCanvas != null)
                 {
                     baseCanvas.sortingOrder = idx;
                 }
@@ -465,7 +492,7 @@ namespace BanpoFri
 
         private void calculateHUDAction()
         {
-            if(openPopupList.Count < 1)
+            if (openPopupList.Count < 1)
             {
                 ScreenAction(true, UIBase.HUDType.All);
                 ScreenTopOn(false, UIBase.HUDType.All);
@@ -474,16 +501,16 @@ namespace BanpoFri
 
         public void UnLoadUIAll()
         {
-            foreach(var ui in cachedUIs)
+            foreach (var ui in cachedUIs)
             {
                 if (ui.Value != null)
                     Addressables.ReleaseInstance(ui.Value.gameObject);
-                    //GameObject.Destroy(ui.Value.gameObject);
+                //GameObject.Destroy(ui.Value.gameObject);
             }
             cachedUIs.Clear();
-            foreach(var trans in cachedIngameUITrans)
+            foreach (var trans in cachedIngameUITrans)
             {
-                foreach(Transform child in trans.Value.transform)
+                foreach (Transform child in trans.Value.transform)
                 {
                     Addressables.ReleaseInstance(child.gameObject);
                 }
@@ -497,9 +524,9 @@ namespace BanpoFri
         public List<GameObject> GetOpendedUI()
         {
             List<GameObject> result = new List<GameObject>();
-            foreach(var ui in cachedUIs)
+            foreach (var ui in cachedUIs)
             {
-                if(ui.Value.gameObject.activeSelf)
+                if (ui.Value.gameObject.activeSelf)
                 {
                     result.Add(ui.Value.gameObject);
                 }
@@ -507,18 +534,18 @@ namespace BanpoFri
 
             return result;
         }
-        
+
         public void ScreenAction(bool value, UIBase.HUDType type)
         {
-            foreach(var ui in screenActionList)
+            foreach (var ui in screenActionList)
             {
-                if(ui.HudType.Contains(type))
+                if (ui.HudType.Contains(type))
                     ui.ScreenAction(value);
             }
         }
 
         public bool IsScreenAction(UIBase.HUDType type)
-		{
+        {
             foreach (var ui in screenActionList)
             {
                 if (ui.HudType.Contains(type))
@@ -530,15 +557,15 @@ namespace BanpoFri
 
         public void ScreenTopOn(bool value, UIBase.HUDType type)
         {
-            foreach(var ui in screenActionList)
+            foreach (var ui in screenActionList)
             {
-                if(ui.HudType.Contains(type))
+                if (ui.HudType.Contains(type))
                     ui.ScreenTopOn(value);
             }
         }
 
         public bool IsScreenTopOn(UIBase.HUDType type)
-		{
+        {
             foreach (var ui in screenActionList)
             {
                 if (ui.HudType.Contains(type))
@@ -561,5 +588,5 @@ namespace BanpoFri
         {
             WorldCanvas = _canvas;
         }
-    }    
+    }
 }

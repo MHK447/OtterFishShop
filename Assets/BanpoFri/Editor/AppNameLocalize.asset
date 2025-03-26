@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 912a891cef2e54effa8e405a97152f58, type: 3}
   m_Name: AppNameLocalize
   m_EditorClassIdentifier: 
-  en: Idle Heroes Tycoon
-  ko: "\uC6A9\uBCD1 \uC81C\uC791\uC18C"
-  ja: "\u30D2\u30FC\u30ED\u30FC\u88FD\u4F5C\u6240"
-  de: Idle Heroes Tycoon
-  es: Idle Heroes Tycoon
-  fr: Idle Heroes Tycoon
-  zhHans: Idle Heroes Tycoon
-  zhHant: Idle Heroes Tycoon
+  en: OttersFishShop
+  ko: OttersFishShop
+  ja: OttersFishShop
+  de: OttersFishShop
+  es: OttersFishShop
+  fr: OttersFishShop
+  zhHans: OttersFishShop
+  zhHant: OttersFishShop

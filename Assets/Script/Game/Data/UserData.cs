@@ -15,12 +15,15 @@ public partial class UserDataSystem
 	private float saveWaitStandardTime = 0.3f;
 	private float deltaTime = 0f;
 	private bool saving = false;
+    public bool Vib = true;
+    public bool SubscribeOrder { get; set; } = true;
+    public bool AutoFelling { get; set; } = false;
 
 	public void Update()
 	{
-		if(saving)
+		if (saving)
 		{
-			if(deltaTime > saveWaitStandardTime)
+			if (deltaTime > saveWaitStandardTime)
 			{
 				saving = false;
 				SaveFile();
@@ -28,9 +31,9 @@ public partial class UserDataSystem
 			}
 			deltaTime += Time.deltaTime;
 		}
-		
+
 	}
-	
+
 	public string GetSaveFilePath()
 	{
 		if (Application.platform == RuntimePlatform.Android || Application.platform == RuntimePlatform.IPhonePlayer)
@@ -53,33 +56,33 @@ public partial class UserDataSystem
 
 
 	public void Load()
-    {
-			
+	{
+
 
 		var filePath = GetBackUpSaveFilePath();
 
-			if (File.Exists(filePath))
-			{
-				mainData = new UserDataMain();
-				eventData = new UserDataEvent();
-				CurMode = mainData;
-				var data = File.ReadAllBytes(filePath);
-				ByteBuffer bb = new ByteBuffer(data);
-				flatBufferUserData = BanpoFri.Data.UserData.GetRootAsUserData(bb);
-				ConnectReadOnlyDatas();
-				File.Delete(filePath);
-				return;
-			}
-        
+		if (File.Exists(filePath))
+		{
+			mainData = new UserDataMain();
+			eventData = new UserDataEvent();
+			CurMode = mainData;
+			var data = File.ReadAllBytes(filePath);
+			ByteBuffer bb = new ByteBuffer(data);
+			flatBufferUserData = BanpoFri.Data.UserData.GetRootAsUserData(bb);
+			ConnectReadOnlyDatas();
+			File.Delete(filePath);
+			return;
+		}
 
 
 
 
 
 
-	     filePath = GetSaveFilePath();
-		
-		if(File.Exists(filePath))
+
+		filePath = GetSaveFilePath();
+
+		if (File.Exists(filePath))
 		{
 			var data = File.ReadAllBytes(filePath);
 			ByteBuffer bb = new ByteBuffer(data);
@@ -90,7 +93,7 @@ public partial class UserDataSystem
 		{
 			ChangeDataMode(DataState.Main);
 		}
-    }
+	}
 
 	public void Save(bool Immediately = false)
 	{
@@ -106,7 +109,7 @@ public partial class UserDataSystem
 		}
 
 		saving = true;
-		deltaTime = 0f;		
+		deltaTime = 0f;
 	}
 
 	private void SaveFile()
@@ -115,8 +118,10 @@ public partial class UserDataSystem
 		var builder = new FlatBufferBuilder(1);
 		int dataIdx = 0;
 		var money = builder.CreateString(mainData.Money.Value.ToString());
-        var tutorial = builder.CreateString(string.Join(";", Tutorial));
+		var tutorial = builder.CreateString(string.Join(";", Tutorial));
 
+
+		var option = BanpoFri.Data.OptionData.CreateOptionData(builder, builder.CreateString(Language.ToString()), Bgm, Effect, SlowGraphic, Vib, SubscribeOrder, AutoFelling);
 
 		Offset<BanpoFri.Data.RecordCount>[] recordCount = null;
 		if (RecordCount.Count > 0)
@@ -131,9 +136,9 @@ public partial class UserDataSystem
 		VectorOffset recordCountVec = default(VectorOffset);
 		if (recordCount != null)
 			recordCountVec = BanpoFri.Data.UserData.CreateRecordcountVector(builder, recordCount);
-		
 
-		
+
+
 
 		//facilitydata
 		Offset<BanpoFri.Data.facilityidata>[] facilitydatas = null;
@@ -146,14 +151,14 @@ public partial class UserDataSystem
 		{
 			var facilitymoney = builder.CreateString(facility.MoneyCount.ToString());
 
-			facilitydatas[dataIdx++] = BanpoFri.Data.facilityidata.Createfacilityidata(builder, facility.FacilityIdx, facilitymoney, facility.IsOpen , facility.CapacityCountProperty.Value);
+			facilitydatas[dataIdx++] = BanpoFri.Data.facilityidata.Createfacilityidata(builder, facility.FacilityIdx, facilitymoney, facility.IsOpen, facility.CapacityCountProperty.Value);
 		}
 
 		var facilitydatavec = BanpoFri.Data.StageData.CreateFacilitydatasVector(builder, facilitydatas);
 
 		var stagedata = BanpoFri.Data.StageData.CreateStageData(builder,
-			mainData.StageData.NextFacilityOpenOrderProperty.Value ,mainData.StageData.StageIdx
-			,facilitydatavec);
+			mainData.StageData.NextFacilityOpenOrderProperty.Value, mainData.StageData.StageIdx
+			, facilitydatavec);
 
 
 		//facilyupgrade
@@ -164,11 +169,11 @@ public partial class UserDataSystem
 
 		dataIdx = 0;
 
-		foreach(var upgrade in mainData.FishUpgradeDatas)
-        {
+		foreach (var upgrade in mainData.FishUpgradeDatas)
+		{
 			facilyupgradedatas[dataIdx++] = BanpoFri.Data.FacilityUpgradeData.
-			CreateFacilityUpgradeData(builder, upgrade.Level , upgrade.FishIdx);
-        }
+			CreateFacilityUpgradeData(builder, upgrade.Level, upgrade.FishIdx);
+		}
 
 		var faciltyupgradedata = BanpoFri.Data.UserData.CreateFacilityupgradedatasVector(builder, facilyupgradedatas);
 
@@ -180,10 +185,10 @@ public partial class UserDataSystem
 
 		dataIdx = 0;
 
-		foreach(var upgrade in mainData.UpgradeGroupData.StageUpgradeCollectionList)
-        {
+		foreach (var upgrade in mainData.UpgradeGroupData.StageUpgradeCollectionList)
+		{
 			upgradedatas[dataIdx++] = BanpoFri.Data.UpgradeData.CreateUpgradeData(builder, upgrade.UpgradeIdx, upgrade.UpgradeType, upgrade.StageIdx, upgrade.IsBuyCheckProperty.Value);
-        }
+		}
 
 		var upgradedata = BanpoFri.Data.UserData.CreateUpgradedatasVector(builder, upgradedatas);
 
@@ -197,9 +202,10 @@ public partial class UserDataSystem
 		BanpoFri.Data.UserData.AddCash(builder, Cash.Value);
 		BanpoFri.Data.UserData.AddUpgradedatas(builder, upgradedata);
 		BanpoFri.Data.UserData.AddRecordcount(builder, recordCountVec);
-		BanpoFri.Data.UserData.AddBoosttime(builder , mainData.BoostTime.Value);
-		BanpoFri.Data.UserData.AddFacilityupgradedatas(builder , faciltyupgradedata);
-        BanpoFri.Data.UserData.AddTutorial(builder, tutorial);
+		BanpoFri.Data.UserData.AddBoosttime(builder, mainData.BoostTime.Value);
+		BanpoFri.Data.UserData.AddFacilityupgradedatas(builder, faciltyupgradedata);
+		BanpoFri.Data.UserData.AddTutorial(builder, tutorial);
+		BanpoFri.Data.UserData.AddOptiondata(builder , option);
 
 		//end 
 		var orc = BanpoFri.Data.UserData.EndUserData(builder);

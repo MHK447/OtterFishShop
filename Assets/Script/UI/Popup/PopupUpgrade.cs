@@ -290,7 +290,8 @@ public class PopupUpgrade : UIBase
 
         StartCoroutine(OnShowWaitOneFrame());
 
-        GameRoot.Instance.NaviSystem.NextNavi(NaviSystem.NaviType.UpgradeBtn);
+        if (GameRoot.Instance.NaviSystem.IsNaviOn)
+            GameRoot.Instance.NaviSystem.NextNavi(NaviSystem.NaviType.UpgradeBtn);
     }
 
 
@@ -310,8 +311,11 @@ public class PopupUpgrade : UIBase
         }
 
 
-        if (GameRoot.Instance.NaviSystem.CurNaviOnType == NaviSystem.NaviType.CloseUpgradeBtn)
-            GameRoot.Instance.NaviSystem.NextNavi(NaviSystem.NaviType.CloseUpgradeBtn);
+        if (GameRoot.Instance.NaviSystem.IsNaviOn)
+        {
+            if (GameRoot.Instance.NaviSystem.CurNaviOnType == NaviSystem.NaviType.CloseUpgradeBtn)
+                GameRoot.Instance.NaviSystem.NextNavi(NaviSystem.NaviType.CloseUpgradeBtn);
+        }
     }
 
 
