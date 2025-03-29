@@ -19,6 +19,7 @@ public class OtterBase : MonoBehaviour
         Sleep,
         Work,
         SleepMove,
+        Counter,
     }
 
     public enum OtterType
@@ -184,6 +185,7 @@ public class OtterBase : MonoBehaviour
 
     public virtual void SetPlayerSpeed()
     {
+        if(CurUnitType != OtterType.Player) return;
 
         var vehicleidx = GameRoot.Instance.UserData.CurMode.PlayerData.VehiclePropertyIdx.Value;
 
@@ -690,6 +692,8 @@ public class OtterBase : MonoBehaviour
                     return "napstart";
                 case OtterState.Carry:
                     return IsCarry ? "carryidle" : "idle";
+                case OtterState.Counter:
+                    return "counter";
 
             }
         }

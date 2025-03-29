@@ -20,12 +20,18 @@ public class TrashCanComponent : MonoBehaviour
     [SerializeField]
     private Transform ConsumerTr;
 
-    public Transform GetConsumerTr {  get { return ConsumerTr; } }
+    public Transform GetConsumerTr { get { return ConsumerTr; } }
 
 
     public void Init()
     {
         TrashCanTime = 0.2f;
+
+
+        GameRoot.Instance.UISystem.LoadFloatingUI<UI_TrashCanBubble>((_progress) =>
+        {
+            _progress.Init(this.transform);
+        });
     }
 
 
@@ -54,7 +60,7 @@ public class TrashCanComponent : MonoBehaviour
 
             if (getvalue != null)
             {
-                if(OtterList.Contains(getvalue))
+                if (OtterList.Contains(getvalue))
                 {
                     OtterList.Remove(getvalue);
                 }
@@ -72,22 +78,23 @@ public class TrashCanComponent : MonoBehaviour
         {
             TrashTime += Time.deltaTime;
 
-            if(TrashCanTime <= TrashTime)
+            if (TrashCanTime <= TrashTime)
             {
                 TrashTime = 0f;
 
-                if(OtterList[i].GetFishComponentList.Count > 0)
+                if (OtterList[i].GetFishComponentList.Count > 0)
                 {
                     var findfish = OtterList[i].GetFishComponentList.Last();
 
-                    findfish.FishInBucketAction(FishTr, (fish) => {
+                    findfish.FishInBucketAction(FishTr, (fish) =>
+                    {
                         fish.transform.SetParent(this.transform);
                         Destroy(fish.gameObject);
                     }, 0.2f);
 
                     OtterList[i].RemoveFish(findfish);
 
-                    if(OtterList[i].GetFishComponentList.Count == 0)
+                    if (OtterList[i].GetFishComponentList.Count == 0)
                     {
                         OtterList[i].CarryEnd();
                     }

@@ -319,7 +319,6 @@ public class CarryCasher : OtterBase
 
 
 
-
     private void EnqueueCookDiplayActions(CookedComponent cookcomponent, RackComponent rackcomponent)
     {
         System.Action moveToCooked = () =>

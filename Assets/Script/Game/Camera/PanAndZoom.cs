@@ -58,7 +58,7 @@ public class PanAndZoom : MonoBehaviour
 
 
     [HideInInspector]
-    public float maxZoomOutSize = 25f;
+    public float maxZoomOutSize = 14.5f;
     public event Action<float, float> onPinch;
 
     bool follow = false;
@@ -337,7 +337,7 @@ public class PanAndZoom : MonoBehaviour
             {
                 var currentPinchPosition = worldCenter;
 
-                var size = Mathf.Max(5f, zoomSize);
+                var size = Mathf.Max(9f, zoomSize);
 
                 if (size < maxZoomOutSize)
                 {

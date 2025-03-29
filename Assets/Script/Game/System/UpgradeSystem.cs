@@ -107,7 +107,7 @@ public class UpgradeSystem
 
                         if (findcarrycasher != null)
                         {
-                            findcarrycasher.transform.position = ProjectUtility.GetRandomPositionAroundTarget(ingamestage.GetPlayer.transform.position, 10f);
+                            findcarrycasher.transform.position = ingamestage.GetPlayer.transform.position;
                             ProjectUtility.SetActiveCheck(findcarrycasher.gameObject, true);
                             findcarrycasher.Init();
                         }
@@ -157,7 +157,7 @@ public class UpgradeSystem
 
                             if(td != null)
                             {
-                                finddata.transform.position = ProjectUtility.GetRandomPositionAroundTarget(ingamestage.GetPlayer.transform.position, 10f);
+                                finddata.transform.position = ingamestage.GetPlayer.transform.position;
                                 ProjectUtility.SetActiveCheck(finddata.gameObject, true);
                                 fishingdata.Init();
                                 fishingdata.Set(td.value2);
@@ -182,7 +182,7 @@ public class UpgradeSystem
 
                         if (td != null)
                         {
-                            finddata.transform.position = ProjectUtility.GetRandomPositionAroundTarget(ingamestage.GetPlayer.transform.position, 10f);
+                            finddata.transform.position = ingamestage.GetPlayer.transform.position;
                             ProjectUtility.SetActiveCheck(finddata.gameObject, true);
                             counterdata.Init();
                         }

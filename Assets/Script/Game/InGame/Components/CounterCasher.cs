@@ -29,10 +29,23 @@ public class CounterCasher : OtterBase
         GameRoot.Instance.WaitTimeAndCallback(1f, () => { StartWork(); });
     }
 
+    public void CalcFish(bool iscalc)
+    {
+        if (iscalc)
+        {
+            PlayAnimation(OtterState.Counter, "counter", true);
+        }
+        else
+        {
+            PlayAnimation(OtterState.Idle, "counter", true);
+        }
+    }
+
 
     public void StartWork()
     {
-        SetDestination(CurStage.CounterCasherTr, () => {
+        SetDestination(CurStage.CounterCasherTr, () =>
+        {
             ReachProcess();
         });
     }

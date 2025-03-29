@@ -24,7 +24,7 @@ public class RackComponent : FacilityComponent
     private List<OtterBase> TargetOtterList = new List<OtterBase>();
 
     private float FishCarrydeltime = 0f;
-        
+
     private float FishCarryTime = 0.2f;
 
     private UI_AmountBubble AmountUI = null;
@@ -43,28 +43,34 @@ public class RackComponent : FacilityComponent
 
         var facilitytd = Tables.Instance.GetTable<FacilityInfo>().GetData(FacilityData.FacilityIdx);
 
-        GameRoot.Instance.UISystem.LoadFloatingUI<UI_AmountBubble>((_progress) => {
-            AmountUI = _progress;
-            ProjectUtility.SetActiveCheck(AmountUI.gameObject, FacilityData.IsOpen);
-            //ProjectUtility.SetActiveCheck(AmountUI.gameObject, FacilityData.CapacityCountProperty.Value > 0);
-            AmountUI.Init(AmountUITr);
-            AmountUI.Set(facilitytd.fish_idx);
-            AmountUI.SetValue(FacilityData.CapacityCountProperty.Value,CapacityMaxCount);
-        });
+        if (AmountUI == null)
+        {
+            GameRoot.Instance.UISystem.LoadFloatingUI<UI_AmountBubble>((_progress) =>
+            {
+                AmountUI = _progress;
+                ProjectUtility.SetActiveCheck(AmountUI.gameObject, FacilityData.IsOpen);
+                //ProjectUtility.SetActiveCheck(AmountUI.gameObject, FacilityData.CapacityCountProperty.Value > 0);
+                AmountUI.Init(AmountUITr);
+                AmountUI.Set(facilitytd.fish_idx);
+                AmountUI.SetValue(FacilityData.CapacityCountProperty.Value, CapacityMaxCount);
+            });
+        }
 
         disposables.Clear();
 
-        FishComponentList.ObserveAdd().Subscribe(x => {
+        FishComponentList.ObserveAdd().Subscribe(x =>
+        {
             if (AmountUI != null)
-            {   
-                AmountUI.SetValue(FishComponentList.Count , CapacityMaxCount);
+            {
+                AmountUI.SetValue(FishComponentList.Count, CapacityMaxCount);
             }
         }).AddTo(disposables);
 
-        FishComponentList.ObserveRemove().Subscribe(x => {
+        FishComponentList.ObserveRemove().Subscribe(x =>
+        {
             if (AmountUI != null)
             {
-                AmountUI.SetValue(FishComponentList.Count , CapacityMaxCount);
+                AmountUI.SetValue(FishComponentList.Count, CapacityMaxCount);
             }
         }).AddTo(disposables);
 
@@ -73,7 +79,8 @@ public class RackComponent : FacilityComponent
 
         foreach (var donebuy in donebuylist)
         {
-            donebuy.IsBuyCheckProperty.Subscribe(x => {
+            donebuy.IsBuyCheckProperty.Subscribe(x =>
+            {
                 if (donebuy.UpgradeType == (int)UpgradeSystem.UpgradeType.ShelfCapacityUp)
                 {
                     var stageidx = GameRoot.Instance.UserData.CurMode.StageData.StageIdx;
@@ -86,7 +93,7 @@ public class RackComponent : FacilityComponent
 
                         CapacityMaxCount = BaseCapacity + (int)buffvalue;
 
-                        if(AmountUI != null)
+                        if (AmountUI != null)
                             AmountUI.SetValue(FacilityData.CapacityCountProperty.Value, CapacityMaxCount);
                     }
                 }
@@ -94,7 +101,7 @@ public class RackComponent : FacilityComponent
             }).AddTo(disposables);
         }
 
-        if(AmountUI != null)
+        if (AmountUI != null)
             ProjectUtility.SetActiveCheck(AmountUI.gameObject, FacilityData.IsOpen);
 
     }
@@ -128,7 +135,7 @@ public class RackComponent : FacilityComponent
 
         return closestTransform;
     }
-        
+
     public void OnTriggerEnter2D(Collider2D collision)
     {
         // 충돌한 오브젝트의 레이어를 확인합니다.
@@ -153,9 +160,9 @@ public class RackComponent : FacilityComponent
         {
             var getvalue = collision.gameObject.GetComponent<OtterBase>();
 
-            if(getvalue != null)
+            if (getvalue != null)
             {
-                if(TargetOtterList.Contains(getvalue))
+                if (TargetOtterList.Contains(getvalue))
                 {
                     TargetOtterList.Remove(getvalue);
                 }
@@ -172,7 +179,7 @@ public class RackComponent : FacilityComponent
     {
         disposables.Clear();
 
-        if(AmountUI != null)
+        if (AmountUI != null)
         {
             Destroy(AmountUI.gameObject);
             AmountUI = null;
@@ -190,7 +197,7 @@ public class RackComponent : FacilityComponent
 
         if (IsMaxCountCheck()) return;
 
-        for (int i = TargetOtterList.Count -1; i >= 0; i--)
+        for (int i = TargetOtterList.Count - 1; i >= 0; i--)
         {
             if (TargetOtterList[i].GetFishComponentList.Count > 0)
             {
@@ -223,7 +230,8 @@ public class RackComponent : FacilityComponent
 
                             TargetOtterList[i].SortFish();
 
-                            findfish.FishInBucketAction(FishTrList[FishComponentList.Count - 1], (fish) => {
+                            findfish.FishInBucketAction(FishTrList[FishComponentList.Count - 1], (fish) =>
+                            {
                                 fish.transform.position = FishTrList[FishComponentList.Count - 1].position;
                                 fish.LivingFishAnim(false);
                             }, 0.2f);
@@ -237,6 +245,6 @@ public class RackComponent : FacilityComponent
                 }
             }
         }
-     
+
     }
 }

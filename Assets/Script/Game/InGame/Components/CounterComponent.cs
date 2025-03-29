@@ -12,7 +12,7 @@ public class CounterComponent : FacilityComponent
 
     private float checkoutdeltime = 0f;
 
-    private OtterBase CasherCounter;
+    private CounterCasher CasherCounter;
 
     private bool IsPlayer = false;
 
@@ -21,7 +21,7 @@ public class CounterComponent : FacilityComponent
         base.Init();
         CounterConsumerList.Clear();
 
-        CasherCounter = InGameStage.FindCasher(CasherType.CounterCasher, FacilityData.FacilityIdx);
+        CasherCounter = InGameStage.FindCasher(CasherType.CounterCasher, FacilityData.FacilityIdx) as CounterCasher;
 
     }
 
@@ -67,14 +67,13 @@ public class CounterComponent : FacilityComponent
         }
     }
 
-
     public void Update()
     {
         if (InGameStage == null) return;
 
         if (CasherCounter == null)
         {
-            CasherCounter = InGameStage.FindCasher(CasherType.CounterCasher, FacilityData.FacilityIdx);
+            CasherCounter = InGameStage.FindCasher(CasherType.CounterCasher, FacilityData.FacilityIdx) as CounterCasher;
 
             if (CasherCounter != null)
                 IsPlayer = true;
@@ -82,6 +81,8 @@ public class CounterComponent : FacilityComponent
 
         if ((IsPlayer && CounterConsumerList.Count > 0))
         {
+
+
             var findconsumer = CounterConsumerList.Find(x => x.CurCounterOrder == 0 && x.IsArrivedCounter);
 
             if (findconsumer != null)
@@ -89,6 +90,10 @@ public class CounterComponent : FacilityComponent
                 checkoutdeltime += Time.deltaTime;
 
                 var valuetime = checkoutdeltime / CheckOutConsumerTime;
+                if (CasherCounter != null)
+                {
+                    CasherCounter.CalcFish(true);
+                }
 
                 if (CasherCounter != null)
                 {
@@ -123,6 +128,12 @@ public class CounterComponent : FacilityComponent
                     {
                         findconsumer.OutCounterConsumer();
                         CounterConsumerList.Remove(findconsumer);
+
+                        if (CasherCounter != null && CounterConsumerList.Count == 0)
+                        {
+                            CasherCounter.CalcFish(false);
+                        }
+
                     }
                 }
             }
