@@ -12,7 +12,7 @@ public class TrashCanComponent : MonoBehaviour
 
     private float TrashTime = 0f;
 
-    private float TrashCanTime = 0.2f;
+    private float TrashCanTime = 0.01f;
 
     [SerializeField]
     private Transform FishTr;
@@ -25,7 +25,7 @@ public class TrashCanComponent : MonoBehaviour
 
     public void Init()
     {
-        TrashCanTime = 0.2f;
+        TrashCanTime = 0.01f;
 
 
         GameRoot.Instance.UISystem.LoadFloatingUI<UI_TrashCanBubble>((_progress) =>
@@ -73,7 +73,6 @@ public class TrashCanComponent : MonoBehaviour
     {
         if (OtterList.Count == 0) return;
 
-
         for (int i = OtterList.Count - 1; i >= 0; i--)
         {
             TrashTime += Time.deltaTime;
@@ -82,24 +81,32 @@ public class TrashCanComponent : MonoBehaviour
             {
                 TrashTime = 0f;
 
-                if (OtterList[i].GetFishComponentList.Count > 0)
-                {
-                    var findfish = OtterList[i].GetFishComponentList.Last();
+                // 각 Otter의 모든 물고기를 삭제
+                var fishList = OtterList[i].GetFishComponentList.ToList(); // 현재 Otter의 모든 물고기 리스트를 복사
 
-                    findfish.FishInBucketAction(FishTr, (fish) =>
+                // 역순으로 반복
+                for (int j = fishList.Count - 1; j >= 0; j--)
+                {
+                    var fish = fishList[j];
+
+                    // 물고기를 처리하고 삭제
+                    fish.FishInBucketAction(FishTr, (fish) =>
                     {
                         fish.transform.SetParent(this.transform);
-                        Destroy(fish.gameObject);
+                        Destroy(fish.gameObject);  // 물고기 삭제
                     }, 0.2f);
 
-                    OtterList[i].RemoveFish(findfish);
+                    // 물고기를 리스트에서 제거
+                    OtterList[i].RemoveFish(fish);
+                }
 
-                    if (OtterList[i].GetFishComponentList.Count == 0)
-                    {
-                        OtterList[i].CarryEnd();
-                    }
+                // 물고기를 모두 제거한 후, Otter가 비어 있으면 CarryEnd() 호출
+                if (OtterList[i].GetFishComponentList.Count == 0)
+                {
+                    OtterList[i].CarryEnd();
                 }
             }
         }
+
     }
 }

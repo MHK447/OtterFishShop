@@ -350,10 +350,6 @@ public class CarryCasher : OtterBase
                     {
                         GoToTrashCan(() =>
                         {
-                            GameRoot.Instance.StartCoroutine(CheckWaitTrashCan(() =>
-                            {
-                                PlayAnimation(OtterState.Wait, "idle", true);
-                            }));
                         });
                     }
                     else
@@ -401,10 +397,6 @@ public class CarryCasher : OtterBase
                         {
                             GoToTrashCan(() =>
                             {
-                                GameRoot.Instance.StartCoroutine(CheckWaitTrashCan(() =>
-                                {
-                                    PlayAnimation(OtterState.Wait, "idle", true);
-                                }));
                             });
                         }
                         else
@@ -463,10 +455,6 @@ public class CarryCasher : OtterBase
                     {
                         GoToTrashCan(() =>
                         {
-                            GameRoot.Instance.StartCoroutine(CheckWaitTrashCan(() =>
-                            {
-                                PlayAnimation(OtterState.Wait, "idle", true);
-                            }));
                         });
                     }
                     else
@@ -506,7 +494,7 @@ public class CarryCasher : OtterBase
         {
             waitdeltime += Time.deltaTime;
 
-            if (waitdeltime >= 1f)
+            if (waitdeltime >= 3f)
             {
                 waitdeltime = 0f;
                 StartWork();
@@ -524,15 +512,10 @@ public class CarryCasher : OtterBase
 
         if (sleepdeltime >= GameRoot.Instance.InGameSystem.carry_sleep_time)
         {
-            if ((CurState == OtterState.Idle || CurState == OtterState.Wait)
-          && WorkActionQueue.Count == 0
-          && FishComponentList.Count == 0
+            if (FishComponentList.Count == 0
           && !IsSleepStart
           && !IsGoingTrashCan)
             {
-                Debug.Log("[CarryCasher] Sleep 진입!");
-
-                StopAllCoroutines();
                 WorkActionQueue.Clear();
                 sleepdeltime = 0f;
                 ChangeState(OtterState.SleepMove);
@@ -542,6 +525,10 @@ public class CarryCasher : OtterBase
                     PlayAnimation(OtterState.Sleep, "napstart", false);
                 });
             }
+        }
+        else if ((CurState == OtterState.Idle || CurState == OtterState.Wait) && WorkActionQueue.Count >= 6 && FishComponentList.Count == 0)
+        {
+            WorkActionQueue.Clear();
         }
     }
 
@@ -553,12 +540,11 @@ public class CarryCasher : OtterBase
             IsGoingTrashCan = false;
             WorkActionQueue.Clear();
             // ⭐ 쓰레기통 도착 시 Fish 비우기
-            FishComponentList.Clear();
 
             endaction?.Invoke();
         });
     }
-    private float CheckDuration = 1f;
+    private float CheckDuration = 3f;
 
     private IEnumerator CheckWaitProductMax(System.Action nextaction)
     {
@@ -582,7 +568,7 @@ public class CarryCasher : OtterBase
     private IEnumerator CheckWaitProductNone(System.Action nextaction, RackComponent rackComponent)
     {
         float elapsedTime = 0f;
-        float timeout = 1f;
+        float timeout = 3f;
 
         while (elapsedTime < timeout)
         {
@@ -607,15 +593,25 @@ public class CarryCasher : OtterBase
             yield break;
         }
 
-        var fishidx = FishComponentList[0].GetFishIdx;
 
-        if (cookedcomponent.IsMaterialMaxCheck(fishidx))
+        for (int i = FishComponentList.Count - 1; i >= 0; i--)
         {
-            nextaction?.Invoke();
-            yield break;
+            var fish = FishComponentList[i];
+            var fishidx = fish.GetFishIdx;
+
+            // material이 max 값이면, 해당 항목을 리스트에서 제거하고 다음으로 진행
+            if (cookedcomponent.IsMaterialMaxCheck(fishidx))
+            {
+                FishComponentList.RemoveAt(i);  // 리스트에서 항목 제거
+                Debug.Log($"[CarryCasher] Removed fish with idx: {fishidx}");
+
+                // 한 번 제거된 후, 다시 체크할 필요가 없으므로 바로 종료
+                nextaction?.Invoke();
+                yield break;
+            }
         }
 
-        yield return new WaitUntil(() => cookedcomponent.IsMaterialMaxCheck(fishidx) || FishComponentList.Count <= 0);
+        yield return new WaitUntil(() => FishComponentList.Count <= 0);
         nextaction?.Invoke();
         Debug.Log($"[CarryCasher] CheckWaitProductNone running, FishCount: {FishComponentList.Count}");
     }
@@ -628,7 +624,7 @@ public class CarryCasher : OtterBase
             yield break;
         }
 
-        float timeout = Time.time + 3f;
+        float timeout = Time.time + 1f;
 
         yield return new WaitUntil(() => FishComponentList.Count == 0 || Time.time >= timeout);
 
