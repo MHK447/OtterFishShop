@@ -34,6 +34,9 @@ public class HUDTotal : UIBase
     private HudNoticeComponents HudNoticeComponent;
     public Transform GetUpgradeBtnTr { get { return UpgradeBtn.transform; } }
 
+    [SerializeField]
+    private Button InterAdBtn;
+
     private float deltaTime = 0.0f;
 
     protected override void Awake()
@@ -42,6 +45,7 @@ public class HUDTotal : UIBase
         UpgradeBtn.onClick.AddListener(OnClickUpgrade);
         NextStageBtn.onClick.AddListener(OnClickNextStage);
         BoostBtn.onClick.AddListener(OnClickBoost);
+        InterAdBtn.onClick.AddListener(OnClickInterAd);
         TopCurrencySync();
 
         GameRoot.Instance.VehicleSystem.AdVehiceTimeProperty.Subscribe(x =>
@@ -56,6 +60,10 @@ public class HUDTotal : UIBase
         GameRoot.Instance.UserData.CurMode.PlayerData.VehiclePropertyIdx.Subscribe(x =>
         {
             ProjectUtility.SetActiveCheck(VehicleObj, x > 0);
+        }).AddTo(this);
+
+        GameRoot.Instance.ShopSystem.IsVipProperty.Subscribe(x=> {
+            ProjectUtility.SetActiveCheck(InterAdBtn.gameObject , !x);
         }).AddTo(this);
 
         ContentsOpenCheck();
@@ -77,6 +85,11 @@ public class HUDTotal : UIBase
     public void OnClickBoost()
     {
 
+    }
+
+    public void OnClickInterAd()
+    {
+        GameRoot.Instance.UISystem.OpenUI<PopupAdRemove>(popup=> popup.Init());
     }
 
     public void OnClickUpgrade()

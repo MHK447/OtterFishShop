@@ -506,8 +506,6 @@ public class CarryCasher : OtterBase
     {
         base.Update();
 
-        StartWorkCheck();
-
         sleepdeltime += Time.deltaTime;
 
         if (sleepdeltime >= GameRoot.Instance.InGameSystem.carry_sleep_time)
@@ -524,12 +522,17 @@ public class CarryCasher : OtterBase
                     GameRoot.Instance.GameNotification.AddNoti(NoticeComponent.NoticeType.Nap, this.transform);
                     PlayAnimation(OtterState.Sleep, "napstart", false);
                 });
+
+                return;
             }
         }
         else if ((CurState == OtterState.Idle || CurState == OtterState.Wait) && WorkActionQueue.Count >= 6 && FishComponentList.Count == 0)
         {
             WorkActionQueue.Clear();
         }
+
+
+        StartWorkCheck();
     }
 
     public void GoToTrashCan(System.Action endaction)
@@ -574,7 +577,8 @@ public class CarryCasher : OtterBase
         {
             if (FishComponentList.Count == 0 || rackComponent.IsMaxCountCheck())
             {
-                break;
+                nextaction?.Invoke();
+                yield break;
             }
             elapsedTime += Time.deltaTime;
             yield return null;

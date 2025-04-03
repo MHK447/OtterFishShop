@@ -43,4 +43,12 @@ public class HudNoticeComponents : MonoBehaviour
             NoticeComponentList[i].Set((NoticeComponent.NoticeType)GameRoot.Instance.UserData.CurMode.NoticeCollections[i].NotiIdx, GameRoot.Instance.UserData.CurMode.NoticeCollections[i].Target);
         }
     }
+
+    void OnDisable()
+    {
+        foreach(var notice in NoticeComponentList)
+        {
+            ProjectUtility.SetActiveCheck(notice.gameObject  ,false);
+        }
+    }
 }

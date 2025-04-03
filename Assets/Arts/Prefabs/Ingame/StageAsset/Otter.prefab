@@ -864,7 +864,7 @@ SortingGroup:
   m_Enabled: 1
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 200
+  m_SortingOrder: 70
   m_SortAtRoot: 0
 --- !u!1 &2714424444675837686
 GameObject:
