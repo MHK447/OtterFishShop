@@ -31,7 +31,7 @@ public class PopupAdRemove : UIBase
     public void OnClickReward()
     {
         //결제
-
+        GameRoot.Instance.ShopSystem.IsVipProperty.Value = true;
         Hide();
     }
 }

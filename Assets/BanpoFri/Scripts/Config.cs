@@ -18,12 +18,9 @@ public class Config : BanpoFri.SingletonScriptableObject<Config>, BanpoFri.ILoad
 
     public enum Language
     {
-        ko,
-        en,
-        ja,
-        th,
-        de,
-        fr,
+        en = 0,
+        ko = 1,
+        ja = 2,
     }
 
     public enum InGameUpgradeIdx

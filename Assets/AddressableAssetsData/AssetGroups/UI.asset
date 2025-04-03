@@ -16,22 +16,7 @@ MonoBehaviour:
   m_Data:
     m_SerializedData: []
   m_GUID: 9fbe8d8371eca4625b32c1e107830ddb
-  m_SerializeEntries:
-  - m_GUID: cc02d0e07282743d28d88d7fdcc4cf8f
-    m_Address: PopupWelMineralComeGift 1
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: b54cacceb6d6cef4ca06cbeac379b868
-    m_Address: PopupNoAds_1
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: b79f9f9b309f24f4ab4e7fd043fde4d1
-    m_Address: PopupNoAds_1 1
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
+  m_SerializeEntries: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 33d34b1065dcd4c0db03f94efd6e0ee1, type: 2}
   m_SchemaSet:

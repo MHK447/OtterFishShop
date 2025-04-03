@@ -118,6 +118,9 @@ MonoBehaviour:
   - popup_ad_speed
   - str_free
   - next_move
+  - str_popup_option_language_en
+  - str_popup_option_language_ko
+  - str_popup_option_language_ja
   mSecondKey: []
   mDataList:
   - _idx: casher_add_02_desc
@@ -133,7 +136,7 @@ MonoBehaviour:
     _en: <color=#3a8e62>+{0}</color> Added
     _ja: "<color=#3a8e62>+{0}</color> \u8FFD\u52A0"
   - _idx: player_speedup_01_desc
-    _ko: "<color=#3a8e62>+{0}</color> \uC99D\uAC00 "
+    _ko: "<color=#3a8e62>+{0}</color> \uC99D\uAC00"
     _en: <color=#3a8e62>+{0}</color> Increased
     _ja: "<color=#3a8e62>+{0}</color> \u5897\u52A0"
   - _idx: player_stack_01_desc
@@ -214,7 +217,7 @@ MonoBehaviour:
     _en: Boss Movement Speed
     _ja: "\u5E97\u9577\u79FB\u52D5\u901F\u5EA6"
   - _idx: fishcasher_speedup_name
-    _ko: "{0} \uB09A\uC2DC \uC9C1\uC6D0 \uC18D\uB3C4 \uC99D\uAC00 "
+    _ko: "{0} \uB09A\uC2DC \uC9C1\uC6D0 \uC18D\uB3C4 \uC99D\uAC00"
     _en: '{0} Fisher Speed Increase'
     _ja: "{0} \u91E3\u308A\u30B9\u30BF\u30C3\u30D5\u901F\u5EA6\u30A2\u30C3\u30D7"
   - _idx: player_stack_01_name
@@ -234,7 +237,7 @@ MonoBehaviour:
     _en: Tropical Fish Display Capacity
     _ja: "\u71B1\u5E2F\u9B5A\u9673\u5217\u6570"
   - _idx: food_load_04_name
-    _ko: "\uD06C\uB7A9 \uC9C4\uC5F4\uC218\uB7C9 "
+    _ko: "\uD06C\uB7A9 \uC9C4\uC5F4\uC218\uB7C9"
     _en: Crab Display Capacity
     _ja: "\u30AB\u30CB\u9673\u5217\u6570"
   - _idx: food_load_10_name
@@ -566,3 +569,15 @@ MonoBehaviour:
     _ko: "\uC774\uB3D9"
     _en: Move
     _ja: "\u79FB\u52D5"
+  - _idx: str_popup_option_language_en
+    _ko: "\uC601\uC5B4"
+    _en: English
+    _ja: English
+  - _idx: str_popup_option_language_ko
+    _ko: "\uD55C\uAD6D\uC5B4"
+    _en: "\u97D3\u56FD\u8A9E"
+    _ja: Korea
+  - _idx: str_popup_option_language_ja
+    _ko: "\uC77C\uBCF8\uC5B4"
+    _en: "\u65E5\u672C\u8A9E"
+    _ja: Japen
