@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 3e84fe5d2eeef5a4db49b4282d429efb
+guid: f8177f751e08d499a81acb479409b03b
 TrueTypeFontImporter:
   externalObjects: {}
   serializedVersion: 4
@@ -9,7 +9,7 @@ TrueTypeFontImporter:
   characterPadding: 1
   includeFontData: 1
   fontNames:
-  - NanumSquareRoundOTF
+  - ONE Mobile POP OTF
   fallbackFontReferences: []
   customCharacters: 
   fontRenderingMode: 0
