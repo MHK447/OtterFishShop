@@ -85,12 +85,19 @@ namespace BanpoFri
 				var index = 0;
 				foreach(var key in FirstKey)
 				{
-					var inst = (T_KEY)System.Activator.CreateInstance(
-						typeof(T_KEY),
-					 	CheckValue(listKeyElementType, key),
-						CheckValue(listKeyElementType2, SecondKey[index]));
-					dicData.Add(inst, mDataList[index]);
-					++index;
+					try
+					{
+						var inst = (T_KEY)System.Activator.CreateInstance(
+							typeof(T_KEY),
+						 	CheckValue(listKeyElementType, key),
+							CheckValue(listKeyElementType2, SecondKey[index]));
+						dicData.Add(inst, mDataList[index]);
+						++index;
+					}
+					catch (System.Exception e)
+					{
+						Debug.LogError($"Error loading table {this.GetType().Name} with key {key}, index {index}. Exception: {e.Message}");
+					}
 				}
 			}
 			else
@@ -98,10 +105,17 @@ namespace BanpoFri
 				var index = 0;
 				foreach(var key in FirstKey)
 				{
-					var keyValue  = (T_KEY) System.Convert.ChangeType(key, typeof(T_KEY));
-					if(!dicData.ContainsKey(keyValue))
-						dicData.Add(keyValue , mDataList[index]);
-					++index;
+					try
+					{
+						var keyValue  = (T_KEY) System.Convert.ChangeType(key, typeof(T_KEY));
+						if(!dicData.ContainsKey(keyValue))
+							dicData.Add(keyValue , mDataList[index]);
+						++index;
+					}
+					catch (System.Exception e)
+					{
+						Debug.LogError($"Error loading table {this.GetType().Name} with key {key}, index {index}. Exception: {e.Message}");
+					}
 				}
 			}
 		}

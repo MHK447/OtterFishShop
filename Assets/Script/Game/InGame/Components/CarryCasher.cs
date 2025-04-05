@@ -321,6 +321,7 @@ public class CarryCasher : OtterBase
 
     private void EnqueueCookDiplayActions(CookedComponent cookcomponent, RackComponent rackcomponent)
     {
+        WorkActionQueue.Clear();
         System.Action moveToCooked = () =>
         {
             SetDestination(cookcomponent.GetCookTableComponent.GetCasherTr.transform, () =>
@@ -366,6 +367,7 @@ public class CarryCasher : OtterBase
 
     private void EnqueueFishDisplayActions(FishRoomComponent fishRoom, CookedComponent targetdisplay)
     {
+        WorkActionQueue.Clear();
         System.Action moveToBucket = () =>
         {
             SetDestination(fishRoom.GetBucketCarryCasherTr.transform, () =>

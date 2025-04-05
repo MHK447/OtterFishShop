@@ -9,10 +9,11 @@ public class TrashCanComponent : MonoBehaviour
 {
 
     private List<OtterBase> OtterList = new List<OtterBase>();
+    private Dictionary<FishComponent, float> ProcessingFish = new Dictionary<FishComponent, float>();
 
     private float TrashTime = 0f;
-
     private float TrashCanTime = 0.01f;
+    private float DestroyTimeout = 1.5f; // 물고기 삭제 타임아웃 시간
 
     [SerializeField]
     private Transform FishTr;
@@ -26,7 +27,7 @@ public class TrashCanComponent : MonoBehaviour
     public void Init()
     {
         TrashCanTime = 0.01f;
-
+        ProcessingFish.Clear();
 
         GameRoot.Instance.UISystem.LoadFloatingUI<UI_TrashCanBubble>((_progress) =>
         {
@@ -71,6 +72,9 @@ public class TrashCanComponent : MonoBehaviour
 
     public void Update()
     {
+        // 물고기 처리 상태 체크 및 타임아웃 처리
+        CheckProcessingFish();
+
         if (OtterList.Count == 0) return;
 
         for (int i = OtterList.Count - 1; i >= 0; i--)
@@ -84,20 +88,36 @@ public class TrashCanComponent : MonoBehaviour
                 // 각 Otter의 모든 물고기를 삭제
                 var fishList = OtterList[i].GetFishComponentList.ToList(); // 현재 Otter의 모든 물고기 리스트를 복사
 
+                if (fishList.Count == 0) continue;
+
                 // 역순으로 반복
                 for (int j = fishList.Count - 1; j >= 0; j--)
                 {
                     var fish = fishList[j];
-
-                    // 물고기를 처리하고 삭제
-                    fish.FishInBucketAction(FishTr, (fish) =>
+                    
+                    if (fish == null) continue; // null 체크 추가
+                    
+                    // 물고기 처리 목록에 추가
+                    if (!ProcessingFish.ContainsKey(fish))
                     {
-                        fish.transform.SetParent(this.transform);
-                        Destroy(fish.gameObject);  // 물고기 삭제
-                    }, 0.2f);
-
-                    // 물고기를 리스트에서 제거
-                    OtterList[i].RemoveFish(fish);
+                        ProcessingFish.Add(fish, Time.time);
+                        
+                        // 물고기를 처리하고 삭제
+                        fish.FishInBucketAction(FishTr, (fishComp) =>
+                        {
+                            if (fishComp != null) // null 체크
+                            {
+                                fishComp.transform.SetParent(this.transform);
+                                Destroy(fishComp.gameObject);
+                                
+                                // 처리 완료된 물고기를 목록에서 제거
+                                ProcessingFish.Remove(fishComp);
+                            }
+                        }, 0.2f);
+                        
+                        // 물고기를 리스트에서 미리 제거
+                        OtterList[i].RemoveFish(fish);
+                    }
                 }
 
                 // 물고기를 모두 제거한 후, Otter가 비어 있으면 CarryEnd() 호출
@@ -107,6 +127,63 @@ public class TrashCanComponent : MonoBehaviour
                 }
             }
         }
-
+    }
+    
+    // 처리 중인 물고기 상태 체크
+    private void CheckProcessingFish()
+    {
+        // 오래된 물고기 삭제 처리 (타임아웃 시)
+        List<FishComponent> toRemove = new List<FishComponent>();
+        
+        foreach (var pair in ProcessingFish)
+        {
+            if (Time.time - pair.Value > DestroyTimeout)
+            {
+                if (pair.Key != null)
+                {
+                    Debug.LogWarning("물고기 삭제 타임아웃으로 강제 삭제: " + pair.Key.name);
+                    Destroy(pair.Key.gameObject);
+                }
+                toRemove.Add(pair.Key);
+            }
+        }
+        
+        // 타임아웃된 물고기 목록에서 제거
+        foreach (var fish in toRemove)
+        {
+            ProcessingFish.Remove(fish);
+        }
+    }
+    
+    // 강제로 모든 물고기 삭제 (긴급 상황용)
+    public void ForceDestroyAllFish()
+    {
+        foreach (var otter in OtterList)
+        {
+            if (otter == null) continue;
+            
+            var fishList = otter.GetFishComponentList.ToList();
+            foreach (var fish in fishList)
+            {
+                if (fish != null)
+                {
+                    otter.RemoveFish(fish);
+                    Destroy(fish.gameObject);
+                }
+            }
+            
+            otter.CarryEnd();
+        }
+        
+        // 처리 중인 물고기도 모두 삭제
+        foreach (var pair in ProcessingFish)
+        {
+            if (pair.Key != null)
+            {
+                Destroy(pair.Key.gameObject);
+            }
+        }
+        
+        ProcessingFish.Clear();
     }
 }
