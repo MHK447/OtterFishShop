@@ -11,11 +11,11 @@ public class AdManager : MonoBehaviour
     private RewardedAd _rewardedAd;
     private InterstitialAd _interstitialAd;
 
-    private string _adUnitId = "ca-app-pub-4348570103813665/1002389856";
+    private string _adUnitId = "ca-app-pub-4348570103813665/2176085665";
 
     private bool IsInterAdLoaded = false;
 
-    private string InitadUnitId = "ca-app-pub-4348570103813665/9413566645"; // 테스트 전면 광고 단위 ID
+    private string InitadUnitId = "ca-app-pub-4348570103813665/4816058422"; // 테스트 전면 광고 단위 ID
 
 
     void Start()
