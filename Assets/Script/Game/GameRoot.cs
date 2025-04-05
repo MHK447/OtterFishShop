@@ -68,11 +68,6 @@ public class GameRoot : Singleton<GameRoot>
 	public Queue<System.Action> TitleCloseActions = new Queue<System.Action>();
 
 	private int loadcount = 0;
-
-
-	private int InterTime = 0;
-
-
 	public static bool IsInit()
 	{
 
@@ -147,8 +142,8 @@ public class GameRoot : Singleton<GameRoot>
 
 			VehicleSystem.OneSecondUpdate();
 			BoostSystem.UpdateOneSecond();
+			ShopSystem.UpdateOneTimeSecond();
 
-			InterTime += 1;
 
 		}
 		deltaTime += Time.deltaTime;
@@ -182,6 +177,8 @@ public class GameRoot : Singleton<GameRoot>
 				}
 			}
 		}
+
+		
 
 	}
 
@@ -268,7 +265,7 @@ public class GameRoot : Singleton<GameRoot>
 		VehicleSystem.Create();
 		BoostSystem.Create();
 		NaviSystem.Create();
-
+		ShopSystem.Create();
 
 
 		GameRoot.instance.WaitTimeAndCallback(0.5f, () =>
@@ -342,7 +339,7 @@ public class GameRoot : Singleton<GameRoot>
 		}
 		else
 		{
-
+			
 		}
 
 	}
@@ -355,6 +352,12 @@ public class GameRoot : Singleton<GameRoot>
 	{
 		if (CheatWindow != null)
 			CheatWindow.SetActive(value);
+            
+		// DebugLogManager가 있으면 팝업도 함께 활성화/비활성화
+		if (IngameDebugConsole.DebugLogManager.Instance != null)
+		{
+			IngameDebugConsole.DebugLogManager.Instance.PopupEnabled = value;
+		}
 	}
 
 	IEnumerator waitTimeAndCallback(float time, System.Action callback)

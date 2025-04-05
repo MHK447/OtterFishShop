@@ -65,10 +65,18 @@ public class AdManager : MonoBehaviour
     }
 
     // 전면 광고 표시
-    public void ShowInterstitialAd()
+    public void ShowInterstitialAd(System.Action onAdClosed = null)
     {
         if (IsInterAdLoaded && _interstitialAd != null && _interstitialAd.CanShowAd())
         {
+            // 광고 닫힘 이벤트에 전달된 콜백 추가
+            if (onAdClosed != null)
+            {
+                _interstitialAd.OnAdFullScreenContentClosed += () => {
+                    onAdClosed.Invoke();
+                };
+            }
+            
             _interstitialAd.Show();
             Debug.Log("Interstitial ad is being shown.");
             IsInterAdLoaded = false; // 광고 표시 후 다시 로드 필요
@@ -76,6 +84,11 @@ public class AdManager : MonoBehaviour
         else
         {
             Debug.Log("Interstitial ad is not ready yet.");
+            // 광고가 준비되지 않았을 때도 콜백 호출
+            onAdClosed?.Invoke();
+            
+            // 광고 다시 로드 시도
+            LoadInterstitialAd();
         }
     }
 

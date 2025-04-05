@@ -10,6 +10,7 @@ public class ContentsOpenSystem : MonoBehaviour
         BoostBuff = 1,
         AdVehicle = 2,
         NextStageBtn = 3,
+        Interstitial = 4,
     }
 
 

@@ -67,9 +67,9 @@ public class PopupOfflineReward : UIBase
 
         TimeSliderValue.value = (float)TimeSecond / (float)GameRoot.Instance.InGameSystem.max_offline_time;
 
-        MiddleBenefitText.text = Tables.Instance.GetTable<Localize>().GetFormat("offline_time_middle_value" , GameRoot.Instance.InGameSystem.offline_reward_multiple);
+        MiddleBenefitText.text = Tables.Instance.GetTable<Localize>().GetFormat("offline_time_middle_value", GameRoot.Instance.InGameSystem.offline_reward_multiple);
 
-        UpBenefitText.text = Tables.Instance.GetTable<Localize>().GetFormat("offline_time_value" , GameRoot.Instance.InGameSystem.offline_reward_multiple);
+        UpBenefitText.text = Tables.Instance.GetTable<Localize>().GetFormat("offline_time_value", GameRoot.Instance.InGameSystem.offline_reward_multiple);
     }
 
     public void OnClickAdReward()
@@ -82,8 +82,13 @@ public class PopupOfflineReward : UIBase
 
     public void OnClickReward()
     {
-        GameRoot.Instance.UserData.SetReward((int)Config.RewardType.Currency, (int)Config.CurrencyID.Money, RewardValue);
-        GameRoot.Instance.UserData.CurMode.LastLoginTime = TimeSystem.GetCurTime();
-        Hide();
+
+        GameRoot.Instance.GetAdManager.ShowRewardedAd(() =>
+        {
+            GameRoot.Instance.UserData.SetReward((int)Config.RewardType.Currency, (int)Config.CurrencyID.Money, RewardValue);
+            GameRoot.Instance.UserData.CurMode.LastLoginTime = TimeSystem.GetCurTime();
+            Hide();
+        });
     }
 }
+

@@ -144,6 +144,8 @@ namespace IngameDebugConsole
 				"UnityScript.",
 				"ICSharpCode.",
 				"ExCSS.Unity",
+				"DOTweenPro",
+				"DOTween",
 #if UNITY_EDITOR
 				"Assembly-CSharp-Editor",
 				"Assembly-UnityScript-Editor",
@@ -186,15 +188,23 @@ namespace IngameDebugConsole
 				{
 					foreach( Type type in assembly.GetExportedTypes() )
 					{
-						foreach( MethodInfo method in type.GetMethods( BindingFlags.Static | BindingFlags.Public | BindingFlags.DeclaredOnly ) )
+						try
 						{
-							foreach( object attribute in method.GetCustomAttributes( typeof( ConsoleMethodAttribute ), false ) )
+							foreach( MethodInfo method in type.GetMethods( BindingFlags.Static | BindingFlags.Public | BindingFlags.DeclaredOnly ) )
 							{
-								ConsoleMethodAttribute consoleMethod = attribute as ConsoleMethodAttribute;
-								if( consoleMethod != null )
-									AddCommand( consoleMethod.Command, consoleMethod.Description, method, null, consoleMethod.ParameterNames );
+								try
+								{
+									foreach( object attribute in method.GetCustomAttributes( typeof( ConsoleMethodAttribute ), false ) )
+									{
+										ConsoleMethodAttribute consoleMethod = attribute as ConsoleMethodAttribute;
+										if( consoleMethod != null )
+											AddCommand( consoleMethod.Command, consoleMethod.Description, method, null, consoleMethod.ParameterNames );
+									}
+								}
+								catch( Exception ) { /* 개별 메서드 처리 중 오류 무시 */ }
 							}
 						}
+						catch( Exception ) { /* 타입의 메서드 처리 중 오류 무시 */ }
 					}
 				}
 				catch( NotSupportedException ) { }

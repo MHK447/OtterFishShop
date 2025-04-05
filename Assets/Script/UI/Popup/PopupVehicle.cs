@@ -66,8 +66,13 @@ public class PopupVehicle : UIBase
     public void OnClickAd()
     {
         Hide();
+
+    GameRoot.Instance.GetAdManager.ShowRewardedAd(() =>
+    {
         GameRoot.Instance.VehicleSystem.AdVehicleActive(true);
+    });
     }
+    
 
     public override void Hide()
     {

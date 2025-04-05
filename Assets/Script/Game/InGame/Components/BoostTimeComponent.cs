@@ -34,7 +34,7 @@ public class BoostTimeComponent : MonoBehaviour
             BoostTimeText.text = ProjectUtility.GetTimeStringFormattingShort(GameRoot.Instance.BoostSystem.boost_time);
         }
 
-        ProjectUtility.SetActiveCheck(AdObj , !isboost);
+        ProjectUtility.SetActiveCheck(AdObj, !isboost);
     }
 
     public void SetTimeText(int time)
@@ -47,7 +47,10 @@ public class BoostTimeComponent : MonoBehaviour
     {
         if (!GameRoot.Instance.BoostSystem.IsBoostOnProperty.Value)
         {
-            GameRoot.Instance.BoostSystem.AddBoosTime();
+            GameRoot.Instance.GetAdManager.ShowRewardedAd(() =>
+            {
+                GameRoot.Instance.BoostSystem.AddBoosTime();
+            });
         }
 
     }
