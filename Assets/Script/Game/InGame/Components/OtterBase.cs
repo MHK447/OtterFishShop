@@ -39,6 +39,8 @@ public class OtterBase : MonoBehaviour
     [SerializeField]
     private OtterType CurUnitType;
 
+    public OtterType GetCurUnitType { get { return CurUnitType; } }
+
     protected float PlayerSpeed = 1f;
 
     [SerializeField]

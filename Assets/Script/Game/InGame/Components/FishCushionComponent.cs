@@ -71,7 +71,7 @@ public class FishCushionComponent : MonoBehaviour
     {
         var getvalue = other.GetComponent<OtterBase>();
 
-        if (getvalue != null)
+        if (getvalue != null && (getvalue.GetCurUnitType == OtterBase.OtterType.Player || getvalue.GetCurUnitType == OtterBase.OtterType.CarryCasher))
         {
             if (!TargetOtterList.Contains(getvalue))
             {
