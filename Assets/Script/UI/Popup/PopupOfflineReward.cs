@@ -56,6 +56,13 @@ public class PopupOfflineReward : UIBase
 
         RewardValue = ProjectUtility.CalcOfflineReward(timesecond);
 
+        if (RewardValue == 0)
+        {
+            Hide();
+
+            return;
+        }
+
         RewardValueText.text = ProjectUtility.CalculateMoneyToString(RewardValue);
 
         AdRewardValueText.text =
