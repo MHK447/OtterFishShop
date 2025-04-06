@@ -116,62 +116,89 @@ public class FacilityComponent : MonoBehaviour
 
     public void OpenFacility()
     {
+        if (FacilityData == null)
+        {
+            Debug.LogError("OpenFacility: FacilityData is null");
+            return;
+        }
+
         FacilityData.IsOpen = true;
 
-        //GameRoot.Instance.UISystem.GetUI<HUDTotal>().ContentsOpenCheck();
+        // 다음 시설 인덱스 업데이트 전 안전성 검사
+        if (GameRoot.Instance != null && 
+            GameRoot.Instance.UserData != null && 
+            GameRoot.Instance.UserData.CurMode != null && 
+            GameRoot.Instance.UserData.CurMode.StageData != null)
+        {
+            var nextFacilityProperty = GameRoot.Instance.UserData.CurMode.StageData.NextFacilityOpenOrderProperty;
+            if (nextFacilityProperty != null)
+            {
+                nextFacilityProperty.Value += 1;
+            }
+            else
+            {
+                Debug.LogWarning("OpenFacility: NextFacilityOpenOrderProperty is null");
+            }
+        }
+        else
+        {
+            Debug.LogError("OpenFacility: GameRoot or UserData path is null");
+            return;
+        }
 
-
-        GameRoot.Instance.UserData.CurMode.StageData.NextFacilityOpenOrderProperty.Value += 1;
         Init();
 
-        var stageidx = GameRoot.Instance.UserData.CurMode.StageData.StageIdx;
-
-        var stageinfotd = Tables.Instance.GetTable<StageInfo>().GetData(stageidx);
-
-        if (stageinfotd != null)
+        try
         {
+            var stageidx = GameRoot.Instance.UserData.CurMode.StageData.StageIdx;
+            var stageinfotd = Tables.Instance.GetTable<StageInfo>().GetData(stageidx);
 
-            if (GameRoot.Instance.UserData.CurMode.StageData.StageIdx == 1 && FacilityTypeIdx == Config.FacilityTypeIdx.GrilledRedSnapperDisplay)
+            if (stageinfotd != null)
             {
-                if(!GameRoot.Instance.TutorialSystem.IsClearTuto("1"))
+                if (GameRoot.Instance.UserData.CurMode.StageData.StageIdx == 1 && FacilityTypeIdx == Config.FacilityTypeIdx.GrilledRedSnapperDisplay)
                 {
-                    GameRoot.Instance.TutorialSystem.StartTutorial("1");
+                    if (GameRoot.Instance.TutorialSystem != null && !GameRoot.Instance.TutorialSystem.IsClearTuto("1"))
+                    {
+                        GameRoot.Instance.TutorialSystem.StartTutorial("1");
+                    }
                 }
-            }
 
-            SoundPlayer.Instance.PlaySound("newcontents");
-
-            switch (FacilityTypeIdx)
-            {
-                case Config.FacilityTypeIdx.RedSnapperDisplay:
-                    GameRoot.Instance.NaviSystem.NextNavi(NaviSystem.NaviType.Fish_01);
-                    break;
-                case Config.FacilityTypeIdx.CheckoutCounter:
-                    GameRoot.Instance.NaviSystem.NextNavi(NaviSystem.NaviType.Rack_01);
-                    break;
-                case Config.FacilityTypeIdx.RedSnapperFishing:
-                    GameRoot.Instance.NaviSystem.NextNavi(NaviSystem.NaviType.Fishing);
-                    break;
-            }
-
-            if (stageinfotd.consumerfirst_idx == (int)FacilityTypeIdx)
-            {
-                var upgradevalue = GameRoot.Instance.UpgradeSystem.GetUpgradeValue(UpgradeSystem.UpgradeType.AddCustomer);
-
-                // var getui = GameRoot.Instance.UISystem.GetUI<HUDTotal>();
-
-                // if (getui != null)z
-                // {
-                //     ProjectUtility.SetActiveCheck(getui.GetUpgradeBtnTr.gameObject, true);
-                // }
-
-                for (int i = 0; i < upgradevalue; ++i)
+                if (SoundPlayer.Instance != null)
                 {
-                    InGameStage.CreateConsumer(1, InGameStage.GetStartWayPoint);
+                    SoundPlayer.Instance.PlaySound("newcontents");
+                }
+
+                if (GameRoot.Instance.NaviSystem != null)
+                {
+                    switch (FacilityTypeIdx)
+                    {
+                        case Config.FacilityTypeIdx.RedSnapperDisplay:
+                            GameRoot.Instance.NaviSystem.NextNavi(NaviSystem.NaviType.Fish_01);
+                            break;
+                        case Config.FacilityTypeIdx.CheckoutCounter:
+                            GameRoot.Instance.NaviSystem.NextNavi(NaviSystem.NaviType.Rack_01);
+                            break;
+                        case Config.FacilityTypeIdx.RedSnapperFishing:
+                            GameRoot.Instance.NaviSystem.NextNavi(NaviSystem.NaviType.Fishing);
+                            break;
+                    }
+                }
+
+                if (stageinfotd.consumerfirst_idx == (int)FacilityTypeIdx)
+                {
+                    var upgradevalue = GameRoot.Instance.UpgradeSystem.GetUpgradeValue(UpgradeSystem.UpgradeType.AddCustomer);
+
+                    for (int i = 0; i < upgradevalue; ++i)
+                    {
+                        InGameStage.CreateConsumer(1, InGameStage.GetStartWayPoint);
+                    }
                 }
             }
         }
-
+        catch (System.Exception e)
+        {
+            Debug.LogError("OpenFacility 실행 중 오류 발생: " + e.ToString());
+        }
     }
 
     private void OnDestroy()

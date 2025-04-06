@@ -40,6 +40,7 @@ public class ContentsOpenComponent : MonoBehaviour
 
     public void Set(FacilityData facilitydata, System.Action openaction)
     {
+        disposables.Clear();
 
         int curstageidx = GameRoot.Instance.UserData.CurMode.StageData.StageIdx;
 
@@ -199,6 +200,16 @@ public class ContentsOpenComponent : MonoBehaviour
                 }
             }
         }
+    }
+
+    void OnDestroy()
+    {
+        disposables.Clear();
+    }
+
+    void OnDisable()
+    {
+        disposables.Clear();
     }
 
 }

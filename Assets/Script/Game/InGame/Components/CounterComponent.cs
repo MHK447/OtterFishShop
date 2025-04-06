@@ -42,6 +42,7 @@ public class CounterComponent : FacilityComponent
 
             IsPlayer = true;
 
+            if(GameRoot.Instance.NaviSystem.CurNaviOnType != NaviSystem.NaviType.Counter)
             GameRoot.Instance.NaviSystem.NextNavi(NaviSystem.NaviType.WaitCalc);
         }
     }
