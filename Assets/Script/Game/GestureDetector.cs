@@ -25,7 +25,7 @@ public class GestureDetector : MonoBehaviour
 		secondY = Screen.height / 2f;
 	}
 
-#if TREEPLLA_LOG
+#if BANPOFRI_LOG
 	private void Update()
     {       
         #if UNITY_EDITOR
@@ -106,12 +106,12 @@ public class GestureDetector : MonoBehaviour
         if(fingerDownPosition.y - pos.y > secondY)
         {
             state = State.None;
-            //Complete();
+            Complete();
         }
     }
 
-    //private void Complete()
-    //{
-    //    GameRoot.Instance.SetCheatWindow(true);
-    //}
+    private void Complete()
+    {
+        GameRoot.Instance.SetCheatWindow(true);
+    }
 }

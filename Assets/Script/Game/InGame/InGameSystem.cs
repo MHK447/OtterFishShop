@@ -87,25 +87,81 @@ public class InGameSystem
 
     public void NextGameStage(bool Init = false)
     {
-        if (GameRoot.Instance.InGameSystem.CurInGame != null)
-            GameRoot.Instance.InGameSystem.CurInGame.UnLoad();
+        // 이전 스테이지 정리 작업 보장
+        if (GameRoot.Instance.UISystem.GetUI<HUDTotal>()?.GetHudNoticeComponent != null)
+        {
+            GameRoot.Instance.UISystem.GetUI<HUDTotal>().GetHudNoticeComponent.NoticeClear();
+        }
 
+        // 1. 현재 인게임 명시적 언로드 및 리소스 정리
+        if (GameRoot.Instance.InGameSystem.CurInGame != null)
+        {
+            try
+            {
+                // 물고기 등 게임 오브젝트 정리를 명시적으로 실행
+                var currentStage = GameRoot.Instance.InGameSystem.GetInGame<InGameTycoon>()?.curInGameStage;
+                if (currentStage != null && currentStage.GetTrashCanComponent != null)
+                {
+                    currentStage.GetTrashCanComponent.ForceDestroyAllFish();
+                }
+                
+                // 인게임 언로드
+                GameRoot.Instance.InGameSystem.CurInGame.UnLoad();
+                
+                // GC 실행 요청
+                Resources.UnloadUnusedAssets();
+                System.GC.Collect();
+            }
+            catch (System.Exception e)
+            {
+                Debug.LogError("Error during game unloading: " + e.Message);
+            }
+        }
+
+        // 2. 스테이지 데이터 업데이트
         var saveTime = TimeSystem.GetCurTime().Ticks;
         var curidx = GameRoot.Instance.UserData.CurMode.StageData.StageIdx;
-
-
         GameRoot.Instance.UserData.CurMode.StageData.SetStageIdx(curidx + 1);
     
-        SoundPlayer.Instance.Load();
-        GameRoot.Instance.FacilitySystem.Create();
-        GameRoot.Instance.InGameSystem.Create();
-        GameRoot.Instance.FacilitySystem.CreateStageFacility(GameRoot.Instance.UserData.CurMode.StageData.StageIdx);
-        GameRoot.Instance.TutorialSystem.ClearRegisiter();
-        GameRoot.Instance.UserData.CurMode.Money.Value = 0;
-        GameRoot.Instance.UserData.Save();
-        if (!Init)
+        // 3. 시스템 초기화 순서 명확히 하기
+        try 
         {
-            StartGame(GameRoot.Instance.CurInGameType, LoadCallBack);
+            // 사운드 먼저 로드
+            SoundPlayer.Instance.Load();
+            
+            // 각 시스템 순차적 초기화
+            GameRoot.Instance.FacilitySystem.Create();
+            
+            // 비동기 작업 완료 보장을 위해 짧은 딜레이 추가
+            GameRoot.Instance.WaitTimeAndCallback(0.1f, () => {
+                GameRoot.Instance.InGameSystem.Create();
+                
+                GameRoot.Instance.WaitTimeAndCallback(0.1f, () => {
+                    GameRoot.Instance.FacilitySystem.CreateStageFacility(GameRoot.Instance.UserData.CurMode.StageData.StageIdx);
+                    
+                    // 나머지 초기화
+                    GameRoot.Instance.TutorialSystem.ClearRegisiter();
+                    GameRoot.Instance.UserData.CurMode.Money.Value = 0;
+                    GameRoot.Instance.UserData.Save();
+                    
+                    if (!Init)
+                    {
+                        StartGame(GameRoot.Instance.CurInGameType, LoadCallBack);
+                    }
+                });
+            });
+        }
+        catch (System.Exception e)
+        {
+            Debug.LogError("Error during NextGameStage: " + e.ToString());
+            
+            // 오류 발생 시 안전하게 초기화 시도
+            if (!Init)
+            {
+                GameRoot.Instance.WaitTimeAndCallback(0.5f, () => {
+                    StartGame(GameRoot.Instance.CurInGameType, LoadCallBack);
+                });
+            }
         }
     }
 

@@ -36,6 +36,9 @@ public class HUDTotal : UIBase
 
     [SerializeField]
     private HudNoticeComponents HudNoticeComponent;
+
+    public HudNoticeComponents GetHudNoticeComponent { get { return HudNoticeComponent; } }
+
     public Transform GetUpgradeBtnTr { get { return UpgradeBtn.transform; } }
 
     [SerializeField]

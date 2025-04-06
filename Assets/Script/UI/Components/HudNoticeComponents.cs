@@ -44,11 +44,19 @@ public class HudNoticeComponents : MonoBehaviour
         }
     }
 
+    public void NoticeClear()
+    {
+        foreach (var notice in NoticeComponentList)
+        {
+            ProjectUtility.SetActiveCheck(notice.gameObject, false);
+        }
+    }
+
     void OnDisable()
     {
-        foreach(var notice in NoticeComponentList)
+        foreach (var notice in NoticeComponentList)
         {
-            ProjectUtility.SetActiveCheck(notice.gameObject  ,false);
+            ProjectUtility.SetActiveCheck(notice.gameObject, false);
         }
     }
 }
