@@ -29,6 +29,7 @@ public class HUDTotal : UIBase
 
     [SerializeField]
     private Button BoostBtn;
+    public Transform GetBoostBtn { get { return BoostBtn.transform; } }
 
     [SerializeField]
     private Button SettingBtn;
@@ -70,8 +71,9 @@ public class HUDTotal : UIBase
             ProjectUtility.SetActiveCheck(VehicleObj, x > 0);
         }).AddTo(this);
 
-        GameRoot.Instance.ShopSystem.IsVipProperty.Subscribe(x=> {
-            ProjectUtility.SetActiveCheck(InterAdBtn.gameObject , !x);
+        GameRoot.Instance.ShopSystem.IsVipProperty.Subscribe(x =>
+        {
+            ProjectUtility.SetActiveCheck(InterAdBtn.gameObject, !x);
         }).AddTo(this);
 
         ContentsOpenCheck();
@@ -97,7 +99,7 @@ public class HUDTotal : UIBase
 
     public void OnClickInterAd()
     {
-        GameRoot.Instance.UISystem.OpenUI<PopupAdRemove>(popup=> popup.Init());
+        GameRoot.Instance.UISystem.OpenUI<PopupAdRemove>(popup => popup.Init());
     }
 
     public void OnClickUpgrade()

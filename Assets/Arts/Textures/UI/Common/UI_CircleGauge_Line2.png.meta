@@ -156,7 +156,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      UI_CircleGauge_Line2_0: -6568227650896916771
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

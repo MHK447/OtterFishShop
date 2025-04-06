@@ -366,7 +366,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ac63a7d8f6cc43a99fec665ad181cca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  uiType: 2
+  CurrencyTop: {fileID: 0}
+  uiType: 3
   uiShowStateName: Show
   activeAnimator: {fileID: 8042630653198070787}
   closeBtn: {fileID: 0}
@@ -381,8 +382,9 @@ MonoBehaviour:
   CurTimeText: {fileID: 5285476462541857664}
   UpBenefitText: {fileID: 5432176748021008870}
   MiddleBenefitText: {fileID: 8501915924652845831}
-  RewardBtn: {fileID: 7274783697201286010}
-  ADRewardBtn: {fileID: 7750571757703105092}
+  RewardBtn: {fileID: 7750571757703105092}
+  ADRewardBtn: {fileID: 7274783697201286010}
+  TimeSecond: 0
 --- !u!1 &2922762374708499776
 GameObject:
   m_ObjectHideFlags: 0

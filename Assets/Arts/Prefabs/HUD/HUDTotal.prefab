@@ -1467,7 +1467,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CurrencyTop: {fileID: 3364713996170778260}
-  uiType: 2
+  uiType: 0
   uiShowStateName: 
   activeAnimator: {fileID: 0}
   closeBtn: {fileID: 0}

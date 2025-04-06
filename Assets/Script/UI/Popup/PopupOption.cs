@@ -4,6 +4,7 @@ using UnityEngine;
 using BanpoFri;
 using TextOutline;
 using UnityEngine.UI;
+using TMPro;
 
 [UIPath("UI/Popup/PopupOption")]
 public class PopupOption : UIBase
@@ -15,7 +16,7 @@ public class PopupOption : UIBase
     [SerializeField]
     private ToggleController MusicToggle;
 
-    [SerializeField] private Dropdown langDropdown;
+    [SerializeField] private TMP_Dropdown langDropdown;
 
     protected override void Awake()
     {
@@ -42,12 +43,13 @@ public class PopupOption : UIBase
 
     public override void OnShowBefore()
     {
+        SetLang();
         base.OnShowBefore();
     }
 
     private void OnClickSelectLang(int index)
     {
-        Config.Language curLang = Config.Language.en;
+        Config.Language curLang = GameRoot.Instance.UserData.Language;
         switch (index)
         {
             case 0: curLang = Config.Language.en; break;
