@@ -2048,11 +2048,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1886655478360707067, guid: 2cebb932501413341bfd8907370360dc, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -80
+      value: -65
       objectReference: {fileID: 0}
     - target: {fileID: 1886655478360707067, guid: 2cebb932501413341bfd8907370360dc, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 381
+      value: 413
       objectReference: {fileID: 0}
     - target: {fileID: 1886655478360707067, guid: 2cebb932501413341bfd8907370360dc, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -3367,11 +3367,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1886655478360707067, guid: 2cebb932501413341bfd8907370360dc, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -80
+      value: -54.7
       objectReference: {fileID: 0}
     - target: {fileID: 1886655478360707067, guid: 2cebb932501413341bfd8907370360dc, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 521
+      value: 617
       objectReference: {fileID: 0}
     - target: {fileID: 1886655478360707067, guid: 2cebb932501413341bfd8907370360dc, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -3396,7 +3396,7 @@ PrefabInstance:
     - target: {fileID: 3130542115999716914, guid: 2cebb932501413341bfd8907370360dc, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: bb686ea4c141046129a10074d93b72fd, type: 3}
+      objectReference: {fileID: 21300000, guid: 18a0fd6a1cb3a0e40afa0e03b613329c, type: 3}
     - target: {fileID: 4515016092096588861, guid: 2cebb932501413341bfd8907370360dc, type: 3}
       propertyPath: m_text
       value: "\uAC15\uC81C\uAD11\uACE0"
@@ -3439,11 +3439,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8119937767732792455, guid: 2cebb932501413341bfd8907370360dc, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 84
+      value: 61
       objectReference: {fileID: 0}
     - target: {fileID: 8119937767732792455, guid: 2cebb932501413341bfd8907370360dc, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 91
+      value: 64
       objectReference: {fileID: 0}
     - target: {fileID: 8324291163763358579, guid: 2cebb932501413341bfd8907370360dc, type: 3}
       propertyPath: keyColor
