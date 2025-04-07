@@ -3132,7 +3132,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6534019882923510184, guid: 6006994eeeacbbe4d94111a4d4f40890, type: 3}
       propertyPath: m_fontSize
-      value: 27.4
+      value: 28
       objectReference: {fileID: 0}
     - target: {fileID: 7326890893909432432, guid: 6006994eeeacbbe4d94111a4d4f40890, type: 3}
       propertyPath: m_AnchorMax.y
@@ -3775,7 +3775,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6534019882923510184, guid: 6006994eeeacbbe4d94111a4d4f40890, type: 3}
       propertyPath: m_fontSize
-      value: 27.4
+      value: 28
       objectReference: {fileID: 0}
     - target: {fileID: 7326890893909432432, guid: 6006994eeeacbbe4d94111a4d4f40890, type: 3}
       propertyPath: m_AnchorMax.y
@@ -4074,8 +4074,30 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 679250042144916024, guid: 0171569247817f742b8b8cd019e8a2f3, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7690033229987353731}
   m_SourcePrefab: {fileID: 100100000, guid: 0171569247817f742b8b8cd019e8a2f3, type: 3}
+--- !u!1 &2701679333639187233 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 679250042144916024, guid: 0171569247817f742b8b8cd019e8a2f3, type: 3}
+  m_PrefabInstance: {fileID: 3175993602419747097}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &7690033229987353731
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2701679333639187233}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c07b8e0f9bab4a19881686798ad1e0a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  keyLocalize: str_facility_clear
+  IsTextMeshPro: 1
 --- !u!224 &6447450071859492959 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 8460738628235301190, guid: 0171569247817f742b8b8cd019e8a2f3, type: 3}
@@ -4786,7 +4808,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7849193209300940948, guid: 316ff2556c0a4c74aaef60bb2020a94e, type: 3}
       propertyPath: m_text
-      value: 
+      value: Product Management
+      objectReference: {fileID: 0}
+    - target: {fileID: 7849193209300940948, guid: 316ff2556c0a4c74aaef60bb2020a94e, type: 3}
+      propertyPath: m_fontSize
+      value: 20.35
       objectReference: {fileID: 0}
     - target: {fileID: 7849193209300940948, guid: 316ff2556c0a4c74aaef60bb2020a94e, type: 3}
       propertyPath: m_hasFontAssetChanged
@@ -6972,7 +6998,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6534019882923510184, guid: 6006994eeeacbbe4d94111a4d4f40890, type: 3}
       propertyPath: m_fontSize
-      value: 27.4
+      value: 28
       objectReference: {fileID: 0}
     - target: {fileID: 7326890893909432432, guid: 6006994eeeacbbe4d94111a4d4f40890, type: 3}
       propertyPath: m_AnchorMax.y
@@ -7801,6 +7827,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 6081893516172080443}
     m_Modifications:
+    - target: {fileID: 125387097964337809, guid: c44fa74d1da6842c59ee5b57f2dd9995, type: 3}
+      propertyPath: keyColor
+      value: BasicBrown
+      objectReference: {fileID: 0}
     - target: {fileID: 4847966674904006187, guid: c44fa74d1da6842c59ee5b57f2dd9995, type: 3}
       propertyPath: m_Group
       value: 
@@ -7812,6 +7842,10 @@ PrefabInstance:
     - target: {fileID: 7032000337494234302, guid: c44fa74d1da6842c59ee5b57f2dd9995, type: 3}
       propertyPath: m_Name
       value: Btn_Product
+      objectReference: {fileID: 0}
+    - target: {fileID: 7774089448084105638, guid: c44fa74d1da6842c59ee5b57f2dd9995, type: 3}
+      propertyPath: m_text
+      value: Product
       objectReference: {fileID: 0}
     - target: {fileID: 7816032290933248640, guid: c44fa74d1da6842c59ee5b57f2dd9995, type: 3}
       propertyPath: m_Pivot.x
@@ -7937,7 +7971,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c07b8e0f9bab4a19881686798ad1e0a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  keyLocalize: popup_upgrade_facility
+  keyLocalize: popup_upgrade_product
   IsTextMeshPro: 1
 --- !u!1 &8184273461122305109 stripped
 GameObject:
@@ -8417,7 +8451,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7849193209300940948, guid: 316ff2556c0a4c74aaef60bb2020a94e, type: 3}
       propertyPath: m_text
-      value: "\uC2DC\uC124 \uAD00\uB9AC"
+      value: Facility Mgmt
+      objectReference: {fileID: 0}
+    - target: {fileID: 7849193209300940948, guid: 316ff2556c0a4c74aaef60bb2020a94e, type: 3}
+      propertyPath: m_fontSize
+      value: 32.35
       objectReference: {fileID: 0}
     - target: {fileID: 7849193209300940948, guid: 316ff2556c0a4c74aaef60bb2020a94e, type: 3}
       propertyPath: m_hasFontAssetChanged
@@ -8434,8 +8472,30 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 5369694444010147255, guid: 316ff2556c0a4c74aaef60bb2020a94e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5945780246135686632}
   m_SourcePrefab: {fileID: 100100000, guid: 316ff2556c0a4c74aaef60bb2020a94e, type: 3}
+--- !u!1 &4521612357666600590 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5369694444010147255, guid: 316ff2556c0a4c74aaef60bb2020a94e, type: 3}
+  m_PrefabInstance: {fileID: 8375291084685114169}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &5945780246135686632
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4521612357666600590}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c07b8e0f9bab4a19881686798ad1e0a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  keyLocalize: str_facility
+  IsTextMeshPro: 1
 --- !u!224 &6505359060639671778 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 3349744943423626971, guid: 316ff2556c0a4c74aaef60bb2020a94e, type: 3}
@@ -8574,7 +8634,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 125387097964337809, guid: c44fa74d1da6842c59ee5b57f2dd9995, type: 3}
       propertyPath: keyColor
-      value: DarkBlue
+      value: BasicBrown
       objectReference: {fileID: 0}
     - target: {fileID: 1570281086751100845, guid: c44fa74d1da6842c59ee5b57f2dd9995, type: 3}
       propertyPath: category
@@ -8935,7 +8995,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6534019882923510184, guid: 6006994eeeacbbe4d94111a4d4f40890, type: 3}
       propertyPath: m_fontSize
-      value: 27.4
+      value: 28
       objectReference: {fileID: 0}
     - target: {fileID: 7326890893909432432, guid: 6006994eeeacbbe4d94111a4d4f40890, type: 3}
       propertyPath: m_AnchorMax.y
