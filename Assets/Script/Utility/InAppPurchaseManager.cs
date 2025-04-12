@@ -43,6 +43,9 @@ public class InAppPurchaseManager : MonoBehaviour, IDetailedStoreListener
     // 구매 진행 중 상태
     private bool isPurchaseInProgress = false;
 
+    // 구매 복원 중 상태
+    private bool isRestoringPurchases = false;
+
     // 초기화 여부
     public bool IsInitialized => storeController != null && extensionProvider != null;
 
@@ -129,6 +132,8 @@ public class InAppPurchaseManager : MonoBehaviour, IDetailedStoreListener
             return;
         }
 
+        isRestoringPurchases = true;
+
         if (Application.platform == RuntimePlatform.IPhonePlayer ||
             Application.platform == RuntimePlatform.OSXPlayer)
         {
@@ -137,17 +142,20 @@ public class InAppPurchaseManager : MonoBehaviour, IDetailedStoreListener
             apple.RestoreTransactions((result) =>
             {
                 Debug.Log($"구매 복원 결과: {result}");
+                isRestoringPurchases = false;
                 callback?.Invoke(result ? Result.Success : Result.Failure);
             });
         }
         else if (Application.platform == RuntimePlatform.Android)
         {
             Debug.Log("구매 복원 (Android)은 자동으로 처리됩니다.");
+            isRestoringPurchases = false;
             callback?.Invoke(Result.Success);
         }
         else
         {
             Debug.LogWarning("현재 플랫폼에서는 구매 복원이 지원되지 않습니다.");
+            isRestoringPurchases = false;
             callback?.Invoke(Result.Failure);
         }
     }
@@ -229,8 +237,11 @@ public class InAppPurchaseManager : MonoBehaviour, IDetailedStoreListener
             string localizedPrice = args.purchasedProduct.metadata.localizedPriceString; // ₩1,100 이런 형식
             decimal rawPrice = args.purchasedProduct.metadata.localizedPrice; // 1100.00 (숫자만)
 
-            // 예: 디스코드에 메시지 전송
-            WebHookDiscord.SendToDiscord($"🐚 해달이 결제 왔쎼! 상품: {productId}, 금액: {localizedPrice} ({rawPrice})");
+            // 구매 복원 중이 아닐 때만 디스코드에 메시지 전송
+            if (!isRestoringPurchases)
+            {
+                WebHookDiscord.SendToDiscord($"🐚 해달이 결제 왔쎼! 상품: {productId}, 금액: {localizedPrice} ({rawPrice})");
+            }
 
             // 상품별 보상 처리
             GrantProductReward(productId);
