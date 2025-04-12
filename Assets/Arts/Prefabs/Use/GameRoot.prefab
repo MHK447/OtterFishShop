@@ -801,7 +801,7 @@ MonoBehaviour:
   DebugConsoleObj: {fileID: 927367955552788177}
   Loading: {fileID: 0}
   AdManager: {fileID: 3999658311351936806}
-  inAppPurchaseManager: {fileID: 0}
+  inAppPurchaseManager: {fileID: 4272024302338907881}
   JoyStick: {fileID: 4720323115807469851}
   UILock: {fileID: 927367955552756237}
 --- !u!114 &3999658311351936806

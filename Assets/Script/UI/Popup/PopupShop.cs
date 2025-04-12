@@ -75,8 +75,7 @@ public class PopupShop : UIBase
                 item.priceText.text = price;
                 
                 // 비소모품이 이미 구매된 경우 버튼 비활성화
-                if (item.productId == InAppPurchaseManager.ProductIDs.REMOVE_ADS ||
-                    item.productId == InAppPurchaseManager.ProductIDs.VIP_PACKAGE)
+                if (item.productId == InAppPurchaseManager.ProductIDs.REMOVE_ADS)
                 {
                     bool isPurchased = purchaseManager.IsProductPurchased(item.productId);
                     if (isPurchased)

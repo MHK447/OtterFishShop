@@ -13,16 +13,9 @@ public class InAppPurchaseManager : MonoBehaviour, IDetailedStoreListener
     public static class ProductIDs
     {
         // 소모품
-        public const string GOLD_SMALL = "com.banpofri.otterfishshop.gold_small";
-        public const string GOLD_MEDIUM = "com.banpofri.otterfishshop.gold_medium";
-        public const string GOLD_LARGE = "com.banpofri.otterfishshop.gold_large";
         
         // 비소모품
-        public const string REMOVE_ADS = "com.banpofri.otterfishshop.remove_ads";
-        public const string VIP_PACKAGE = "com.banpofri.otterfishshop.vip_package";
-        
-        // 구독
-        public const string VIP_SUBSCRIPTION = "com.banpofri.otterfishshop.vip_subscription";
+        public const string REMOVE_ADS = "otterfishshop_noads_100";
     }
 
     // 상품 정보 매핑
@@ -70,17 +63,17 @@ public class InAppPurchaseManager : MonoBehaviour, IDetailedStoreListener
 
         var builder = ConfigurationBuilder.Instance(StandardPurchasingModule.Instance());
 
-        // 소모품 추가
-        builder.AddProduct(ProductIDs.GOLD_SMALL, ProductType.Consumable);
-        builder.AddProduct(ProductIDs.GOLD_MEDIUM, ProductType.Consumable);
-        builder.AddProduct(ProductIDs.GOLD_LARGE, ProductType.Consumable);
+        // // 소모품 추가
+        // builder.AddProduct(ProductIDs.GOLD_SMALL, ProductType.Consumable);
+        // builder.AddProduct(ProductIDs.GOLD_MEDIUM, ProductType.Consumable);
+        // builder.AddProduct(ProductIDs.GOLD_LARGE, ProductType.Consumable);
         
         // 비소모품 추가
         builder.AddProduct(ProductIDs.REMOVE_ADS, ProductType.NonConsumable);
-        builder.AddProduct(ProductIDs.VIP_PACKAGE, ProductType.NonConsumable);
+        //builder.AddProduct(ProductIDs.VIP_PACKAGE, ProductType.NonConsumable);
         
         // 구독 상품 추가
-        builder.AddProduct(ProductIDs.VIP_SUBSCRIPTION, ProductType.Subscription);
+        //builder.AddProduct(ProductIDs.VIP_SUBSCRIPTION, ProductType.Subscription);
         
         UnityPurchasing.Initialize(this, builder);
         Debug.Log("인앱 결제 초기화 시작...");
@@ -272,21 +265,19 @@ public class InAppPurchaseManager : MonoBehaviour, IDetailedStoreListener
     {
         switch (productId)
         {
-            case ProductIDs.GOLD_SMALL:
-                GameRoot.Instance.UserData.SetReward((int)Config.RewardType.Currency, (int)Config.CurrencyID.Cash, 1000);
-                break;
+            // case ProductIDs.GOLD_SMALL:
+            //     GameRoot.Instance.UserData.SetReward((int)Config.RewardType.Currency, (int)Config.CurrencyID.Cash, 1000);
+            //     break;
                 
-            case ProductIDs.GOLD_MEDIUM:
-                GameRoot.Instance.UserData.SetReward((int)Config.RewardType.Currency, (int)Config.CurrencyID.Cash, 5000);
-                break;
+            // case ProductIDs.GOLD_MEDIUM:
+            //     GameRoot.Instance.UserData.SetReward((int)Config.RewardType.Currency, (int)Config.CurrencyID.Cash, 5000);
+            //     break;
                 
-            case ProductIDs.GOLD_LARGE:
-                GameRoot.Instance.UserData.SetReward((int)Config.RewardType.Currency, (int)Config.CurrencyID.Cash, 10000);
-                break;
+            // case ProductIDs.GOLD_LARGE:
+            //     GameRoot.Instance.UserData.SetReward((int)Config.RewardType.Currency, (int)Config.CurrencyID.Cash, 10000);
+            //     break;
                 
             case ProductIDs.REMOVE_ADS:
-            case ProductIDs.VIP_PACKAGE:
-            case ProductIDs.VIP_SUBSCRIPTION:
                 GameRoot.Instance.ShopSystem.IsVipProperty.Value = true;
                 break;
         }
@@ -297,9 +288,7 @@ public class InAppPurchaseManager : MonoBehaviour, IDetailedStoreListener
     // VIP 상태 업데이트 (앱 시작 시 비소모품 상태 체크)
     private void UpdateVIPStatus()
     {
-        if (IsProductPurchased(ProductIDs.REMOVE_ADS) || 
-            IsProductPurchased(ProductIDs.VIP_PACKAGE) || 
-            IsProductPurchased(ProductIDs.VIP_SUBSCRIPTION))
+        if (IsProductPurchased(ProductIDs.REMOVE_ADS))
         {
             GameRoot.Instance.ShopSystem.IsVipProperty.Value = true;
         }
