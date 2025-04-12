@@ -699,7 +699,6 @@ public class CarryCasher : OtterBase
                 GameRoot.Instance.GameNotification.RemoveNoti(NoticeComponent.NoticeType.Nap, this.transform);
             }
         }
-
     }
 
     void OnDisable()

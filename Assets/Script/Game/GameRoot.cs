@@ -27,9 +27,12 @@ public class GameRoot : Singleton<GameRoot>
 	[SerializeField]
 	private AdManager AdManager;
 	[SerializeField]
+	private InAppPurchaseManager inAppPurchaseManager;
+	[SerializeField]
 	private Joystick JoyStick;
 
 	public Joystick GetJoyStick { get { return JoyStick; } }
+	public InAppPurchaseManager GetInAppPurchaseManager { get { return inAppPurchaseManager; } }
 
 	public RectTransform GetMainCanvasTR { get { return MainCanvas.transform as RectTransform; } }
 	public UISystem UISystem { get; private set; } = new UISystem();
