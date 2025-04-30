@@ -8,8 +8,15 @@ public class WebHookDiscord : MonoBehaviour
     private const string WebhookUrl = "https://discord.com/api/webhooks/1360623729884926234/8SbVz9zylaP1Zx2MK3VYjNldb1fZbH-ImMQj4ZB9JNyl-h3S5IPsEyzIV5gqo0DTYjDn";
 
     // 메시지 전송 함수
-    public void SendToDiscord(string message)
+    public void SendToDiscord(string message, bool isPurchaseRestore = false)
     {
+        // 구매 복원일 경우 웹훅을 보내지 않음
+        if (isPurchaseRestore)
+        {
+            Debug.Log("[DiscordWebhook] Message not sent (purchase restore event).");
+            return;
+        }
+        
         StartCoroutine(SendWebhook(message));
     }
 

@@ -1,21 +1,21 @@
 {
   "project_info": {
-    "project_number": "288840381928",
-    "project_id": "ottersfishshop",
-    "storage_bucket": "ottersfishshop.firebasestorage.app"
+    "project_number": "58791652424",
+    "project_id": "otterfishshopreal",
+    "storage_bucket": "otterfishshopreal.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:288840381928:android:b364e3d65634c93918205d",
+        "mobilesdk_app_id": "1:58791652424:android:c6315fb38de01c3b0cbc7d",
         "android_client_info": {
-          "package_name": "com.banpofri.otterfishshop.com"
+          "package_name": "com.banpofriday.otterfishshop.com"
         }
       },
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyDefdunMpohAm6GA_8YoNC8REinzaXElII"
+          "current_key": "AIzaSyD6WJ-5m_9NHnIGqDR38Kdwf8X5UIwu7_I"
         }
       ],
       "services": {
