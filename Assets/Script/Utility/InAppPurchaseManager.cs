@@ -45,6 +45,9 @@ public class InAppPurchaseManager : MonoBehaviour, IDetailedStoreListener
 
     // 구매 복원 중 상태
     private bool isRestoringPurchases = false;
+    
+    // 앱 시작 후 첫 번째 구매 처리인지 확인 (자동 복원 구분용)
+    private bool isInitialPurchaseCheck = true;
 
     // 초기화 여부
     public bool IsInitialized => storeController != null && extensionProvider != null;
@@ -198,6 +201,9 @@ public class InAppPurchaseManager : MonoBehaviour, IDetailedStoreListener
         storeController = controller;
         extensionProvider = extensions;
 
+        // 초기 구매 확인 플래그 설정
+        isInitialPurchaseCheck = true;
+
         // 상품 메타데이터 캐싱
         foreach (var product in controller.products.all)
         {
@@ -212,6 +218,10 @@ public class InAppPurchaseManager : MonoBehaviour, IDetailedStoreListener
 
         // VIP 상태 업데이트
         UpdateVIPStatus();
+        
+        // 초기 구매 확인 완료 후 5초 후에 플래그 해제 (일반적인 구매 복원 시간보다 길게)
+        // 이렇게 하면 앱 시작 후 자동 복원되는 아이템은 웹훅을 보내지 않고, 사용자가 실제로 구매한 것만 웹훅을 보냄
+        Invoke("ResetInitialPurchaseCheck", 5f);
     }
 
     public void OnInitializeFailed(InitializationFailureReason error)
@@ -237,10 +247,20 @@ public class InAppPurchaseManager : MonoBehaviour, IDetailedStoreListener
             string localizedPrice = args.purchasedProduct.metadata.localizedPriceString; // ₩1,100 이런 형식
             decimal rawPrice = args.purchasedProduct.metadata.localizedPrice; // 1100.00 (숫자만)
 
-            // 구매 복원 중이 아닐 때만 디스코드에 메시지 전송
-            if (!isRestoringPurchases)
+            // 구매 복원 중이 아니고, 초기 구매 확인도 아닐 때만 디스코드에 메시지 전송
+            if (!isRestoringPurchases && !isInitialPurchaseCheck)
             {
                 WebHookDiscord.SendToDiscord($"🐚 해달이 결제 왔쎼! 상품: {productId}, 금액: {localizedPrice} ({rawPrice})");
+            }
+            else
+            {
+                // 구매 복원 중이거나 초기 구매 확인일 때는 웹훅 메시지를 보내지 않음
+                string logMessage = isRestoringPurchases ? 
+                    $"🔄 구매 복원 처리: {productId}" : 
+                    $"🔄 앱 시작 시 자동 복원: {productId}";
+                    
+                WebHookDiscord.SendToDiscord(logMessage, true);
+                Debug.Log(logMessage);
             }
 
             // 상품별 보상 처리
@@ -314,5 +334,12 @@ public class InAppPurchaseManager : MonoBehaviour, IDetailedStoreListener
         {
             GameRoot.Instance.ShopSystem.IsVipProperty.Value = true;
         }
+    }
+
+    // 초기 구매 확인 플래그 리셋
+    private void ResetInitialPurchaseCheck()
+    {
+        isInitialPurchaseCheck = false;
+        Debug.Log("초기 구매 확인 완료");
     }
 }

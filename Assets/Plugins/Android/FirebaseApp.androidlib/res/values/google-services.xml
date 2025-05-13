@@ -1,9 +1,9 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources xmlns:tools="http://schemas.android.com/tools" tools:keep="@string/gcm_defaultSenderId,@string/google_storage_bucket,@string/project_id,@string/google_api_key,@string/google_crash_reporting_api_key,@string/google_app_id">
-  <string name="gcm_defaultSenderId" translatable="false">58791652424</string>
-  <string name="google_storage_bucket" translatable="false">otterfishshopreal.firebasestorage.app</string>
-  <string name="project_id" translatable="false">otterfishshopreal</string>
-  <string name="google_api_key" translatable="false">AIzaSyD6WJ-5m_9NHnIGqDR38Kdwf8X5UIwu7_I</string>
-  <string name="google_crash_reporting_api_key" translatable="false">AIzaSyD6WJ-5m_9NHnIGqDR38Kdwf8X5UIwu7_I</string>
-  <string name="google_app_id" translatable="false">1:58791652424:android:c6315fb38de01c3b0cbc7d</string>
+  <string name="gcm_defaultSenderId" translatable="false">1060122644165</string>
+  <string name="google_storage_bucket" translatable="false">otterfishshop.firebasestorage.app</string>
+  <string name="project_id" translatable="false">otterfishshop</string>
+  <string name="google_api_key" translatable="false">AIzaSyCPBa0yT0NTd4ZvfibAslq4ZLaU-_qjhCc</string>
+  <string name="google_crash_reporting_api_key" translatable="false">AIzaSyCPBa0yT0NTd4ZvfibAslq4ZLaU-_qjhCc</string>
+  <string name="google_app_id" translatable="false">1:1060122644165:android:19d877a2f7477d96a0aaac</string>
 </resources>

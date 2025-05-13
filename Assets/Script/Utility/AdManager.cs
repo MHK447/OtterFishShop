@@ -12,8 +12,8 @@ public class AdManager : MonoBehaviour
     private InterstitialAd _interstitialAd;
 
     // 안드로이드용 광고 ID
-    private string _adUnitIdAndroid_Reward = "ca-app-pub-4348570103813665/2176085665";
-    private string _adUnitIdAndroid_Interstitial = "ca-app-pub-4348570103813665/4816058422";
+    private string _adUnitIdAndroid_Reward = "ca-app-pub-4449379001767537/9992614477";
+    private string _adUnitIdAndroid_Interstitial = "ca-app-pub-4449379001767537/8147089880";
     
     // iOS용 광고 ID
     private string _adUnitIdIOS_Reward = "ca-app-pub-4348570103813665/7269743639"; // TODO: 실제 iOS 리워드 광고 ID로 변경 필요
@@ -379,11 +379,33 @@ public class AdManager : MonoBehaviour
         {
             Debug.Log("리워드 광고 표시");
             
-            // 보상 지급 핸들러 설정
+            // 현재 사용자 보상 액션 저장
+            System.Action storedRewardAction = rewardAction;
+            bool rewardEarned = false;
+            
+            // 보상 콜백 함수 설정
+            // Show 메서드에 직접 전달하는 방식 사용
             _rewardedAd.Show((Reward reward) => {
                 Debug.Log($"사용자에게 보상이 지급되었습니다: {reward.Type}, {reward.Amount}");
-                rewardAction?.Invoke();
+                rewardEarned = true;
+                storedRewardAction?.Invoke();
             });
+            
+            // 닫힘 이벤트 핸들러 추가
+            Action adClosedAction = null;
+            adClosedAction = () => {
+                _rewardedAd.OnAdFullScreenContentClosed -= adClosedAction;
+                Debug.Log("리워드 광고가 닫혔습니다. 보상 획득 여부: " + rewardEarned);
+                
+                // 광고가 닫혔지만 보상을 받지 못했을 경우 (사용자가 중간에 닫은 경우)
+                if (!rewardEarned && skipRewardIfNotReady)
+                {
+                    Debug.LogWarning("사용자가 광고를 완료하지 않았지만, skipRewardIfNotReady가 true여서 보상을 지급합니다.");
+                    storedRewardAction?.Invoke();
+                }
+            };
+            
+            _rewardedAd.OnAdFullScreenContentClosed += adClosedAction;
             
             IsRewardAdLoaded = false;
         }
